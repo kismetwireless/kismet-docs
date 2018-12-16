@@ -179,5 +179,5 @@ The `snapshots` section holds arbitrary time-based snapshots of data; this funct
 
 If the Kismet Databaselog is enabled, Kismet will expose an API for extracting historic data.  If the databaselog is not enabled, these APIs will not be available and will return an error.
 
-The REST API is documented in the kismet_rest file in docs/dev/
+The `kismetdb` REST API [can be found here.](/docs/devel/webui-rest/kismetdb/)
 
