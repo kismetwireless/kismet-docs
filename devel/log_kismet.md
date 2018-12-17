@@ -37,6 +37,14 @@ This format matches the PPI GPS records and the internal representation of float
 Latitude and Longitude are normalized to a 6-digit precision integer using the conversion:
 *normalized_coord = (coordinate * 100000)*
 
+Coordinates can be automatically converted in SQL queries by using `/`:
+
+```sql
+SELECT (lat / 100000.0), (lon / 100000) FROM ...
+```
+
+Be sure to specify a floating-point divisor (100000.0), otherwise the result will be converted to an integer.
+
 ### GPS Bounding and Average Coordinates
 
 GPS bounding coordinates are stored as 4 values, the minimum extreme latitude and longitude, and the maximum extreme latitude and longitude.  These values define a bounding box which encloses all instances where a device was seen.
