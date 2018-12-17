@@ -2,7 +2,10 @@
 title: "Quickstart"
 permalink: /docs/readme/quickstart/
 excerpt: "Quick Start Guide"
-#toc: true
+redirect_from:
+  - /docs/readme/
+  - /docs/
+  - /README-latest.html
 ---
 
 ## Compiling: Quick Setup
