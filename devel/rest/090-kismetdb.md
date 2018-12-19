@@ -107,6 +107,9 @@ __LOGIN REQUIRED__
         /logging/kismetdb/pcap/*[TITLE]*.pcapng \\
         /logging/kismetdb/pcap/*[TITLE]*.pcapng?option1=...&option2=...
 
+* API added \\
+        `2018-12`
+
 * Methods \\
         `GET` `POST` 
 
@@ -131,4 +134,29 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 * Notes \\
         If the `kismet` log is not enabled, this endpoint will return an error.
+
+## Dropping packets
+On very long-running Kismet processes, you may wish to purge old packets.  These packets will be removed from the kismetdb log.
+
+__LOGIN REQUIRED__
+
+* URL \\
+        /logging/kismetdb/pcap/drop.cmd
+
+* API added \\
+        `2018-12`
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+| Key | Description |
+| --- | ----------- |
+| drop_before | A unix second timestamp value, packets older than `drop_before` will be deleted. |
+
+* Result \\
+    `HTTP 200` on success \\
+    HTTP error on failure
 
