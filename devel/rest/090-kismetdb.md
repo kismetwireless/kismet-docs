@@ -10,7 +10,7 @@ The `filter` options in are treated as logical `AND` statements:  To match a pac
 
 Filter options should be sent as GET parameters URL-encoded, when using the GET REST endpoint, and in a command dictionary under the `filter` key when using the POST endpoint.
 
-### Filter options:
+### Filter options
 
 1. Time window
    Packets can be selected by a time window which may either be closed (both start and end times specified) or open (only start or end time specified).
