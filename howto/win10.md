@@ -22,7 +22,7 @@ The WSL only exists for Windows 10; this is not possible under Windows 8 or 9.
 
 You will need to activate the WSL system, and then install a Linux distribution, as per the instructions at:
 
-[https://msdn.microsoft.com/en-us/commandline/wsl/install-win10]https://msdn.microsoft.com/en-us/commandline/wsl/install-win10
+[https://msdn.microsoft.com/en-us/commandline/wsl/install-win10](https://msdn.microsoft.com/en-us/commandline/wsl/install-win10)
 
 The choice of distribution to install is up to you; Ubuntu is the most logical choice as it is known to have compatibility with Kismet.
 
@@ -30,10 +30,9 @@ The choice of distribution to install is up to you; Ubuntu is the most logical c
 
 You'll need many of the dependencies Kismet needs to compile; you could install them all, but at a minimum you need to update the Ubuntu systems package lists and install:
 
-```
+```bash
 $ sudo apt-get update
-$ sudo apt-get install build-essential libmicrohttpd-dev git \
-        libpcap-dev libncurses5-dev libsqlite3-dev
+$ sudo apt-get install build-essential libmicrohttpd-dev git libpcap-dev libsqlite3-dev
 ```
 
 ## Check out Kismet
