@@ -3,9 +3,6 @@ title: "Helper tools"
 permalink: /docs/devel/external_helper_tools/
 toc: true
 ---
-
-# Kismet Helper Tools
-
 Kismet helper tools are external programs which Kismet uses; splitting functionality into an external helper can be for several reasons:
 
 1. Security. By moving operations into external tools, Kismet can avoid requiring root / administrative privileges itself. Almost any capture from a network interface will require root, both to configure the interface and to initiate the packet capture. 

@@ -3,7 +3,6 @@ title: "Extending device and data tracking"
 permalink: /docs/devel/data_types/
 toc: true
 ---
-
 Adding parsers for new IE tags in Kismet is relatively simple; there's a handful of files you need to modify and coding conventions you should follow, however.
 
 ## Kaitai

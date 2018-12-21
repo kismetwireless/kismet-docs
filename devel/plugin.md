@@ -3,9 +3,6 @@ title: "Creating Kismet plugins"
 permalink: /docs/devel/plugins/
 toc: true
 ---
-
-# Extending Kismet - Creating Plugins
-
 Kismet can load additional code dynamically at runtime in the form of a plugin.
 
 Plugins are a double-edged sword: in their current implementation, plugins are full first-class citizens in the Kismet ecosystem:  A plugin can perform any action Kismet native code can perform, and are given a direct reference to the internal Kismet module system.

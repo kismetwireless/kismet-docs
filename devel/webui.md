@@ -1,11 +1,8 @@
 ---
-title: "Extending the WebUI"
+title: "Extending the web ui"
 permalink: /docs/devel/webui_basics/
 toc: true
 ---
-
-# Extending Kismet: The Web UI
-
 Kismet self-serves its web UI via the built-in webserver.  The web UI can interact with any exposed REST endpoint on the server.  Kismet does not currently support (direct) execution of CGI-style code (PHP, etc), active server-side code should be implemented via a Kismet plugin providing a new endpoint.
 
 ## Web UI Plugins

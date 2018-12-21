@@ -3,12 +3,9 @@ title: "Kismetdb logs"
 permalink: /docs/devel/kismetdb/
 toc: true
 ---
-
-# Under Development
-
 These docs represent a logfile which is under current development; until the first full release is done, the contents of the Kismet log are subject to change as corner cases are found.
 
-# Kismet Log File
+## Kismet Log File
 
 The Kismet log file contains all the information gathered by Kismet about devices, supported phy types, packets, GPS coordinates during logging, and similar.  Under previous versions of Kismet, this data could be found in disparate logs such as gpsxml, netxml, nettxt, and pcap.
 

@@ -3,9 +3,6 @@ title: "Creating tracked components"
 permalink: /docs/devel/tracked_components/
 toc: true
 ---
-
-# Extending Kismet: Creating Tracked Components
-
 Kismet manages complex objects with arbitrary serialization and logging by implementing "tracked elements"; Tracked elements are introspectable in C++ and can be dynamically exported to other formats via the serialization API, such as JSON which is used heavily in the web interface.
 
 Tracked elements represent a compromise between the efficiency of native C++ types and the necessity of dynamic data handling and serialization.

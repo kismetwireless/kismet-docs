@@ -3,9 +3,6 @@ title: "REST endpoints"
 permalink: /docs/devel/webui_rest/
 toc: true
 ---
-
-# Extending Kismet - REST Web Server Endpoints
-
 Kismet uses a REST-like interface on the embedded web server for providing data and accepting commands.  Generally, data is fetched via HTTP GET and commands are sent via HTTP POST.  Whenever possible, parameters are sent via the GET URI, but for more complex features, command arguments are sent via POST.
 
 *Broadly speaking*, nearly all endpoints in Kismet should support all output and serialization methods.  By default, this is JSON, but additional output serializers may be added in the future or added by plugins.  Some unique endpoints are available only under specific output methods, typically these take advantage of features found only in that output type.
