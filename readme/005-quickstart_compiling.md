@@ -27,7 +27,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    For the Python add-ons, you will also need the following Python2 libraries.  The `protobuf` tool currently does not appear to agree with the changes in python3, so python2 is required:
 
    ```bash
-   $ sudo apt-get install python2 python-setuptools python-protobuf python-requests
+   $ sudo apt-get install python python-setuptools python-protobuf python-requests
    ```
 
    You can also use the `pip` equivalents of the python libraries, so long as they're installed in a location your normal Python interpreter can find them.
