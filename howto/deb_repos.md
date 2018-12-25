@@ -68,9 +68,15 @@ $ sudo apt install kismet2018
 ```
 
 ## Installing piecemeal
-For small platforms you only need the remote capture tools, you can install individual capture components.  Follow the same instructions for adding the repository, and then install only the capture drivers you need:
+If you only need the capture tools, you can install individual capture components.  
+
+Follow the same instructions for adding the repository, and then install only the capture drivers you need:
 
 ```bash
 $ sudo apt install kismet-capture-linux-wifi
+```
+
+```bash
+$ sudo apt install kismet-capture-linux-bluetooth
 ```
 
