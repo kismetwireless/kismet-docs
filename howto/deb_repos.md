@@ -21,7 +21,7 @@ $ sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/ki
 ```
 
 ## Kali Linux (Intel, Raspberry Pi)
-To enable the Kismet nightly build repository on Kali Linux (on i386, amd64, Raspberry Pi 3, Raspberry pi 64bit, and Raspberry Pi 0w):
+To enable the Kismet nightly build repository on Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, aarch64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w):
 
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
