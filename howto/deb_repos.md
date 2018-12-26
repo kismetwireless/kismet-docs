@@ -48,7 +48,7 @@ $ sudo apt-get update
 ```
 
 ## Ubuntu 18.10 Cosmic (Intel)
-To enable the Kismet nightly build repository on Ubuntu 18.04 Bionic (i386, amd64):
+To enable the Kismet nightly build repository on Ubuntu 18.10 Cosmic  (i386, amd64):
 
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
