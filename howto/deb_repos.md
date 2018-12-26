@@ -29,6 +29,15 @@ $ echo 'deb https://www.kismetwireless.net/repos/apt/git/kali rolling main' | su
 $ sudo apt-get update
 ```
 
+## Debian Stretch (Intel)
+To enable the Kismet nightly build repository on Debian Stretch (i386, amd64):
+
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/stretch stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt-get update
+```
+
 ## Ubuntu 16.04 Xenial (Intel)
 To enable the Kismet nightly build repository on Ubuntu 16.04 Xenial (i386, amd64):
 
