@@ -26,27 +26,33 @@ To enable the Kismet nightly build repository on Kali Linux (on i386, amd64, Ras
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/kali rolling main' | sudo tee /etc/apt/sources.list.d/kismet.list
-
 $ sudo apt-get update
 ```
 
 ## Ubuntu 16.04 Xenial (Intel)
-To enable to Kismet nightly build repository on Ubuntu 16.04 Xenial (i386, amd64):
+To enable the Kismet nightly build repository on Ubuntu 16.04 Xenial (i386, amd64):
 
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/ubuntu xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
-
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/xenial xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt-get update
 ```
 
 ## Ubuntu 18.04 Bionic (Intel)
-To enable to Kismet nightly build repository on Ubuntu 18.04 Bionic (i386, amd64):
+To enable the Kismet nightly build repository on Ubuntu 18.04 Bionic (i386, amd64):
 
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/bionic bionic main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt-get update
+```
 
+## Ubuntu 18.10 Cosmic (Intel)
+To enable the Kismet nightly build repository on Ubuntu 18.04 Bionic (i386, amd64):
+
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt-get update
 ```
 
