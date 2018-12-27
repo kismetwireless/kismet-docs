@@ -119,7 +119,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 
 * `ht_channels=true | false`
    Kismet will detect and tune to HT40 channels when available; to disable this, set `ht_channels=false` on your source definition.
-   Kismet will automatically disable HT channels on some devices such as the Intel iwlwifi drivers because it is known to cause problems; if you want to force Kismet to attempt HT tuning on these devices, set `ht_channels=true` to force it.  **WARNING**: This causes firmware crashes currently on all tested Intel cards.
+   Kismet will automatically disable HT channels on some devices such as the Intel iwlwifi drivers because it is known to cause problems; if you want to force Kismet to attempt HT tuning on these devices, set `ht_channels=true` to force it.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
    See the `vht_channels` option for similar control over 80MHz and 160MHz VHT channels.
 
 * `ignoreprimary=true | false`
@@ -142,7 +142,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
    
 * `vht_channels=true | false`
    Kismet will tune to VHT80 and VHT160 channels when available; `vht_channels=false` will exclude them from this list.
-   Kismet will automatically exclude VHT channels from devices known to have probems tuning to them, specifically the Intel `iwlwifi` drivers will crash when tuning to VHT channels.  To *force* Kismet to include VHT channels on these devices, set `vht_channels=true` on your source.  **WARNING**: This will cause firmware resets on all currently tested Intel Wi-Fi cards!
+   Kismet will automatically exclude VHT channels from devices known to have probems tuning to them, specifically the Intel `iwlwifi` drivers will crash when tuning to VHT channels.  To *force* Kismet to include VHT channels on these devices, set `vht_channels=true` on your source.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
    See the ht_channels option for similar control over HT40 channels.
    
 * `retry=true | false`
