@@ -42,7 +42,7 @@ When no options are provided for a data source, the defaults are controlled by s
 * `channel_hop_speed=channels/sec | channels/min`
    The channel hop speed controls how quickly Kismet hops through the channels.
    Finding the right balance of channel hop speed can depend on your environment, hardware, and goals.
-   The faster you change channels, the more likely you are to see devices, but the less likely you are to capture useful data streams from them.  Conversely, a slower hopping rate can yield more data, but miss devies which have a very short duty cycle.
+   The faster you change channels, the more likely you are to see devices, but the less likely you are to capture useful data streams from them.  Conversely, a slower hopping rate can yield more data, but miss devices which have a very short duty cycle.
    By default, Kismet hops at 5 channels a second.
    Examples:
    ```
@@ -56,7 +56,7 @@ When no options are provided for a data source, the defaults are controlled by s
    Generally there is no reason to disable this option.
 
 * `randomized_hopping=true | false`
-   Generally, data sources retreive the list of channels in sequential order.  On some data source types (like Wi-Fi), channels can overlap; hopping in a semi-random order increases the channel coverage by leveraging channel overlap to observe adjacent channels whenever possible.
+   Generally, data sources retrieve the list of channels in sequential order.  On some data source types (like Wi-Fi), channels can overlap; hopping in a semi-random order increases the channel coverage by leveraging channel overlap to observe adjacent channels whenever possible.
    Generally, there is no reason to turn this off.
 
     randomized_hopping=true | false
@@ -67,7 +67,7 @@ When no options are provided for a data source, the defaults are controlled by s
    There is generally no reason to turn this off.
 
 * `timestamp=true | false`
-   Typically, Kismet will override the timestamp of the packet with the local timestamp of the server; this is the default behavior for remote data sources, but it can be turned off either on a per-source basis or in `kismet.conf` globabally.
+   Typically, Kismet will override the timestamp of the packet with the local timestamp of the server; this is the default behavior for remote data sources, but it can be turned off either on a per-source basis or in `kismet.conf` globally.
    Generally the defaults have the proper behavior, especially for remote data sources which may not be NTP time synced with the Kismet server.
 
 ### Naming and describing data sources
