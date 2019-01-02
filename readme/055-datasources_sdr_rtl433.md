@@ -13,7 +13,7 @@ SDR is extremely powerful, but also often extremely brittle - configuring SDR ha
 ### Datasource - SDR RTL433
 The rtl-sdr radio is an extremely cheap USB SDR (software defined radio).  While very limited, it is still capable of performing some useful monitoring.
 
-Kismet is able to process data from the rtl_433 tool, which can read the broadcasts of an multitude of wireless thermometer, weather, electrical, tire pressure, and other sensors.
+Kismet is able to process data from the rtl_433 tool, which can read the broadcasts of a multitude of wireless thermometer, weather, electrical, tire pressure, and other sensors.
 
 To use the rtl433 capture, you must have a rtl-sdr USB device; this cannot be done with normal Wi-Fi hardware because a Wi-Fi card is not able to tune to the needed frequencies, and cannot report raw radio samples that are not Wi-Fi packets.
 
