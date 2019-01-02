@@ -5,7 +5,7 @@ toc: true
 ---
 Kismet can load additional code dynamically at runtime in the form of a plugin.
 
-Plugins are a double-edged sword: in their current implementation, plugins are full first-class citizens in the Kismet ecosystem:  A plugin can perform any action Kismet native code can perform, and are given a direct reference to the internal Kismet module system.
+Plugins are a double-edged sword: In their current implementation, plugins are full first-class citizens in the Kismet ecosystem;  a plugin can perform any action Kismet native code can perform, and are given a direct reference to the internal Kismet module system.
 
 ## Plugin Code
 
@@ -58,7 +58,7 @@ version=1.0.0
 js=new_web_module,/plugin/webplugin/js/new_web_module.js
 ```
 
-Example manifest for plugin with C++ code
+Example manifest for plugin with C++ code:
 ```
 name=Codeplugin
 description=Standard code-based plugin
