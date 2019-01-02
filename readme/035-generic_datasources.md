@@ -119,7 +119,7 @@ The following information can be set in a source, but is not required:
    ```
 
 #### Setting source IDs
-Typically Kismet generates a UUID based on attributes of the source - the interface MAC address if the datasource is linked to a physical interface, the devices position in the USB bus, or some other consistent identifier.
+Typically Kismet generates a UUID based on attributes of the source - the interface MAC address if the datasource is linked to a physical interface, the device's position in the USB bus, or some other consistent identifier.
 To override the UUID generation, the `uuid=...` parameter can be set:
 ```
 source=wlan0:name=foo,uuid=AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE
