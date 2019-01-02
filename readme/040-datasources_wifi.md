@@ -24,7 +24,7 @@ Channels can be defined by number or by frequency.
 | xxVHT80    | 80MHz 802.11ac channel, such as `116VHT80`                   |
 | xxVHT160   | 160MHz 802.11ac channel, such as `36VHT160`                  |
 | xxW10      | 10MHz half-channel, a non-standard channel type supported on some Atheros devices.  This cannot be automatically detected, you must manually add it to the channel list for a source. |
-| xxW5       | 5MHz quater-channel, a non-standard channel type supported on some Atheros devices.  This cannot be automatically detected, you must manually add it to the channel list for a source. |
+| xxW5       | 5MHz quarter-channel, a non-standard channel type supported on some Atheros devices.  This cannot be automatically detected, you must manually add it to the channel list for a source. |
 
 ### Datasource: Linux Wi-Fi
 
@@ -142,7 +142,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
    
 * `vht_channels=true | false`
    Kismet will tune to VHT80 and VHT160 channels when available; `vht_channels=false` will exclude them from this list.
-   Kismet will automatically exclude VHT channels from devices known to have probems tuning to them, specifically the Intel `iwlwifi` drivers will crash when tuning to VHT channels.  To *force* Kismet to include VHT channels on these devices, set `vht_channels=true` on your source.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
+   Kismet will automatically exclude VHT channels from devices known to have problems tuning to them, specifically the Intel `iwlwifi` drivers will crash when tuning to VHT channels.  To *force* Kismet to include VHT channels on these devices, set `vht_channels=true` on your source.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
    See the ht_channels option for similar control over HT40 channels.
    
 * `retry=true | false`
@@ -151,7 +151,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 #### Special Linux Wi-Fi Drivers
 Some drivers require special behavior - whenever possible, Kismet will detect these drivers and "do the right thing".
 
-* The rtl8812 and rtl8814 drivers (available at https://github.com/aircrack-ng/rtl8812au.git) support monitor mode, however they do not properly implement the mac80211 control layer; while they support creating VIFs for monitor mode, they do not actualy provide packets.  Kismet will detect the `8812au` and `8814` drivers and configure the base interface in monitor mode using legacy ioctls.
+* The rtl8812 and rtl8814 drivers (available at https://github.com/aircrack-ng/rtl8812au.git) support monitor mode, however they do not properly implement the mac80211 control layer; while they support creating VIFs for monitor mode, they do not actually provide packets.  Kismet will detect the `8812au` and `8814` drivers and configure the base interface in monitor mode using legacy ioctls.
 * The nexmon driver patches for Broadcom devices do not enter monitor mode normally; Kismet will detect the drivers and use the nexmon-custom ioctls.
 
 ### Data source: OSX Wifi
@@ -180,7 +180,7 @@ OSX Wi-Fi sources support the standard options supported by all sources (such as
    Control the per-source channel hop rate.  If this option is omitted, Kismet will use the default global channel hop rate.
 
 ### Tuning Wi-Fi Packet Capture
-Kismet has a number of tuning options to handle quirks in different types packet captures.  These options can be set in the kismet.conf config file to control how Kismet behaves in some situations:
+Kismet has a number of tuning options to handle quirks in different types of packet captures.  These options can be set in the kismet.conf config file to control how Kismet behaves in some situations:
 
 * `dot11_process_phy=[true|false]`
    802.11 Wi-Fi networks have three basic packet classes - Management, Phy, and Data.  The Phy packet type is the shortest, and caries the least amount of information - it is used to acknowledge packet reception and controls the packet collision detection CTS/RTS system.  These packets can be useful, however they are also the most likely to become corrupted and still pass checksum.
