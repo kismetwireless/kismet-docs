@@ -23,4 +23,4 @@ Kismet will need the [pyModeS](https://github.com/junzis/pyModeS) plugin, you ca
 For more information about the rtlamr support, see the README in the capture_sdr_rtladsb directory.
 
 ### Using other SDR sources
-If you want to use multiple rtl based sources at once (for instance, rtl433 and rtlamr), you will need multiple rtl-sdr USB devices.
+If you want to use multiple rtl-based sources at once (for instance, rtl433 and rtlamr), you will need multiple rtl-sdr USB devices.
