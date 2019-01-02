@@ -24,7 +24,7 @@ A theoretical parser, at its simplest, would be defined as:
 
 ```c++
 class dot11_ie_12345_fake {
-pubic:
+public:
     dot11_ie_12345_fake() { }
     ~dot11_ie_12345_fake() { }
 
@@ -50,7 +50,7 @@ The constructor and destructor are empty - a tag parser, typically, should not d
 
 The accessor functions are, typically, defined using the Kismet workaround for variable `constexpr` support.  `constexpr17` is defined by Kismet in `multi_constexpr.h` and evaluates to `constexpr` only if the compiler supports C++17 or newer.
 
-Accessors should be named after the field they return, which should in turn be named after the field definition in the protocol specificiation.
+Accessors should be named after the field they return, which should in turn be named after the field definition in the protocol specification.
 
 The field variable names should follow the Kaitai auto-generated code convention of beginning with `m_` and being named after the field they are derived from.
 
@@ -105,7 +105,7 @@ The QBSS tag may take 2 forms, depending on version; the only way to determine w
 The parser throws an exception if the buffer is not either 4 or 5 bytes long.  Typically, a parser may use Kaitai stream processing to handle raising the exception, but because the QBSS tag version is length-dependent, we explicitly raise an exception if an invalid length was found.
 
 ## 150 and 221 vendor tags
-The IE150 and IE221 tags are somewhat special:  Both define vendor extensions, which are then nested underr an OUI and sub-type record.  Typically IE150 holds Cisco-specific data about the access point configuration, while IE221 is a catch-all for WMM, QoS, encryption settings, unique vendor tags, and other unique vendor data.
+The IE150 and IE221 tags are somewhat special:  Both define vendor extensions, which are then nested under an OUI and sub-type record.  Typically IE150 holds Cisco-specific data about the access point configuration, while IE221 is a catch-all for WMM, QoS, encryption settings, unique vendor tags, and other unique vendor data.
 
 The parsing of the IE150 and IE221 tags is handled by Kismet, breaking each tag into sub-tags, similar to how Kismet breaks the IE data into individual fields.  Kismet extracts the vendor OUI and subtype, and starts the sub-tag stream immediately *after* the OUI record.  Sub-tag parsers *must process the subtype byte*, as not all sub-types *use* a type byte.
 
@@ -218,7 +218,7 @@ The `parse` function does 3 things:
 
 1. Read the subtype byte.  We store this instead of discarding it, in this parser.
 2. Zero the vector
-3. Iterate over the remaining tag data.  It is important to check the stream length here!  The data should match the length of the buffer.  By checking the length, we *prevent* a false failrue when we hit the end of the buffer trying to read another record - but we *also* ensure that the entire buffer is read.
+3. Iterate over the remaining tag data.  It is important to check the stream length here!  The data should match the length of the buffer.  By checking the length, we *prevent* a false failure when we hit the end of the buffer trying to read another record - but we *also* ensure that the entire buffer is read.
 
 ## Bitfields
 Many tags define bitfields.  Generally, it's best to implement the bitfields so that the code using the API calls a function returning a boolean (or a shifted integer for multi-bit values); for instance from `dot11_ie_54_mobility`:
@@ -242,7 +242,7 @@ The general goal is to shift as much of the tag-specific logic into the tag pars
 ## Parsing tags
 Parsing tags is handled by `phy_80211_dissectors.cc`.  The values are put into the procesed `dot11_packinfo` defined in `phy_80211.h`.
 
-Processed records can be added to `dot11_packfino` as data, or as shared pointers to processed tags:
+Processed records can be added to `dot11_packinfo` as data, or as shared pointers to processed tags:
 
 ```c++
         ...
