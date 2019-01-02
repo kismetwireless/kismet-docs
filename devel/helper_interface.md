@@ -30,7 +30,7 @@ Prints a message via the MessageBus system; these messages are printed to the Ki
 
 | Field   | Type        | Content                                   |
 | ------- | ----------- | ----------------------------------------- |
-| msgtype | MessageType | Type of message (Info, Debug, Alert, Etc) |
+| msgtype | MessageType | Type of message (Info, Debug, Alert, Etc.) |
 | msgtext | string      | Message content                           |
 
 #### MessageType
@@ -151,11 +151,11 @@ HTTP POST variables are transmitted as an array of HttpPostData.
 
 ### `HTTPRESPONSE` (KismetExternalHttp.HttpResponse) *Helper -> Kismet*
 
-Multiple response frames may be sent for any request; request responses may include custom HTTP headers, fixed content or streaming data, and external helpers may keep the connection open in a streaming mode to continually send streaming real time data.  
+Multiple response frames may be sent for any request; request responses may include custom HTTP headers, fixed content or streaming data, and external helpers may keep the connection open in a streaming mode to continually send streaming real-time data.  
 
 Internally, the web proxy system uses the Kismet chained buffer system; this sends the buffer to the web client as quickly as possible while it is still being populated; if the client is fast enough, the buffer will never grow beyond the basic size, but if the client is not keeping up with the buffer, it will grow automatically. The external tool can pass data as quickly as it can be generated without concern for the web budgeting system. 
 
-Generally, an external tool should limit the data per frame to a reasonable amount (1kb would be a reasonable size); if a packet is larger than the buffer allocated in Kismet it will not be properly received and Kismet may be running on an extremely memory constrained system. Large amounts of data can be sent by sending multiple response frames. 
+Generally, an external tool should limit the data per frame to a reasonable amount (1kB would be a reasonable size); if a packet is larger than the buffer allocated in Kismet it will not be properly received and Kismet may be running on an extremely memory-constrained system. Large amounts of data can be sent by sending multiple response frames. 
 
 The helper may include additional data in the `HTTPRESPONSE` such as custom HTTP headers, and the helper may change the HTTP result code.  Headers may only be sent *before* or *with* the first `HTTPRESPONSE` message.
 
