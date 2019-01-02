@@ -52,7 +52,7 @@ $ git clone https://git.openwrt.org/15.05/openwrt.git openwrt-cc-tetra
 
 The 15.05 branch of OpenWRT has issues building on modern systems; so you have 2 options:
 
-1. Install an older Ubuntu in a virtual machine or container (14.04 would likely work)
+1. Install an older Ubuntu in a virtual machine or container (14.04 is known to work).
 2. Modify some files.
 
 Assuming you'll be building on a modern system, first you will have to patch the prerequisite build system to detect modern git; without this, `make menuconfig` (or any other build commands) will fail.
@@ -96,13 +96,13 @@ index cbd622e..d2835ca 100644
 
 You'll also need to patch against a bug in the old OpenWRT code triggered by a modern perl version:
 
-```
+```bash
 $ curl 'https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob_plain;f=tools/automake/patches/010-automake-port-to-Perl-5.22-and-later.patch;h=31b9273d547145e5ecbeaef20a1e82cc9292fdc2;hb=92c80f38cff3c20388f9ac13d5196f2745aeaf77' > tools/automake/patches/010-automake-perl.patch
 ```
 
 ## Tweak packet.mk
 
-Some versions of OpenWRT have an issue when using MIPS16 Interlink mode; as the Tetra and Nano use the MIPS processor, this can raise it's head as a bug where Kismet will fail with 'invalid opcode sync' errors.
+Some versions of OpenWRT have an issue when using MIPS16 Interlink mode; as the Tetra and Nano use the MIPS processor, this can raise its head as a bug where Kismet will fail with 'invalid opcode sync' errors.
 
 The simplest way to fix this is to edit `include/package.mk`.  Change the line:
 
@@ -116,7 +116,7 @@ If you have already built OpenWRT, you may need to do `make clean` after making 
 
 You will need to select the basic options for OpenWRT and enable the external feed for additional libraries Kismet needs.  When running `make menuconfig` you may see warnings about needing additional packages - install any that OpenWRT says you are missing.
 
-```
+```bash
 # Go into the directory you just cloned
 $ cd openwrt-cc-tetra
 
@@ -141,7 +141,7 @@ Inside the OpenWRT configuration you will want to:
 
 We need to tell OpenWRT to pull the feeds into the build system.  Still in the openwrt directory you checked out, run:
 
-```
+```bash
 $ ./scripts/feeds update -a
 $ ./scripts/feeds install -a
 ```
@@ -156,7 +156,7 @@ We want to copy the Kismet package over, because we'll potentially be making som
 $ cp -R ~/src/kismet/packaging/openwrt/kismet-2018-tetra ~/src/openwrt-master-tetra/package/network
 ```
 
-Where, of course, you want to copy from your checked out Kismet code to the checked out OpenWRT Tetra code; your directories might be different.
+Where, of course, you want to copy from your checked-out Kismet code to the checked-out OpenWRT Tetra code; your directories might be different.
 
 ## Install libprotoc-c
 
@@ -166,17 +166,17 @@ In a perfect world the libprotoc-c package in OpenWRT would install the proper h
 $ sudo apt-install protobuf-c-compiler
 ```
 
-will suffice on Ubuntu-style distributions; your distribution may vary.  Note:  This is for the *protobuf-c* version, *not* the normal protobuf (which is C++, and which has a working openwrt package with proper host tools.)
+will suffice on Ubuntu-style distributions; your distribution may vary.  Note:  This is for the *protobuf-c* version, *not* the normal protobuf (which is C++, and which has a working openwrt package with proper host tools).
 
 ## Enable Kismet
 
 Now we need to enable the Kismet package.  Still in your OpenWRT directory:
 
 1. Enter OpenWRT configuration again:  `make menuconfig`
-2. Navigate to 'Network'
+2. Navigate to 'Network'.
 3. Scroll all the way down to 'kismet', it will be several screens down.
 4. Enable kismet-2018-tetra as a *module*.  Hit 'm' to do so.  If you have multiple kismet packages, make sure to select the right one - viewing the help on the entry will show you the version.
-5. Exit, saving when prompted to.
+5. Exit, saving when prompted to do so.
 
 ## Compile OpenWRT
 
@@ -198,7 +198,7 @@ or similar.
 
 If everything went well, you now have a bunch of packages to copy to your Tetra:
 
-```
+```bash
 $ cd bin/ar71xx/packages
 $ scp packages/libmicrohttpd_0.9.38-1.2_ar71xx.ipk base/libpcap_1.8.1-1_ar71xx.ipk base/libnl_3.2.21-1_ar71xx.ipk base/libnettle_3.1.1-1_ar71xx.ipk packages/libgcrypt_1.6.1-1_ar71xx.ipk packages/libgpg-error_1.12-1_ar71xx.ipk base/libstdcpp_4.8-linaro-1_ar71xx.ipk packages/libcap_2.24-1_ar71xx.ipk packages/libpcre_8.39-1_ar71xx.ipk packages/libgnutls_3.4.15-1_ar71xx.ipk packages/libsqlite3_3081101-1_ar71xx.ipk packages/protobuf_2.6.1-1_ar71xx.ipk packages/libprotobuf-c_v1.0.1_ar71xx.ipk base/kismet-2018-tetra_git-0_ar71xx.ipk root@172.16.42.1:/tmp
 ```
@@ -209,34 +209,34 @@ If you have already compiled Kismet and are just trying to update it, you simply
 
 1. Delete the staging and downloaded code.  From your openwrt build dir,
 
-  ```
+  ```bash
   $ rm -rf build_dir/target-mips_34kc_uClibc-0.9.33.2/kismet-2018git/
   $ rm dl/kismet*
   ```
-2. Run `make menuconfig` to update any dependencies which have changed
+2. Run `make menuconfig` to update any dependencies which have changed.
 3. Compile normally as before or compile just the Kismet package and its dependencies with:
     ` $ make package/network/kismet/compile`
 
 *NOTE* - If you recently updated Kismet to the new Protobuf code, see the above section on modifying `include/package.mk` or you will have problems!
 
-## Install Kismet on the tetra
+## Install Kismet on the Tetra
 
 SSH into the Tetra and install the packages:
 
-```
+```bash
 $ ssh root@172.16.42.1
 ...
 # cd /tmp
 # opkg install *.ipk
 ```
 
-## Turn off the pineapple management SSID
+## Turn off the Pineapple management SSID
 
-If you want to run Kismet on both interfaces, turn off the pineapple management SSID via the pineapple webui in Networking, Access Points, Disable Management AP
+If you want to run Kismet on both interfaces, turn off the pineapple management SSID via the Pineapple WebUI in Networking, Access Points, Disable Management AP.
 
-## Run kismet!
+## Run Kismet!
 
-Fire up kismet and see how it goes.  While SSHd into the tetra as root:
+Fire up Kismet and see how it goes.  While SSHd into the Tetra as root:
 
 ```
 # kismet_server -n -c wlan0 -c wlan1
