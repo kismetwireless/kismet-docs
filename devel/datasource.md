@@ -11,15 +11,13 @@ Kismet supports additional capture types via the `KisDatasource` interface.  Dat
 
 Datasources can report packets or complex records - if your datasource needs to pass parsed information about a device event, that's possible!
 
-[TOC]
-
 ## Capture via IPC and Network
 
-Kismet datasources communicate from the capture binary to the Kismet server via an IPC channel or TCP connection.  This channel passes commands, data, and other objects via an extension of the Kismet External API protocol; written using the Google Protobuf library this protocol is extendable and parsers can be generated for nearly any language.
+Kismet datasources communicate from the capture binary to the Kismet server via an IPC channel or TCP connection.  This channel passes commands, data, and other objects via an extension of the Kismet External API protocol; written using the Google Protobuf library, this protocol is extensible and parsers can be generated for nearly any language.
 
 The datasource IPC channel is via inherited file descriptors:  Prior to launching the capture binary, the Kismet server makes a pipe(2) pair and will pass the read (incoming data to the capture binary) and write (outgoing data from the capture binary) file descriptor numbers on the command line of the capture binary.
 
-Operating as a completely separate binary allows the capture code to use increased permissions via suid, operate independently of the Kismet main loop, allowing the use of alternate main loop methods or other processor-intensive operations which could stall the main Kismet packet loop, or even using other languages to define the capture binary, such as a python capture system which utilizes python radio libraries.
+Operating as a completely separate binary allows the capture code to use increased permissions via suid, operate independently of the Kismet main loop, allowing the use of alternate main loop methods or other processor-intensive operations which could stall the main Kismet packet loop, or even using other languages to define the capture binary, such as a Python capture system which utilizes Python radio libraries.
 
 The network protocol is an encapsulation of the same protocol over a TCP channel, with some additional setup frames.  The network protocol will be more fully defined in future revisions of this document.
 
@@ -260,7 +258,7 @@ Some datasources may need to send a complete protobuf record for data; this can 
 
 #### `KismetDatasource.SubChannels`
 
-Basic list of channels.  Channels are reported as strings, as they can represent complex tuning options (Such as `6HT40+` for Wi-Fi).
+Basic list of channels.  Channels are reported as strings, as they can represent complex tuning options (such as `6HT40+` for Wi-Fi).
 
 | Field    | Type     | Content           |
 | -------- | -------- | ----------------- |
@@ -280,7 +278,7 @@ Basic channel.  Channels are reported as strings, as they can represent complex 
 | ------------ | -------- | ------------------------------------------------------------ |
 | channels     | string[] | Array of channels to configure as the hopping pattern        |
 | rate         | double   | *Optional* Rate at which to hop, in hops per second.  Hop rates less than 1 result in dwelling on a channel for longer than a second. |
-| shuffle      | bool     | *Optional* Automatically shuffle the hop list to minimize frequency overlap (maximizing channel coverage) |
+| shuffle      | bool     | *Optional* Automatically shuffle the hop list to minimize frequency overlap (maximizing channel coverage). |
 | shuffle_skip | uint32   | *Optional* Skip interval when shuffling; this is typically calculated by Kismet to be a prime factor of the number of channels in the hop list, ensuring coverage. |
 | offset       | uint32   | *Optional* Offset into the hopping channel list; this is typically calculated by Kismet when multiple radios are present on the same frequency band, and maximizes coverage. |
 
@@ -315,7 +313,7 @@ Basic channel.  Channels are reported as strings, as they can represent complex 
 | Field     | Type   | Content                                                      |
 | --------- | ------ | ------------------------------------------------------------ |
 | interface | string | Supported interface (which can be passed via `-c [interface]` in Kismet for example) |
-| flags     | string | Required option flags (which will be passed via `-c [interface]:flags` in Kismet for example); Flags can refine the interface parameters, etc. |
+| flags     | string | Required option flags (which will be passed via `-c [interface]:flags` in Kismet for example); flags can refine the interface parameters, etc. |
 | hardware  | string | *Optional* Hardware / chipset of device                      |
 
 #### `KisDatasource.SubPacket`
@@ -324,15 +322,15 @@ Raw packet data is injected into the Kismet Packetchain system.  Datasources whi
 
 | Field     | Type    | Content                                                      |
 | --------- | ------- | ------------------------------------------------------------ |
-| time_sec  | uint64  | Packet timestamp as Posix second                             |
-| time_usec | uint64  | Packet timestamp microseconds                                |
+| time_sec  | uint64  | Packet timestamp as Posix second precision                   |
+| time_usec | uint64  | Packet timestamp microsecond precision                       |
 | dlt       | uint32  | DLT (Data Link Type) of packet content, as returned by libpcap |
 | size      | uint64  | Packet payload size                                          |
 | data      | bytes[] | Raw packet data                                              |
 
 #### `KisDatasource.SubSignal`
 
-Some packet formats include signal level data as part of the packet headers (for example, Radiotap); for other packets, this data may be available as an external set of data.
+Some packet formats include signal-level data as part of the packet headers (for example, Radiotap); for other packets, this data may be available as an external set of data.
 
 | Field       | Type   | Content                                                      |
 | ----------- | ------ | ------------------------------------------------------------ |
@@ -340,7 +338,7 @@ Some packet formats include signal level data as part of the packet headers (for
 | noise_dbm   | double | *Optional* Noise level in dBm                                |
 | signal_rssi | double | *Optional* Signal level in RSSI.  Kismet cannot convert RSSI to a meaningful number, so whenever possible, a datasource should prefer dBm) |
 | noise_rssi  | double | *Optional* Noise level in RSSI.  Kismet cannot convert RSSI to a meaningful number, so whenever possible, a datasource should prefer dBm) |
-| freq_khz    | double | *Optional* Frequency of packet, in KHz                       |
+| freq_khz    | double | *Optional* Frequency of packet, in kHz                       |
 | channel     | string | *Optional* Channel of packet, as a string meaningful to the datasource type |
 | datarate    | double | *Optional* Data rate of packet                               |
 
@@ -362,14 +360,14 @@ For data sources which support raw spectrum capture, the `SubSpecSet` configurat
 
 Data sources which support raw spectrum capture return the spectrum record in a `SubSpectrum`.
 
-| Field           | Type     | Content                                         |
-| --------------- | -------- | ----------------------------------------------- |
-| time_sec        | uint64   | *Optional* Timestamp of sweep, in Posix seconds |
-| time_usec       | uint64   | *Optional* Timestamp of sweep, microseconds     |
-| start_mhz       | double   | *Optional* Starting frequency of sweep, in MHz  |
-| end_mhz         | double   | *Optional* Ending frequency of sweep, in MHz    |
-| bucket_width_hz | double   | *Optional* Width of sample buckets              |
-| data            | uint32[] | *Optional* Sweep samples                        |
+| Field           | Type     | Content                                                  |
+| --------------- | -------- | -------------------------------------------------------- |
+| time_sec        | uint64   | *Optional* Timestamp of sweep, as Posix second precision |
+| time_usec       | uint64   | *Optional* Timestamp of sweep, microsecond precision     |
+| start_mhz       | double   | *Optional* Starting frequency of sweep, in MHz           |
+| end_mhz         | double   | *Optional* Ending frequency of sweep, in MHz             |
+| bucket_width_hz | double   | *Optional* Width of sample buckets                       |
+| data            | uint32[] | *Optional* Sweep samples                                 |
 
 #### `KisDatasource.SubSuccess`
 
@@ -378,7 +376,7 @@ Response messages include a `SubSuccess`; this is used to indicate command compl
 | Field   | Type   | Content                                                      |
 | ------- | ------ | ------------------------------------------------------------ |
 | success | bool   | Transaction was successful (or not)                          |
-| seqno   | uint32 | Sequence number of command we are responding to.  If this is a runtime-error not associated with a specific command, this may be 0. |
+| seqno   | uint32 | Sequence number of command we are responding to.  If this is a runtime error not associated with a specific command, this may be 0. |
 
 ## Defining the driver:  Deriving from KisDatasource
 
@@ -386,7 +384,7 @@ The datasource driver is the C++ component which brokers interactions between th
 
 All datasources are derived from `KisDatasource`.  A KisDatasource is based on a `tracker_component` to provide easy export of capture status.
 
-The amount of customization required when writing a KisDatasource driver depends on the amount of custom data being passed over the IPC channel.  For packet-based data sources, there should be little additional customization required, however sources which pass complex pre-parsed objects will need to customize the protocol handling methods.
+The amount of customization required when writing a KisDatasource driver depends on the amount of custom data being passed over the IPC channel.  For packet-based data sources, there should be little additional customization required, however sources which pass complex pre-parsed objects will need to customize the protocol-handling methods.
 
 KisDatasource instances are used in two ways:
 1. *Maintenance* instances are used as factories to create new instances.  A maintenance instance is used to enumerate supported capture types, initiate probes to find a type automatically, and to build a capture instance.
@@ -411,8 +409,7 @@ virtual KisDataSource *build_data_source() {
 }
 ```
 
-A datasource which operates by passing packets should be able to function with no further customization:  Packet data passed via the `PACKET` record will be
-decapsulated and inserted into the packetchain with the proper DLT.
+A datasource which operates by passing packets should be able to function with no further customization:  Packet data passed via the `PACKET` record will be decapsulated and inserted into the packetchain with the proper DLT.
 
 ## Handling the PHY
 
@@ -445,7 +442,7 @@ A datasource which is packet-based but does not conform to an existing DLT defin
 
 If data records are entirely parsed by the classifier (see below for more information), then a separate DLT handler may not be necessary, however if your DLT embeds signal, location, or other information which needs to be made available to other Kismet data handlers, it should be decoded by your DLT handler.
 
-Capture sources implementing alternate capture methods for known DLTs (for instance, support for 802.11 on other operating systems, etc) do not need to implement a new DLT handler.
+Capture sources implementing alternate capture methods for known DLTs (for instance, support for 802.11 on other operating systems, etc.) do not need to implement a new DLT handler.
 
 ### Deriving the DLT
 
@@ -514,7 +511,7 @@ int DLT_Example::HandlePacket(kis_packet *in_pack) {
 
 ## Handling Non-Packet Data
 
-Non-packet data can be decapsulated by extending the `KisDataSource::handle_packet` method.  By default this method handles defined packet types, an extended version should first call the parent instance.
+Non-packet data can be decapsulated by extending the `KisDataSource::handle_packet` method.  By default this method handles defined packet types; an extended version should first call the parent instance.
 
 ```C++
 void SomeDataSource::handle_packet(string in_type, KVmap in_kvmap) {
@@ -528,9 +525,9 @@ void SomeDataSource::handle_packet(string in_type, KVmap in_kvmap) {
 }
 ```
 
-Extended information can be added to a packet as a custom record and transmitted via the Kismet packetchain, or can be injected directly into the tracker for the new phy type (See the [datatracker](/docs/dev/datatracker.html) docs for more information).  Injecting into the packet chain allows existing Kismet code to track signal levels, location, etc, automatically.
+Extended information can be added to a packet as a custom record and transmitted via the Kismet packetchain, or can be injected directly into the tracker for the new phy type (See the [datatracker](/docs/dev/datatracker.html) docs for more information).  Injecting into the packet chain allows existing Kismet code to track signal levels, location, etc., automatically.
 
-If the incoming data is directly injected into the data tracking system for the new phy type, then special care must be taken to create pseudo-packet records for the core device tracking system.  Ultimately, a pseudo-packet event must be created, either when processing the custom IPC packet or in the device classifier.  Generally, it is recommended that a datasource attach the custom record to a packet object and process it via the packetchain as documented in [datatracker](/docs/dev/datatracker.html).
+If the incoming data is directly injected into the data tracking system for the new phy type, then special care must be taken to create pseudo-packet records for the core device-tracking system.  Ultimately, a pseudo-packet event must be created, either when processing the custom IPC packet or in the device classifier.  Generally, it is recommended that a datasource attach the custom record to a packet object and process it via the packetchain as documented in [datatracker](/docs/dev/datatracker.html).
 
 When processing a custom frame, existing KV pair handlers can be used.  For example:
 
