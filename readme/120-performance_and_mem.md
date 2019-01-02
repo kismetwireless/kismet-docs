@@ -49,13 +49,13 @@ Kismet has several options which control how much memory and processing it uses.
 * `ulimit_mbytes=ram_in_megabytes`
    Kismet can hard-limit the amount of memory it is allowed to use via the 'ulimit' system; this could be set via a launch/setup script using the at startup. 
 
-   If Kismet runs out of ram, it *will exit immediately* as if the system had encountered an out-of-memory error.
+   If Kismet runs out of RAM , it *will exit immediately* as if the system had encountered an out-of-memory error.
 
    This setting should ONLY be combined with a restart script that relaunches Kismet, and typically should only be used on long-running WIDS-style installs of Kismet.
 
    If this value is set too low, Kismet may fail to start the webserver correctly or perform other startup tasks.  This value should typically only be used to control unbounded growth on long-running installs.
 
-   The memory value is specified in *megabytes of ram*
+   The memory value is specified in *megabytes of RAM*.
 
    Some older kernels (such as those found on some Debian and Ubuntu versions still in LTS, such as Ubuntu 14.04) do not properly calculate memory used by modern allocation systems and will not count the memory consumed.  On these systems, it may be necessary to use externally-defined `cgroup` controls.
 
