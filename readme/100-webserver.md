@@ -14,13 +14,13 @@ You will need this password to log into Kismet for the first time.
 
 The webserver is configured via the `kismet_httpd.conf` file.  These options may be included in the base kismet.conf file, but are broken out for clarity.  These options may be overridden in `kismet_site.conf` for pre-configured installs.
 
-By default, Kismet does not run in SSL mode.  If you provide a certificate and key file in PEM format, Kismet supports standard SSL / HTTPS.  For more information on creating a SSL certificate, look at `README.SSL`
+By default, Kismet does not run in SSL mode.  If you provide a certificate and key file in PEM format, Kismet supports standard SSL / HTTPS.  For more information on creating a SSL certificate, look at `README.SSL`.
 
 HTTP configuration options:
 
 * `httpd_username=username`
    Set the username.  This is required for any actions which can change configuration (adding / removing data sources, changing server-side configuration data, downloading packet captures, etc).
-   The default user is `kismet`, and by default, the `httpd_username=` and `httpd_password=` configuration options are stored in the users home directory, in `~/.kismet/kismet_httpd.conf`.
+   The default user is `kismet`, and by default, the `httpd_username=` and `httpd_password=` configuration options are stored in the user's home directory, in `~/.kismet/kismet_httpd.conf`.
 
 * `httpd_password=password`
    Set the password.  The first time you run Kismet, it will auto-generate a random password and store it in `~/.kismet/kismet_httpd.conf`.
