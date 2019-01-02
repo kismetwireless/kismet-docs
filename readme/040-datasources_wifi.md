@@ -183,6 +183,6 @@ OSX Wi-Fi sources support the standard options supported by all sources (such as
 Kismet has a number of tuning options to handle quirks in different types of packet captures.  These options can be set in the kismet.conf config file to control how Kismet behaves in some situations:
 
 * `dot11_process_phy=[true|false]`
-   802.11 Wi-Fi networks have three basic packet classes - Management, Phy, and Data.  The Phy packet type is the shortest, and caries the least amount of information - it is used to acknowledge packet reception and controls the packet collision detection CTS/RTS system.  These packets can be useful, however they are also the most likely to become corrupted and still pass checksum.
+   802.11 Wi-Fi networks have three basic packet classes - Management, Phy, and Data.  The Phy packet type is the shortest, and contains the least amount of information - it is used to acknowledge packet reception and controls the packet collision detection CTS/RTS system.  These packets can be useful, however they are also the most likely to become corrupted and still pass checksum.
    Kismet turns off processing of Phy packets by default because they can lead to spurious device detection, especially in high-data captures.  For complete tracking and possible detection of hidden-node devices, it can be set to 'true'.
 
