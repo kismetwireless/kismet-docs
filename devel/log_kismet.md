@@ -11,7 +11,7 @@ The Kismet log file contains all the information gathered by Kismet about device
 
 ## Internal Log Structure
 
-The Kismet log file is stored as a sqlite3 database, however it is not designed as a traditional strictly normalized database.
+The Kismet log file is stored as a SQLite3 database, however it is not designed as a traditional strictly normalized database.
 
 In order to support the arbitrary data collected by Kismet about different phy layers and any  Kismet plugins that may have been loaded, the Kismet log contains basic normalized fields such as location, timestamp, and device keys, but the majority of the data is stored as a serialized JSON object or as binary packet data.
 
@@ -52,11 +52,11 @@ The GPS average location is calculated by Kismet as a running average of all pac
 
 Device keys are used to uniquely identify a device; the device key is used by Kismet as the indexing value for every device record, and incorporates the unique Kismet server which saw the device, the phy layer driver which processed the device, and the device-specific unique identifier (often the MAC address but not always).
 
-Internally keys are represented as 128-bit numbers, in the Kismet log they are represented as a TEXT field; each device key will be unique.
+Internally, keys are represented as 128-bit numbers; in the Kismet log they are represented as a TEXT field and each device key will be unique.
 
 ### UUIDs
 
-UUIDs, or globally unique identifiers, are used in Kismet to identify specific instances of some long-living objects such as the Kismet server itself and data sources.  UUIDs are stored in the Kismet log as a TEXT blob of the UUID string.
+UUIDs, or universally unique identifiers, are used in Kismet to identify specific instances of some long-living objects such as the Kismet server itself and data sources.  UUIDs are stored in the Kismet log as a TEXT blob of the UUID string.
 
 ## Log Sections
 
@@ -86,7 +86,7 @@ The `data` section holds arbitrary data records which are *not* packets but whic
 | ts_sec     |   *timestamp* | Event timestamp, as second-precision timestamp integer |
 | ts_usec    |   *timestamp* | Event timestamp, as usec-precision timestamp integer   |
 | phyname    |        *text* | Capturing device phy name                              |
-| devmac     |        *text* | Captured device mac, if any                            |
+| devmac     |        *text* | Captured device MAC, if any                            |
 | lat        | *gps integer* | GPS latitude, as normalized integer                    |
 | lon        | *gps integer* | GPS longitude, as normalized integer                   |
 | datasource |        *uuid* | UUID of capturing datasource, as text                  |
@@ -95,13 +95,13 @@ The `data` section holds arbitrary data records which are *not* packets but whic
 
 ### Datasource
 
-The `datasource` section holds up-to-date information about the datasources Kismet is capturing from; a data source supplies information to Kismet and can be local, remote, packet-based, or event-based.
+The `datasource` section holds up-to-date information about the datasources Kismet is capturing from; a datasource supplies information to Kismet and can be local, remote, packet-based, or event-based.
 
 | Field      | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | uuid       | *uuid* | UUID of datasource                                           |
 | typestring | *text* | Datasource type (such as `linuxwifi`)                        |
-| definition | *text* | Full source definition as passed in the `source=` config or the `-c ...` command line option |
+| definition | *text* | Full source definition as passed in the `source=` config or the `-c ...` command-line option |
 | name       | *text* | Source name                                                  |
 | interface  | *text* | Capture interface (such as `wlan0`)                          |
 | json       | *json* | Full device state (packet RRD, messages, etc) as JSON blob   |
