@@ -45,13 +45,13 @@ Kismet will launch a capture binary and perform one of several actions:
 
 This is called on all capture drivers to create a list of devices the user could pick.  The capture binary is responsible for enumerating any devices it can support via any mechanism; for instance the Linux Wi-Fi capture binary enumerates devices by processing the /sys/class/net/ pseudofilesystem.
 
-After listing devices, a capture binary should go into a spindown/pending state and wait to be closed, no other action will be taken this execution.
+After listing devices, a capture binary should go into a spindown/pending state and wait to be closed; no other action will be taken this execution.
 
 ## Probe definition
 
 This is called to determine the driver which can handle a definition, when no type is explicitly specified.  The capture binary is responsible for determining if this looks like a source that can be opened.  For example, the pcapfile capture will attempt to open the definition as a pcap; the Linux Wi-Fi capture will attempt to retrieve the interface channel via SIOCGIWCHAN to determine if it looks to be a Wi-Fi device.
 
-After returning a probe response, a capture binary should go into a spindown/pending state and wait to be closed, no other action will be taken this execution.
+After returning a probe response, a capture binary should go into a spindown/pending state and wait to be closed; no other action will be taken this execution.
 
 ## Open definition
 
