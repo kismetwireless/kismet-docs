@@ -8,7 +8,7 @@ toc: true
 
 With the introduction of the Windows Subsystem for Linux (WSL), it's now possible to run the Kismet server on a Win10 system.
 
-There is one major caveat:  Kismet will not be able to capture packets from your local Wi-Fi interface.  You *must* use a remote kismet capture source - this could be a Linux system, or an embedded capture device like a Wi-Fi Pineapple Tetra or another simple OpenWRT or LEDE device.
+There is one major caveat:  Kismet will not be able to capture packets from your local Wi-Fi interface.  You *must* use a remote Kismet capture source - this could be a Linux system, or an embedded capture device like a Wi-Fi Pineapple Tetra or another simple OpenWRT or LEDE device.
 
 ## Why would I want to do this?
 
@@ -22,17 +22,20 @@ The WSL only exists for Windows 10; this is not possible under Windows 8 or 9.
 
 You will need to activate the WSL system, and then install a Linux distribution, as per the instructions at:
 
-[https://msdn.microsoft.com/en-us/commandline/wsl/install-win10](https://msdn.microsoft.com/en-us/commandline/wsl/install-win10)
+[https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 The choice of distribution to install is up to you; Ubuntu is the most logical choice as it is known to have compatibility with Kismet.
+
+Ubuntu 18.04 LTS, along with other versions (Kali, for example), is available directly from the Windows Store:
+[https://www.microsoft.com/en-us/p/ubuntu-1804-lts/9n9tngvndl3q](https://www.microsoft.com/en-us/p/ubuntu-1804-lts/9n9tngvndl3q)
 
 ## Install dependencies
 
 You'll need many of the dependencies Kismet needs to compile; you could install them all, but at a minimum you need to update the Ubuntu systems package lists and install:
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install build-essential libmicrohttpd-dev git libpcap-dev libsqlite3-dev
+$ sudo apt update
+$ sudo apt install build-essential libmicrohttpd-dev git libpcap-dev libsqlite3-dev
 ```
 
 ## Check out Kismet
