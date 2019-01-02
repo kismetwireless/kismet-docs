@@ -13,7 +13,7 @@ Kismet will automatically track signal and location information for the device, 
 
 ## The Common Classifier
 
-Each data source which defines a new phy layer (ie, something not already handled in Kismet elsewhere) is responsible for reducing information from that phy to something the common layer of Kismet can understand.
+Each data source which defines a new phy layer (i.e., something not already handled in Kismet elsewhere) is responsible for reducing information from that phy to something the common layer of Kismet can understand.
 
 Device records are automatically created by Kismet using the `kis_common_info` packet record.
 
@@ -21,25 +21,25 @@ Datasources need to provide some mechanism for turning their packets and data in
 
 ### Common Info From Packets
 
-Typically, for a packet-based protocol, the information needed to form the common info for categorization is part of the packet.  For example, in Wi-Fi, the device MAC, common encryption signifiers, data sizes, etc are all encoded in the dot11 frame, they just need to be converted to the common type.
+Typically, for a packet-based protocol, the information needed to form the common info for categorization is part of the packet.  For example, in Wi-Fi, the device MAC, common encryption signifiers, data sizes, etc., are all encoded in the dot11 frame, they just need to be converted to the common type.
 
 `kis_common_info` is a basic packet component defined in `packet.h`, and contains a very simple representation of data Kismet needs to assemble a basic device:
 
 #### Mac Addresses (and Mac-Address-Like Addresses)
 
-Four main mac addresses are recorded:
+Four main MAC addresses are recorded:
 
 ```C++
     mac_addr source, dest;
     mac_addr transmitter, device;
 ```
 
-* **source** - The original source of the packet.  This may not be the address of the device that transmitted it, for example in Wi-Fi this could be the source mac of a wired device bridged to wireless.
+* **source** - The original source of the packet.  This may not be the address of the device that transmitted it, for example in Wi-Fi this could be the source MAC of a wired device bridged to wireless.
 * **dest** - The destination of the packet.  This may or may not be a wireless device, for instance a packet transmitted from a wireless network via a bridge to a wired device.
-* **transmitter** - The address of the radio which transmitted the packet, if available.  This may be the same as the source mac.  Again using Wi-Fi as an example, the transmitter mac address would be the access point.
-* **device** - The actual address of the device.  This is likely the same as the source mac, and is the address used to identify the device.
+* **transmitter** - The address of the radio which transmitted the packet, if available.  This may be the same as the source MAC.  Again using Wi-Fi as an example, the transmitter MAC address would be the access point.
+* **device** - The actual address of the device.  This is likely the same as the source MAC, and is the address used to identify the device.
 
-If the phy type you are implementing doesn't use traditional MAC addresses, a similar unique addressing scheme must be created for devices in that phy, which can be packed into a mac-address style record.  The addressing should be unique and repeatable (that is, the same device must generate the same mac-like address to be tracked properly).
+If the phy type you are implementing doesn't use traditional MAC addresses, a similar unique addressing scheme must be created for devices in that phy, which can be packed into a MAC-address style record.  The addressing should be unique and repeatable (that is, the same device must generate the same MAC-like address to be tracked properly).
 
 #### Basic Type
 
@@ -61,9 +61,9 @@ enum kis_packet_basictype {
 ```
 
 * **unknown** - An unclassifiable generic packet
-* **mgmt** - Management / network maintenance packets.  In Wi-Fi networks, management frames include beacons, probe requests, etc
+* **mgmt** - Management / network maintenance packets.  In Wi-Fi networks, management frames include beacons, probe requests, etc.
 * **data** - Packet carries data of some sort
-* **phy** - Physical-layer control packets.  In Wi-Fi, CTS/RTS packets are classified as phy type frames
+* **phy** - Physical-layer control packets.  In Wi-Fi, CTS/RTS packets are classified as phy-type frames
 
 #### Basic Encryption Set
 
@@ -87,7 +87,7 @@ Which is a bit-set of the following from `devicetracker.h`:
 ```
 
 * **NONE** and **ENCRYPTED** define basic encryption being present (or not).
-* If available, **L2** and **L3** may be used to indicate layer 2 (such as WPA on Wi-Fi) or layer 3 (such as a VPN detected in layer 3 traffic)
+* If available, **L2** and **L3** may be used to indicate layer 2 (such as WPA on Wi-Fi) or layer 3 (such as a VPN detected in layer 3 traffic).
 * **WEAKCRYPT** is used to indicate that the encryption method is known to be vulnerable, for example WEP on Wi-Fi is flagged as WEAKCRYPT.  This can be used by Kismet to identify devices which are at increased risk.
 * **DECRYPTED** indicates that the data is encrypted, but has been decrypted - for example via a known WEP key or other decryption.
 
@@ -121,7 +121,7 @@ Phy-specific complex channel.  Channel is represented as a string and can carry 
     double freq_khz;
 ```
 
-The center frequency of the communication, in KHz.
+The center frequency of the communication, in kHz.
 
 ### An Example of Common Info
 
@@ -130,7 +130,7 @@ To demonstrate how to use the common into, lets take the 802.11 common classifie
 The classifier is called after we have already:
 
 1. Decapsulated the 802.11 frame from any L2 data (such as radiotap or PPI)
-2. Processed the signalling (and in PPIs case, location) data from the L2 header
+2. Processed the signalling (and in PPI's case, location) data from the L2 header
 3. Processed the 802.11 packet into our own packet component, dot11info, which tells us about the 802.11 addressing, encryption, errors, etc.
 
 Already knowing the 802.11 characteristics makes filling in the `kis_common_info` record very simple.
@@ -219,7 +219,7 @@ int Kis_80211_Phy::CommonClassifierDot11(CHAINCALL_PARMS) {
 }
 ```
 
-## Custom Device data
+## Custom Device Data
 
 All but the most basic of device records will need custom device data.
 
