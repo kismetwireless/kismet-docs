@@ -19,7 +19,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    *Ubuntu/Debian/Kali/Mint*
 
    ```bash
-   $ sudo apt-get install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev
+   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev
    ```
 
    On some older versions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
@@ -27,7 +27,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    For the Python add-ons, you will also need the following Python2 libraries.  The `protobuf` tool currently does not appear to agree with the changes in python3, so python2 is required:
 
    ```bash
-   $ sudo apt-get install python python-setuptools python-protobuf python-requests
+   $ sudo apt install python python-setuptools python-protobuf python-requests
    ```
 
    You can also use the `pip` equivalents of the python libraries, so long as they're installed in a location your normal Python interpreter can find them.
@@ -35,14 +35,14 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    For rtlsdr rtl_433 support, you will also need:
 
    ```bash
-   $ sudo apt-get install librtlsdr0 python-usb python-paho-mqtt
+   $ sudo apt install librtlsdr0 python-usb python-paho-mqtt
    ```
    as well as the rtl_433 tool from https://github.com/merbanan/rtl_433 if it is not otherwise provided by your distribution.
 
    For Mousejack/nRF support and other USB based tools, you will need `libusb`:
 
    ```bash
-   $ sudo apt-get install libusb-1.0-0-dev
+   $ sudo apt install libusb-1.0-0-dev
    ```
 
    *Fedora (and related)*
