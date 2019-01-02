@@ -6,7 +6,7 @@ excerpt: "Included third-party libraries"
 
 ## Integrated libraries
 
-Kismet uses several libraries which are build as part of the Kismet source code; Without the open source community this wouldn't be possible.
+Kismet uses several libraries which are built as part of the Kismet source code; without the open-source community this wouldn't be possible.
 
 * [fmtlib](https://github.com/fmtlib/fmt): C++ string formatting for faster message generation with fewer temporary variables.
 * [jsoncpp](http://jsoncpp.sourceforge.net/): JSON parser
