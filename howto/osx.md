@@ -12,14 +12,14 @@ Kismet is capable of running on OSX and capturing data on OSX natively.
 
 Kismet should build on OSX directly, but requires some libraries be installed.
 
-1. Install XCode from the Apple App Store.  You may be prompted, during the course of installing MacPorts, to install other components of XCode and the XCode command line utilities. 
+1. Install XCode from the Apple App Store.  You may be prompted, during the course of installing MacPorts, to install other components of XCode and the XCode command-line utilities. 
 
 2. Install a ports library; for example:
 
    * MacPorts from https://www.macports.org
    * HomeBrew from https://brew.sh/
 
-3. Install the needed external libraries; If prompted to install other necessary libraries or tools, of course say `yes`:
+3. Install the needed external libraries; if prompted to install other necessary libraries or tools, of course say `yes`:
 
    * For `macports`:
 
@@ -38,25 +38,33 @@ Kismet should build on OSX directly, but requires some libraries be installed.
 
    Kismet uses Python to capture from `rtl_433` and for other plugin functions; installing `pip` will allow Python to fetch additional libraries automatically.
 
-6. Make a source dir for Kismet (optional, but recommended)
+6. Make a source directory for Kismet (optional, but recommended)
    `$ mkdir src`
 
-5. Get the Kismet code
+5. Get the Kismet code by running, from within your `src` directory, the following:
 
    `$ git clone https://www.kismetwireless.net/git/kismet.git`
 
-6. Configure Kismet.  You'll likely need to pass some options to tell the OSX compilers where to find the libraries and headers:
-   `$ CFLAGS="-I/opt/local/include" LDFLAGS="-L/opt/local/lib" CPPFLAGS="-I/opt/local/include" ./configure`
+6. Configure Kismet.  You'll likely need to pass some options to tell the OSX compilers where to find the libraries and headers. From within your `kismet` directory, run:
+   
+   ```bash
+   $ export CFLAGS="-I/opt/local/include" 
+   $ export LDFLAGS="-L/opt/local/lib" 
+   $ export CPPFLAGS="-I/opt/local/include" 
+   $ ./configure```
 
-7. Compile Kismet
+7. Compile Kismet.
    `$ make`
 
-   There will be some warnings - generally they can be ignored.  As the OSX port evolves, the warnings will be cleaned up.
-
+   There will be some warnings - generally they can be ignored.  As the OSX port evolves, the warnings will be cleaned up. 
+   
+   As with installation on Linux, you can accelerate the process by adding -j#, depending on how many CPUs you have.
+   `$ make -j4`
+   
 8. Install Kismet
    `$ sudo make suidinstall`
 
-   `make suidinstall` will install the Kismet helpers as suid-root, executeable by users in the `staff` group in OSX.  There is more information on the suidinstall method in the Kismet README; in generally it increases the overall Kismet security by allowing you to launch Kismet as a normal user; only the packet capture tools will run as root.
+   `make suidinstall` will install the Kismet helpers as suid-root, executeable by users in the `staff` group in OSX.  There is more information on the suidinstall method in the Kismet README; in general it increases the overall Kismet security by allowing you to launch Kismet as a normal user; only the packet capture tools will run as root.
 
 ## Configuring and Running Kismet
 
@@ -66,7 +74,7 @@ Kismet will (currently) work *only* with Wi-Fi devices supported by the built-in
 
 `$ kismet`
 
-Kismet will list the available Wi-Fi sources in the `Datasources` panel of the UI, or sources can be configured from the command line or the Kismet config files.
+Kismet will list the available Wi-Fi sources in the `Data Sources` panel of the UI, or sources can be configured from the command line or the Kismet config files.
 
 `$ kismet -c en1`
 
