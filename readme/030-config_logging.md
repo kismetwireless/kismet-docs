@@ -43,7 +43,7 @@ The default log title is 'Kismet'.  This can be changed using the `log_title=` o
 log_title=SomeCustomName
 ```
 
-or it can be changed at launch time by running Kimet with `-t ...`:
+or it can be changed at launch time by running Kismet with `-t ...`:
 
 ```bash
 $ kismet -t SomeCustomeName ...
