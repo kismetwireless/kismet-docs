@@ -28,7 +28,7 @@ Kismet is designed to allow any source to function as a remote capture, and to f
 
 ### Controlling access to remote capture
 
-For security reasons, by default Kismet only remote sensor connections from the localhost IP (`127.0.0.1`).  To connect remote sensors, you must either:
+For security reasons, by default Kismet only accepts remote sensor connections from the localhost IP (`127.0.0.1`).  To connect remote sensors, you must either:
 
 1. Set up a tunnel from the remote sensor to your Kismet server, for example using SSH port forwarding.  This is very simple to do, and adds encryption transparently to the remote packet stream.  This can be done as simply as:
    ```bash
