@@ -10,11 +10,11 @@ A number of people have asked how to get Kismet remote capture running on OpenWr
 
 *Please remember* git versions of Kismet are unstable and under development - not everything may work, or things may change rapidly.  Generally the git versions are usable but every so often you'll get a bad version.
 
-This instruction are meant to be a quick guide to getting the Kismet specifics compiled, so I recommend checking out some OpenWrt build guides if you're completely new to the whole process.
+These instruction are meant to be a quick guide to getting the Kismet specifics compiled, so I recommend checking out some OpenWrt build guides if you're completely new to the whole process.
 
 ## Step one: Install build-essentials or your distros equivalent
 
-If you don't have them already, you'll need build-essentials and git.
+If you don't have them already, you'll need `build-essentials` and `git`.
 
 ## Get the Kismet code
 
@@ -36,7 +36,7 @@ $ git clone https://git.openwrt.org/openwrt/openwrt.git
 
 You will need to select the basic options for OpenWrt and enable the external feed for additional libraries Kismet needs.  When running `make menuconfig` you may see warnings about needing additional packages - install any that OpenWrt says you are missing.
 
-```
+```bash
 # Go into the directory you just cloned
 $ cd openwrt
 
@@ -51,16 +51,16 @@ Inside the OpenWRT configuration you will want to:
    and
    `  Subtarget (Generic)`
    Because we are only trying to build packages and not a complete system, we don't need to configure the image formats; default is fine.
-2. Navigate to `Image Configuration`
-3. Navigate to `Separate Feed Repositories`
-4. Select `Enable feed packages`
+2. Navigate to `Image Configuration`.
+3. Navigate to `Separate Feed Repositories`.
+4. Select `Enable feed packages`.
 5. Exit the config tool.  When prompted to save, do so.
 
 ## Install the feeds
 
 We need to tell OpenWrt to pull the feeds into the build system.  Still in the openwrt directory you checked out, run:
 
-```
+```bash
 $ ./scripts/feeds update -a
 $ ./scripts/feeds install -a
 ```
@@ -75,7 +75,7 @@ We want to copy the Kismet package over, because we'll potentially be making som
 $ cp -R kismet/packaging/openwrt/kismet-remote-2018 openwrt/package/network
 ```
 
-Where, of course, you want to copy from your checked out Kismet code to the checked out OpenWrt code; your directories might be different.
+Where, of course, you want to copy from your checked-out Kismet code to the checked-out OpenWrt code; your directories might be different.
 
 ## Install libprotoc-c
 
@@ -85,17 +85,17 @@ In a perfect world the libprotoc-c package in OpenWRT would install the proper h
 $ sudo apt-install protobuf-c-compiler
 ```
 
-will suffice on Ubuntu-style distributions; your distribution may vary.  Note:  This is for the *protobuf-c* version, *not* the normal protobuf (which is C++, and which has a working openwrt package with proper host tools.)
+will suffice on Ubuntu-style distributions; your distribution may vary.  Note:  This is for the *protobuf-c* version, *not* the normal protobuf (which is C++, and which has a working openwrt package with proper host tools).
 
 ## Enable Kismet
 
 Now we need to enable the Kismet package.  Still in your OpenWrt directory:
 
-1. Enter OpenWrt configuration again:  `make menuconfig`
-2. Navigate to 'Network'
+1. Enter OpenWrt configuration again:  `make menuconfig`.
+2. Navigate to 'Network'.
 3. Scroll all the way down to 'kismet-remote', it will be several screens down.
 4. Enable kismet-remote as a *module*.  Hit 'm' to do so.
-5. Exit, saving when prompted to.
+5. Exit, saving when prompted to do so.
 
 ## Compile OpenWrt
 
@@ -122,7 +122,7 @@ ln -s /usr/bin/protoc-c staging_dir/target-<arch foo>_musl-1.1.16/host/bin/proto
 ## Copy the packages!
 
 If everything went well, you now have two packages to copy to your OpenWrt:
-```
+```bash
 $ cd bin/packages/<architecture>/
 $ scp packages/libprotobuf-c<arch foo>.ipk base/kismet-remote<arch foo>.ipk root@openwrt-machine:/tmp 
 ```
@@ -130,16 +130,16 @@ $ scp packages/libprotobuf-c<arch foo>.ipk base/kismet-remote<arch foo>.ipk root
 
 SSH into the OpenWrt and install the packages:
 
-```
+```bash
 $ ssh root@openwrt-machine
 ...
 # cd /tmp
 # opkg install *.ipk
 ```
 
-## Run kismet!
+## Run Kismet!
 
-Fire up kismet remote capture and see how it goes.  While SSHd into the OpenWrt as root:
+Fire up Kismet remote capture and see how it goes.  While SSHed into the OpenWrt as root:
 ```
 # kismet_cap_linux_wifi --connect [host]:[port] --source=wlan0
 ```
