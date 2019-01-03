@@ -17,7 +17,7 @@ All tracked elements are derived from `TrackerElement`; This super-class contain
 
 Via subclassing and templates, `TrackerElement` implements basic scalar data types (non-POD basic data types such as `std::string`, `uuid`, `mac_addr` and similar), basic numeric types of the standard sizes (`uint8_t` through `uint64_t`, 4-byte `float` and 8-byte `double`), and various complex data types such as `vector` and `map`.
 
-`TrackerElement` subtypes are named accordingly, ie:
+`TrackerElement` subtypes are named accordingly, i.e.:
 
 * `TrackerElementString`
 * `TrackerElementUInt8`
@@ -25,9 +25,9 @@ Via subclassing and templates, `TrackerElement` implements basic scalar data typ
 * `TrackerElementVector`
 * `TrackerElementDoubleMap`
 
-and can be found in tracked_element.h
+and can be found in `tracked_element.h`.
 
-### Vectors and maps
+### Vectors and Maps
 
 `TrackerElement` represents complex data types in two main formats:
 
@@ -42,14 +42,14 @@ Each `TrackerElement` derivative also contains:
 2. A `uint32_t` signature which is used to enforce type-safety on complex types
 3. An optional local name
 
-Each derived type contains
+Each derived type contains:
 
 1. A get/set function for its type
 2. Optional `coercive_set` functions which allow importing generic types (such as strings to UUID or mac_addr, and various precision numbers to numeric types)
 3. A `clone_type` function which is responsible for returning a `std::unique_ptr` instance of a new object of this type, which is integral to the field creation and tracking system.
 4. Optional additional support functions, such as standard STL iterator implementations for vector and map elements
 
-## `TrackerElement` lifecycle
+## `TrackerElement` Lifecycle
 
 `TrackerElements` are nearly always stored and processed as C++11 `std::shared_ptr` smart-pointer managed objects.  This allows usage counting and automatic deletion of a `TrackerElement`, which may be found hosted in many dynamic representations of data over its lifecycle.
 
@@ -72,7 +72,7 @@ The `tracker_component` has all of the existing `TrackedElement` features, but a
 
 Any data you wish to expose as an object must be derived from `tracker_component`.  To do this, there are a number of functions you must implement.
 
-### First, the boilerplate:
+### First, the Boilerplate:
 
 For our example, we want to mimic the behavior of the Kismet messagebus so that we can display messages on the web UI.
 
@@ -181,9 +181,9 @@ To register a field, you need:
 2. A human-readable description; this will be shown in the tracked_fields page and is helpful for future developers and consumers of your API
 3. A *pointer* to the *shared pointer* where your field resides.  This allows the field registration system to automatically create your fields and place them in your variables for you.
 
-register_field will return the internal id of the field which is created - most of the time this is not necessary, however when registering more complex objects or a dynamic object it may be necessary to save this ID.
+`register_field` will return the internal id of the field which is created - most of the time this is not necessary, however when registering more complex objects or a dynamic object it may be necessary to save this ID.
 
-### Accessing the data:  Proxy Functions
+### Accessing the Data:  Proxy Functions
 
 Now that we have some data structures, we need to define how to access them.
 
@@ -221,13 +221,13 @@ public:
     __Proxy(timestamp, uint64_t, time_t, time_t, timestamp);
 ```
 
-Now we have a get and set pair of functions which accept time_t and transparently cast it to a uint64_t when saving or reading from the TrackerElement variable.  The same trick can be used to make automatic get and set functions for any data type which can be cast directly to the internal tracked type.
+Now we have a get and set pair of functions which accept `time_t` and transparently cast it to a `uint64_t` when saving or reading from the TrackerElement variable.  The same trick can be used to make automatic get and set functions for any data type which can be cast directly to the internal tracked type.
 
 Additionally, individual get and set functions can be proxied via `__ProxyGet(...)` and `__ProxySet(...)` if you wish to only expose the get or set, or if you provide a custom get or set function which is more complex.  Numerical values can also define `__ProxyIncDec(...)` or `__ProxyAddSub(...)` to generate increment/decrement (++ and --) and addition/subtraction functions automatically.  Fields which represent a bitset can use `__ProxyBitset(...)` to define bitwise set and clear functions.
 
 There are some other tricks for accessing data which is represented by complex data types, we'll cover them later.
 
-### Building from other data structures
+### Building from other Data Structures
 
 Often you will want to automatically populate a tracked component from an existing data structure.
 
