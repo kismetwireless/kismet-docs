@@ -26,7 +26,7 @@ The top-level protocol defines a few key commands and their payloads:
 
 Prints a message via the MessageBus system; these messages are printed to the Kismet console, displayed in the Messages section of the UI, and logged to the Messages section of the Kismet log. 
 
-#### Content:
+#### Content
 
 | Field   | Type        | Content                                   |
 | ------- | ----------- | ----------------------------------------- |
