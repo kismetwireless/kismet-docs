@@ -3,13 +3,67 @@ title: "Logins and sessions"
 permalink: /docs/devel/webui_rest/logins/
 ---
 
-Kismet uses basic auth to submit login information, and session cookies to retain login state.  
+Kismet uses HTTP basic-auth to submit login information, and session cookies to retain login state.  
 
 Typically, GET endpoints which do not reveal sensitive data do not require a login, while the majority of POST endpoints, as well as GET endpoints which return packet streams or other configuration information, *will* require login information.
 
 A session will automatically be created during authentication to any endpoint which requires login information, and returned in the `KISMET` session cookie.
 
 Logins may be manually validated against the `/session/check_session` endpoint if validating user-supplied credentials.
+
+### First login
+The first time Kismet is started, the user must set a password.  Until the password is set, endpoints which require a login will be disabled and will return an error.
+
+External tools (and UI implementations) can check if the initial password has been set.
+
+* URL \\
+        /session/check_setup_ok
+
+* API added \\
+        `2019-01`
+
+* Methods \\
+        `GET`
+
+* Result \\
+        `HTTP 200` is returned if the initial setup has been completed. \\
+        `HTTP 406` NOT ACCEPTABLE is returned if the credentials are hard-coded into the global configuration. \\
+        HTTP error is returned if the initial setup has not been completed and the user is required to set a password.
+
+* Notes \\
+If the password is set in the global Kismet configuration files, such as `kismet_httpd.conf` or `kismet_site.conf`, this API will not be available and will return an error.
+
+### Setting the login
+The initial login must be set before the user can access any restricted endpoints.  This endpoint can also be used to set a new login.
+
+__LOGIN REQUIRED (after initial use)__
+
+* URL \\
+        /session/set_password
+
+* API added \\
+        `2019-01`
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+Standard `HTTP POST` variables, including:
+
+| Key | Description |
+| --- | ----------- |
+| username | Optional, username for new login.  If not provided, will default to `kismet`. |
+| password | Required, new password. |
+
+* Results \\
+        `HTTP 200` is returned if the password set was successful. \\
+        `HTTP 406` NOT ACCEPTABLE is returned if the server password is set in the global configuration. \\
+        HTTP error is returned if the password set was unsuccessful. \\
+        A HTTP login will be prompted if the initial password has already been set and a valid session is not present.
+
+* Notes \\
+Setting the initial password does not require a login.  Subsequent attempts to change the login and password *will* require a valid login session for the current password value, and will not invalidate any current login sessions. \\
+If the password is set in the global Kismet configuration files, such as `kismet_httpd.conf` or `kismet_site.conf`, this API will not be available and will return an error.
 
 ### Checking sessions
 A script can check for a valid session and prompt the user to take action if a session is no longer valid.

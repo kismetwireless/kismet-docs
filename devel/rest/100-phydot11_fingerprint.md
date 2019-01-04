@@ -31,7 +31,6 @@ __LOGIN REQUIRED__
 * Methods \\
         `POST`
 
-
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
