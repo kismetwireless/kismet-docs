@@ -120,9 +120,9 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
    Remember, until you add a data source, Kismet will not be capturing any packets!
 
-   *THE FIRST TIME YOU RUN KISMET*, it will generate a new, random password for your web interface.
+   *THE FIRST TIME YOU RUN KISMET*, you *MUST* go to the Kismet WebUI and set your login and password.
 
-   This password can be found in the config file: `~/.kismet/kismet_httpd.conf` which is in the *home directory of the user* starting Kismet.
+   This login will be saved in the config file: `~/.kismet/kismet_httpd.conf` which is in the *home directory of the user* starting Kismet.
 
    If you start Kismet as or via sudo (or via a system startup script where it runs as root), this will be in *roots* home directory: `/root/.kismet/kismet_httpd.conf`
 

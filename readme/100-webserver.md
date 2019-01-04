@@ -8,9 +8,9 @@ toc: true
 ## Kismet Webserver
 Kismet now integrates a webserver which serves the web-based UI and data to external clients.
 
-**THE FIRST TIME YOU RUN KISMET**, it will generate a **RANDOM** password.  This password is stored in `~/.kismet/kismet_httpd.conf` which is in the home directory of **the user which started Kismet**.
+**THE FIRST TIME YOU RUN KISMET**, you must go to the Kismet web UI and create a login and password.  This password is stored in `~/.kismet/kismet_httpd.conf` which is in the home directory of **the user which started Kismet**.
 
-You will need this password to log into Kismet for the first time.
+You will need this password to log into Kismet in the future, and to give scripts and tools which need administrative access to Kismet the login.
 
 The webserver is configured via the `kismet_httpd.conf` file.  These options may be included in the base kismet.conf file, but are broken out for clarity.  These options may be overridden in `kismet_site.conf` for pre-configured installs.
 
@@ -19,13 +19,11 @@ By default, Kismet does not run in SSL mode.  If you provide a certificate and k
 HTTP configuration options:
 
 * `httpd_username=username`
-   Set the username.  This is required for any actions which can change configuration (adding / removing data sources, changing server-side configuration data, downloading packet captures, etc).
-   The default user is `kismet`, and by default, the `httpd_username=` and `httpd_password=` configuration options are stored in the user's home directory, in `~/.kismet/kismet_httpd.conf`.
+   Set a global, fixed username.  This overrides any per-user login information in `~/.kismet/kismet_httpd.conf`.  This can be used to set a fixed password during deployment, for instance via `kismet_site.conf` overriding.  If `httpd_username=` is specified, `httpd_password=` *must* also be provided.
 
 * `httpd_password=password`
-   Set the password.  The first time you run Kismet, it will auto-generate a random password and store it in `~/.kismet/kismet_httpd.conf`.
+   Set a global, fixed password.  This overrides any per-user login information in `~/.kismet/kismet_httpd.conf`.  This can be used to set a fixed password during deployment, for instance via `kismet_site.conf` overriding.
    It is generally preferred to keep the username and password in the per-user configuration file, however they may also be set in the global config.
-   If `httpd_username` or `httpd_password` is found in the global config, it is used instead of the per-user config value.
 
 * `httpd_port=port`
    Sets the port for the webserver to listen to.  By default, this is port 2501, the port traditionally used by the Kismet client/server protocol.
