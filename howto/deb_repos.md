@@ -26,7 +26,7 @@ If you'd like to be on the cutting edge of testing, you can pull Kismet from nig
 The release version is build from the latest release tag, *or* the latest beta tag.  These versions are generally tagged to allow a consistent installation version from code that *should* be known-good.
 
 ## Kali Linux (Intel, Raspberry Pi)
-Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, aarch64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w)
+Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, arm64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w)
 
 ### Release (beta and release versions)
 ```bash
@@ -42,8 +42,8 @@ $ echo 'deb https://www.kismetwireless.net/repos/apt/git/kali rolling main' | su
 $ sudo apt update
 ```
 
-## Debian Stretch (Intel)
-Debian Stretch (i386, amd64)
+## Debian Stretch (Intel, Raspberry Pi)
+Debian Stretch (i386, amd64, armhf - Raspberry Pi 3, armel - Raspberry Pi 0w)
 
 ### Release (beta and release versions)
 ```bash
