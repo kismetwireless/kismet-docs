@@ -20,9 +20,22 @@ If you installed *Kismet from source* yourself, either the old Kismet or the new
 $ sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
 ```
 
-## Kali Linux (Intel, Raspberry Pi)
-To enable the Kismet nightly build repository on Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, aarch64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w):
+## Release or git
+If you'd like to be on the cutting edge of testing, you can pull Kismet from nightly git builds.  These builds take the latest git version and compile it - this version has all the absolutely latest features, but also is the most likely to have new, exciting bugs.  The git version is *generally* fine to use, but is not recommended for installations that need consistency or long-term support.
 
+The release version is build from the latest release tag, *or* the latest beta tag.  These versions are generally tagged to allow a consistent installation version from code that *should* be known-good.
+
+## Kali Linux (Intel, Raspberry Pi)
+Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, aarch64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/kali rolling main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/kali rolling main' | sudo tee /etc/apt/sources.list.d/kismet.list
@@ -30,8 +43,16 @@ $ sudo apt update
 ```
 
 ## Debian Stretch (Intel)
-To enable the Kismet nightly build repository on Debian Stretch (i386, amd64):
+Debian Stretch (i386, amd64)
 
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/stretch stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/stretch stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
@@ -39,8 +60,16 @@ $ sudo apt update
 ```
 
 ## Ubuntu 16.04 Xenial (Intel)
-To enable the Kismet nightly build repository on Ubuntu 16.04 Xenial (i386, amd64):
+Ubuntu 16.04 Xenial (i386, amd64)
 
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/xenial xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/xenial xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
@@ -48,8 +77,16 @@ $ sudo apt update
 ```
 
 ## Ubuntu 18.04 Bionic (Intel)
-To enable the Kismet nightly build repository on Ubuntu 18.04 Bionic (i386, amd64):
+Ubuntu 18.04 Bionic (i386, amd64):
 
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/bionic bionic main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/bionic bionic main' | sudo tee /etc/apt/sources.list.d/kismet.list
@@ -57,8 +94,16 @@ $ sudo apt update
 ```
 
 ## Ubuntu 18.10 Cosmic (Intel)
-To enable the Kismet nightly build repository on Ubuntu 18.10 Cosmic  (i386, amd64):
+Ubuntu 18.10 Cosmic  (i386, amd64)
 
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/cosmic cosmic main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' | sudo tee /etc/apt/sources.list.d/kismet.list
@@ -66,7 +111,7 @@ $ sudo apt update
 ```
 
 ## Installing Kismet
-Once you've enabled the repo and upated your apt-cache, it's time to install Kismet itself.
+Once you've enabled the repo and updated your apt-cache, it's time to install Kismet itself.
 
 There are 2 primary builds of Kismet:  The debug build, and the normal build.
 
