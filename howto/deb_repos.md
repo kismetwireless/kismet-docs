@@ -3,7 +3,9 @@ title: "Official Kismet Deb repos"
 permalink: /docs/howto/repos_deb/
 toc: true
 ---
-There are automatically-built repositories for Kismet on common Deb-based distributions (Ubuntu and Kali, currently).  Here's the quickest way to get started using them.
+There are automatically-built repositories for Kismet on common Deb-based distributions (Ubuntu and Kali, currently).  
+
+These repositories contain the latest Kismet versions, which may not be available in the standard repositories for your distribution; distributions typically pick up new releases at relatively long intervals, and will not include git or beta versions in the official packages.
 
 ## Remove any installed Kismet
 You will need to remove any installed Kismet code.
