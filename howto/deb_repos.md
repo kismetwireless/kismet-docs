@@ -27,6 +27,11 @@ If you'd like to be on the cutting edge of testing, you can pull Kismet from nig
 
 The release version is build from the latest release tag, *or* the latest beta tag.  These versions are generally tagged to allow a consistent installation version from code that *should* be known-good.
 
+## Configuration and locations
+The Kismet packages install Kismet and the capture tools into `/usr/bin/`, and the configuration files into `/etc/kismet/`.
+
+If you're used to compiling from source, these are new directories, which match the standard locations for system packages.
+
 ## Kali Linux (Intel, Raspberry Pi)
 Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, arm64 - Raspberry Pi 64bit, and armel - Raspberry Pi 0w)
 
