@@ -73,6 +73,8 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
    Pay attention to the summary at the end and look out for any warnings! The summary will show key features and raise warnings for missing dependencies which will drastically affect the compiled Kismet.
 
+   If you're compiling for a remote capture platform *only*, check the [remote capture docs](/docs/readme/datasources_remote_capture/) for more information.
+
 5. Compile Kismet.
    ```bash
    $ make
