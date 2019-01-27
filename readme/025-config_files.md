@@ -7,7 +7,7 @@ toc: true
 
 ## Configuring Kismet
 
-Kismet is primarily configured through a set of configuration text files.  By default these are installed into `/usr/local/etc/`. The config files are broken into several smaller files for readability:
+Kismet is primarily configured through a set of configuration text files.  By default these are installed into `/usr/local/etc/` when compiling from source, and `/etc/kismet/` when installing from the Kismet packages. The config files are broken into several smaller files for readability:
 
 * `kismet.conf`
    The master config file which loads all other configuration files, and contains most of the system-wide options
@@ -66,7 +66,7 @@ directly.  This file is not needed by most users, and can be ignored, however if
 When Kismet frequently from source (for instance, testing Git) or preparing Kismet server deployments across multiple systems presents other challenges.
 
 By default, Kismet will look for an optional override file in the default
-configuration directory (/usr/local/etc by default) named `kismet_site.conf`.
+configuration directory (`/usr/local/etc` for source and `/etc/kismet/` for packages, by default) named `kismet_site.conf`.
 
 This file is specified as an OVERRIDE FILE.  Any options placed in kismet_site.conf will REPLACE ANY OPTIONS OF THE SAME NAME.
 

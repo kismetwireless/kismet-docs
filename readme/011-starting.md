@@ -16,6 +16,6 @@ When starting Kismet via systemd, you should install kismet as suidroot, and use
 
 ```
 [Service]
-user=your-unprivileged-user
-group=kismet
+User=your-unprivileged-user
+Group=kismet
 ```

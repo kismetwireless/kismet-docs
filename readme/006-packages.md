@@ -1,9 +1,9 @@
 ---
-title: "Official Kismet Deb repos"
-permalink: /docs/howto/repos_deb/
+title: "Official Kismet packages"
+permalink: /docs/readme/packages/
 toc: true
 ---
-There are automatically-built repositories for Kismet on common Deb-based distributions (Ubuntu and Kali, currently).  
+There are automatically-built repositories for Kismet on several Linux distributions.  More are being added over time, and your distribution may already have modern packages (Pentoo, for instance).
 
 These repositories contain the latest Kismet versions, which may not be available in the standard repositories for your distribution; distributions typically pick up new releases at relatively long intervals, and will not include git or beta versions in the official packages.
 
@@ -50,7 +50,7 @@ $ sudo apt update
 ```
 
 ## Debian Stretch (Intel, Raspberry Pi)
-Debian Stretch (i386, amd64, armhf - Raspberry Pi 3, armel - Raspberry Pi 0w)
+Debian Stretch (i386, amd64, armhf - Raspberry Pi 3, Raspberry Pi 0w)
 
 *WARNING* - You will *not* be able to capture from the built-in Wi-Fi on the Raspberry Pi 3 or Pi 0w unless you also install the [nexmon driver patch](https://github.com/seemoo-lab/nexmon/).  This patch adds reverse-engineered monitor mode to the Broadcom driver.  You can still use USB devices, though!
 
