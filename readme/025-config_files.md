@@ -60,15 +60,12 @@ for including custom options.
    Include an **optional OVERRIDE** config file.  This is a special file which is loaded at the **end** of all other configuration.  Any configuration options found in an override file **replace all other instances of those configurations**.  This is a very powerful mechanism for provisioning multiple Kismet servers or making a config which survives an upgrade and update to the newest configuration files when running from git.
 
 ### Configuration Override Files - `kismet_site.conf`
-Most users installing Kismet will likely edit the configuration files
-directly.  This file is not needed by most users, and can be ignored, however if you are configuring Kismet on multiple systems, this may be useful.
+If you often upgrade from source (or nightly packages) you may find replacing changes in your config files becomes tedious.  To simplify the upgrade process, or building a Kismet install for automatic placement on sensors, changes can be placed in the `kismet_site.conf` config file.
 
-When Kismet frequently from source (for instance, testing Git) or preparing Kismet server deployments across multiple systems presents other challenges.
+This file is specified as an OVERRIDE FILE.  Any options placed in kismet_site.conf will REPLACE ANY OPTIONS OF THE SAME NAME.  Options in this file take precedence over any other options.
 
 By default, Kismet will look for an optional override file in the default
 configuration directory (`/usr/local/etc` for source and `/etc/kismet/` for packages, by default) named `kismet_site.conf`.
-
-This file is specified as an OVERRIDE FILE.  Any options placed in kismet_site.conf will REPLACE ANY OPTIONS OF THE SAME NAME.
 
 This mechanism allows a site configuration to override any default config
 options, while not making changes to any configuration file installed by
@@ -85,6 +82,6 @@ gps=serial:device=/dev/ttyACM0,name=laptop
 remote_capture_listen=0.0.0.0
 remote_capture_port=3501
 
-source=wlan1
-source=wlan2
+source=wlan1:name=SomeServerWlan1
+source=wlan2:name=SomeServerWlan2
 ```
