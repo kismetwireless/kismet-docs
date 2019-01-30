@@ -2,6 +2,8 @@
 title: "Official Kismet packages"
 permalink: /docs/readme/packages/
 toc: true
+redirect-from:
+  - /docs/howto/repos_deb/
 ---
 There are automatically-built repositories for Kismet on several Linux distributions.  More are being added over time, and your distribution may already have modern packages (Pentoo, for instance).
 
@@ -49,7 +51,7 @@ $ echo 'deb https://www.kismetwireless.net/repos/apt/git/kali rolling main' | su
 $ sudo apt update
 ```
 
-## Debian Stretch (Intel, Raspberry Pi)
+## Debian / Raspbian Stretch (Intel, Raspberry Pi)
 Debian Stretch (i386, amd64, armhf - Raspberry Pi 3, Raspberry Pi 0w)
 
 *WARNING* - You will *not* be able to capture from the built-in Wi-Fi on the Raspberry Pi 3 or Pi 0w unless you also install the [nexmon driver patch](https://github.com/seemoo-lab/nexmon/).  This patch adds reverse-engineered monitor mode to the Broadcom driver.  You can still use USB devices, though!
