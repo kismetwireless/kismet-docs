@@ -17,6 +17,9 @@ Filter terms may match on packet attributes, dependent on the type of filter.  M
 
 Packets which do not match any filter terms are handled by the filter `default` behavior, which can be used to accept or reject all non-matching packets.
 
+The filter engine recognizes several terms when setting filtering:  `true`, `reject`, `deny`, `filter`, and `block` are equivalent terms for telling the filter to exclude a match.  `false`, `allow`, `pass`, and `accept` are equivalent terms for allowing a packet to pass a filter and be ignored.
+
+
 ## Common filter status
 * URL \\
         /packetfilters/*[FILTERID]*/filter.json
@@ -33,5 +36,34 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 * Result \\
 Dictionary of filter status, including description, default behavior, and type, optionally simplified.  Additionally, the filter results may contain the filter terms, depending on the type of filter (for instance, `mac_addr` filters contain the mac address filtering tables).
+
+## Common filter defaults
+* URL \\
+        /packetfilters/*[FILTERID]*/set_default.json
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+| Key | Description |
+| --- | ----------- |
+| default  | String value of the default behavior of the filter (`reject` or `allow` for instance) |
+
+* Result \\
+        `HTTP 200` on success
+        HTTP error on failure
+
+## MAC address filters
+MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by MAC address.
+
+Address filters can be applied to:
+* *source* - Original source device.  In Wi-Fi networks, equivalent to the source MAC; in other phy types, typically the originating device.
+* *destination* - Target device.  In Wi-Fi networks, the destination MAC; in other phy types, if present, the equivalent destination address.
+* *network* - Associated network.  In Wi-Fi, this is the BSSID.
+* *other* - Other address; in Wi-Fi this is the fourth MAC found in WDS; in other phy types it represents some form of alternate address.
+* *any* - Matching any of the address fields.
+
 
 
