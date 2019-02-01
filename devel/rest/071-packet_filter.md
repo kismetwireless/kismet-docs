@@ -38,6 +38,10 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 Dictionary of filter status, including description, default behavior, and type, optionally simplified.  Additionally, the filter results may contain the filter terms, depending on the type of filter (for instance, `mac_addr` filters contain the mac address filtering tables).
 
 ## Common filter defaults
+The default method is applied to all packets which do not match any terms in the filter.  
+
+__LOGIN REQUIRED__
+
 * URL \\
         /packetfilters/*[FILTERID]*/set_default.json
 
@@ -52,10 +56,10 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 | default  | String value of the default behavior of the filter (`reject` or `allow` for instance) |
 
 * Result \\
-        `HTTP 200` on success
+        `HTTP 200` on success \\
         HTTP error on failure
 
-## MAC address filters
+## MAC address filter blocks
 MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by MAC address.
 
 Address filters can be applied to:
@@ -65,5 +69,50 @@ Address filters can be applied to:
 * *other* - Other address; in Wi-Fi this is the fourth MAC found in WDS; in other phy types it represents some form of alternate address.
 * *any* - Matching any of the address fields.
 
+## Defining filters
+Filters can be added to any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
 
+__LOGIN REQUIRED__
+
+* URL \\
+        /packetfilters/*[FILTERID]*/*[BLOCKNAME]*/filter.json
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+| Key | Description |
+| --- | ----------- |
+| filter | Dictionary object where the MAC address is the key and a boolean filter term is the value.  These filters will be added to the block identified by *[BLOCKNAME]*. A value of `true` indicates the matching MAC address *will be blocked*, while a value of `false` indicates the matching MAC address *will be passed*.  [Masked MAC addresses](/docs/devel/webui_rest/keys_and_macs/) can be supplied for bulk matching. |
+
+* Result \\
+        `HTTP 200` on success \\
+        HTTP error on failure
+
+* Notes \\
+Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
+
+## Removing filters
+Filters can be removed from any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
+
+__LOGIN REQUIRED__
+
+* URL \\
+        /packetfilters/[*FILTERID]*/*[BLOCKNAME]*/remove.json
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+| Key | Description |
+| --- | ----------- |
+| addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*.
+
+* Result \\
+        `HTTP 200` on success \\
+        HTTP error on failure
 

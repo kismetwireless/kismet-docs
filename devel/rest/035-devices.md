@@ -150,7 +150,7 @@ Fetch devices matching any of multiple MAC addresses (or partial MAC addresses).
 
 This API will always return a vector of devices, even when only one device is matched.
 
-The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or partial-match masked MACs; for instance to match only the OUI `00:aa:bb`, a masked MAC address of `00:aa:bb:00:00:00/ff:ff:ff:00:00:00` can be supplied.
+The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or partial-match masked MACs; for instance to match only the OUI `00:aa:bb`, a masked MAC address of `00:aa:bb:00:00:00/ff:ff:ff:00:00:00` can be supplied, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/).
 
 * URL \\
         /devices/multimac/devices.json
