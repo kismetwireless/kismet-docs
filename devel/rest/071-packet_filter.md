@@ -110,7 +110,7 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 | Key | Description |
 | --- | ----------- |
-| addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*.
+| addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*. |
 
 * Result \\
         `HTTP 200` on success \\
