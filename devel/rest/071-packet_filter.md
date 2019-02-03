@@ -69,6 +69,8 @@ Address filters can be applied to:
 * *other* - Other address; in Wi-Fi this is the fourth MAC found in WDS; in other phy types it represents some form of alternate address.
 * *any* - Matching any of the address fields.
 
+Address filters are applied in the above order:  `source`, `destination`, `network`, `other`, `any`, `default`.  If an address is accepted by the `source` stage and would be rejected by the `destination` stage, the filter will *accept* the packet, as this is the first operation.
+
 ## Defining filters
 Filters can be added to any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
 
