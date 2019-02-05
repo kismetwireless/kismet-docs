@@ -85,8 +85,8 @@ The `alerts` section holds records of Kismet IDS alerts.
 | ts_usec |   *timestamp* | Alert timestamp as usec-precision timestamp integer    |
 | phyname |        *text* | Related phy name                                       |
 | devmac  |        *text* | Primary related device MAC address                     |
-| lat     | *gps integer* | GPS latitude                    |
-| lon     | *gps integer* | GPS longitude                   |
+| lat     | *real/double* | GPS latitude                    |
+| lon     | *real/double* | GPS longitude                   |
 | header  |        *text* | Alert header / type                                    |
 | json    |        *json* | Full alert content as JSON object                      |
 
@@ -100,11 +100,11 @@ The `data` section holds arbitrary data records which are *not* packets but whic
 | ts_usec    |   *timestamp* | Event timestamp, as usec-precision timestamp integer   |
 | phyname    |        *text* | Capturing device phy name                              |
 | devmac     |        *text* | Captured device MAC, if any                            |
-| lat        | *gps integer* | GPS latitude                    |
-| lon        | *gps integer* | GPS longitude                   |
-| alt        | *gps integer* | GPS altitude, since database version 5 |
-| speed      | *gps integer* | GPS speed, since database version 5 |
-| heading    | *gps integer* | GPS heading, since database version 5 |
+| lat        | *real/double* | GPS latitude                    |
+| lon        | *real/double* | GPS longitude                   |
+| alt        | *real/double* | GPS altitude, since database version 5 |
+| speed      | *real/double* | GPS speed, since database version 5 |
+| heading    | *real/double* | GPS heading, since database version 5 |
 | datasource |        *uuid* | UUID of capturing datasource, as text                  |
 | type       |        *text* | Type of data record, as text                           |
 | json       |        *json* | Arbitrary JSON record of event                         |
@@ -134,12 +134,12 @@ The `device` section holds complete Kismet device objects; the device object is 
 | phyname          |        *text* | Name of primary phy (such as IEEE80211)                      |
 | devmac           |   *mac, text* | Device MAC (such as the source MAC address in IEEE80211)     |
 | strongest_signal |     *integer* | Strongest recorded signal during lifetime of device, typically in dBm but phy-specific |
-| min_lat          | *gps integer* | GPS bounding rectangle, minimum latitude |
-| min_lon          | *gps integer* | GPS bounding rectangle, minimum longitude |
-| max_lat          | *gps integer* | GPS bounding rectangle, maximum latitude |
-| max_lon          | *gps integer* | GPS bounding rectangle, maximum longitude |
-| avg_lat          | *gps integer* | GPS running average latitude          |
-| avg_lon          | *gps integer* | GPS average running longitude        |
+| min_lat          | *real/double* | GPS bounding rectangle, minimum latitude |
+| min_lon          | *real/double* | GPS bounding rectangle, minimum longitude |
+| max_lat          | *real/double* | GPS bounding rectangle, maximum latitude |
+| max_lon          | *real/double* | GPS bounding rectangle, maximum longitude |
+| avg_lat          | *real/double* | GPS running average latitude          |
+| avg_lon          | *real/double* | GPS average running longitude        |
 | bytes_data       |     *integer* | Number of bytes of data seen related to this device          |
 | type             |        *text* | Phy-specific human-readable type, dependent on the phy       |
 | device           |        *json* | Full JSON export of the device record and all enclosed fields |
@@ -151,11 +151,11 @@ The `messages` section holds text messages from Kismet; typically printed to the
 | Field   |          Type | Description                                               |
 | ------- | ------------: | --------------------------------------------------------- |
 | ts_sec  |   *timestamp* | Message time, as second-precision integer                 |
-| lat     | *gps integer* | GPS latitude                       |
-| lon     | *gps integer* | GPS longitude                     |
-| alt        | *gps integer* | GPS altitude, since database version 5 |
-| speed      | *gps integer* | GPS speed, since database version 5 |
-| heading    | *gps integer* | GPS heading, since database version 5 |
+| lat     | *real/double* | GPS latitude                       |
+| lon     | *real/double* | GPS longitude                     |
+| alt        | *real/double* | GPS altitude, since database version 5 |
+| speed      | *real/double* | GPS speed, since database version 5 |
+| heading    | *real/double* | GPS heading, since database version 5 |
 | msgtype |        *text* | Message type/category (`INFO`, `ERROR`, `ALERT`, `FATAL`) |
 | message |        *text* | Arbitrary message as printed by Kismet                    |
 
@@ -177,8 +177,8 @@ Packets are stored in the raw, original capture format; in the case of Wi-Fi thi
 | transmac   |        *text* | MAC address of packet transmitter (if available)             |
 | frequency  |        *real* | Decimal frequency of packet, in KHz (if available)           |
 | devkey     |        *text* | Unique Kismet device key associated with this packet (if available) |
-| lat        | *gps integer* | GPS latitude                           |
-| lon        | *gps integer* | GPS longitude                          |
+| lat        | *real/double* | GPS latitude                           |
+| lon        | *real/double* | GPS longitude                          |
 | packet_len |     *integer* | Total packet length, in bytes                                |
 | signal     |     *integer* | Received signal level of packet (typically in DBm but may be phy-specific) |
 | datasource |        *uuid* | UUID of capturing Kismet data source, as string              |
@@ -194,8 +194,8 @@ The `snapshots` section holds arbitrary time-based snapshots of data; this funct
 | -------- | ------------: | ------------------------------------------ |
 | ts_sec   |   *timestamp* | Snapshot time, as second-precision integer |
 | ts_usec  |   *timestamp* | Snapshot time, as usec-precision integer   |
-| lat      | *gps integer* | GPS latitude        |
-| lon      | *gps integer* | GPS longitude       |
+| lat      | *real/double* | GPS latitude        |
+| lon      | *real/double* | GPS longitude       |
 | snaptype |        *text* | Snapshot record type                       |
 | json     |        *json* | Snapshot record, as JSON object            |
 
