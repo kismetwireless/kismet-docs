@@ -17,6 +17,17 @@ In order to support the arbitrary data collected by Kismet about different phy l
 
 This means that basic queries (time, signal levels, location, device identifiers, and MAC addresses) can be done via SQL queries, but more complex queries will require retrieving the JSON object.
 
+## Log Versions
+The log file version is stored in the `db_version` field of the `KISMET` table.  When changes to the base database structure are made, this version will be incremented.
+
+### Version 5
+As of February 2019, Kismet has started using db_version 5.  This version contains two major changes:
+1. Kismet no longer stores GPS coordinates as normalized integers.  GPS related data will be stored as SQL type `REAL`, an 8-byte double-precision float.
+2. Kismet now adds per-packet GPS speed, altitude, and heading records.
+
+### Version 4
+Through Kismet 2018/2019 Beta 2, Kismet used db_version 4.  This version *did not* contain per-packet altitude, speed, or heading records, and *did* contain normalized GPS coordinates.
+
 ## Data Formats
 
 The Kismet log uses a few consistent formats for data:
@@ -27,9 +38,11 @@ Timestamps are stored as integer seconds since the epoch for low-precision times
 
 ### GPS
 
-To simplify storing and portability of GPS coordinates, they are normalized from floating-point numbers to integers.
+*As of KismetDB version 5* the GPS coordinates are stored as 8-byte `REAL` double-precision floats; these are the native GPS coordinate, and no transformation is necessary.
 
-This format matches the PPI GPS records and the internal representation of floating-precision data in Kismet (both of which strive to minimize math precision issues and binary portability issues).
+*Prior to database version 5* the GPS coordinates were normalized to integers.  
+
+*This is deprecated for all logs create under version 5 or newer*.
 
 Latitude and Longitude are normalized to a 6-digit precision integer using the conversion:
 *normalized_coord = (coordinate * 100000)*
@@ -72,8 +85,8 @@ The `alerts` section holds records of Kismet IDS alerts.
 | ts_usec |   *timestamp* | Alert timestamp as usec-precision timestamp integer    |
 | phyname |        *text* | Related phy name                                       |
 | devmac  |        *text* | Primary related device MAC address                     |
-| lat     | *gps integer* | GPS latitude, as normalized integer                    |
-| lon     | *gps integer* | GPS longitude, as normalized integer                   |
+| lat     | *gps integer* | GPS latitude                    |
+| lon     | *gps integer* | GPS longitude                   |
 | header  |        *text* | Alert header / type                                    |
 | json    |        *json* | Full alert content as JSON object                      |
 
@@ -87,11 +100,11 @@ The `data` section holds arbitrary data records which are *not* packets but whic
 | ts_usec    |   *timestamp* | Event timestamp, as usec-precision timestamp integer   |
 | phyname    |        *text* | Capturing device phy name                              |
 | devmac     |        *text* | Captured device MAC, if any                            |
-| lat        | *gps integer* | GPS latitude, as normalized integer                    |
-| lon        | *gps integer* | GPS longitude, as normalized integer                   |
-| alt        | *gps integer* | GPS altitude, as normalized integer, since database version 5 |
-| speed      | *gps integer* | GPS speed, as normalized integer, since database version 5 |
-| heading    | *gps integer* | GPS heading, as normalized integer, since database version 5 |
+| lat        | *gps integer* | GPS latitude                    |
+| lon        | *gps integer* | GPS longitude                   |
+| alt        | *gps integer* | GPS altitude, since database version 5 |
+| speed      | *gps integer* | GPS speed, since database version 5 |
+| heading    | *gps integer* | GPS heading, since database version 5 |
 | datasource |        *uuid* | UUID of capturing datasource, as text                  |
 | type       |        *text* | Type of data record, as text                           |
 | json       |        *json* | Arbitrary JSON record of event                         |
@@ -121,12 +134,12 @@ The `device` section holds complete Kismet device objects; the device object is 
 | phyname          |        *text* | Name of primary phy (such as IEEE80211)                      |
 | devmac           |   *mac, text* | Device MAC (such as the source MAC address in IEEE80211)     |
 | strongest_signal |     *integer* | Strongest recorded signal during lifetime of device, typically in dBm but phy-specific |
-| min_lat          | *gps integer* | GPS bounding rectangle, minimum latitude, as normalized integer |
-| min_lon          | *gps integer* | GPS bounding rectangle, minimum longitude, as normalized integer |
-| max_lat          | *gps integer* | GPS bounding rectangle, maximum latitude, as normalized integer |
-| max_lon          | *gps integer* | GPS bounding rectangle, maximum longitude, as normalized integer |
-| avg_lat          | *gps integer* | GPS running average latitude, as normalized integer          |
-| avg_lon          | *gps integer* | GPS average running longitude, as normalized integer         |
+| min_lat          | *gps integer* | GPS bounding rectangle, minimum latitude |
+| min_lon          | *gps integer* | GPS bounding rectangle, minimum longitude |
+| max_lat          | *gps integer* | GPS bounding rectangle, maximum latitude |
+| max_lon          | *gps integer* | GPS bounding rectangle, maximum longitude |
+| avg_lat          | *gps integer* | GPS running average latitude          |
+| avg_lon          | *gps integer* | GPS average running longitude        |
 | bytes_data       |     *integer* | Number of bytes of data seen related to this device          |
 | type             |        *text* | Phy-specific human-readable type, dependent on the phy       |
 | device           |        *json* | Full JSON export of the device record and all enclosed fields |
@@ -138,11 +151,11 @@ The `messages` section holds text messages from Kismet; typically printed to the
 | Field   |          Type | Description                                               |
 | ------- | ------------: | --------------------------------------------------------- |
 | ts_sec  |   *timestamp* | Message time, as second-precision integer                 |
-| lat     | *gps integer* | GPS latitude, as normalized integer                       |
-| lon     | *gps integer* | GPS longitude, as normalized integer                      |
-| alt        | *gps integer* | GPS altitude, as normalized integer, since database version 5 |
-| speed      | *gps integer* | GPS speed, as normalized integer, since database version 5 |
-| heading    | *gps integer* | GPS heading, as normalized integer, since database version 5 |
+| lat     | *gps integer* | GPS latitude                       |
+| lon     | *gps integer* | GPS longitude                     |
+| alt        | *gps integer* | GPS altitude, since database version 5 |
+| speed      | *gps integer* | GPS speed, since database version 5 |
+| heading    | *gps integer* | GPS heading, since database version 5 |
 | msgtype |        *text* | Message type/category (`INFO`, `ERROR`, `ALERT`, `FATAL`) |
 | message |        *text* | Arbitrary message as printed by Kismet                    |
 
@@ -164,8 +177,8 @@ Packets are stored in the raw, original capture format; in the case of Wi-Fi thi
 | transmac   |        *text* | MAC address of packet transmitter (if available)             |
 | frequency  |        *real* | Decimal frequency of packet, in KHz (if available)           |
 | devkey     |        *text* | Unique Kismet device key associated with this packet (if available) |
-| lat        | *gps integer* | GPS latitude as normalized integer                           |
-| lon        | *gps integer* | GPS longitude as normalized integer                          |
+| lat        | *gps integer* | GPS latitude                           |
+| lon        | *gps integer* | GPS longitude                          |
 | packet_len |     *integer* | Total packet length, in bytes                                |
 | signal     |     *integer* | Received signal level of packet (typically in DBm but may be phy-specific) |
 | datasource |        *uuid* | UUID of capturing Kismet data source, as string              |
@@ -181,8 +194,8 @@ The `snapshots` section holds arbitrary time-based snapshots of data; this funct
 | -------- | ------------: | ------------------------------------------ |
 | ts_sec   |   *timestamp* | Snapshot time, as second-precision integer |
 | ts_usec  |   *timestamp* | Snapshot time, as usec-precision integer   |
-| lat      | *gps integer* | GPS latitude, as normalized integer        |
-| lon      | *gps integer* | GPS longitude, as normalized integer       |
+| lat      | *gps integer* | GPS latitude        |
+| lon      | *gps integer* | GPS longitude       |
 | snaptype |        *text* | Snapshot record type                       |
 | json     |        *json* | Snapshot record, as JSON object            |
 
