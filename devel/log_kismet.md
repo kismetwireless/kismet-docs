@@ -42,7 +42,7 @@ Timestamps are stored as integer seconds since the epoch for low-precision times
 
 *Prior to database version 5* the GPS coordinates were normalized to integers.  
 
-*This is deprecated for all logs create under version 5 or newer*.
+#### *This is deprecated for all logs created under version 5 or newer*.
 
 Latitude and Longitude are normalized to a 6-digit precision integer using the conversion:
 *normalized_coord = (coordinate * 100000)*
