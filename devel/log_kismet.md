@@ -89,6 +89,9 @@ The `data` section holds arbitrary data records which are *not* packets but whic
 | devmac     |        *text* | Captured device MAC, if any                            |
 | lat        | *gps integer* | GPS latitude, as normalized integer                    |
 | lon        | *gps integer* | GPS longitude, as normalized integer                   |
+| alt        | *gps integer* | GPS altitude, as normalized integer, since database version 5 |
+| speed      | *gps integer* | GPS speed, as normalized integer, since database version 5 |
+| heading    | *gps integer* | GPS heading, as normalized integer, since database version 5 |
 | datasource |        *uuid* | UUID of capturing datasource, as text                  |
 | type       |        *text* | Type of data record, as text                           |
 | json       |        *json* | Arbitrary JSON record of event                         |
@@ -137,6 +140,9 @@ The `messages` section holds text messages from Kismet; typically printed to the
 | ts_sec  |   *timestamp* | Message time, as second-precision integer                 |
 | lat     | *gps integer* | GPS latitude, as normalized integer                       |
 | lon     | *gps integer* | GPS longitude, as normalized integer                      |
+| alt        | *gps integer* | GPS altitude, as normalized integer, since database version 5 |
+| speed      | *gps integer* | GPS speed, as normalized integer, since database version 5 |
+| heading    | *gps integer* | GPS heading, as normalized integer, since database version 5 |
 | msgtype |        *text* | Message type/category (`INFO`, `ERROR`, `ALERT`, `FATAL`) |
 | message |        *text* | Arbitrary message as printed by Kismet                    |
 
