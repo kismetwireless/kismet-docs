@@ -2,7 +2,7 @@
 title: "Official Kismet packages"
 permalink: /docs/readme/packages/
 toc: true
-redirect-from:
+redirect_from:
   - /docs/howto/repos_deb/
 ---
 There are automatically-built repositories for Kismet on several Linux distributions.  More are being added over time, and your distribution may already have modern packages (Pentoo, for instance).
