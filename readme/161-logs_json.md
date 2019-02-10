@@ -1,6 +1,6 @@
 ---
 title: "Kismetdb to JSON"
-permalink: /docs/readme/logs_json/
+permalink: /docs/readme/kismetdb_devices_json/
 excerpt: "Kismetdb to JSON"
 toc: true
 ---
