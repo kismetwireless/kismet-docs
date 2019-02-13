@@ -20,6 +20,8 @@ The simplest way to convert a kismetdb log to a wiglecsv is to simply run the co
 $ kismetdb_to_wiglecsv --in some-kismet-log-file.kismet --out some-wigle-file.csv
 ```
 
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of Feb 2019.
+
 ## Conversion options
 
 Converting a kismetdb log can take a lot of space and time, because each packet is examined and the coordinates written to the CSV file.  This can be sped up with various options to the `kismetdb_to_wiglecsv` tool:

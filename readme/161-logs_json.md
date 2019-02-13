@@ -14,6 +14,8 @@ Extracting these devices can be done simply using the `kismetdb_dump_devices` to
 $ kismetdb_dump_devices --in some-kismet-file.kismet --out some-json-file.json
 ```
 
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of Feb 2019.
+
 ## Export options
 There are several optional parameters you can use when exporting a JSON file:
 
