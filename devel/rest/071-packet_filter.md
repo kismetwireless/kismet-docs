@@ -181,7 +181,7 @@ Address filters apply to a single record, depending on the use of the filter.
 __LOGIN REQUIRED__
 
 * URL \\
-        /classfilters/*[FILTERID]*/filter.json
+        /classfilters/*[FILTERID]*/*[PHYNAME]*/filter.json
 
 * Methods \\
         `POST`
@@ -198,13 +198,15 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
         HTTP error on failure
 
 * Notes \\
-Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
+        Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches. \\
+        Phy names which do not exist at the time of the filter being defined will be matched if a compatible phy type is registered in the future.
+        
 
 ### Removing filters
 __LOGIN REQUIRED__
 
 * URL \\
-        /classfilters/[*FILTERID]*/remove.json
+        /classfilters/[*FILTERID]*/*[PHYNAME]*/remove.json
 
 * Methods \\
         `POST`
