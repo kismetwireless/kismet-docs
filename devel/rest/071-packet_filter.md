@@ -22,7 +22,7 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 
 ## Common packet filter status
 * URL \\
-        /packetfilters/*[FILTERID]*/filter.json
+        /filters/packet/*[FILTERID]*/filter.json
 
 * Methods \\
 `GET` `POST`
@@ -43,7 +43,7 @@ The default method is applied to all packets which do not match any terms in the
 __LOGIN REQUIRED__
 
 * URL \\
-        /packetfilters/*[FILTERID]*/set_default.json
+        /filters/packet/*[FILTERID]*/set_default.cmd
 
 * Methods \\
         `POST`
@@ -77,7 +77,7 @@ Filters can be added to any of the filter blocks; `source`, `destination`, `netw
 __LOGIN REQUIRED__
 
 * URL \\
-        /packetfilters/*[FILTERID]*/*[BLOCKNAME]*/filter.json
+        /filters/packet/*[FILTERID]*/*[BLOCKNAME]*/set_filter.cmd
 
 * Methods \\
         `POST`
@@ -102,7 +102,7 @@ Filters can be removed from any of the filter blocks; `source`, `destination`, `
 __LOGIN REQUIRED__
 
 * URL \\
-        /packetfilters/[*FILTERID]*/*[BLOCKNAME]*/remove.json
+        /filters/packet/[*FILTERID]*/*[BLOCKNAME]*/remove_filter.cmd
 
 * Methods \\
         `POST`
@@ -135,7 +135,7 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 
 ## Common class filter status
 * URL \\
-        /classfilters/*[FILTERID]*/filter.json
+        /filters/class/*[FILTERID]*/filter.json
 
 * Methods \\
 `GET` `POST`
@@ -156,7 +156,7 @@ The default method is applied to all packets which do not match any terms in the
 __LOGIN REQUIRED__
 
 * URL \\
-        /classfilters/*[FILTERID]*/set_default.json
+        /filters/class/*[FILTERID]*/set_default.cmd
 
 * Methods \\
         `POST`
@@ -181,7 +181,7 @@ Address filters apply to a single record, depending on the use of the filter.
 __LOGIN REQUIRED__
 
 * URL \\
-        /classfilters/*[FILTERID]*/*[PHYNAME]*/filter.json
+        /classfilters/*[FILTERID]*/*[PHYNAME]*/set_filter.json
 
 * Methods \\
         `POST`
@@ -206,7 +206,7 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 __LOGIN REQUIRED__
 
 * URL \\
-        /classfilters/[*FILTERID]*/*[PHYNAME]*/remove.json
+        /classfilters/[*FILTERID]*/*[PHYNAME]*/remove_filter.json
 
 * Methods \\
         `POST`
