@@ -93,6 +93,7 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 * Results \\
         Vector of (optionally summarized and filtered) devices active since *TS*
 
+
 ## Device by key
 Fetch devices by the Kismet device key.
 
@@ -117,6 +118,7 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 * Results \\
         Device record, with optional simplification of the fields, matching *DEVICEKEY*
+
 
 ## Device by MAC
 Fetch devices which match the supplied MAC address.  It is possible (though usually not likely) that there may be MAC address collisions between different PHY types.  This becomes more likely when using non-Wi-Fi capture types which synthesize false MAC addresses because no official address is available, such as RTL-433, Mousejack, and other SDR-based datasources.
@@ -144,6 +146,7 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 * Results \\
         Array of all devices with the supplied MAC address, optionally simplified by `fields` parameter.
+
 
 ## Multiple devices by MAC
 Fetch devices matching any of multiple MAC addresses (or partial MAC addresses).  Typically used to monitor the presence of target devices.
@@ -177,6 +180,9 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
         /devices/views/seenby-uuid/[*UUID*]/...
         /devices/views/seenby-uuid/[*UUID*]/devices.json
         /devices/views/seenby-uuid/[*UUID*]/last-time/*[TIMESTAMP]*/devices.json
+
+* API added \\
+        `2019-03`
 
 * Notes \\
         See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
