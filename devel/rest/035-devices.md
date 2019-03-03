@@ -184,6 +184,11 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 * API added \\
         `2019-03`
 
+* URL Parameters
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[UUID]* | UUID of datasource |
+
 * Notes \\
         See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
