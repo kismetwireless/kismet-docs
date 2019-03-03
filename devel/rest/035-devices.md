@@ -170,6 +170,18 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 Array of all devices matching any of the supplied MAC addresses.
 
 
+## Devices by capture source
+The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by capturing data source:
+
+* URL \\
+        /devices/views/seenby-uuid/[*UUID*]/...
+        /devices/views/seenby-uuid/[*UUID*]/devices.json
+        /devices/views/seenby-uuid/[*UUID*]/last-time/*[TIMESTAMP]*/devices.json
+
+* Notes \\
+        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+
+
 ## Devices by PHY
 Devices can be fetched by PHY type.  The phy type is determined by the capture datasource and may be extended by plugins.
 

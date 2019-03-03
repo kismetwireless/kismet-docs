@@ -28,6 +28,9 @@ Kismet has several options which control how much memory and processing it uses.
 * `keep_datasource_signal_history=true|false`
    Kismet can keep a record of the signal levels of each device, as seen by each data source.  This is used for tracking signal levels across many sensors, but uses more memory.
 
+* `track_device_seenby_view=true|false`
+  Kismet normally provides a device view API organizing devices by the data source which captured them; this is used by scripts and may be used by the web UI.  On a stand-alone Kismet system which is primarily used for logging, not real-time display, turning this off can save some memory.
+
 * `alertbacklog=number`
    The number of alerts Kismet saves for displaying to new clients; setting this too low can prevent clients from seeing alerts but saves memory.
 
