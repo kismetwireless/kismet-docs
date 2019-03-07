@@ -61,7 +61,7 @@ Kismet tracks client association with access points.  This information is availa
 
 | Key | Description |
 | - | - |
-| *[DEVICEKEY]* | Device to fetch clients of |
+| *[DEVICEKEY]* | Device to fetch clients of.  This should be an access point device; providing a non-access-point device will return an empty set. |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -83,4 +83,32 @@ The 802.11 subsystem uses [device views](/docs/devel/webui_rest/device_views/) t
 
 * Notes \\
         See the [views api](/docs/devel/webui_rest/device_views/) for more information
+
+## Wi-Fi related devices
+Kismet can provide a list of related devices.  Devices are related in 802.11 when they appear to be on the same physical network, or make up multiple BSSIDs in a roaming SSID.  This can be seen when multiple APs share the same SSID, common clients, and appear as clients of each other.
+
+* URL \\
+        /phy/phy80211/related-to/*[DEVICEKEY]*/devices.json
+
+* Methods \\
+        `GET` `POST`
+
+* API added \\
+        `2019-03`
+
+* URL parameters
+
+| Key | Description |
+| - | - |
+| *[DEVICEKEY]* | Device to fetch relationships for.  This device should be an access point.  Providing a non-access-point device will return an empty set. |
+
+* POST parameters \\
+A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+| Key | Description |
+| --- | ----------- |
+| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results \\
+        An array of device records of related devices.
 
