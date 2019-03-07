@@ -192,34 +192,24 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 * Notes \\
         See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
-
-## Devices by PHY
-Devices can be fetched by PHY type.  The phy type is determined by the capture datasource and may be extended by plugins.
+## Devices by PHY type
+The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by the PHY data type:
 
 * URL \\
-        /devices/by-phy/*[PHYNAME]*/devices.json \\
-        /devices/by-phy/*[PHYNAME]*/devices.ekjson
+        /devices/views/phy/[*PHYNAME*]/...
+        /devices/views/phy/[*PHYNAME*]/devices.json
+        /devices/views/phy/[*PHYNAME*]/last-time/*[TIMESTAMP]*/devices.json
 
-* Methods \\
-        `GET` `POST`
+* API added \\
+        `2019-03`
 
 * URL Parameters
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[PHYNAME]* | UUID of datasource |
 
-| Key    | Description |
-| ------ | ----------- |
-| *[PHYNAME]* | Kismet phy name to match |
-
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-
-| Key    | Desc                                |
-| ------ | ----------------------------------- |
-| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-| last_time | Optional, relative or absolute [timestamp](/docs/devel/webui_rest/commands/#timestamp) |
-| regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
-
-* Results \\
-        Array of all devices present in the specified PHY, optionally filtered by the regex and last_time parameters and simplified by the fields parameter.
+* Notes \\
+        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
 ## Editing - device names
 Devices can have an arbitrary user-supplied name.
