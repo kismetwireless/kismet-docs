@@ -197,7 +197,7 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 A PHY handler in Kismet processes packets of a given physical layer; for instance Wi-Fi, Bluetooth, etc.
 
 * URL \\
-        /phys/all_phys.json
+        /phy/all_phys.json
 
 * Methods \\
         `GET` `POST`
