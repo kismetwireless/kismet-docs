@@ -162,12 +162,12 @@ The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or
         `POST`
 
 * POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-
-| Key    | Desc                                |
-| ------ | ----------------------------------- |
-| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-| regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
+   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+   
+   | Key    | Desc                                |
+   | ------ | ----------------------------------- |
+   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+   | regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
 
 * Results \\
 Array of all devices matching any of the supplied MAC addresses.
@@ -192,6 +192,28 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 
 * Notes \\
         See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+
+## Phy handlers
+A PHY handler in Kismet processes packets of a given physical layer; for instance Wi-Fi, Bluetooth, etc.
+
+* URL \\
+        /phys/all_phys.json
+
+* Methods \\
+        `GET` `POST`
+
+* API added \\
+        `2019-03`
+
+* POST parameters \\
+   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+   | Key    | Description                         |
+   | ------ | ----------------------------------- |
+   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results \\
+        Array of all phy types, including phy name, internal reference number, and packet and device counts.
 
 ## Devices by PHY type
 The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by the PHY data type:
