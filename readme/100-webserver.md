@@ -29,6 +29,17 @@ HTTP configuration options:
    Sets the port for the webserver to listen to.  By default, this is port 2501, the port traditionally used by the Kismet client/server protocol.
    Kismet typically should not be started as root, so will not be able to bind to ports below 1024.  If you want to run Kismet on, for instance, port 80, this can be done with a proxy or a redirector, or via DNAT rewriting on the host.
 
+* `httpd_bind_address=a.b.c.d`
+   Typically Kismet listens on all interfaces; To restrict Kismet to a single interface (such as the loopback address), set the address in the `httpd_bind_address` option.  
+
+   ```
+   httpd_bind_address=127.0.0.1
+   ```
+
+   This will restrict the Kismet interface to ONLY the local host, however it can still be reached via mechanisms like SSH tunnels.
+
+   Option available as of 2019-03.
+
 * `httpd_uri_prefix=/prefix`
    Sets the URI prefix - this prefix is an optional lead-in value to all the existing URIs in Kismet which allows it to be run via a HTTP proxy such as nginx.  For example, setting a httpd_uri_prefix of `/kismet/` would allow proxying from the `/kismet/` directory of a nginx server.
 
