@@ -52,7 +52,7 @@ __LOGIN REQUIRED__
     | ignore_after_handshake | Optional, boolean, ignore a target device once a WPA handshake has been captured |
     | max_capture_seconds | Optional, unsigned integer, maximum seconds to capture before returning to hop |
     | min_scan_seconds | Optional, unsigned integer, minumum seconds to scan before entering capture mode |
-    | restrict_log_filters | Optional, restrict the kismetdb log to log only devices and packets meeting the ssidscan target.  This will set filters but not remove existing logs. |
+    | restrict_log_filters | Optional, restrict the kismetdb log to log only devices and packets meeting ssidscan targets.  This will set filters but not remove existing logs. |
     | locking_datasources | Optional, vector of UUID strings of datasources assigned to the 'locking' pool to capture target devices |
     | hopping_datasources | Optional, vector of UUID strings of datasources assigned to the 'hopping' pool to scan for target devices |
 
