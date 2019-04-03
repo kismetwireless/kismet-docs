@@ -38,10 +38,12 @@ HTTP configuration options:
 
    This will restrict the Kismet interface to ONLY the local host, however it can still be reached via mechanisms like SSH tunnels.
 
-   Option available as of 2019-03.
+   This option became available as of `2019-03`.
 
 * `httpd_uri_prefix=/prefix`
    Sets the URI prefix - this prefix is an optional lead-in value to all the existing URIs in Kismet which allows it to be run via a HTTP proxy such as nginx.  For example, setting a httpd_uri_prefix of `/kismet/` would allow proxying from the `/kismet/` directory of a nginx server.
+
+   This option became available as of `2019-03`.
 
 * `httpd_ssl=true|false`
    Turn on SSL.  If this is turned on, you must provide a SSL certificate and key in PEM format with the `httpd_ssl_cert=` and `httpd_ssl_key=` configuration options.
@@ -105,7 +107,7 @@ SSL is not usually necessary when using Kismet locally (like your laptop or a de
 Without SSL enabled, your data (and your Kismet Web UI login and password) will be sent in plaintext, which is likely not something you want.
 
 ### Local SSL vs Proxy
-Kismet can be run via a HTTPS proxy service such as nginx; under this configuration, the SSL certificates are managed by the proxy software, and Kismet can continue to operate normally with a local port.
+Kismet can be run via a HTTPS proxy service such as nginx; under this configuration, the SSL certificates are managed by the proxy software, and Kismet operates normally with a local port which is not exposed to the Internet.  Typically this would be combined with a Kismet server on the local network reachable from the nginx proxy, a SSH tunnel, or a Kismet server with the `httpd_bind_address` option set.
 
 ### Enabling SSL
 
@@ -234,6 +236,7 @@ Kismet supports being proxied through a HTTP/HTTPS proxy such as nginx.  This al
 
 2.  Set up the nginx proxy
     nginx proxy can connect HTTPS and HTTP endpoints.  In `/etc/nginx/sites-enabled/default`, a `location` stanza similar to:
+
     ```
     location /kismet/ {
         proxy_pass http://localhost:2501/;
@@ -242,6 +245,7 @@ Kismet supports being proxied through a HTTP/HTTPS proxy such as nginx.  This al
 
 3.  Tunnel the Kismet server over SSH
     SSH supports port forwarding/tunneling; We can use this to bring a connection to the Kismet server to the proxy system:
+
     ```bash
     $ ssh -R *:2501:localhost:2501 user@host
     ```
