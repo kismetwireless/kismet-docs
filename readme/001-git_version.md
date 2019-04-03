@@ -20,7 +20,7 @@ Welcome to the new, MAJOR rewrite of Kismet!  This version changes almost everyt
 
 * Pcap-NG multi-interface logs with complete original headers, readable by Wireshark and other tools
 
-Please remember that as a pre-release, there is still some work to be done and warts to be taken care of, but the codebase has been under development and in use for several years and has been performing well.
+Please remember that with this major release, there is still some work to be done and warts to be taken care of, but the codebase has been under development and in use for several years and has been performing well.
 
 Setting up the new Kismet is generally simpler than the older versions; keep reading for more information!
 
