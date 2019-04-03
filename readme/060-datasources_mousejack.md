@@ -54,7 +54,7 @@ The nRF protocol as used by Mousejack covers 82 channels, each 1MHz wide.
 To cover this spectrum rapidly, it is recommended that you increase the hop rate for nRF interfaces:
 
 ```bash
-$ kismet -c mousejack-3-8:hop_rate=100/sec
+$ kismet -c mousejack-3-8:channel_hoprate=100/sec
 ```
 
 This can also be specified in the `kismet.conf` or `kismet_site.conf` config files:

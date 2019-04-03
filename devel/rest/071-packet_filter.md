@@ -27,6 +27,12 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 * Methods \\
 `GET` `POST`
 
+* URL parameters
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
@@ -47,6 +53,12 @@ __LOGIN REQUIRED__
 
 * Methods \\
         `POST`
+
+* URL parameters \\
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -77,10 +89,18 @@ Filters can be added to any of the filter blocks; `source`, `destination`, `netw
 __LOGIN REQUIRED__
 
 * URL \\
-        /filters/packet/*[FILTERID]*/*[BLOCKNAME]*/set_filter.cmd
+        /filters/packet/*[FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/set_filter.cmd
 
 * Methods \\
         `POST`
+
+* URL parameters
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any) |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -102,10 +122,18 @@ Filters can be removed from any of the filter blocks; `source`, `destination`, `
 __LOGIN REQUIRED__
 
 * URL \\
-        /filters/packet/[*FILTERID]*/*[BLOCKNAME]*/remove_filter.cmd
+        /filters/packet/[*FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/remove_filter.cmd
 
 * Methods \\
         `POST`
+
+* URL parameters 
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any) |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -140,6 +168,12 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 * Methods \\
 `GET` `POST`
 
+* URL parameters 
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
@@ -160,6 +194,12 @@ __LOGIN REQUIRED__
 
 * Methods \\
         `POST`
+
+* URL parameters
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -186,6 +226,13 @@ __LOGIN REQUIRED__
 * Methods \\
         `POST`
 
+* URL parameters
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
@@ -210,6 +257,13 @@ __LOGIN REQUIRED__
 
 * Methods \\
         `POST`
+
+* URL parameters
+
+    | Key    | Description |
+    | ------ | ----------- |
+    | *[FILTERID]* | Filter ID to modify |
+    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
 
 * POST parameters \\
 A [command dictionary](/docs/devel/webui_rest/commands/) containing:
