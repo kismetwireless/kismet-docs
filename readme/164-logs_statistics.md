@@ -6,7 +6,7 @@ excerpt: "Quick analysis tool for KismetDB"
 toc: true
 ---
 
-This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of April 2019.
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of `2019-04`.
 
 ## Statistics / summary
 

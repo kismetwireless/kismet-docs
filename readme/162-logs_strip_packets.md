@@ -5,6 +5,8 @@ excerpt: "Stripping Kismetdb packet data"
 toc: true
 ---
 
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of `2019-02`.
+
 ## Packet data
 Kismet stores packets as binary data in the [kismetdb log file](/docs/readme/logging).
 
@@ -15,8 +17,6 @@ The `kismetdb_strip_packets` tool will retain all metadata - MAC addresses, sign
 ```bash
 $ kismetdb_strip_packets --in some-kismet-file.kismet --out some-other-file.kismet
 ```
-
-This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of Feb 2019.
 
 ## Export options
 There are several optional parameters you can use when exporting a JSON file:

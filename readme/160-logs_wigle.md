@@ -5,6 +5,8 @@ excerpt: "Kismet integration with Wigle"
 toc: true
 ---
 
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of `2019-02`.
+
 ## Wigle
 [Wigle](https://www.wigle.net) is a world-wide wardriving database which tracks wireless networks and their locations.
 
@@ -19,8 +21,6 @@ The simplest way to convert a kismetdb log to a wiglecsv is to simply run the co
 ```bash
 $ kismetdb_to_wiglecsv --in some-kismet-log-file.kismet --out some-wigle-file.csv
 ```
-
-This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of Feb 2019.
 
 ## Conversion options
 

@@ -5,6 +5,8 @@ excerpt: "Kismetdb to JSON"
 toc: true
 ---
 
+This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of `2019-02`.
+
 ## Device JSON
 Kismet stores devices it has seen in the [kismetdb log file](/docs/readme/logging/) as JSON dumps containing *everything* Kismet knows about a device.
 
@@ -13,8 +15,6 @@ Extracting these devices can be done simply using the `kismetdb_dump_devices` to
 ```bash
 $ kismetdb_dump_devices --in some-kismet-file.kismet --out some-json-file.json
 ```
-
-This tool is available as part of Kismet when built from source, or in the kismet-logtools package, as of Feb 2019.
 
 ## Export options
 There are several optional parameters you can use when exporting a JSON file:
