@@ -128,18 +128,25 @@ There are 2 primary builds of Kismet:  The debug build, and the normal build.
 
 The debug build contains all the debugging symbols.  If you are helping test Kismet or debugging a problem, you want the debug symbols, however the debug version will take *significantly* more space.
 
-To install the debug version:
+To install the standard version and all related tools, the simplest method is by using the metapackage:
 ```bash
-$ sudo apt install kismet-core-debug kismet-capture-linux-bluetooth kismet-capture-linux-wifi kismet-capture-nrf-mousejack python-kismetcapturertl433 python-kismetexternal python-kismetlog python-kismetrest kismet-logtools 
+$ sudo apt install kismet
 ```
 
-To install the stripped-down version and all related tools:
+Individual tools can still be installed:
 ```bash
-$ sudo apt install kismet2018
+$ sudo apt install kismet-core kismet-capture-linux-bluetooth kismet-capture-linux-wifi kismet-capture-nrf-mousejack python-kismetcapturertl433 python-kismetcapturertladsb python-kismetcaptureamr python-kismetcapturefreaklabszigbee kismet-logtools 
+```
+
+To install the debug version:
+```bash
+$ sudo apt install kismet-core-debug kismet-capture-linux-bluetooth kismet-capture-linux-wifi kismet-capture-nrf-mousejack python-kismetcapturertl433 python-kismetcapturertladsb python-kismetcaptureamr python-kismetcapturefreaklabszigbee kismet-logtools 
 ```
 
 ## Installing piecemeal
-If you only need the capture tools, you can install individual capture components.  
+Most of the Kismet components will work independently - with the caveat of course that you will not be able to capture from a device if you don't have the required capture code.
+
+To install only the capture tools, for instance to build a remote-capture node, you can install just the individual components:
 
 Follow the same instructions for adding the repository, and then install only the capture drivers you need:
 
