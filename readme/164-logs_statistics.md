@@ -48,7 +48,7 @@ $ kismetdb_statistics --in some_file.kismet --json
 ```
 
 ### Example output
-```
+```json
 {
   "data_packets": 8,
   "datasources": [
@@ -64,7 +64,33 @@ $ kismetdb_statistics --in some_file.kismet --json
     {
       "definition": "wlx000e8e5c8866:name=carnuc-mediatek",
       "hardware": "mt76x2u",
-      "hop_channels": "1, 1HT40+, 2, 3, 4, 5, 6, 6HT40-, 6HT40+, 7, 8, 9, 10, 11, 11HT40-, 12, 13, 14, 36, 36HT40+, 36VHT80, 40, 40HT40-, 44, 44HT40+, 48, 48HT40-, 52, 52HT40+, 52VHT80, 56, 56HT40-, 60, 60HT40+, 64, 64HT40-, 100, 100HT40+, 100VHT80, 104, 104HT40-, 108, 108HT40+, 112, 112HT40-, 116, 116HT40+, 116VHT80, 120, 120HT40-, 124, 124HT40+, 128, 128HT40-, 132, 132HT40+, 136, 136HT40-, 140, 140HT40-, 149, 149HT40+, 149VHT80, 153, 153HT40-, 157, 157HT40+, 161, 161HT40-, 165, 165HT40-",
+      "hop_channels": [                                                                                                            
+        "1",                                                                                                                       
+        "1HT40+",                                                                                                                  
+        "2",                                                                                                                       
+        "3",                                                                                                                       
+        "4",                                                                                                                       
+        "5",                                                                                                                       
+        "6",                                                                                                                       
+        "6HT40-",                                                                                                                  
+        "6HT40+",                                                                                                                  
+        "7",                                                                                                                       
+        "8",                                                                                                                       
+        "9",                                                                                                                       
+        "10",                                                                                                                      
+        "11",                                                                                                                      
+        "11HT40-",                                                                                                                 
+        "12",                                                                                                                      
+        "13",                                                                                                                      
+        "14",                                                                                                                      
+        "36",                                                                                                                      
+        "36HT40+",                                                                                                                 
+        "36VHT80",                                                                                                                 
+        "40",                                                                                                                      
+        "40HT40-",                                                                                                                 
+        "44",                                                                                                                      
+        "44HT40+",                                                                                                                 
+	  ],
       "hop_rate": 5,
       "interface": "wlx000e8e5c8866",
       "name": "carnuc-mediatek",
