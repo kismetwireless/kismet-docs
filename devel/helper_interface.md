@@ -2,6 +2,8 @@
 title: "Helper tools"
 permalink: /docs/devel/external_helper_tools/
 toc: true
+docgroup: "devel-cpp"
+excerpt: "The Kismet external tool API defines how Kismet talks to capture and helper binaries."
 ---
 Kismet helper tools are external programs which Kismet uses; splitting functionality into an external helper can be for several reasons:
 

@@ -2,6 +2,8 @@
 title: "Extending device and data tracking"
 permalink: /docs/devel/data_types/
 toc: true
+docgroup: "devel-cpp"
+excerpt: "Extending the Kismet C++ data classifier system."
 ---
 Once data has been captured (see the [datasource docs](/docs/dev/datasource.html) for more details about creating a data source) and handled by the DLT handler, additional processing can be done to create device records and data.
 

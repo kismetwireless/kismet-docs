@@ -2,12 +2,14 @@
 title: "Extending the web ui"
 permalink: /docs/devel/webui_basics/
 toc: true
+docgroup: "devel-web"
+excerpt: "The web UI can be extended via Javascript and the UI pluggable interface, allowing for alterations and entirely new web UI systems."
 ---
 Kismet self-serves its web UI via the built-in webserver.  The web UI can interact with any exposed REST endpoint on the server.  Kismet does not currently support (direct) execution of CGI-style code (PHP, etc), active server-side code should be implemented via a Kismet plugin providing a new endpoint.
 
 ## Web UI Plugins
 
-A Kismet plugin can add onto the web UI by defining additional files which are loaded during the startup process.  Add-on files can provide new content for existing elements or define enitrely new mechanisms.
+A Kismet plugin can add onto the web UI by defining additional files which are loaded during the startup process.  Add-on files can provide new content for existing elements or define entirely new mechanisms.
 
 ## Making a Module
 

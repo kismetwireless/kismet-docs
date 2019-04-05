@@ -2,6 +2,8 @@
 title: "Creating tracked components"
 permalink: /docs/devel/tracked_components/
 toc: true
+docgroup: "devel-cpp"
+excerpt: "The tracked_component system is the Kismet internal architecture for introspectable and serializable data storage, and is used to define tracked structures like devices and protocol attributes."
 ---
 Kismet manages complex objects with arbitrary serialization and logging by implementing "tracked elements"; Tracked elements are introspectable in C++ and can be dynamically exported to other formats via the serialization API, such as JSON which is used heavily in the web interface.
 

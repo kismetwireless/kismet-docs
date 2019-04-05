@@ -2,6 +2,8 @@
 title: "Extending device and data tracking"
 permalink: /docs/devel/dot11_ie_parsers/
 toc: true
+docgroup: "devel-cpp"
+excerpt: "How to extend the Kismet interface for parsing 802.11 IE tags."
 ---
 Adding parsers for new IE tags in Kismet is relatively simple; there's a handful of files you need to modify and coding conventions you should follow, however.
 

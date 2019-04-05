@@ -2,6 +2,8 @@
 title: "Creating Kismet plugins"
 permalink: /docs/devel/plugins/
 toc: true
+docgroup: "devel"
+excerpt: "Kismet plugins can change server behavior (via C++ plugins), interface behavior (via Javascript), or both"
 ---
 Kismet can load additional code dynamically at runtime in the form of a plugin.
 

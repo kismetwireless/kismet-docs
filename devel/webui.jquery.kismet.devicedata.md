@@ -2,8 +2,10 @@
 title: "Extending the webui - device data"
 permalink: /docs/devel/webui_devicedata/
 toc: true
+docgroup: "devel-web"
+excerpt: "The web UI has pluggable interfaces for extending the device details window."
 ---
-It's often desireable to display simple data in Kismet as a table.  Kismet handles this in the web UI as a jquery plugin, `jquery.kismet.devicedata`.
+It's often desirable to display simple data in Kismet as a table.  Kismet handles this in the web UI as a jquery plugin, `jquery.kismet.devicedata`.
 
 `devicedata` takes a JSON object and a set of options, which includes a set of flexible field definitions able to map simple data/title pairs as well as filtering, complex render functions, empty field substitutions, and nested groups.
 

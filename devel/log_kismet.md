@@ -2,6 +2,8 @@
 title: "Kismetdb logs"
 permalink: /docs/devel/kismetdb/
 toc: true
+docgroup: "devel"
+excerpt: "The kismetdb log file is the new unified system for storing data, state, snapshots, devices, and all other info in Kismet."
 ---
 These docs represent a logfile which is under current development; until the first full release is done, the contents of the Kismet log are subject to change as corner cases are found.
 
