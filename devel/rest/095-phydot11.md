@@ -2,6 +2,8 @@
 title: "Phy80211 Wi-Fi"
 permalink: /docs/devel/webui_rest/phy80211/
 toc: true
+docgroup: "devel-rest"
+excerpt: "The 802.11 Wi-Fi subsystem defines a set of Wi-Fi specific APIs for accessing information about APs, related devices, and more."
 ---
 The 802.11 Wi-Fi phy defines extra endpoints for manipulating Wi-Fi devices seen by Kismet, and for extracting packets of special types.
 

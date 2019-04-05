@@ -2,6 +2,8 @@
 title: "UAV / Drones"
 permalink: /docs/devel/webui_rest/phyuav/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Kismet can track additional information about UAV/Drone/Quadcopter devices based on manufacturer, SSID, and packet contents."
 ---
 The UAV/Drone phy defines extra endpoints for matching UAVs based on manufacturer and SSID.
 

@@ -2,6 +2,8 @@
 title: "Keys and MAC addresses"
 permalink: /docs/devel/webui_rest/keys_and_macs/
 toc: true
+docgroup: "devel-rest"
+excerpt: "The differences between keys and macs, and optional MAC group matching."
 ---
 
 ## MAC addresses

@@ -2,6 +2,8 @@
 title: "System status"
 permalink: /docs/devel/webui_rest/system_status/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Basic system status and health reporting."
 ---
 
 ## System status

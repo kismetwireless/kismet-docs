@@ -1,6 +1,8 @@
 ---
 title: "Serialization types"
 permalink: /docs/devel/webui_rest/serialization/
+docgroup: "devel-rest"
+excerpt: "Data can be serialized in several different ways, as traditional JSON, streaming pseudo-JSON for large queries, and as 'pretty' output for learning the API."
 ---
 ## Serialization Types
 

@@ -2,6 +2,8 @@
 title: "Datasources"
 permalink: /docs/devel/webui_rest/datasources/
 toc: true
+docgroup: "devel-rest"
+excerpt: "APIs for accessing defined, and potential, datasources, as well as controlling the behavior of datasources."
 ---
 Datasources in Kismet capture information - typically packets - and return them to the Kismet server for processing.  Typically, a datasource is analogous to a network interface, but may encompass other capture options such as SDR.
 

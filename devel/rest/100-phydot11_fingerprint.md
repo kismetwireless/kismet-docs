@@ -2,6 +2,8 @@
 title: "Wi-Fi fingerprinting"
 permalink: /docs/devel/webui_rest/phy80211_fingerprints/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Live manipulation of the fingerprinting system, which will be used in the future for whitelisting, alerts, and complex Wi-Fi device tracking."
 ---
 The Kismet phy80211 fingerprinting system is used for device whitelisting, device modification alerts, and other device tracking.
 

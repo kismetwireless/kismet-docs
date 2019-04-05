@@ -2,6 +2,8 @@
 title: "Devices"
 permalink: /docs/devel/webui_rest/devices/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Device listing, sorting, and related interfaces."
 ---
 
 A device is the central record of a tracked entity in Kismet.  Clients, bridges, access points, wireless sensors, and any other type of entity seen by Kismet will be a device.  For complex relationships (such as 802.11 Wi-Fi), a list of related devices describes the access point-client relationship.

@@ -1,6 +1,8 @@
 ---
 title: "Exploring endpoints"
 permalink: /docs/devel/webui_rest/exploring/
+docgroup: "devel-rest"
+excerpt: "Exploring the REST API should be simple, here's how to get the most out of the endpoints and self-documenting fields."
 ---
 
 ## Exploring the REST system

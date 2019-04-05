@@ -2,6 +2,8 @@
 title: "Filters"
 permalink: /docs/devel/webui_rest/filters/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Dynamically control filtering options to include or exclude devices and packets; the filtering API is used by multiple components in Kismet to define filters."
 ---
 
 ## Packet filters

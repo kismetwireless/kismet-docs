@@ -2,6 +2,8 @@
 title: "KismetDB logs"
 permalink: /docs/devel/webui_rest/kismetdb/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Kismet stores all of its information in the kismetdb log; by exposing interfaces to the kismetdb log via the REST api, it becomes possible to access not only the current data and live packet streams, but previously captured packets and events."
 ---
 If the Kismet Databaselog is enabled, Kismet will expose an API for extracting historic data.  If the databaselog is not enabled, these APIs will not be available and will return an error.
 

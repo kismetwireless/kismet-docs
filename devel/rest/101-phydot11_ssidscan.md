@@ -2,6 +2,8 @@
 title: "Phy802.11 SSID Scan module"
 permalink: /docs/devel/webui_rest/phy80211_ssidscan/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Still under development, the ssidscan module will allow for targetting devices by SSID and automatically searching for behavior."
 ---
 
 ## SSIDScan status

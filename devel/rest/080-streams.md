@@ -2,6 +2,8 @@
 title: "Streams"
 permalink: /docs/devel/webui_rest/streams/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Logging and long-running live exports of data are classified as streams and can be observed and manipulated via the stream API."
 ---
 A Kismet stream is linked to an export of data of prolonged length; for instance, packet capture logs to disk or streamed over the web API.
 

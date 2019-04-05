@@ -2,6 +2,8 @@
 title: "Packet capture"
 permalink: /docs/devel/webui_rest/packet_capture/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Access the packet stream live with optional datasource and device filtering."
 ---
 Kismet can export packets in the pcap-ng format; this is a standard, extended version of the traditional pcap format.  Tools such as Wireshark (and tshark) can process complete pcapng frames, while tcpdump and other libpcap based tools (currently including Kismet) can process the simpler version of pcapng.
 

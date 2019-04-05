@@ -1,6 +1,8 @@
 ---
 title: "Logins and sessions"
 permalink: /docs/devel/webui_rest/logins/
+docgroup: "devel-rest"
+excerpt: "Kismet uses a standard login and session cookie system which is easily supported by most HTTP libraries."
 ---
 
 Kismet uses HTTP basic-auth to submit login information, and session cookies to retain login state.  

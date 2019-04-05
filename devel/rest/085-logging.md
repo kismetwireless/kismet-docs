@@ -2,6 +2,8 @@
 title: "Logging"
 permalink: /docs/devel/webui_rest/logging/
 toc: true
+docgroup: "devel-rest"
+excerpt: "View and control logging attributes live."
 ---
 Kismet uses a centralized logging architecture which manages enabling and tracking the status of logs.  The logging system integrates with the [streaming sytem](/docs/devel/webui_rest/streams/) for long-running log files.
 

@@ -2,6 +2,8 @@
 title: "Devices"
 permalink: /docs/devel/webui_rest/device_views/
 toc: true
+docgroup: "devel-rest"
+excerpt: "A common 'device view' API which is used by many components of Kismet to present different views of the device data while retaining identical API calls."
 ---
 
 ## Device views

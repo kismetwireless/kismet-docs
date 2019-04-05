@@ -2,6 +2,8 @@
 title: "Alerts"
 permalink: /docs/devel/webui_rest/alerts/
 toc: true
+docgroup: "devel-rest"
+excerpt: "The alerts API allows for fetching raised alerts, defining new custom alerts purely via the API interface, and raising alerts via the API interface, allowing external tools to tie into the Kismet alert subsystem."
 ---
 Kismet alerts notify the user of critical Kismet events and wireless intrusion events.  Alerts are generated as messages (sent via [the messagebus](/docs/devel/webui_rest/messages/)) and as alert records.
 

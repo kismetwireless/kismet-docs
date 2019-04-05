@@ -2,6 +2,8 @@
 title: "Commands"
 permalink: /docs/devel/webui_rest/commands/
 toc: true
+docgroup: "devel-rest"
+excerpt: "Commands (actionable API calls) use a common method for defining arguments and options."
 ---
 
 Commands are sent via HTTP POST.  Command options are sent as a JSON dictionary object in the POST field `json`

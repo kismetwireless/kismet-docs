@@ -1,6 +1,8 @@
 ---
 title: "REST webserver endpoints"
 permalink: /docs/devel/webui_rest/endpoints/
+docgroup: "devel-rest"
+excerpt: "The Kismet REST-like API"
 ---
 
 Kismet uses a REST-like interface for the embedded webserver, which provides data and accepts commands.  
