@@ -1,7 +1,8 @@
 ---
 title: "Starting Kismet"
 permalink: /docs/readme/starting_kismet/
-excerpt: "Starting Kismet"
+excerpt: "When starting Kismet you can define multiple options on the command line, config files, or perform many operations via the web interface."
+docgroup: "readme"
 ---
 
 ## Starting Kismet

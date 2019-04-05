@@ -1,7 +1,8 @@
 ---
 title: "Bluetooth sources"
 permalink: /docs/readme/datasources_bluetooth/
-excerpt: "Bluetooth datasources"
+excerpt: "Bluetooth datasources capture BT and BTLE scanning and advertised data."
+docgroup: "readme"
 toc: true
 ---
 

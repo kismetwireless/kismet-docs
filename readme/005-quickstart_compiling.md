@@ -1,7 +1,8 @@
 ---
 title: "Quickstart"
 permalink: /docs/readme/quickstart/
-excerpt: "Quick Start Guide"
+excerpt: "Kismet has many many configuration knobs and options, but check here for the quickest way to get Kismet working with the latest release (or git version) and what you need to compile and do the initial configuration."
+docgroup: "readme"
 redirect_from:
   - /docs/readme/
   - /docs/

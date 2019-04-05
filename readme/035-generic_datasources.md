@@ -1,7 +1,8 @@
 ---
 title: "Data sources"
 permalink: /docs/readme/datasources/
-excerpt: "Data capture sources"
+excerpt: "Data sources are how Kismet gets packets (and packet-like) data; many can be automatically configured but some need special options."
+docgroup: "readme"
 toc: true
 ---
 

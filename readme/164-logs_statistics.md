@@ -2,7 +2,8 @@
 ---
 title: "Kismetdb Statistics"
 permalink: /docs/readme/kismetdb_statistics/
-excerpt: "Quick analysis tool for KismetDB"
+excerpt: "Quick summarization of kismetdb logs, with optional JSON output for scripting an index of captured log data."
+docgroup: "readme"
 toc: true
 ---
 

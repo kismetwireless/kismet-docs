@@ -1,7 +1,8 @@
 ---
 title: "Kismetdb to JSON"
 permalink: /docs/readme/kismetdb_devices_json/
-excerpt: "Kismetdb to JSON"
+excerpt: "Kismetdb logs can be exported to JSON records describing all seen devices, making it easy to process capture history."
+docgroup: "readme"
 toc: true
 ---
 

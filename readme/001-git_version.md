@@ -1,7 +1,8 @@
 ---
 title: "Git and Beta"
 permalink: /docs/readme/git_and_beta/
-excerpt: "Git and Beta Versions"
+excerpt: "Welcome to the new, MAJOR rewrite of Kismet!  If you're using the Git and Beta versions, you'll want to do some housekeeping..."
+docgroup: "readme"
 ---
 
 ## MAJOR KISMET UPDATE

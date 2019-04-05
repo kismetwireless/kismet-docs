@@ -1,7 +1,8 @@
 ---
 title: "Wi-Fi sources"
 permalink: /docs/readme/datasources_wifi/
-excerpt: "Wi-Fi (802.11) data sources"
+excerpt: "Wi-Fi (802.11) data sources capture packets from an interface in monitor mode."
+docgroup: "readme"
 toc: true
 ---
 

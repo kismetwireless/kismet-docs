@@ -1,7 +1,8 @@
 ---
 title: "Upgrading"
 permalink: /docs/readme/upgrading/
-excerpt: "Upgrading to the new Kismet"
+excerpt: "If you're upgrading from the old Kismet legacy release, or following the new git code, you may need to do some special care and feeding of your setup when you upgrade."
+docgroup: "readme"
 ---
 
 ## Upgrading & Using Kismet Git-Master (or beta)

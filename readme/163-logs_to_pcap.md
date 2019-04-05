@@ -1,7 +1,8 @@
 ---
 title: "Kismetdb to PCAP"
 permalink: /docs/readme/kismetdb_to_pcap/
-excerpt: "Converting Kismetdb to PCAP"
+excerpt: "Kismetdb logs can be easily converted to pcap format"
+docgroup: "readme"
 toc: true
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Included libraries"
 permalink: /docs/readme/libraries/
-excerpt: "Included third-party libraries"
+excerpt: "Kismet wouldn't be possible without other open source projects and includes several open source libraries."
+docgroup: "readme"
 ---
 
 ## Integrated libraries

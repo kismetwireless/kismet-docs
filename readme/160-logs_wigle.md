@@ -1,7 +1,8 @@
 ---
 title: "Kismet and Wigle"
 permalink: /docs/readme/wigle/
-excerpt: "Kismet integration with Wigle"
+excerpt: "Kismetdb logs can be easily exported to the wigle CSV format for uploading."
+docgroup: "readme"
 toc: true
 ---
 

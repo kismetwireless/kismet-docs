@@ -1,7 +1,8 @@
 ---
 title: "Webserver"
 permalink: /docs/readme/webserver/
-excerpt: "Kismet webserver configuration"
+excerpt: "The Kismet webserver has many optional configuration values which can be tuned in the config files."
+docgroup: "readme"
 toc: true
 ---
 

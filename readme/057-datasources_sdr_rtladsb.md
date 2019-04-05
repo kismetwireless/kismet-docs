@@ -1,7 +1,8 @@
 ---
 title: "SDR rtladsb sources"
 permalink: /docs/readme/datasources_sdr_rtladsb/
-excerpt: "SDR-based rtladsb sources"
+excerpt: "SDR-based rtladsb sources use the rtl-sdr radio to capture airplane ADSB/Mode-S location and telemetry packets."
+docgroup: "readme"
 toc: true
 ---
 

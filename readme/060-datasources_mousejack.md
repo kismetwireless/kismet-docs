@@ -1,7 +1,8 @@
 ---
 title: "nRF Mousejack sources"
 permalink: /docs/readme/datasources_nrf_mousejack/
-excerpt: "nRF Mosuejack based sources"
+excerpt: "nRF Mosuejack based datasources use a nRF USB device to detect many common wireless keyboards and mice."
+docgroup: "readme"
 toc: true
 ---
 

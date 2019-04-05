@@ -1,7 +1,8 @@
 ---
 title: "KismetDB file source"
 permalink: /docs/readme/datasources_kismetdb/
-excerpt: "Kismetdb capture file replay"
+excerpt: "Kismetdb datasources replay kismet log files."
+docgroup: "readme"
 toc: true
 ---
 

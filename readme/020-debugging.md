@@ -1,7 +1,8 @@
 ---
 title: "Debugging"
 permalink: /docs/readme/debugging/
-excerpt: "Kismet README and Quick Start Guide"
+excerpt: "As hard as we try, everything has bugs.  If you're having trouble with Kismet, here's how to help with the debugging!"
+docgroup: "readme"
 ---
 
 ## Debugging Kismet

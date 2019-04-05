@@ -1,7 +1,8 @@
 ---
 title: "Pcap capture file source"
 permalink: /docs/readme/datasources_pcapfile/
-excerpt: "Pcap capture file replay"
+excerpt: "Pcap datasources replay existing pcap files as if they were live data"
+docgroup: "readme"
 toc: true
 ---
 

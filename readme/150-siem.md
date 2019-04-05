@@ -2,6 +2,7 @@
 title: "Prelude SIEM"
 permalink: /docs/readme/integration_prelude/
 excerpt: "Integration with the Prelude SIEM"
+docgroup: "readme"
 ---
 
 ## SIEM support

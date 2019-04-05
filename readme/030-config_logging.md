@@ -1,7 +1,8 @@
 ---
 title: "Logging"
 permalink: /docs/readme/logging/
-excerpt: "Kismet logging options"
+excerpt: "Kismet has many logging options; here's how to pick which options you need."
+docgroup: "readme"
 toc: true
 ---
 

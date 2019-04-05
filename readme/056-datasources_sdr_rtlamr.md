@@ -1,7 +1,8 @@
 ---
 title: "SDR rtlamr sources"
 permalink: /docs/readme/datasources_sdr_rtlamr/
-excerpt: "SDR-based rtlamr sources"
+excerpt: "SDR-based rtlamr sources use the rtl-sdr radio to capture AMR based power and water meter readings."
+docgroup: "readme"
 toc: true
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Performance and Memory Tuning"
 permalink: /docs/readme/performance_and_memory/
-excerpt: "Tuning options for performance and memory"
+excerpt: "Tuning options for performance and memory can resolve issues when dealing with very large data sets or very small servers."
+docgroup: "readme"
 toc: true
 ---
 

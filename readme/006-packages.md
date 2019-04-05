@@ -1,6 +1,8 @@
 ---
 title: "Official Kismet packages"
 permalink: /docs/readme/packages/
+excerpt: "Most distributions will not have the latest Kismet versions, but you can install the official Kismet packages for many common distros and platforms."
+docgroup: "readme"
 toc: true
 redirect_from:
   - /docs/howto/repos_deb/

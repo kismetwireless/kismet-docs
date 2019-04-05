@@ -1,7 +1,8 @@
 ---
 title: "SDR rtl433 sources"
 permalink: /docs/readme/datasources_sdr_rtl433/
-excerpt: "SDR-based rtl433 sources"
+excerpt: "SDR-based rtl433 sources use the rtl-sdr radio to capture a wide range of sensors, thermometers, and switches."
+docgroup: "readme"
 toc: true
 ---
 

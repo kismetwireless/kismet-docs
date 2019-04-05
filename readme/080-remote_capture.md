@@ -1,7 +1,8 @@
 ---
 title: "Remote capture"
 permalink: /docs/readme/datasources_remote_capture/
-excerpt: "Remote network capture"
+excerpt: "Remote network capture allows Kismet to receive packets from distributed sensors installed on other hardware, such as OpenWRT routers."
+docgroup: "readme"
 toc: true
 ---
 

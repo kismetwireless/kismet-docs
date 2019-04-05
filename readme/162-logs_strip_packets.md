@@ -1,7 +1,8 @@
 ---
 title: "Stripping Kismetdb packet data"
 permalink: /docs/readme/kismetdb_strip_packets/
-excerpt: "Stripping Kismetdb packet data"
+excerpt: "Kismetdb logs typically contain packet data; sometimes you may wish to strip the packet contents while keeping the device records."
+docgroup: "readme"
 toc: true
 ---
 

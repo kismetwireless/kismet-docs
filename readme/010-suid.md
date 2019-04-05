@@ -1,7 +1,8 @@
 ---
 title: "Installing Kismet: SUID vs Non-SUID"
 permalink: /docs/readme/suid/
-excerpt: "SUID and non-SUID installation"
+excerpt: "Kismet can be installed and configured multiple ways; the most secure is to allow Kismet to be installed suidroot and executable by users in the kismet group only."
+docgroup: "readme"
 ---
 
 ## Installing Kismet - Suid vs Normal

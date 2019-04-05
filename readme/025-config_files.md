@@ -1,7 +1,8 @@
 ---
 title: "Config Files"
 permalink: /docs/readme/config_files/
-excerpt: "Kismet configuration files"
+excerpt: "Kismet has a large set of options which can be configured via configuration files - and sanely managed during upgrades with kismet_site.conf"
+docgroup: "readme"
 toc: true
 ---
 
