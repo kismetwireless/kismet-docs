@@ -5,7 +5,6 @@ excerpt: "Kismet has many many configuration knobs and options, but check here f
 docgroup: "readme"
 redirect_from:
   - /docs/readme/
-  - /docs/
   - /README-latest.html
 ---
 
