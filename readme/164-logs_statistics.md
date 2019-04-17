@@ -1,4 +1,3 @@
-
 ---
 title: "Kismetdb Statistics"
 permalink: /docs/readme/kismetdb_statistics/
