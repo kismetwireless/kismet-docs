@@ -9,8 +9,6 @@ excerpt: "Still under development, the ssidscan module will allow for targetting
 ## SSIDScan status
 Current configuration and status of the ssidscan module, including the target SSIDs and assigned datasources.
 
-__LOGIN REQUIRED__
-
 * API added \
     `2019-04`
 
@@ -33,8 +31,6 @@ __LOGIN REQUIRED__
 
 ## SSIDScan configuration
 Push new configuration options to the ssidscan module, overriding any configuration present.
-
-__LOGIN REQUIRED__
 
 * API added \
     `2019-04`

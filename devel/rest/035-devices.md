@@ -240,8 +240,6 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 ## Editing - device names
 Devices can have an arbitrary user-supplied name.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /devices/by-key/*[DEVICEKEY]*/set_name.cmd
 
@@ -267,8 +265,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Editing - device tags
 Devices contain a collection of arbitrary tags which are held in the `kismet.device.base.tags` tree of the device record.  These tags can be used to store persistent notes or other user-supplied or auto-generated data, and are keyed by the string tag name.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /devices/by-key/*[DEVICEKEY]*/set_tag.cmd

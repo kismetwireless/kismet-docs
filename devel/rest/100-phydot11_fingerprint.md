@@ -25,8 +25,6 @@ __This api is currently incomplete__ and under development.
 ## Adding fingerprints
 New fingerprints can be defined run-time.
 
-__LOGIN REQUIRED__
-
 * URL \\
         .../fingerprints/new/insert.cmd
 
@@ -49,8 +47,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Updating fingerprints
 Fingerprints may be modified at run-time.
-
-__LOGIN REQUIRED__
 
 * URL \\
         .../fingerprints/by-mac/*[MACADDRESS]*/update.cmd
@@ -78,8 +74,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
         HTTP error on failure
 
 ## Removing fingerprints
-
-__LOGIN REQUIRED__
 
 * URL \\
         .../fingerprints/by-mac/*[MACADDRESS]*/delete.cmd

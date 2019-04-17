@@ -48,8 +48,6 @@ Dictionary of filter status, including description, default behavior, and type, 
 ## Common packet filter defaults
 The default method is applied to all packets which do not match any terms in the filter.  
 
-__LOGIN REQUIRED__
-
 * URL \\
         /filters/packet/*[FILTERID]*/set_default.cmd
 
@@ -88,8 +86,6 @@ Address filters are applied in the above order:  `source`, `destination`, `netwo
 ### Defining filters
 Filters can be added to any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /filters/packet/*[FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/set_filter.cmd
 
@@ -120,8 +116,6 @@ Packets which do not match a filter term will be passed to the default behavior 
 
 ### Removing filters
 Filters can be removed from any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /filters/packet/[*FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/remove_filter.cmd
@@ -189,8 +183,6 @@ Dictionary of filter status, including description, default behavior, and type, 
 ## Common class filter defaults
 The default method is applied to all packets which do not match any terms in the filter.  
 
-__LOGIN REQUIRED__
-
 * URL \\
         /filters/class/*[FILTERID]*/set_default.cmd
 
@@ -220,7 +212,6 @@ MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by
 Address filters apply to a single record, depending on the use of the filter.
 
 ### Defining filters
-__LOGIN REQUIRED__
 
 * URL \\
         /classfilters/*[FILTERID]*/*[PHYNAME]*/set_filter.json
@@ -252,7 +243,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
         
 
 ### Removing filters
-__LOGIN REQUIRED__
 
 * URL \\
         /classfilters/[*FILTERID]*/*[PHYNAME]*/remove_filter.json

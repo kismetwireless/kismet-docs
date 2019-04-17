@@ -7,7 +7,7 @@ excerpt: "Kismet uses a standard login and session cookie system which is easily
 
 Kismet uses HTTP basic-auth to submit login information, and session cookies to retain login state.  
 
-Typically, GET endpoints which do not reveal sensitive data do not require a login, while the majority of POST endpoints, as well as GET endpoints which return packet streams or other configuration information, *will* require login information.
+As of `2019-04-git`, all interaction with the Kismet server requires a login.
 
 A session will automatically be created during authentication to any endpoint which requires login information, and returned in the `KISMET` session cookie.
 
@@ -16,7 +16,7 @@ Logins may be manually validated against the `/session/check_session` endpoint i
 ### First login
 The first time Kismet is started, the user must set a password.  Until the password is set, endpoints which require a login will be disabled and will return an error.
 
-External tools (and UI implementations) can check if the initial password has been set.
+External tools (and UI implementations) can check if the initial password has been set.  Typically this API should not be used unless you are implementing a new Kismet UI that needs to provision the first-use scenario.  If you wish to pre-configure a Kismet server username and login, refer to [the webserver configuration documentation](/docs/readme/webserver).
 
 * URL \\
         /session/check_setup_ok
@@ -38,8 +38,6 @@ If the password is set in the global Kismet configuration files, such as `kismet
 ### Setting the login
 The initial login must be set before the user can access any restricted endpoints.  This endpoint can also be used to set a new login.
 
-__LOGIN REQUIRED (after initial use)__
-
 * URL \\
         /session/set_password
 
@@ -60,8 +58,7 @@ Standard `HTTP POST` variables, including:
 * Results \\
         `HTTP 200` is returned if the password set was successful. \\
         `HTTP 406` NOT ACCEPTABLE is returned if the server password is set in the global configuration. \\
-        HTTP error is returned if the password set was unsuccessful. \\
-        A HTTP login will be prompted if the initial password has already been set and a valid session is not present.
+        HTTP error is returned if the password set was unsuccessful. 
 
 * Notes \\
 Setting the initial password does not require a login.  Subsequent attempts to change the login and password *will* require a valid login session for the current password value, and will not invalidate any current login sessions. \\

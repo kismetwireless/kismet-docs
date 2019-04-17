@@ -65,8 +65,6 @@ Datasource listings include the definition of the source, current operational st
 ## Listing interfaces
 A *datasource* is a Kismet capture source which provides data.  An *interface* is a potential device a datasource may capture from, such as `wlan0` or a RTLSDR USB device.  This API is used by the Kismet web interface to add new datasources runtime.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /datasource/list_interfaces.json
 
@@ -78,8 +76,6 @@ __LOGIN REQUIRED__
 
 ## Adding sources
 Datasources may be dynamically added at runtime.  New data sources require a full datasource definition, as if they were in a `source=` config line.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /datasource/add_source.cmd
@@ -104,8 +100,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Setting channels
 Datasource channel configurations be configured to automatically hop over a list of channels, or remain fixed on a single channel.  Channels are defined as strings and may contain complex information, such as `11HT40-` for a Wi-Fi channel 11 using 40MHz 802.11n.  The exact format of a channel depends on the PHY type being configured.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /datasource/by-uuid/*[UUID]*/set_channel.cmd
@@ -150,8 +144,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 ## Set channel hopping
 Turn on channel hopping for the specified source, without altering the channel parameters.  Typically used to enable hopping after inspecting a single channel.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /datasource/by-uuid/*[UUID]*/set_hop.cmd
 
@@ -174,8 +166,6 @@ __LOGIN REQUIRED__
 ## Closing sources
 Sources can be closed and will no longer be processed.  A source will remain closed unless reopened.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /datasource/by-uuid/*[UUID]*/close_source.cmd \\
         /datasource/by-uuid/*[UUID]/disable_source.cmd
@@ -195,8 +185,6 @@ __LOGIN REQUIRED__
 
 ## Opening closed sources
 Closed sources can be re-opened.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /datasource/by-uuid/*[UUID]*/open_source.cmd \\
@@ -218,8 +206,6 @@ __LOGIN REQUIRED__
 ## Pausing sources
 Paused sources are not closed, but packets received from them will be discard.  This can be used to silence a source in some circumstances, but does not require shutting down the source and re-acquiring it later.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /datasource/by-uuid/*[UUID]*/pause_source.cmd 
 
@@ -238,8 +224,6 @@ __LOGIN REQUIRED__
 
 ## Resuming sources
 A paused source can be resumed; upon resumption, new packets will be processed from this source.  Packets received while the source was paused are lost.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /datasource/by-uuid/*[UUID]*/resume_source.cmd 
