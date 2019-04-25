@@ -103,8 +103,6 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
 ## Fetching historic packets
 Packets can be fetched from the `kismetdb`, for all packets stored in the current session `kismetdb` log.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /logging/kismetdb/pcap/*[TITLE]*.pcapng \\
         /logging/kismetdb/pcap/*[TITLE]*.pcapng?option1=...&option2=...
@@ -139,8 +137,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Dropping packets
 On very long-running Kismet processes, you may wish to purge old packets.  These packets will be removed from the kismetdb log.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /logging/kismetdb/pcap/drop.cmd

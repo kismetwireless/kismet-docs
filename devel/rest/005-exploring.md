@@ -7,10 +7,10 @@ excerpt: "Exploring the REST API should be simple, here's how to get the most ou
 
 ## Exploring the REST system
 
-The easiest way to explore the REST system, aside from the docs, is to query the JSON endpoints directly.  You can use `curl` and `python` to quickly grab output and format the JSON to be human readable:
+The easiest way to explore the REST system, aside from the docs, is to query the JSON endpoints directly.  Remember that as of `2019-04-git` you will need to have a valid login to explore the server setup.  You can use `curl` and `python` to quickly grab output and format the JSON to be human readable:
 
 ```
-$ curl http://localhost:2501/datasource/all_sources.json | python -mjson.tool
+$ curl http://user:password@localhost:2501/datasource/all_sources.json | python -mjson.tool
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 36274  100 36274    0     0   761k      0 --:--:-- --:--:-- --:--:--  770k
@@ -46,21 +46,21 @@ $ curl http://localhost:2501/datasource/all_sources.json | python -mjson.tool
 Similarly, POST data can be sent via curl; for example to test creating an alert via the dynamic alerts endpoint:
 
 ```bash
-$ curl -d 'json={"name": "JSONALERT", "description": "Dynamic alert added at runtime", "throttle": "10/min", "burst": "1/sec"}' http://kismet:kismet@localhost:2501/alerts/definitions/define_alert.cmd
+$ curl -d 'json={"name": "JSONALERT", "description": "Dynamic alert added at runtime", "throttle": "10/min", "burst": "1/sec"}' http://username:password@localhost:2501/alerts/definitions/define_alert.cmd
 ```
 
-which passes the parameters in the `json=` variable, and the login and password in the URI (kismet:kismet in this example).
+which passes the parameters in the `json=` variable, and the login and password in the URI (username:password in this example).
 
 ### What do all the fields mean?
 
-More information about each field can be found in the `/system/tracked_fields.html` URI by visiting `http://localhost:2501/system/tracked_fields.html` in your browser.  This will show the field names, descriptions, and data types, for every known entity.
+More information about each field can be found in the `/system/tracked_fields.html` URI by visiting `http://username:password@localhost:2501/system/tracked_fields.html` in your browser.  This will show the field names, descriptions, and data types, for every known entity.
 
 ### Additional pretty-printed output
 
 For even more information, almost every REST endpoint can be requested using the `{foo}.prettyjson` format; this JSON output is styled for ease of readability and includes additional metadata to help understand the format; for example:
 
 ```
-$ curl http://localhost:2501/system/status.prettyjson
+$ curl http://username:password@localhost:2501/system/status.prettyjson
  {
  "description.kismet.device.packets_rrd": "string, RRD of total packets seen",
  "kismet.device.packets_rrd":

@@ -40,8 +40,6 @@ Streams can be monitored and managed; a privileged user can close existing stera
 ## Closing a stream
 Closing a stream cancels any data being transferred or stored.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /streams/by-id/*[STREAMID]*/close_stream.cmd
 

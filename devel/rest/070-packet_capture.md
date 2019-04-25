@@ -16,8 +16,6 @@ Kismet can provide a live stream, in pcap-ng format, of all packets *since the t
 
 To access packets *previously seen* by Kismet, look at the [Databaselog endpoints](/docs/devel/webui_rest/databaselog/).
 
-__LOGIN REQUIRED__
-
 * URL \\
         /pcap/all_packets.pcapng
         /datasource/pcap/all_sources.pcapng
@@ -30,8 +28,6 @@ __LOGIN REQUIRED__
 
 ## Packets by datasource
 The packet stream may be limited to packets captured by a single datasource, indicated by the datasource UUID.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /datasource/pcap/by-uuid/*[UUID]*/*[UUID]*.pcapng
@@ -50,8 +46,6 @@ __LOGIN REQUIRED__
 
 ## Packets by device
 The packet stream may be limited to packets captured and associated with a specific device by Kismet, indicated by the Kismet device key.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /devices/by-key/*[KEY]*/pcap/*[KEY]*.pcapng

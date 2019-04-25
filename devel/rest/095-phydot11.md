@@ -10,8 +10,6 @@ The 802.11 Wi-Fi phy defines extra endpoints for manipulating Wi-Fi devices seen
 ## WPA Handshakes
 The WPA handshake is vital for extracking the WPA key of an encrypted WPA or WPA2 session.  Kismet will retain the handshake packets from an access point, and can provide them as a PCAP file.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-handshake.pcap
 
@@ -29,8 +27,6 @@ __LOGIN REQUIRED__
 
 ## Wi-Fi per-device pcap stream
 Kismet can provide a streaming pcap-ng log of all packets, from all interfaces, associated with a given Wi-Fi BSSID.  Packets are streamed _starting when this endpoint is opened_, for past packtes, use the [KismetDB log API](/docs/devel/webui_rest/kismetdb/).
-
-__LOGIN REQUIRED__
 
 * URL \\
         /phy/phy80211/by-bssid/*[BSSID]*/*[BSSID]*.pcapng

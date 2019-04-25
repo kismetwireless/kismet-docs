@@ -54,8 +54,6 @@ This endpoint returns the exact timestamp, with microsecond precision, of the re
 ## Defining alerts
 New alerts can be defined runtime, and triggered by external tools via the REST API.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /alerts/definitions/define_alert.cmd
 
@@ -79,8 +77,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Raising alerts
 Alerts can be triggered by external tools; the alert must be defined, first.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /alerts/raise_alerts.cmd

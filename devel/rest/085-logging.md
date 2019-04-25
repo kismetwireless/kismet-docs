@@ -34,8 +34,6 @@ Not all drivers are activated depending on the Kismet config optins.
 ## Enabling logs
 Logs can be enabled run-time.
 
-__LOGIN REQUIRED__
-
 * URL \\
         /logging/by-class/*[LOGCLASS]*/start.cmd
 
@@ -61,8 +59,6 @@ A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
 ## Stopping logs
 Logs can be stopped run-time.  The log must be open and running to be stopped.
-
-__LOGIN REQUIRED__
 
 * URL \\
         /logging/by-uuid/*[LOGUUID]*/stop.cmd
