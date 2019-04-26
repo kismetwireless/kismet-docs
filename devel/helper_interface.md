@@ -115,7 +115,13 @@ Kismet will handle the incoming web request and authentication validation.
 | ------------- | ------- | -------------------------------------------------- |
 | uri           | string  | Full path and file extension URI to register       |
 | method        | string  | HTTP method (currently GET and POST are supported) |
+
+##### Deprecated
+
+| Field         | Type    | Content                                            |
 | auth_required | boolean | Indicates if a valid HTTP session is required      |
+
+As of `2019-04-git` Kismet requires authentication for all API calls, and this parameter is now ignored.
 
 ### `HTTPREQUESTCANCEL` (KismetExternalHttp.HttpRequestCancel) *Kismet->Helper*
 
