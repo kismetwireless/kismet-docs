@@ -18,10 +18,9 @@ Kismet is able to process ADSB transponder data transmitted from a variety of ai
 
 To use the rtladsb capture, you must have a rtl-sdr USB device; this cannot be done with normal Wi-Fi hardware because a Wi-Fi card is not able to tune to the needed frequencies, and cannot report raw radio samples that are not Wi-Fi packets.
 
-Kismet will need the [pyModeS](https://github.com/junzis/pyModeS) plugin, you can get it from:
-[https://github.com/junzis/pyModeS](https://github.com/junzis/pyModeS)
+You will also need a python2 environment, and NumPy; this will usually be available as the `python-numpy` package, or installable via `pip install numpy`
 
-For more information about the rtlamr support, see the README in the capture_sdr_rtladsb directory.
+For more information about the rtladsb support, see the README in the capture_sdr_rtladsb directory.
 
 ### Using other SDR sources
-If you want to use multiple rtl-based sources at once (for instance, rtl433 and rtlamr), you will need multiple rtl-sdr USB devices.
+If you want to use multiple rtl-based sources at once (for instance, rtl433 and rtladsb), you will need multiple rtl-sdr USB devices.
