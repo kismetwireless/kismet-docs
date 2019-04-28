@@ -18,7 +18,9 @@ Kismet is able to process ADSB transponder data transmitted from a variety of ai
 
 To use the rtladsb capture, you must have a rtl-sdr USB device; this cannot be done with normal Wi-Fi hardware because a Wi-Fi card is not able to tune to the needed frequencies, and cannot report raw radio samples that are not Wi-Fi packets.
 
-You will also need a python2 environment, and NumPy; this will usually be available as the `python-numpy` package, or installable via `pip install numpy`
+You will also need a python2 environment, and NumPy; this will usually be available as the `python-numpy` package, or installable via `pip install numpy`.
+
+Previous versions required pymodes; this requirement has been removed in the latest code.
 
 For more information about the rtladsb support, see the README in the capture_sdr_rtladsb directory.
 
