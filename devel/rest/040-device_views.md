@@ -1,5 +1,5 @@
 ---
-title: "Devices"
+title: "Device views"
 permalink: /docs/devel/webui_rest/device_views/
 toc: true
 docgroup: "devel-rest"
