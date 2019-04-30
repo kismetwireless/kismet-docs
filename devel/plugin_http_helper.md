@@ -3,6 +3,7 @@ title: "Kismet External HTTP Helper Plugins"
 permalink: /docs/devel/dev/plugin_httphelper/
 toc: true
 docgroup: "devel"
+excerpt: "Extending Kismet via external helpers in Python and other languages"
 ---
 
 ## External Kismet helpers
