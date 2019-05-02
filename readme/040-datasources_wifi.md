@@ -20,6 +20,8 @@ Channels can be defined by number or by frequency.
 | ---------- | ------------------------------------------------------------ |
 | xx         | Basic 20MHz channel, such as `6` or `153`                    |
 | xxxx       | Basic 20MHz frequency, such as `2412`                        |
+| XXHT20     | 20MHz HT20 channel, such as `6HT20`                          |
+| XXXXHT20   | 20MHz frequency, such as `2412HT20`                          |
 | xxHT40+    | 40MHz 802.11n with upper secondary channel, such as `6HT40+` |
 | xxHT40-    | 40MHz 802.11n with lower secondary channel, such as `6HT40-` |
 | xxVHT80    | 80MHz 802.11ac channel, such as `116VHT80`                   |
@@ -69,7 +71,7 @@ The Linux Wi-Fi source is known to support, among others:
 Devices known to have issues:
 * ath9k Atheros 802.11abgn cards are typically the most reliable, however they appear to return false packets with valid checksums on very small packets such as phy/control and powersave control packets.  This may lead Kismet to detect spurious devices not actually present.
 * ath10k Atheros 802.11AC cards have many problems, including floods of spurious packets in monitor mode.  These packets carry 'valid' checksum flags, making it impossible to programmatically filter them.  Expect large numbers of false devices.  It appears this will require a fix to the closed-source Atheros firmware to resolve.
-* iwlwifi Intel cards appear to have errors when tuning to HT40 and VHT channels, leading to microcode/firmware crashes and resets of the card. Kismet works around this by disabling HT and VHT channels and only tuning to basic channels.  This means you will miss data packets from 11n and 11ac networks.
+* iwlwifi Intel cards, with older kernel drivers and firmware, have significant crashing issues when tuning to HT40 and HT80 channels.  Modern kernels appear to have resolved this issue; if you cannot upgrade your kernel, you can disable HT and VHT channels by passing the source options `ht_channels=false` and `vht_channels=false`; such as `source=wlp4s0:name=someintel,ht_channels=false,vht_channels=false`
 
 Kismet generally *will not work* with most other out-of-kernel (drivers not shipped with Linux itself), specifically drivers such as the SerialMonkey RTL drivers used for many of the cheap, tiny cards shipped with devices like the Raspberry Pi and included in distributions like Raspbian.  Some times it's possible to find other, supported drivers for the same hardware, however some cards have no working solution.
 
@@ -113,6 +115,16 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 * `channel_hoprate=channels/sec | channels/min`
    Control the per-source channel hop rate.  If this option is omitted, Kismet will use the default global channel hop rate.
 
+* `default_ht20=true | false`
+   Added `2019-04-git`
+   If the interface is HT capable, automatically use HT20 channels for all 20mhz wide channels.  This explicitly tells the interface to set the HT20 attributes instead of a basic channel.  If `default_ht20=true`, then `expand_ht20` is ignored.  This will likely become the default value in the future after testing.
+
+* `expand_ht20=true | false`
+   Added `2019-04-git`
+   If the interface is HT capable, automatically expand 20MHz channels to define the basic *and* the HT20 channel; for example instead of channel `1`, you would now have both `1` and `1HT20`.
+   This has the possibility to drastically increase the number of channels in the hop list, which increases the hop time.
+   This option is most useful on interfaces which may not report non-HT data packets when tuned to HT20.
+
 * `fcsfail=true | false`
    Wi-Fi packets contain a `frame checksum` or `FCS`.  Some drivers report this as the FCS bytes, while others report it as a flag in the capture headers which indicates if the packet was received correctly.
    Generally packets which fail the FCS checksum are garbage - they are packets which are corrupted, usually due to in-air collisions with other packets.  These can be extremely common in busy wireless environments.
@@ -120,7 +132,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 
 * `ht_channels=true | false`
    Kismet will detect and tune to HT40 channels when available; to disable this, set `ht_channels=false` on your source definition.
-   Kismet will automatically disable HT channels on some devices such as the Intel iwlwifi drivers because it is known to cause problems; if you want to force Kismet to attempt HT tuning on these devices, set `ht_channels=true` to force it.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
+   Kismet will automatically disable HT channels on some devices which are known to have problems tuning to HT channels; if your device has trouble tuning to HT channels, or you simply don't want to tune to HT channels when the capability is seen, specify `ht_channels=false`.
    See the `vht_channels` option for similar control over 80MHz and 160MHz VHT channels.
 
 * `ignoreprimary=true | false`
@@ -143,7 +155,7 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
    
 * `vht_channels=true | false`
    Kismet will tune to VHT80 and VHT160 channels when available; `vht_channels=false` will exclude them from this list.
-   Kismet will automatically exclude VHT channels from devices known to have problems tuning to them, specifically the Intel `iwlwifi` drivers will crash when tuning to VHT channels.  To *force* Kismet to include VHT channels on these devices, set `vht_channels=true` on your source.  **WARNING**: This appears to cause firmware crashes on most tested Intel cards and kernels; if you experience trouble, check the output of `dmesg`.
+   Kismet will automatically exclude VHT channels from devices known to have problems tuning to them; if your device has trouble tuning to VHT channels, or you simply don't want to tune to VHT channels when the capability is seen, specify `vht_channels=false`.
    See the ht_channels option for similar control over HT40 channels.
    
 * `retry=true | false`
