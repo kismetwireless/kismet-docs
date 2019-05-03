@@ -28,6 +28,9 @@ Kismet is primarily configured through a set of configuration text files.  By de
 * `kismet_logging.conf`
    Log file configuration
 
+* `kismet_filter.conf`
+   Packet and device filter configuration
+
 * `kismet_uav.conf`
    Parsing rules for detecting UAV / Drones or similar devices; compiled from the `kismet_uav.yaml` file
 
