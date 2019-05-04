@@ -61,7 +61,7 @@ $ kismet -c mousejack-3-8:channel_hoprate=100/sec
 This can also be specified in the `kismet.conf` or `kismet_site.conf` config files:
 
 ```
-source=mousejack:name=nRF,hop_rate=100/sec
+source=mousejack:name=nRF,channel_hoprate=100/sec
 ```
 
 
