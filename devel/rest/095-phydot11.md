@@ -8,7 +8,7 @@ excerpt: "The 802.11 Wi-Fi subsystem defines a set of Wi-Fi specific APIs for ac
 The 802.11 Wi-Fi phy defines extra endpoints for manipulating Wi-Fi devices seen by Kismet, and for extracting packets of special types.
 
 ## WPA Handshakes
-The WPA handshake is vital for extracking the WPA key of an encrypted WPA or WPA2 session.  Kismet will retain the handshake packets from an access point, and can provide them as a PCAP file.
+The WPA handshake is vital for extracting the WPA key of an encrypted WPA or WPA2 session.  Kismet will retain the handshake packets from an access point, and can provide them as a PCAP file.
 
 * URL \\
         /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-handshake.pcap
@@ -16,14 +16,33 @@ The WPA handshake is vital for extracking the WPA key of an encrypted WPA or WPA
 * Methods \\
         `GET`
 
-* URL parameters
+* GET parameters
 
-| Key | Desription |
+| Key | Description |
 | --- | ---------- |
 | *[DEVICEKEY]* | Kismet device key of target device |
 
 * Result \\
-        PCAP file of WPA handshake packets associated with the device.
+        On success: PCAP file of WPA handshake packets associated with the device, as well as a beacon packet.
+        On error: HTTP error
+
+## WPA PMKID
+The WPA PMKID component of the handshake can be used to perform offline attacks against the WPA key using Aircrack or Hashcat.  Kismet will retain a packet with the RSN PMKID value, and can provide it as a PCAP file.
+
+* URL \\
+        /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-pmkid.pcap
+
+* Methods \\
+        `GET`
+
+* GET parameters
+
+| Key | Description |
+| *[DEVICEKY]* | Kismet device key of target device |
+
+* Result \\
+        On success: PCAP file of RSN PMKID packet, and a beacon packet.
+        On error: HTTP error 
 
 ## Wi-Fi per-device pcap stream
 Kismet can provide a streaming pcap-ng log of all packets, from all interfaces, associated with a given Wi-Fi BSSID.  Packets are streamed _starting when this endpoint is opened_, for past packtes, use the [KismetDB log API](/docs/devel/webui_rest/kismetdb/).
