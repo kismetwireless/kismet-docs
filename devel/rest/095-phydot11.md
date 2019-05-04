@@ -32,6 +32,9 @@ The WPA PMKID component of the handshake can be used to perform offline attacks 
 * URL \\
         /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-pmkid.pcap
 
+* API added: \\
+        `2019-05`
+
 * Methods \\
         `GET`
 
