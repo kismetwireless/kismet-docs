@@ -137,7 +137,7 @@ $ sudo apt install kismet
 
 Individual tools can still be installed:
 ```bash
-$ sudo apt install kismet-core kismet-capture-linux-bluetooth kismet-capture-linux-wifi kismet-capture-nrf-mousejack python-kismetcapturertl433 python-kismetcapturertladsb python-kismetcaptureamr python-kismetcapturefreaklabszigbee kismet-logtools 
+$ sudo apt install kismet-core kismet-capture-linux-bluetooth kismet-capture-linux-wifi kismet-capture-nrf-mousejack python-kismetcapturertl433 python-kismetcapturertladsb python-kismetcapturertlamr python-kismetcapturefreaklabszigbee kismet-logtools 
 ```
 
 To install the debug version:
