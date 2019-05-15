@@ -138,8 +138,8 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 * `ignoreprimary=true | false`
    Linux mac80211 drivers use `virtual interfaces` or `VIFs` to set different interface modes and behaviors:  A single Wi-Fi card might have `wlan0` as the "normal" (or "managed") Wi-Fi interface; Kismet would then create `wlan0mon` as the monitor-mode capture interface.
    Typically, all non-monitor interfaces must be disabled (set to `down` state) for capture to work reliably and for channel setting (and channel hopping) to function.
-   In the rare case where you are attempting to run Kismet on the same interface as an access point or client, you will want to leave the base interface configured and running (while losing the ability to channel hop); by settng `ignoreprimary=true` on your Kismet source line, Kismet will no longer bring down any related interface on the same Wi-Fi card.
-   This **almost always** must be combined with also setting `hop=false` because channel control is not possible in this configuration, and depending on the Wi-Fi card type, may prevent proper data capture.
+   In the rare case where you are attempting to run Kismet on the same interface as an access point or client, you will want to leave the base interface configured and running (while losing the ability to channel hop); by setting `ignoreprimary=true` on your Kismet source line, Kismet will no longer bring down any related interface on the same Wi-Fi card.
+   This **almost always** must be combined with also setting `channel_hop=false` because channel control is not possible in this configuration, and depending on the Wi-Fi card type, may prevent proper data capture.
 
 * `plcpfail=true | false`
    Some drivers have the ability to report data that *looked* like a packet, but which have invalid radio-level packet headers (the Wi-Fi `PLCP` which is not typically exposed to the capture layer).  Generally these events have no meaning, and few drivers are able to report them.
