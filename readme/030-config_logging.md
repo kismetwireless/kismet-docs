@@ -70,6 +70,30 @@ The journal file will be automatically merged when the log file is opened, or yo
 $ sqlite3 Kismet-foo-whatever.kismet 'VACUUM;'
 ```
 
+### Kismetdb ephemeral and timed logs
+
+The `kismet` log format can be used as an ephemeral (non-permanent) log file, and can automatically time-limit the data.  This is extremely useful if you are using Kismet as a stand-alone sensor, where the data is being collected over the REST interface.
+
+Kismetdb logs can be automatically purged of old data.  The timeout values are in seconds - `60 * 60 * 24`, which is `86400`, sets a 24 hour timeout on data.
+
+```
+kis_log_alert_timeout=86400
+kis_log_device_timeout=86400
+kis_log_message_timeout=86400
+kis_log_packet_timeout=86400
+kis_log_snapshot_timeout=86400
+```
+
+Data in each of the categories is *removed from the kismetdb log file* after the timeout.  Devices which have been idle for more than the `kis_log_device_timeout` are removed.
+
+A kismetdb log may be marked as *ephemeral* by setting:
+
+```
+kis_log_ephemeral_dangerous=true
+```
+
+An ephemeral log is removed from the filesystem upon creation; the log is not accessible on disk, and will be removed immediately upon Kismet exiting.  Ephemeral logs are most useful when deploying Kismet as a permanent fixed sensor with a time-limited history; for instance retaining the past day of devices, packets, etc, but where there is no need (or desire) to keep log files.
+
 ## Filtering
 
 Kismet can filter packets and devices logged in the `kismetdb` log file.  This can be used to exclude known devices, or include ONLY certain types of devices and packets.
