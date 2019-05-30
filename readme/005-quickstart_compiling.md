@@ -19,7 +19,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    *Ubuntu/Debian/Kali/Mint*
 
    ```bash
-   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python python-setuptools python-protobuf python-requests librtlsdr0 python-usb python-dev
+   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python python-setuptools python-protobuf python-requests librtlsdr0 python-usb python-numpy python-dev
    ```
 
    On some older versions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
