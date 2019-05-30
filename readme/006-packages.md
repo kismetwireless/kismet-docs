@@ -123,6 +123,23 @@ $ echo 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' | s
 $ sudo apt update
 ```
 
+## Ubuntu 19.04 Disco (Intel)
+Ubuntu 19.04 Disco  (i386, amd64)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/disco disco main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
+### Nightly git
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+```
+
 ## Installing Kismet
 Once you've enabled the repo and updated your apt-cache, it's time to install Kismet itself.
 
