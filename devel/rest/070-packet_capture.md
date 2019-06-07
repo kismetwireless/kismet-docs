@@ -14,7 +14,7 @@ The pcap-ng file can be post-processed with `tshark` or `wireshark` to strip it 
 ## All packets
 Kismet can provide a live stream, in pcap-ng format, of all packets *since the time of this request* seen by Kismet from all datasources.
 
-To access packets *previously seen* by Kismet, look at the [Databaselog endpoints](/docs/devel/webui_rest/databaselog/).
+To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](/docs/devel/webui_rest/kismetdb/).
 
 * URL \\
         /pcap/all_packets.pcapng
