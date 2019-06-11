@@ -12,13 +12,33 @@ All devices will have a basic set of records (held in the `kismet.base.foo` grou
 
 The preferred method of retrieving device lists is to use the POST URI `/devices/summary/` or `/devices/last-time` with a list of fields provided.  Whenever possible, limiting the fields requested and the time range requested will reduce the load on the Kismet server *and* the client consuming the data.
 
-## Summarization & display
+## Device summary and windowed device view
+The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a windowed, sortable, searchable device list.  This list is used by the main Kismet UI to display all devices, for instance.
+
+This API supercedes the `/devices/summary/` API.
+
+* URL \\
+        /devices/views/all/...
+        /devices/views/all/devices.json
+        /devices/views/all/last-time/*[TIMESTAMP]*/devices.json
+
+* API added \\
+        `2019-06`
+
+* Notes \\
+        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+
+## Old Summarization & display
 The device summarization endpoint is the primary interface for clients to access the device list.  It is used heavily by the Kismet UI for the main device list table.
 
 The device summarization is best utilized when applying a view window via the `start` and `length` variables.
 
 * URL \\
         /devices/summary/devices.json
+
+* DEPRECATED \\
+        `2019-06`
+        While still available, this API has been deprecated in favor of the `all` device view.
 
 * Methods \\
         `POST`
