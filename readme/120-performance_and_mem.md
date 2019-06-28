@@ -66,7 +66,21 @@ Kismet has several options which control how much memory and processing it uses.
 
    Some older kernels (such as those found on some Debian and Ubuntu versions still in LTS, such as Ubuntu 14.04) do not properly calculate memory used by modern allocation systems and will not count the memory consumed.  On these systems, it may be necessary to use externally-defined `cgroup` controls.
 
-### Extremely large numbers of data sources
+## Runtime type checking
+
+Kismet uses a dynamic type system to store data (that is then turned into JSON, etc).  Normally this system uses type enforcement; this turns programming errors in Kismet into controlled aborts instead of crashes.
+
+This system can be disabled for extra performance - either on low-power systems such as rpi or embedded hardware, or on extremely high-load systems with many remote datasources.  
+
+Turning off runtime type checking is *generally* safe, because if there was a type mismatch, Kismet would already terminate with a thrown exception / abort, however if there is an as-yet-undiscovered mismatch, Kismet will now segfault with a null pointer access.  This *should not* be a security risk, but a controlled abort is generally preferable.
+
+Runtime type checking must be disabled at compile time:
+
+```bash
+$ ./configure --disable-element-typesafety
+```
+
+## Extremely large numbers of data sources
 
 Using extremely large numbers of local data sources (in excess of 16 devices) can introduce a new set of instabilities and concerns; depending on the devices used, the kernel version, and if using an out-of-kernel driver such as the RTL8812AU driver set, the driver version.
 
