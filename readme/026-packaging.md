@@ -3,6 +3,7 @@ title: "Packaging"
 permalink: /docs/readme/packaging/
 excerpt: "Recommendations for package maintainers"
 docgroup: "readme"
+toc: true
 ---
 
 ## Packaging Kismet
