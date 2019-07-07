@@ -14,5 +14,6 @@ Kismet uses several libraries which are built as part of the Kismet source code;
 * [kaitai](https://kaitai.io): Binary parser generator and stream library
 * [microhttpd](https://www.gnu.org/software/libmicrohttpd/): Webserver
 * [nlohmann json](https://github.com/nlohmann/json): JSON sanitization
+* [sha1](https://github.com/vog/sha1): Simple SHA1 implementation
 * [radiotap](http://radiotap.org): Radiotap header definitions
 * [xxhash32](https://github.com/Cyan4973/xxHash): Fast 32bit hashing algorithm
