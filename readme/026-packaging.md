@@ -35,3 +35,7 @@ Kismet looks for config files in the directory specified in `configure` via the 
 
 Kismet provides an override mechanism for local configurations which take precedence over all other config options; these are kept in `kismet_site.conf` by default.  A package should never provide this file, as changes made by the user will likely go here.
 
+### Protobuf-lite
+
+Some distributions (like OpenWRT) use libprotobuf-lite to save space.  Kismet does not use any of the options removed in the lite version, but *should* be configured with the `--enable-protobufite` option to `./configure`.
+
