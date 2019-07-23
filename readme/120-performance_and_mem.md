@@ -67,7 +67,7 @@ Kismet has several options which control how much memory and processing it uses.
    Some older kernels (such as those found on some Debian and Ubuntu versions still in LTS, such as Ubuntu 14.04) do not properly calculate memory used by modern allocation systems and will not count the memory consumed.  On these systems, it may be necessary to use externally-defined `cgroup` controls.
 
 * `dot11_view_accesspoints=true|false`
-   Normally, Kismet makes a view dedicated to access points; this can be turned off to save RAM.  Turning this off may break some scripts and will definitely disable the 'Access points only' view in the UI.
+   Normally, Kismet makes a view dedicated to access points; this can be turned off to save RAM.  Turning this off may break some scripts and will definitely disable the 'Access points only' view in the UI.  This will also disable related features that rely on aggregate Wi-Fi access points, such as timestamp grouping.
 
 * `dot11_fingerprint_devices=true|false`
    Kismet does advanced fingerprinting of 802.11 devices.  This can be turned off to save RAM.  Turning this off will disable some alerts and fingerprint based checks.
