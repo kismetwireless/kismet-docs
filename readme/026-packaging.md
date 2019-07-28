@@ -31,9 +31,17 @@ The Kismet configure defaults to `/usr/local/`; typically a distribution package
 
 Kismet looks for config files in the directory specified in `configure` via the `--sysconfdir` directive.  This location may vary per distribution, however typically `/etc/kismet` would be the appropriate default, and is the location used by the packages provided on the Kismet site.
 
-### Never override `kismet_site.conf`
+#### Use `kismet_package.conf`
 
-Kismet provides an override mechanism for local configurations which take precedence over all other config options; these are kept in `kismet_site.conf` by default.  A package should never provide this file, as changes made by the user will likely go here.
+When building packages for tiny systems, like under OpenWRT, you can include a `kismet_package.conf` in your package; the default Kismet configs will first load the Kismet configuration files, then, if present, a `kismet_package.conf` configuration file which will override any options specified, and finally, `kismet_site.conf` which will override any previous settings.
+
+This setup allows tuning Kismet automatically for inclusion on some systems, while removing the need to maintain patches to the base Kismet configs.
+
+`kismet_package.conf` should be placed in the configuration directory with the other Kismet configs.
+
+#### Never override `kismet_site.conf`
+
+Kismet provides an override mechanism for local configurations which take precedence over all other config options; these are kept in `kismet_site.conf` by default.  A package should never provide this file, as changes made by the user will likely go here.  You can auto-configure options via `kismet_package.conf` however.
 
 ### Protobuf-lite
 

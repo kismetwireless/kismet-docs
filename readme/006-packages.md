@@ -199,7 +199,7 @@ $ sudo apt install kismet-core-debug kismet-capture-linux-bluetooth kismet-captu
 ```
 
 ## Installing piecemeal
-Most of the Kismet components will work independently - with the caveat of course that you will not be able to capture from a device if you don't have the required capture code.
+Most of the Kismet components will work independently - with the caveat of course that you will not be able to capture from a device if you don't have the required capture tool.
 
 To install only the capture tools, for instance to build a remote-capture node, you can install just the individual components:
 
