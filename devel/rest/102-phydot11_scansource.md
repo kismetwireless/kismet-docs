@@ -75,6 +75,7 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | WPA1 | Explicit WPA1 |
     | WPA2 | Explicit WPA2 |
     | WPA3 | Explicit WPA3 |
+    | OWE | WPA Opportunistic Wireless Encryption |
 
     WPA types may also include authentication types, if available in the scanning system: 
 
@@ -82,7 +83,6 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | ----- | ----------- |
     | PSK | Preshared key PSK |
     | EAP | Enterprise EAP authentication |
-    | OWE | WPA Opportunistic Wireless Encryption |
 
     Authentication types should be appended to the encryption type, for instance: `WPA2-PSK`.
 
