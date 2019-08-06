@@ -66,6 +66,7 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | speed | (Optional) GPS speed |
 
     Valid encryption types:
+
     | Value | Description |
     | ----- | ----------- |
     | OPEN | No encryption / Open |
@@ -76,6 +77,7 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | WPA3 | Explicit WPA3 |
 
     WPA types may also include authentication types, if available in the scanning system: 
+
     | Value | Description |
     | ----- | ----------- |
     | PSK | Preshared key PSK |
