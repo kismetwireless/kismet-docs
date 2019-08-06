@@ -203,6 +203,8 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Fingerprint
 
+    Added `2019-08-git`
+
     Recent vulnerabilities found in the Qualcomm drivers for Android lead to code execution via over-sized IE 127 Extended Capabilities tags (CVE-2019-10539).  This alert detects tags which are oversized.  The IE 127 tag should always be 8 bytes.
 
 * `RSNLOOP` 
