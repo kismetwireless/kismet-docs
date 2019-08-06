@@ -199,6 +199,12 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
 	Active scanning tools constantly send network discovery probes but never join any of the networks which respond.  This alert can cause excessive false positives in busy environments, so is disabled by default.
 
+* `QCOMEXTENDED`
+
+    Fingerprint
+
+    Recent vulnerabilities found in the Qualcomm drivers for Android lead to code execution via over-sized IE 127 Extended Capabilities tags (CVE-2019-10539).  This alert detects tags which are oversized.  The IE 127 tag should always be 8 bytes.
+
 * `RSNLOOP` 
 
     Fingerprint
