@@ -83,6 +83,7 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | ----- | ----------- |
     | PSK | Preshared key PSK |
     | EAP | Enterprise EAP authentication |
+    | SAE | WPA3 SAE authentication |
 
     Authentication types should be appended to the encryption type, for instance: `WPA2-PSK`.
 
