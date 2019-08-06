@@ -55,16 +55,38 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
 
     | Key | Description |
     | --- | ----------- |
-    | timestamp | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used. |
+    | timestamp | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
     | ssid | (Optional) SSID |
     | bssid | BSSID |
     | encryption | (Optional) String array of encryption types |
     | signal | Signal, in dBm |
-    | count | (Optional) Number of times this result has been seen since the last scan report |
     | lat | (Optional) GPS latitude |
     | lon | (Optional) GPS longitude |
     | alt | (Optional) GPS altitude |
     | speed | (Optional) GPS speed |
+
+    Valid encryption types:
+    | Value | Description |
+    | ----- | ----------- |
+    | OPEN | No encryption / Open |
+    | WEP | WEP |
+    | WPA | Basic WPA, or unknown type of WPA |
+    | WPA1 | Explicit WPA1 |
+    | WPA2 | Explicit WPA2 |
+    | WPA3 | Explicit WPA3 |
+
+    WPA types may also include authentication types, if available in the scanning system: 
+    | Value | Description |
+    | ----- | ----------- |
+    | PSK | Preshared key PSK |
+    | EAP | Enterprise EAP authentication |
+    | OWE | WPA Opportunistic Wireless Encryption |
+
+    Authentication types should be appended to the encryption type, for instance: `WPA2-PSK`.
+
+    Multiple encryption types should be provided as discrete elements in the encryption array:
+
+    `["WPA1-PSK", "WPA2-PSK"]`
 
 * Results \
     `HTTP 200` on success
