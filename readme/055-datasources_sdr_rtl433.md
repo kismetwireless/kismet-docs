@@ -24,4 +24,55 @@ The rtl_433 tool can be downloaded from: https://github.com/merbanan/rtl_433 or 
 
 The Kismet rtl_433 interface uses librtlsdr, rtl_433, and Python; rtl433 sources will show up as normal Kismet sources using the rtl433-X naming.
 
-For more information about the rtl433 support, see the README in the  capture_sdr_rtl433 directory.
+#### rtl433 devices
+
+Kismet identifies rtl433 hardware by either the serial number (if any) or by the radio position; for example:
+
+The first rtl433 radio in the system:
+
+`source=rtl433-0`
+
+A specific rtl433 radio (if serial numbers are available):
+
+`source=rtl433-324452324332`
+
+Not all rtl433 hardware populates the serial number field.
+
+Serial numbers can be found using the standard rtlsdr tools, like `rtl_test`:
+
+```bash
+$ rtl_test 
+Found 4 device(s):
+  0:  NooElec, NESDR Nano 3, SN: 2686186936
+  1:  NooElec, NESDR Nano 3, SN: 1177459274
+  2:  NooElec, NESDR Nano 3, SN: 2664167682
+  3:  NooElec, NESDR Nano 3, SN: 0572734167
+```
+
+#### rtl433 parameters
+RTL433 sources accept several options in the source definition, in addition to the common name, informational, and UUID elements:
+
+* `channel=xyz`
+
+    Manually set the frequency; by default rtl433 tunes to `433.920MHz`.
+
+    Frequency can be in MHz:
+
+    `source=rtl433-0:channel=400MHz`
+
+    or KHz:
+
+    `source=rtl433-0:channel=500000KHz`
+
+    or raw hz:
+
+    `source=rtl433-0:channel=512000000`
+
+* `ppm_error=xyz`
+
+    Set the error correction level for your radio, passed as the `-p` option to rtl433
+
+* `gain=xyz`
+
+    Set the gain, if supported, passed as the `g` option to rtl433
+
