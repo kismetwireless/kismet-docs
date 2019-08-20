@@ -23,6 +23,14 @@ Kismet has several options which control how much memory and processing it uses.
 
     There is no terribly efficient way to handle this, so typically, leaving this option unset is the right idea.  Memory use can be tuned over time using the `tracker_device_timeout` option.
 
+* `tcp_buffer_kb=kb`
+
+    Kismet allocates a 512Kb buffer for incoming remote datasources, for each datasource.  On very RAM-limited devices, this may be a significant percentage of the available resources; The size of the buffer can be tuned.  Tuning this value too small may cause "buffer full" errors if the buffer cannot be serviced quickly enough.
+
+* `ipc_buffer_kb=kb`
+
+    Kismet allocates a 512Kb buffer for datasource IPC, for each datasource.  On very RAM-limited devices, this may be a significant percentage of the available resources; The size of the buffer can be tuned.  Tuning this value too small may cause "buffer full" errors if the buffer cannot be serviced quickly enough.
+
 * `keep_location_cloud_history=true|false`
 
     Kismet can track a 'cloud' style history of locations around a device; Similar to a RRD (round robin database), the precision of the records decreases over time.
