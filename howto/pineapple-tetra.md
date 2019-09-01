@@ -6,6 +6,10 @@ toc: true
 
 # Building Kismet-Git for OpenWRT 
 
+## Kismet on the Wi-Fi Pineapple
+
+Thanks to the hard work of the fine folk at Hak5, there are now official Kismet builds directly available for the Pineapple Tetra, and remote capture for the Pineapple Nano, available via opkg or the web interface!
+
 ## Kismet needs a lot of resources
 
 Kismet tracks a *lot* of information about different networks and devices, which takes a lot of RAM.  Most OpenWRT targets have very limited resources for flash and RAM and are not best suited for running Kismet.  Usually, these devices are best suited for running the Kismet remote capture code, feeding packets to a full Kismet server on 'real' hardware.
