@@ -111,9 +111,11 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
   You will need this password to control Kismet from the web page - without it you can still view information about devices, view channel allocations, and most other actions, but you CAN NOT control Kismet data sources, view pcaps, or perform other actions.
 
-11.  Point your browser at http://localhost:2501
+11.  Point your browser at http://localhost:2501 (or the address of the server Kismet is running on)
 
-   You will be prompted to do basic configuration - Kismet has many options in the web UI which can be tweaked.
+   If you are running Kismet on your laptop (or other system with a browser), you can see the Kismet UI at `http://localhost:2501`.
 
-   To use all the features of the Kismet web UI, put in the password found in the `kismet_httpd.conf` config file above.
+   If you are running Kismet on a Raspberry Pi, Wi-Fi Pineapple, or other device, you will need to point your computer at the address *of the device running Kismet*.  You will need to have the system running Kismet plugged into wired Ethernet, or it will need a second Wi-Fi card configured to connect to your network:  You cannot run Kismet and connect to a network on the same Wi-Fi card at the same time.
+
+   You will be prompted to do basic configuration - Kismet has many options in the web UI which can be tweaked.  Explore and have fun!
 
