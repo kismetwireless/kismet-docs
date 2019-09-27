@@ -12,72 +12,66 @@ Kismet is capable of running on OSX and capturing data on OSX natively.
 
 Kismet should build on OSX directly, but requires some libraries be installed.
 
-1. Install XCode from the Apple App Store.  You may be prompted, during the course of installing MacPorts, to install other components of XCode and the XCode command-line utilities. 
+1. Install XCode from the Apple App Store.   
 
-2. Install a ports library; for example:
+    XCode is needed for the base compilers and build tools.
+    
+    Once installed, launch XCode at least once and accept the licenses.  You will need to do this to use the command line tools.
 
-   * MacPorts from https://www.macports.org
-   * HomeBrew from https://brew.sh/
+2. Install the 'brew' tool.
 
-3. Install the needed external libraries; if prompted to install other necessary libraries or tools, of course say `yes`:
+    Follow the directions at [brew.sh](https://brew.sh) to install the brew tool.
 
-   * For `macports`:
+    There are other package managers for OSX; you're welcome to use any of them which have the required packages, but Brew is known to work.
 
-     `$ sudo port install libmicrohttpd pcre protobuf-c protobuf-cpp libusb`
+3. Install the needed components
 
-   * For `brew`:
+    ```bash
+    $ brew install pkgtool libmicrohttpd python3 libpcap protobuf protobuf-c pcre
+    ```
 
-     `$ brew install libmicrohttpd pcre protobuf protobuf-c libusb`
+4. Make a source directory for Kismet (optional, but recommended)
 
-4. Install any desired external tools; to capture sensors using a rtl-sdr USB device and the `rtl_433` tool, you will need a USB device, the `librtlsdr` library, and the `rtl_433` tool set up.  You should be able to follow the guides on https://www.rtl-sdr.com for more information.
+    ```bash
+    $ mkdir src
+    $ cd src
+    ```
 
-5. Install python2 and `pip`.  `pip` is the Python package manager; depending on your configuration it may be called `py-pip`; for example:
+5. Get the Kismet code
 
-   * For `macports`:
-     ```bash
-     $ sudo port install py-pip
-     ```
+    To get the latest version from git:
 
-   Kismet uses Python to capture from `rtl_433` and for other plugin functions; installing `pip` will allow Python to fetch additional libraries automatically.
+    ```bash
+    $ git clone https://www.kismetwireless.net/git/kismet.git
+    ```
 
-6. Make a source directory for Kismet (optional, but recommended)
-   ```bash
-   $ mkdir src`
-   ```
+6. Configure Kismet
 
-5. Get the Kismet code by running, from within your `src` directory, the following:
-
-   ```bash
-   $ git clone https://www.kismetwireless.net/git/kismet.git
-   ```
-
-6. Configure Kismet.  You'll likely need to pass some options to tell the OSX compilers where to find the libraries and headers. From within your `kismet` directory, run:
+    If you're using brew, the libraries and headers should be automatically detectable.  If you are using a different package manager, you may need to provide CFLAG, CXXFLAG, and LDFLAG environment variables.
    
-   ```bash
-   $ export CFLAGS="-I/opt/local/include" 
-   $ export LDFLAGS="-L/opt/local/lib" 
-   $ export CPPFLAGS="-I/opt/local/include" 
-   $ ./configure
-   ```
+    ```bash
+    $ ./configure
+    ```
 
 7. Compile Kismet.
-   ```bash
-   $ make
-   ```
 
-   There will be some warnings - generally they can be ignored.  As the OSX port evolves, the warnings will be cleaned up. 
-   
-   As with installation on Linux, you can accelerate the process by adding -j#, depending on how many CPUs you have.
-   ```bash
-   $ make -j4
-   ```
+    ```bash
+    $ make
+    ```
+
+    You can typically increase the speed of compiling by using multiple processors, for instance:
+
+    ```bash
+    $ make -j4
+    ```
    
 8. Install Kismet
-   ```bash
-   $ sudo make suidinstall
-   ```
 
-   `make suidinstall` will install the Kismet helpers as suid-root, executeable by users in the `staff` group in OSX.  There is more information on the suidinstall method in the Kismet README; in general it increases the overall Kismet security by allowing you to launch Kismet as a normal user; only the packet capture tools will run as root.
+    ```bash
+    $ sudo make suidinstall
+    ```
+
+    `make suidinstall` will install the Kismet helpers as suid-root, executeable by users in the `staff` group in OSX.  There is more information on the suidinstall method in the Kismet README; in general it increases the overall Kismet security by allowing you to launch Kismet as a normal user; only the packet capture tools will run as root.
 
 ## Configuring and Running Kismet
 
@@ -96,6 +90,8 @@ $ kismet -c en1
 ```
 
 For more information on configuring Kismet in general, as well as logging formats and other Kismet features, be sure to check out the normal Kismet README file.
+
+Since a Wi-Fi card cannot be in monitor mode and be connected to a network at the same time, you will notice that your mac disconnects from Wi-Fi while Kismet runs.  When you are done running Kismet, you can re-select your wireless network to reconnect.
 
 ## Connect to Kismet
 
