@@ -16,9 +16,22 @@ Kismet will export objects in traditional JSON format suitable for consumption i
 
 "EK" JSON is modeled after the Elastic Search JSON format, where a complete JSON object is found on each line of the output.
 
-Kismet supports ekjson on any REST UI which returns a vector/list/array of results.  The results will be the same as standard JSON, however each item in the list will be a discrete JSON object.
+Kismet supports ekjson on any REST endpoint which returns a vector/list/array of results.  
 
-The primary advantage of the ekjson format is the ability to process it *as a stream* instead of as a single giant object - this reduces the client-side memory requirements of searches with a large number of devices drastically.
+*Added 2019-10*
+To be compatible with the ELK interpretation of field names, Kismet now permutes all field names in `ekjson` output, replacing all instances of `.` with `_`.
+
+### ITJSON
+
+*Added 2019-10*
+
+"IT" or "Iterative" JSON is a variant of JSON optimized for large vector/array data sets.  Instead of containing the entire output in a JSON array, each element of the array is sent on its own newline.
+
+*All non-ELK use of previous ekjson endpoints should now use itjson endpoints*.  The ekjson serialization now modifies field names.
+
+Kismet supports itjson on any REST endpoint which returns a vector/list/array of results.
+
+The itjson results must be parsed *as a stream* instead of *as a traditional JSON object*.  Attempting to parse an itjson response as traditional JSON will result in syntax errors.
 
 ### PRETTYJSON
 
