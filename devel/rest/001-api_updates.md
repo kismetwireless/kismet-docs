@@ -9,7 +9,7 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 
 * `2019-10` geopoint
 
-    To more cleanly support ELK, all location records now use `geopoint` formats.  A geopoint is an array containing `[lat, lon]`.  `kismet.common.location.lat` and `kismet.common.location.lon` are now `kismet.common.location.geopoint`.
+    To more cleanly support ELK, all location records now use `geopoint` formats.  A geopoint is an array containing `[lon, lat]`.  `kismet.common.location.lat` and `kismet.common.location.lon` are now `kismet.common.location.geopoint`.
 
 * `2019-10` advertised_ssid and probe_ssid as arrays
 
