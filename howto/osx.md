@@ -99,3 +99,25 @@ The Kismet web UI should be accessible on the OSX system by going to `http://loc
 
 The first time you visit the Kismet UI you'll be prompted to create a password and log in.  
 
+## Errors during `./configure`
+
+Errors during running `./configure` typically mean you have not installed a dependency Kismet needs, or you have installed it into a location that your system doesn't search by default.
+
+The `brew` tool installs packages to `/usr/local/` by default, which should be in the default search path.  If you use other tools or other paths, you may need to specify the location manually to `configure` with the `CFLAGS`, `CXXFLAGS`, and `LDFLAGS` variables, for example:
+
+```bash
+$ CFLAGS=-I/opt/ports/include LDFLAGS=-L/opt/ports/lib -CXXFLASGS=-I/opt/ports/include ./configure ...
+```
+
+## Errors during `make`
+
+* Error during linking about target x64
+
+    This happens when MacOS or XCode has been updated between builds.  This can usually be fixed doing a clean build:
+
+    ```bash
+    $ make distclean
+    $ ./configure ...
+    $ make
+    ```
+
