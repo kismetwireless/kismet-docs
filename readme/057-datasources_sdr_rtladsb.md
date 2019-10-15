@@ -6,23 +6,44 @@ docgroup: "readme"
 toc: true
 ---
 
-## SDR
-SDR, or software-defined radio, uses special generic hardware to capture radio signals, and performs signal processing in software.
+*Updated for Kismet 2019-10*
 
-SDR is extremely powerful, but also often extremely brittle - configuring SDR hardware and software to work reliably can be quite difficult.  Kismet is able to use external SDR tools to interface with hardware and utilize some of the power of SDR.
+## RTL-ADSB
+
+To capture ADSB with Kismet, you'll need a rtl-sdr USB software defined radio.  You can't capture these signals with a Wi-Fi card; they're very different!
+
+Using a rtl-sdr, Kismet is able to process the transponder data transmitted from commercial aircraft; for more information about the ADSB signal; for more information about the ADSB signal and how to decode it, check out the [mode-s introduction](https://mode-s.org/decode/adsb/introduction.html).
 
 ### Datasource - SDR RTLADSB
-The rtl-sdr radio is an extremely cheap USB SDR (software defined radio).  While very limited, it is still capable of performing some useful monitoring.
 
-Kismet is able to process ADSB transponder data transmitted from a variety of aircraft; for more information about the ADSB signal and how to decode it, check out the [mode-s introduction](https://mode-s.org/decode/adsb/introduction.html).
+You will need a python3 environment and the `numpy` package, either installed via `pip3` or as a system package.
 
-To use the rtladsb capture, you must have a rtl-sdr USB device; this cannot be done with normal Wi-Fi hardware because a Wi-Fi card is not able to tune to the needed frequencies, and cannot report raw radio samples that are not Wi-Fi packets.
+The rtladsb datasource will auto-detect supported rtl-sdr hardware.  It can be manually specified with `type=rtladsb`.
 
-You will also need a python2 environment, and NumPy; this will usually be available as the `python-numpy` package, or installable via `pip install numpy`.
+If you have multiple rtl-sdr radios, you can select which radio to use either by radio number (the order it was seen on your system), or by the serial number of the radio; for instance:
 
-Previous versions required pymodes; this requirement has been removed in the latest code.
+```
+source=rtladsb-0,name=FirstRadio
+```
 
-For more information about the rtladsb support, see the README in the capture_sdr_rtladsb directory.
+or
 
-### Using other SDR sources
-If you want to use multiple rtl-based sources at once (for instance, rtl433 and rtladsb), you will need multiple rtl-sdr USB devices.
+```
+source=rtladsb-124334,name=SomeOtherRadio
+```
+
+#### Rtl ADSB Source Parameters
+RTLADSB sources accept several additional options, in addition to the standard name, informational, and UUID options:
+
+* `gain=value`
+
+    Specifiy a fixed gain level for the radio; by default, the hardware automatic gain control is used.
+
+* `ppm=error_value`
+
+    Specify a PPM error offset for fine-tuning your radio, if your hardware has a known offset.
+
+* `channel=frequency_in_hz`
+
+    Manually force a different frequency; by default the international standard of 1090MHz is used.
+
