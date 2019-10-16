@@ -35,6 +35,14 @@ source=rtladsb-124334,name=SomeOtherRadio
 #### Rtl ADSB Source Parameters
 RTLADSB sources accept several additional options, in addition to the standard name, informational, and UUID options:
 
+* `biastee=true | false`
+
+    Enable bias-tee power on supported radios.  Bias-tee is used to supply power to external amplifiers or other equipment in the antenna chain, and requires your radio have support for it.
+
+* `channel=frequency_in_hz`
+
+    Manually force a different frequency; by default the international standard of 1090MHz is used.
+
 * `gain=value`
 
     Specifiy a fixed gain level for the radio; by default, the hardware automatic gain control is used.
@@ -42,8 +50,4 @@ RTLADSB sources accept several additional options, in addition to the standard n
 * `ppm=error_value`
 
     Specify a PPM error offset for fine-tuning your radio, if your hardware has a known offset.
-
-* `channel=frequency_in_hz`
-
-    Manually force a different frequency; by default the international standard of 1090MHz is used.
 
