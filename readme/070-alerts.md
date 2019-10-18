@@ -213,6 +213,14 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Invalid RSN (802.11i) tags in beacon frames can be used to cause loops in some Atheros drivers, as described in CVE-2017-9714 and [pleasestopnamingvulnerabilities.com](https://pleasestopnamingvulnerabilities.com/)
 
+* `RTLWIFIP2P`
+
+    Fingerprint
+
+    Added `2019-10-git`
+
+    A vulnerability in the Linux RTLWIFI driver could lead to code execution or a denial of service, as described in CVE-2019-17666 and [the LKML mailing list](https://lkml.org/lkml/2019/10/16/1226).  This attack involves malformed Wi-Fi Direct P2P Notification of Absence frames.
+
 * `WMMOVERFLOW` 
 
 	Fingerprint
