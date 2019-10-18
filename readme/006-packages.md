@@ -170,10 +170,21 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
+## Ubuntu 19.10 Eoan (Intel)
+Ubuntu 19.10 Eoan  (amd64)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/eoan eoan main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
 ### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/eoan eoan main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
