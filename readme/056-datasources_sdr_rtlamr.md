@@ -6,23 +6,48 @@ docgroup: "readme"
 toc: true
 ---
 
-## SDR
-SDR, or software-defined radio, uses special generic hardware to capture radio signals, and performs signal processing in software.
+*Updated for Kismet 2019-10*
 
-SDR is extremely powerful, but also often extremely brittle - configuring SDR hardware and software to work reliably can be quite difficult.  Kismet is able to use external SDR tools to interface with hardware and utilize some of the power of SDR.
+## RTL-AMR
+
+To capture AMR with Kismet, you'll need a rtl-sdr USB software defined radio.  You can't capture these signals with a Wi-Fi card; they're very different!
+
+Using a rtl-sdr, Kismet is able to capture the usage readings from AMR-enabled meters.  These often include electricity, water, and gas meters.  The AMR broadcast is used as part of the meter reading system which allows the utility company to read power usage from the street.
 
 ### Datasource - SDR RTLAMR
-The rtl-sdr radio is an extremely cheap USB SDR (software defined radio).  While very limited, it is still capable of performing some useful monitoring.
 
-Kismet is able to process data from the rtl_amr tool; this tool can capture and process packets from the AMR metering system which can be found on power and water meters in some municipalities.
+You will need a python3 environment and the `numpy` package, either installed via `pip3` or as a system package.
 
-To use the rtlamr capture, you must have a rtl-sdr USB device; this cannot be done with normal Wi-Fi hardware because a Wi-Fi card is not able to tune to the needed frequencies, and cannot report raw radio samples that are not Wi-Fi packets.
+The rtlamr datasource will auto-detect supported rtl-sdr hardware.  It can be manually specified with `type=rtlamr`.
 
-Kismet requires the rtl-amr tool; you will need to build the rtl-amr tool from source, available at [https://github.com/bemasher/rtlamr](https://github.com/bemasher/rtlamr).
+If you have multiple rtl-sdr radios, you can select which radio to use either by radio number (the order it was seen on your system), or by the serial number of the radio; for instance:
 
-The Kismet rtl_amr interface uses librtlsdr, rtl_amr, and Golang; rtlamr sources will show up as normal Kismet sources using rtlamr-X naming.
+```
+source=rtlamr-0,name=FirstRadio
+```
 
-For more information about the rtlamr support, see the README in the capture_sdr_rtlamr directory.
+or
 
-### Using other SDR sources
-If you want to use multiple rtl-based sources at once (for instance, rtl433 and rtlamr), you will need multiple rtl-sdr USB devices.
+```
+source=rtlamr-124334,name=SomeOtherRadio
+```
+
+#### Rtl AMR Source Parameters
+RTLAMR sources accept several additional options, in addition to the standard name, informational, and UUID options:
+
+* `biastee=true | false`
+
+    Enable bias-tee power on supported radios.  Bias-tee is used to supply power to external amplifiers or other equipment in the antenna chain, and requires your radio have support for it.
+
+* `channel=frequency_in_hz`
+
+    Manually force a different frequency; by default the standard of 912.6MHz is used.
+
+* `gain=value`
+
+    Specifiy a fixed gain level for the radio; by default, the hardware automatic gain control is used.
+
+* `ppm=error_value`
+
+    Specify a PPM error offset for fine-tuning your radio, if your hardware has a known offset.
+
