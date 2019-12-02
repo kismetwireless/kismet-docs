@@ -1,67 +1,49 @@
 ---
-title: "nRF Mousejack sources"
-permalink: /docs/readme/datasources_nrf_mousejack/
-excerpt: "nRF Mosuejack based datasources use a nRF USB device to detect many common wireless keyboards and mice."
+title: "TI CC2540 sources"
+permalink: /docs/readme/datasources_ticc2540/
+excerpt: "TI CC2540 based datasources use a Texas Instruments CC2540 dongle with sniffer firmware to monitor btle."
 docgroup: "readme"
 toc: true
 ---
 
-## Mousejack / nRF
+## TI CC2540
 
-The NordicRF nRF chip is a common chip used in wireless keyboards, mice, and presentation tools, which are frequently found in non-Bluetooth wireless input devices.
+The Texas Instruments CC2540 is a chip used for bluetooth communications. It can be obtained in as a usb dongle that can be flashed with a sniffer firmware provided by TI. http://www.ti.com/tool/PACKET-SNIFFER
 
-The Mousejack firmware developed by Bastille (https://www.mousejack.com/) runs on a number of commodity USB nRF devices (such as the Sparkfun nRF and the CrazyPA).
+### Datasource - TI CC2540
 
-### Datasource - nRF Mousejack
+Kismet must be compiled with support for libusb to use TICC2540; you will need `libusb-1.0-dev` (or the equivalent for your distribution), and you will need to make sure that the `TI CC 2540` option is enabled in the output from `./configure`.
 
-Kismet must be compiled with support for libusb to use Mousejack; you will need `libusb-1.0-dev` (or the equivalent for your distribution), and you will need to make sure that the `nRF Mousejack` option is enabled in the output from `./configure`.
+To use the TI CC2540 capture, you must have a TI CC2540 dongle flashed with the sniffer firmware. You can flash this yourself with a CC-Debugger or purchase one online from many retailers.
 
-To use the mousejack capture, you must have a supported nRF USB device; this includes any device listed on the Bastille Mousejack site, including:
-- CrazyRadio PA USB dongle
-- SparkFun nRF24LU1+ breakout board
-- Logitech Unifying dongle (model C-U0007, Nordic Semiconductor based)
+#### TI CC2540 interfaces
 
-You will need to flash your device with the Bastille Mousejack firmware; the firmware is available at [https://github.com/BastilleResearch/mousejack](https://github.com/bastilleresearch/mousejack) by following the instructions in the [Mousejack README](https://github.com/BastilleResearch/mousejack/blob/master/readme.md).
-
-#### Mousejack interfaces
-
-Mousejack datasources in Kismet can be referred to as simply `mousejack`:
+TI CC2540 datasources in Kismet can be referred to as simply `ticc2540`:
 
 ```bash
-$ kismet -c mousejack
+$ kismet -c ticc2540
 ```
 
-When using multiple Mousejack radios, they can be specified by their location in the USB bus; this can be detected automatically by Kismet as a supported interface in the web UI, or specified manually.  To find the location on the USB bus, look at the output of the command `lsusb`:
+When using multiple TI CC2540 dongles, they can be specified by their location in the USB bus; this can be detected automatically by Kismet as a supported interface in the web UI, or specified manually.  To find the location on the USB bus, look at the output of the command `lsusb`:
 
 ```bash
 $ lsusb
 ...
-Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 003 Device 008: ID 1915:0102 Nordic Semiconductor ASA 
-Bus 003 Device 010: ID 1915:0102 Nordic Semiconductor ASA 
+Bus 001 Device 008: ID 0451:16b3 Texas Instruments, Inc. 
+Bus 005 Device 004: ID 0451:16b3 Texas Instruments, Inc.
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
 ...
 ```
 
-In this instance the first device is on `bus 003` and `device 008` and the second device is on `bus 003` and `device 010`; we can specify this specific first device in Kismet by using:
+In this instance the first device is on `bus 001` and `device 008` and the second device is on `bus 005` and `device 004`; we can specify this specific first device in Kismet by using:
 
 ```bash
-$ kismet -c mousejack-3-8
+$ kismet -c ticc2540-1-8
 ```
 
 #### Channel Hopping
 
-The nRF protocol as used by Mousejack covers 82 channels, each 1MHz wide.
-
-To cover this spectrum rapidly, it is recommended that you increase the hop rate for nRF interfaces:
-
-```bash
-$ kismet -c mousejack-3-8:channel_hoprate=100/sec
-```
-
-This can also be specified in the `kismet.conf` or `kismet_site.conf` config files:
-
-```
-source=mousejack:name=nRF,channel_hoprate=100/sec
+Btle has 3 advertising channels 37, 38, and 39.
 ```
 
 
