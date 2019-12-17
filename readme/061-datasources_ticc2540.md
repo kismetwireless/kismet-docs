@@ -1,14 +1,14 @@
 ---
 title: "TI CC2540 sources"
 permalink: /docs/readme/datasources_ticc2540/
-excerpt: "TI CC2540 based datasources use a Texas Instruments CC2540 dongle with sniffer firmware to monitor btle."
+excerpt: "TI CC2540 based datasources use a Texas Instruments CC2540 dongle with sniffer firmware to monitor BTLE."
 docgroup: "readme"
 toc: true
 ---
 
 ## TI CC2540
 
-The Texas Instruments CC2540 is a chip used for bluetooth communications. It can be obtained in as a usb dongle that can be flashed with a sniffer firmware provided by TI. http://www.ti.com/tool/PACKET-SNIFFER
+The Texas Instruments CC2540 is a chip used for Bluetooth communications.  To use it with Kismet, it must be flashed with the sniffer firmware [provided by TI](http://www.ti.com/tool/PACKET-SNIFFER).  Often the devices are available with the sniffer firmware pre-flashed.
 
 ### Datasource - TI CC2540
 
