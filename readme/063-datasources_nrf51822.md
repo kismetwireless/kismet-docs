@@ -27,3 +27,6 @@ source=nrf51822:device=dev/ttyUSB0
 The firmware does it's own channel hopping so no selections are available.
 ```
 
+### MacOS
+
+The nRF 51822 uses a CP2104 serial chip; testing with the [latest drivers](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) under MacOS Catalina has been unsuccesful; however a driver update may fix that in the future.
