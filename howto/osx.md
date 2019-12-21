@@ -27,7 +27,7 @@ Kismet should build on OSX directly, but requires some libraries be installed.
 3. Install the needed components
 
     ```bash
-    $ brew install pkg-tool libmicrohttpd python3 libpcap protobuf protobuf-c pcre
+    $ brew install pkg-tool libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
     ```
 
 4. Make a source directory for Kismet (optional, but recommended)
