@@ -13,8 +13,9 @@ Currently the only implemention of Bluetooth scanning in Kismet uses the Linux H
 
 Support for Bluetooth capture using the Ubertooth One hardware will be forthcoming.
 
-### Datasource: Linux Bluetooth
-Currently the Kismet implementation of Bluetooth discovery uses the Linux HCI layer to perform device scans to detect dicoverable Bluetooth Classic devices and BTLE devices; this is an active scan, not passive monitoring.
+### Datasource: Linux HCI Bluetooth
+
+Kismet can use the generic Linux HCI interface for Bluetooth discovery; this uses a generic Bluetooth adapter to perform *active scans* for discoverable Bluetooth classic and BTLE devices.  This is an active scan, not passive monitoring, and reports attributes and advertised information, not packets.
 
 The Linux Bluetooth source will auto-detect supported interfaces by querying the bluetooth interface list.  It can be manually specified with `type=linuxbluetooth`.
 
@@ -31,6 +32,8 @@ For simply identifying Bluetooth (and BTLE) devices, the Linux Bluetooth datasou
 
 This includes almost any built-in Bluetooth interface, as well as external USB interfaces such as the Sena UD100.
 
+This datasource is available *only* on Linux.
+
 #### Service Scanning
 
 By default, the Kismet Linux Bluetooth data source turns on the Bluetooth interface and enables scanning mode.  This allows it to see broadcasting Bluetooth (and BTLE) devices and some basic information such as the device name, but does not allow it to index services on the device.
@@ -39,4 +42,103 @@ Complex service scanning and enumeration will be coming in a future revision.
 
 #### Bluetooth Source Parameters
 Linux Bluetooth sources support all the common configuration options such as name, information elements, and UUID.
+
+### Datasource: Ubertooth One
+
+The Ubertooth One is an open-source hardware Bluetooth and BTLE sniffer by Great Scott Gadgets.
+
+Kismet must be compiled with support for `libusb`, `libubertooth`, and `libtbb`; you will need `libusb-1.0-dev`, `libubertooth-dev`, and `libtbb-dev` (or the equivalents for your distribution), and you will need to make sure that the `Ubertooth` option is enabled in the output from `./configure`.
+
+#### Ubertooth interfaces
+
+The Ubertooth One in Kismet can be referred to as simply `ubertooth`:
+
+```bash
+$ kismet -c ubertooth
+```
+
+When using multiple Ubertooth (Uberteeth?) devices, each device is numbered, starting from 0.  The Ubertooth library indexes the devices automatically, and so is dependent on the order the devices were detected.
+
+```bash
+$ kismet -c ubertooth-1
+```
+
+Kismet will list available Ubertooth devices automatically in the datasources list.
+
+#### Limitations
+
+The Ubertooth One truncates all packets to a maximum of 50 bytes; packets larger than 50 bytes will be discarded and ignored because it is not possible to validate the checksum.
+
+#### Supported Hardware
+
+This datasource works with the [Ubertooth One by Great Scott Gadgets](https://greatscottgadgets.com/ubertoothone/).
+
+This datasource should work on any platform, so long as the appropriate libraries are available.
+
+### Datasource - TI CC2540
+
+The Texas Instruments CC2540 is a chip used for Bluetooth communications.  To use it with Kismet, it must be flashed with the sniffer firmware [provided by TI](http://www.ti.com/tool/PACKET-SNIFFER).  Often the devices are available with the sniffer firmware pre-flashed.
+
+Kismet must be compiled with support for `libusb` to use TICC2540; you will need `libusb-1.0-dev` (or the equivalent for your distribution), and you will need to make sure that the `TI CC 2540` option is enabled in the output from `./configure`.
+
+To use the TI CC2540 capture, you must have a TI CC2540 dongle flashed with the sniffer firmware. You can flash this yourself with a CC-Debugger or purchase one online from many retailers.
+
+#### TI CC2540 interfaces
+
+TI CC2540 datasources in Kismet can be referred to as simply `ticc2540`:
+
+```bash
+$ kismet -c ticc2540
+```
+
+When using multiple TI CC2540 dongles, they can be specified by their location in the USB bus; this can be detected automatically by Kismet as a supported interface in the web UI, or specified manually.  To find the location on the USB bus, look at the output of the command `lsusb`:
+
+```bash
+$ lsusb
+...
+Bus 001 Device 008: ID 0451:16b3 Texas Instruments, Inc. 
+Bus 005 Device 004: ID 0451:16b3 Texas Instruments, Inc.
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+...
+```
+
+In this instance the first device is on `bus 001` and `device 008` and the second device is on `bus 005` and `device 004`; we can specify this specific first device in Kismet by using:
+
+```bash
+$ kismet -c ticc2540-1-8
+```
+
+Kismet will list available Ubertooth devices automatically in the datasources list.
+
+#### Supported Hardware
+
+Any USB device based on the CC2540 chip, and flashed with the TI sniffer firmware, should work.  Beware!  Many online vendors sell identical-looking devices based on the CC2531 chip, which is *not* the same thing!
+
+This datasource should work on any platform, so long as the appropriate libraries are available.
+
+### Datasource - nRF 51822
+
+The nRF 51822 is a chip used for Bluetooth LE communications.   To use it with Kismet, it must be flashed with sniffer firmware provided by NordicRF.  A pre-flashed version is available from Adafruit and other online retailers.
+
+The nRF 51822 utilizes serial communications so no special libraries are needed for use with Kismet, *however* not all platforms have working serial port drivers (see below).
+
+#### nRF 51822 interfaces
+
+nRF 51822 datasources in Kismet can be referred to as simply `nrf51822`.  These devices appear as serial ports, so cannot be auto-detected.  Each nrf51822 source must have a `device` option:
+
+```bash
+source=nrf51822:device=dev/ttyUSB0
+```
+
+#### Channel Hopping
+
+The firmware does it's own channel hopping so no selections are available.
+
+#### Limitations
+
+You must specify a `device=` configuration pointing to the serial port this device has been assigned by the kernel; it can not be automatically detected, and will not appear in the datasource list.
+
+#### MacOS Limitations
+
+The nRF 51822 uses a CP2104 serial chip; testing with the [latest drivers](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) under MacOS Catalina has been unsuccessful; however a driver update may fix that in the future.
 
