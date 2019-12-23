@@ -73,6 +73,8 @@ Alternate channels can be set with the `channel=` source option;
 $ kismet -c ubertooth:channel=39
 ```
 
+To try to mitigate firmware hangs, Kismet will reset the U1 device periodically, which will reboot the U1.  This does not prevent all firmware hangs, however, and you may find it necessary to remove and re-insert the Ubertooth One periodically.
+
 #### Supported Hardware
 
 This datasource works with the [Ubertooth One by Great Scott Gadgets](https://greatscottgadgets.com/ubertoothone/).
