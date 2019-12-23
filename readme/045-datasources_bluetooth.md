@@ -9,10 +9,6 @@ toc: true
 ## Bluetooth
 Bluetooth uses a frequency-hopping system with dynamic MAC addresses and other oddities - this makes sniffing it not as straightforward as capturing Wi-Fi.
 
-Currently the only implemention of Bluetooth scanning in Kismet uses the Linux HCI layer to perform active device scans.
-
-Support for Bluetooth capture using the Ubertooth One hardware will be forthcoming.
-
 ### Datasource: Linux HCI Bluetooth
 
 Kismet can use the generic Linux HCI interface for Bluetooth discovery; this uses a generic Bluetooth adapter to perform *active scans* for discoverable Bluetooth classic and BTLE devices.  This is an active scan, not passive monitoring, and reports attributes and advertised information, not packets.
@@ -43,7 +39,7 @@ Complex service scanning and enumeration will be coming in a future revision.
 #### Bluetooth Source Parameters
 Linux Bluetooth sources support all the common configuration options such as name, information elements, and UUID.
 
-### Datasource: Ubertooth One
+### Datasource: Ubertooth One (BTLE)
 
 The Ubertooth One is an open-source hardware Bluetooth and BTLE sniffer by Great Scott Gadgets.
 
@@ -69,13 +65,21 @@ Kismet will list available Ubertooth devices automatically in the datasources li
 
 The Ubertooth One truncates all packets to a maximum of 50 bytes; packets larger than 50 bytes will be discarded and ignored because it is not possible to validate the checksum.
 
+The Ubertooth One firmware (as of 2019-12) appears to have issues setting channels in BTLE mode, leading to frequent firmware crashes which require the USB device to be removed and re-inserted.  Kismet currently disables channel hopping on the Ubertooth One, and defaults to advertising channel 37.
+
+Alternate channels can be set with the `channel=` source option;
+
+```bash
+$ kismet -c ubertooth:channel=39
+```
+
 #### Supported Hardware
 
 This datasource works with the [Ubertooth One by Great Scott Gadgets](https://greatscottgadgets.com/ubertoothone/).
 
 This datasource should work on any platform, so long as the appropriate libraries are available.
 
-### Datasource - TI CC2540
+### Datasource - TI CC2540 (BTLE)
 
 The Texas Instruments CC2540 is a chip used for Bluetooth communications.  To use it with Kismet, it must be flashed with the sniffer firmware [provided by TI](http://www.ti.com/tool/PACKET-SNIFFER).  Often the devices are available with the sniffer firmware pre-flashed.
 
@@ -116,7 +120,7 @@ Any USB device based on the CC2540 chip, and flashed with the TI sniffer firmwar
 
 This datasource should work on any platform, so long as the appropriate libraries are available.
 
-### Datasource - nRF 51822
+### Datasource - nRF 51822 (BTLE)
 
 The nRF 51822 is a chip used for Bluetooth LE communications.   To use it with Kismet, it must be flashed with sniffer firmware provided by NordicRF.  A pre-flashed version is available from Adafruit and other online retailers.
 
