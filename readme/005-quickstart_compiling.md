@@ -19,7 +19,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    *Ubuntu/Debian/Kali/Mint*
 
    ```bash
-   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev librtlsdr0
+   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev librtlsdr0 libubertooth-dev libbtbb-dev
    ```
 
    On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
@@ -32,7 +32,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    $ sudo dnf install make automake gcc gcc-c++ kernel-devel git libmicrohttpd-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
    ```
 
-   You will also need the related python3 packages.
+   You will also need the related python3, rtlsdr, and ubertooth packages.
 
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
    ```bash
