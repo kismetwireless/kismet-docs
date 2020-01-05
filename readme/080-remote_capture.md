@@ -10,6 +10,7 @@ toc: true
 Kismet can capture from a remote source over a TCP connection.
 
 Kismet remote packet feeds are initiated by the same tools that Kismet uses to configure a local source; for example if Kismet is running on a host on IP 192.168.1.2, to capture from a Linux Wi-Fi device on another device you would use:
+
 ```bash
 # kismet_cap_linux_wifi --connect 192.168.1.2:3501 --source=wlan1
 ```
@@ -92,6 +93,16 @@ By specifying the `filter_locals=true` source option, `kismet_cap_linux_wifi` wi
 ```
 
 Because the Linux kernel has a limited amount of space for BPF filter programs, only the first *eight* interfaces found on the system are included in the BPF filter, currently.
+
+### Remote capture timestamps
+
+By default, Kismet will override the packet timestamp from a remote capture with the timestamp of *when the packet is seen by the Kismet server*.  Otherwise, variance in the clocks of remote captures can cause problems with Kismet - such as invalid WIDS alerts - due to some packets arriving "in the past".
+
+If your clocks are synced with NTP, or if you want to preserve the timestamp for some other reason, you can use the source option `timestamp=false`:
+
+```bash
+# kismet_cap_linux_wifi --connect some-kismet-server:3501 --source wlan0:name=some_remote_cap,timestamp=false
+```
 
 ### Compiling Only the Capture Tools
 
