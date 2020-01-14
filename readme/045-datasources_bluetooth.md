@@ -135,7 +135,7 @@ The nRF 51822 utilizes serial communications so no special libraries are needed 
 nRF 51822 datasources in Kismet can be referred to as simply `nrf51822`.  These devices appear as serial ports, so cannot be auto-detected.  Each nrf51822 source must have a `device` option:
 
 ```bash
-source=nrf51822:device=dev/ttyUSB0
+source=nrf51822:device=/dev/ttyUSB0
 ```
 
 #### Channel Hopping
