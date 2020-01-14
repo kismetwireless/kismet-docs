@@ -43,7 +43,7 @@ Linux Bluetooth sources support all the common configuration options such as nam
 
 The Ubertooth One is an open-source hardware Bluetooth and BTLE sniffer by Great Scott Gadgets.
 
-Kismet must be compiled with support for `libusb`, `libubertooth`, and `libtbb`; you will need `libusb-1.0-dev`, `libubertooth-dev`, and `libtbb-dev` (or the equivalents for your distribution), and you will need to make sure that the `Ubertooth` option is enabled in the output from `./configure`.
+Kismet must be compiled with support for `libusb`, `libubertooth`, and `libbtbb`; you will need `libusb-1.0-dev`, `libubertooth-dev`, and `libbtbb-dev` (or the equivalents for your distribution), and you will need to make sure that the `Ubertooth` option is enabled in the output from `./configure`.
 
 #### Ubertooth interfaces
 
