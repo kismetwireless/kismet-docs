@@ -189,6 +189,12 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 
    Turn on verbose error reporting and warnings; this will raise alerts when channel operations take an extended period of time or if a channel fails to set correctly.
 
+#### Custom / non-standard channels
+
+Some sources - the Atheros 9k and possibly 10k series - support half-width (10MHz) and quarter-width (5MHz) channels.  These channels must be specified manually with `channels=...` or `add_channels=...`.
+
+Often these devices seem to have difficulty switching between normal and custom channel modes; you may need to set a card to use *only* 5MHz or 10MHz channels instead of mixing with normal mode.
+
 ### Data source: OSX Wifi
 Kismet can use the built-in Wi-Fi on a Mac, but ONLY the built-in Wi-Fi; Unfortunately currently there appear to be no drivers for OSX for USB devices which support monitor mode.
 
