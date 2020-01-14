@@ -146,6 +146,10 @@ The firmware does it's own channel hopping so no selections are available.
 
 You must specify a `device=` configuration pointing to the serial port this device has been assigned by the kernel; it can not be automatically detected, and will not appear in the datasource list.
 
+Multiple versions of the Adafruit BLE device are sold, and not all have the sniffer firmware.  Make sure you have a V2 or newer device, *with the sniffer firmware*.
+
+Devices without sniffer firmware *may* be flashable, but may require an external programmer.
+
 #### MacOS Limitations
 
 The nRF 51822 uses a CP2104 serial chip; testing with the [latest drivers](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) under MacOS Catalina has been unsuccessful; however a driver update may fix that in the future.
