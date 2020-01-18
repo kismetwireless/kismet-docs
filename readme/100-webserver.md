@@ -26,6 +26,13 @@ HTTP configuration options:
    Set a global, fixed password.  This overrides any per-user login information in `~/.kismet/kismet_httpd.conf`.  This can be used to set a fixed password during deployment, for instance via `kismet_site.conf` overriding.
    It is generally preferred to keep the username and password in the per-user configuration file, however they may also be set in the global config.
 
+* `httpd_allow_cors=true|false`
+   Enable cross-origin resource sharing (CORS). To access the REST API from an web app hosted on a different origin (domain, protocol, or port) to the Kismet webserver this option needs to be set to true. The `http_allowed_origin` option will also need to be configured to pass CORS.
+
+* `http_allowed_origin=http://origin.url`
+   Sets the webserver Access-Control-Allow-Origin response header. The origin is the full address of the server hosting your web app including protocol and port number. Because [nearly all Kismet REST endpoints require authentication](/docs/devel/webui_rest/endpoints/) an actual origin, not a '*' wildcard, should be specified to meet the CORS specification.
+   The `httpd_allow_cors` option will also need to be configured to pass CORS.
+
 * `httpd_port=port`
    Sets the port for the webserver to listen to.  By default, this is port 2501, the port traditionally used by the Kismet client/server protocol.
    Kismet typically should not be started as root, so will not be able to bind to ports below 1024.  If you want to run Kismet on, for instance, port 80, this can be done with a proxy or a redirector, or via DNAT rewriting on the host.
