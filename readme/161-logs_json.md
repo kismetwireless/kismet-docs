@@ -29,8 +29,11 @@ There are several optional parameters you can use when exporting a JSON file:
 * `--skip-clean`
     By default, `kismetdb_dump_devices` runs a SQL Vacuum command to optimize the database and clean up any journal files.  Skipping this process will save time on larger captures.
 
+* `--json-path`
+    Reformat field names to be compatible with JSON path searching and ELK by rewriting all '.' to '_'; For example, `kismet.base.key` becomes `kismet_base_key`.  This is turned on automatically when ELK mode is enabled.
+
 * `--ekjson`
-    Export as an `ekjson` format; Instead of exporting a JSON array of the devices, instead export each device as an object on a single line.  While not technically valid JSON, this format can be used to stream processing or inserting into other tools (such as ELK), and can be processed line-by-line with far fewer resources than a single array of all options.
+    Export as an `ekjson` format; Instead of exporting a JSON array of the devices, instead export each device as an object on a single line.  While not technically valid JSON, this format can be used to stream processing or inserting into other tools (such as ELK), and can be processed line-by-line with far fewer resources than a single array of all options.  This will automatically enable JSON path mode.
 
 ## Streaming via `stdout`
 
