@@ -90,6 +90,8 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
 	By spoofing disassociate and deauthenticate packets, an attacker may disconnect clients from a network which does not support management frame protection (MFP); This can be used to cause a denial of service or to disconnect clients in an attempt to capture handshakes for attacking WPA.
 
+    This alert may be impacted by the packet de-duplication feature; setting `packets_dedup_size=0` in the Kismet configuration file may be required to full coverage with this alert.
+
 * `DHCPCLIENTID` 
 
 	Fingerprint
