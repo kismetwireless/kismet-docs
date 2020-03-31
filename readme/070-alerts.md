@@ -174,8 +174,13 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Trend/stateful
 
-    A WPA handshake has attempted to re-use a previous nonce value; this may indicate an attack against the WPA keystream such as the [vanhoefm KRACK attack](https://www.krackattacks.com/).  This alert is disabled by default by it is difficult to distinguish replay attacks vs legitimate retransmission of data in a passive observer.
+   A WPA handshake with an empty NONCE was observed; this could indicate a WPA degradation attack such as the [vanhoefm attack against BSD](https://github.com/vanhoefm/blackhat17-pocs/tree/master/openbsd).  This alert is disabled by default by it is difficult to distinguish replay attacks vs legitimate retransmission of data in a passive observer.
 
+* `NONCEREUSE`
+
+    Trend/stateful
+
+    A WPA handshake has attempted to re-use a previous nonce value; this may indicate an attack against the WPA keystream such as the [vanhoefm KRACK attack](https://www.krackattacks.com/).  This alert is disabled by default by it is difficult to distinguish replay attacks vs legitimate retransmission of data in a passive observer.
 
 * `NULLPROBERESP` 
 
