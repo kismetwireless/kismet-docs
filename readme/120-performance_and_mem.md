@@ -93,6 +93,12 @@ Kismet has several options which control how much memory and processing it uses.
 
     Normally, Kismet makes a view dedicated to access points; this can be turned off to save RAM.  Turning this off may break some scripts and will definitely disable the 'Access points only' view in the UI.  This will also disable related features that rely on aggregate Wi-Fi access points, such as timestamp grouping.
 
+* `dot11_view_ssids=true|false`
+
+    Normally, Kismet monitors and sorts the SSIDs seen, and shows them under the SSID tab in the UI.  Turning this off may break some scripts and will definitely disable the 'SSIDs' tab of the UI, but will save memory in very low memory or very high access point environments.
+
+    Turning this off will not affect associating SSIDs with access points or displaying them inside the device details.
+
 * `dot11_fingerprint_devices=true|false`
 
     Kismet does advanced fingerprinting of 802.11 devices.  This can be turned off to save RAM.  Turning this off will disable some alerts and fingerprint based checks.
