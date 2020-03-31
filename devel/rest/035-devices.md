@@ -186,10 +186,34 @@ The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or
 * POST parameters \\
    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
    
-   | Key    | Desc                                |
-   | ------ | ----------------------------------- |
+   | Key     | Desc                                                                                    |
+   | ------  | -----------------------------------                                                     |
+   | devices | Required, a vector of MAC addresses to be returned                                      |
    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-   | regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
+
+* Results \\
+Array of all devices matching any of the supplied MAC addresses.
+
+## Multiple devices by key
+Fetch multiple devices matching any of the supplied keys.  Typically used to retrieve the bulk status of many devices for display in the UI.
+
+This API will always return a vector of devices, even when only one device is matched.
+
+If a supplied key is not found, no device will be returned for that key.
+
+* URL \\
+        /devices/multikey/devices.json
+
+* Methods \\
+        `POST`
+
+* POST parameters \\
+   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+   
+   | Key     | Desc                                                                                    |
+   | ------  | -----------------------------------                                                     |
+   | devices | Required, a vector of device keys to be returned                                        |
+   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
 
 * Results \\
 Array of all devices matching any of the supplied MAC addresses.
