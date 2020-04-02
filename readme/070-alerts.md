@@ -170,6 +170,14 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
 	Very old versions of Netstumbler (3.22, 3.23, 3.30) generate, in certain conditions, specific packets which are identifiable.
 
+* `NOCLIENTMFP`
+
+    Fingerprint
+
+    MFP is a modern Wi-Fi stanard for protecting clients against spoofed access points.  Older supplicant code or device firmware may not include support for MFP, preventing the client from taking advantage of these new protections.
+
+    Client MFP support is advertised in request packets as a client joins a network.  For the best results, channel hopping should be disabled or a dedicated card locked to the channel of the target AP should be added.
+
 * `NONCEDEGRADE` 
 
     Trend/stateful
