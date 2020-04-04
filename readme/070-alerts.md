@@ -174,7 +174,7 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Fingerprint
 
-    MFP is a modern Wi-Fi stanard for protecting clients against spoofed access points.  Older supplicant code or device firmware may not include support for MFP, preventing the client from taking advantage of these new protections.
+    MFP is a not so modern Wi-Fi standard (802.11w-2009) for protecting clients and access points against spoofed management frames (such as deauth-based attacks).  Older supplicant code or device firmware may not include support for MFP, preventing the client from taking advantage of these new protections.
 
     Client MFP support is advertised in request packets as a client joins a network.  For the best results, channel hopping should be disabled or a dedicated card locked to the channel of the target AP should be added.
 
