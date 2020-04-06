@@ -38,7 +38,7 @@ $.post("/some/endpoint", data = postdata, dataType = "json");
 
 Similarly, commands can be sent from the command line:
 ```bash
-$ curl -d 'json={"cmd": "lock", "channel": 6}` http://host:port/some/endpoint
+$ curl -d 'json={"cmd": "lock", "channel": 6}' http://host:port/some/endpoint
 ```
 
 Commands are encoded as dictionaries to allow flexibility across calling platforms, as well as forward-compatibility as endpoints evolve.  Adding additional keys to an options dictionary should not cause an older version of the server code to return an error.
