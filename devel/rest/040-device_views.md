@@ -24,7 +24,7 @@ The view list shows all defined device views and a summary of the number of devi
         Array of device views and device counts per view.
 
 ### View-based summarization and display
-Mirroring the [base summarization & display endpoint](/docs/devel/webui_reset/devices/#summarization--display) API, the view summarization endpoint is the primary interface for clients to access the device list and for scripts to retrieve lists of devices.
+Mirroring the [base summarization & display endpoint](/docs/devel/webui_rest/devices/#old-summarization--display) API, the view summarization endpoint is the primary interface for clients to access the device list and for scripts to retrieve lists of devices.
 
 The device summarization is best utilized when applying a view window via the `start` and `length` variables.
 

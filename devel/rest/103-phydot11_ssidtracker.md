@@ -14,7 +14,7 @@ A unique identifier is generated from the SSID content, length, and encryption o
 Each SSID is mapped to a list of device keys organized by probe, response, and advertisement.
 
 ### SSID-based summarization and display
-Mirroring the [base summarization & display endpoint](/docs/devel/webui_reset/devices/#summarization--display) API, the SSID summarization endpoint is the primary interface for clients to access the SSID list and for scripts to retrieve lists of SSIDs.
+Mirroring the [base summarization & display endpoint](/docs/devel/webui_rest/devices/#old-summarization--display) API, the SSID summarization endpoint is the primary interface for clients to access the SSID list and for scripts to retrieve lists of SSIDs.
 
 The SSID summarization is best utilized when applying a view window via the `start` and `length` variables.
 
