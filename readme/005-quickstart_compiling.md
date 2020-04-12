@@ -16,38 +16,38 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
 2. Install dependencies.  Kismet needs a number of libraries and  development headers to compile; these should be available in nearly all distributions.
 
-   * Linux *Ubuntu/Debian/Kali/Mint*
+   * *Linux Ubuntu/Debian/Kali/Mint*
 
-   ```bash
-   $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev librtlsdr0 libubertooth-dev libbtbb-dev
-   ```
+    ```bash
+    $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev librtlsdr0 libubertooth-dev libbtbb-dev
+    ```
 
-   On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
+    On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
    
-   For rtlsdr rtl_433 support, you will also need the rtl_433 tool from https://github.com/merbanan/rtl_433 if it is not otherwise provided by your distribution.
+    For rtlsdr rtl_433 support, you will also need the rtl_433 tool from https://github.com/merbanan/rtl_433 if it is not otherwise provided by your distribution.
 
-   * Linux *Fedora (and related)*
+   * *Linux Fedora (and related)*
 
-   ```bash
-   $ sudo dnf install make automake gcc gcc-c++ kernel-devel git libmicrohttpd-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
-   ```
+    ```bash
+    $ sudo dnf install make automake gcc gcc-c++ kernel-devel git libmicrohttpd-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
+    ```
 
-   You will also need the related python3, rtlsdr, and ubertooth packages.
+    You will also need the related python3, rtlsdr, and ubertooth packages.
 
-   * Other Linux distributions
+   * *Other Linux distributions*
 
-   Most distributions will have equivalent packages.  If your distribution splits binary and development packages, make sure to install both if you're compiling.
+    Most distributions will have equivalent packages.  If your distribution splits binary and development packages, make sure to install both if you're compiling.
 
-   * OSX
+   * *OSX*
 
-   OSX requires the XCode toolchain from the Apple store.  Once installed, you will need to launch the XCode IDE at least once to accept the license; do so before using the command line tools.
+    OSX requires the XCode toolchain from the Apple store.  Once installed, you will need to launch the XCode IDE at least once to accept the license; do so before using the command line tools.
 
-   You will need to install the `brew` tool from [brew.sh](https://brew.sh).  There are other package managers for OSX; feel free to use any of them which have the required packages, but Brew is known to work.
+    You will need to install the `brew` tool from [brew.sh](https://brew.sh).  There are other package managers for OSX; feel free to use any of them which have the required packages, but Brew is known to work.
 
-   Install the required packages via Brew:
-   ```bash
-   % brew install pkg-config libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
-   ```
+    Install the required packages via Brew:
+    ```bash
+    % brew install pkg-config libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
+    ```
 
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
    ```bash
