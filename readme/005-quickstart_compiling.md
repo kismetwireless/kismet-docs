@@ -16,7 +16,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
 2. Install dependencies.  Kismet needs a number of libraries and  development headers to compile; these should be available in nearly all distributions.
 
-   *Ubuntu/Debian/Kali/Mint*
+   * Linux *Ubuntu/Debian/Kali/Mint*
 
    ```bash
    $ sudo apt install build-essential git libmicrohttpd-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0.0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev librtlsdr0 libubertooth-dev libbtbb-dev
@@ -26,13 +26,28 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    
    For rtlsdr rtl_433 support, you will also need the rtl_433 tool from https://github.com/merbanan/rtl_433 if it is not otherwise provided by your distribution.
 
-   *Fedora (and related)*
+   * Linux *Fedora (and related)*
 
    ```bash
    $ sudo dnf install make automake gcc gcc-c++ kernel-devel git libmicrohttpd-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
    ```
 
    You will also need the related python3, rtlsdr, and ubertooth packages.
+
+   * Other Linux distributions
+
+   Most distributions will have equivalent packages.  If your distribution splits binary and development packages, make sure to install both if you're compiling.
+
+   * OSX
+
+   OSX requires the XCode toolchain from the Apple store.  Once installed, you will need to launch the XCode IDE at least once to accept the license; do so before using the command line tools.
+
+   You will need to install the `brew` tool from [brew.sh](https://brew.sh).  There are other package managers for OSX; feel free to use any of them which have the required packages, but Brew is known to work.
+
+   Install the required packages via Brew:
+   ```bash
+   % brew install pkg-config libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
+   ```
 
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
    ```bash
@@ -75,11 +90,13 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    $ sudo make suidinstall
    ```
 
-7.  Add your user to the `kismet` group.
+7.  Add your user to the `kismet` group (Linux)
    ```bash
    $ sudo usermod -aG kismet $USER
    ```
    This will add your current logged in user to the `kismet` group.
+
+   On OSX, Kismet is installed under the `staff` group, which the default user is part of.
 
 8.  Log out and back in.  Linux does not update groups until you log in; if you have just added yourself to the Kismet group you will have to re-log in.
 
@@ -91,9 +108,14 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
 10.  You're now ready to run Kismet!  Point it at your network interface... Different distributions (and kernel versions, and distribution versions) name interfaces differently; your interface may be `wlan0` or `wlan1`, or it may be named something like `wlp0s1`, or it may be named using the MAC address of the card and look like `wlx00c0ca8d7f2e`.
 
-   You can now start Kismet with something like:
+   You can now start Kismet on Linux with something like:
    ```bash
    $ kismet -c wlan0
+   ```
+
+   Or on OSX with:
+   ```bash
+   $ kismet -c en1
    ```
 
    *or*, you can just launch Kismet and then use the new web UI to select the card you want to use, by launching it with just:
@@ -101,15 +123,15 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    $ kismet
    ```
 
+   The name of your interface will be different depending on your kernel, distribution, etc;  when in doubt, run Kismet with no defined sources and select one from the 'Data Sources' option in the top-left menu in the web UI.
+
    Remember, until you add a data source, Kismet will not be capturing any packets!
 
    *THE FIRST TIME YOU RUN KISMET*, you *MUST* go to the Kismet WebUI and set your login and password.
 
-   This login will be saved in the config file: `~/.kismet/kismet_httpd.conf` which is in the *home directory of the user* starting Kismet.
+   This login will be saved in the config file: `~/.kismet/kismet_httpd.conf` which is in the *home directory of the user* starting Kismet when installed in suidroot mode.  This is the preferred way to run Kismet.
 
    If you start Kismet as or via sudo (or via a system startup script where it runs as root), this will be in *roots* home directory: `/root/.kismet/kismet_httpd.conf`
-
-  You will need this password to control Kismet from the web page - without it you can still view information about devices, view channel allocations, and most other actions, but you CAN NOT control Kismet data sources, view pcaps, or perform other actions.
 
 11.  Point your browser at http://localhost:2501 (or the address of the server Kismet is running on)
 
