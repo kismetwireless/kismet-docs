@@ -181,10 +181,21 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
+## Ubuntu 20.04 Focal (Intel)
+Ubuntu 20.04 Focal  (amd64)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
 ### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/eoan eoan main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
