@@ -42,8 +42,6 @@ If you're used to compiling from source, these are new directories, which match 
 ## Kali Linux (Intel, Raspberry Pi)
 Kali Linux (on i386, amd64, armhf - Raspberry Pi 3, Raspberry Pi 4, arm64 - Raspberry Pi 3 64bit, and armel - Raspberry Pi 0w)
 
-*WARNING* - The Pi 4 support is currently untested, however it should be the same binary format when Kali officially supports the Pi 4.
-
 ### Release (beta and release versions)
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
