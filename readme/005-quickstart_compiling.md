@@ -8,6 +8,14 @@ redirect_from:
   - /README-latest.html
 ---
 
+## Compiling or packages?
+
+Often, distributions lag behind software releases and may be offering older - sometimes significantly older - packages.  To get the latest, you can either install Kismet from [a package in the Kismet official repositories](/docs/readme/packages) or you can compile it from source.
+
+If you're looking to make changes to the Kismet code, or if you're installing to a distribution not currently supported by the official Kismet packages, you'll definitely need to compile from source.
+
+If you're installing onto a very resource constrained system, like a Raspberry Pi, you may want to consider either the packages, or making a cross compiling environment - modern C++ can be very resource intensive to compile, and a Raspberry Pi 3 or Raspberry Pi 0 is unlikely to be able to successfully compile natively.  The official packages for these environments are built on an Intel server with an emulated Pi docker environment to overcome these hurdles.
+
 ## Compiling: Quick Setup
 
 Kismet has many configuration knobs and options; but for the quickest way to get the basics working:
