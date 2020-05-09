@@ -23,9 +23,11 @@ Group=kismet
 
 Also, when using systemd (or any other startup script system), you will need to be sure to configure Kismet to log to a valid location.  By default, Kismet logs to the directory it is launched from, which is unlikely to be valid when starting from a boot script.
 
-Be sure to put a `log_prefix=...` in your [`kismet_site.conf`](https://www.kismetwireless.net/docs/readme/config_files/#configuration-override-files---kismet_siteconf); for example
+Be sure to put a `log_prefix=...` in your [kismet_site.conf](https://www.kismetwireless.net/docs/readme/config_files/#configuration-override-files---kismet_siteconf); for example
 
 ```
 log_prefix=/home/kismet/logs
 ```
+
+If you encounter errors launching Kismet from a startup script, be sure to check either `journalctl -xe` or your syslogs for more information.
 
