@@ -34,6 +34,24 @@ Kismet retains the past *N* alerts, as defined in `kismet_alert.conf`.  By defau
 ## Recent alerts
 Alerts can be fetched by timestamp, returning only new alerts.  This API takes a specialized timestamp value which includes microsecond precision.
 
+* URL \\
+        /alerts/last-time/*[TIMESTAMP.UTIMESTAMP]*/alerts.json
+
+* Methods \\
+        `GET`
+
+* URL parameters
+
+| Key | Description |
+| --- | ----------- |
+| *[TIMESTAMP.UTIMESTAMP]* | A double-precision timestamp of the Unix epochal second timestamp *and* a microsecond precision sub-second timestamp. |
+
+* Result \\
+        An array containing an array of alerts since *TIMESTAMP.UTIMESTAMP*.
+
+## Recent alerts (wrapped)
+Alerts can be fetched by timestamp, returning only new alerts.  This API takes a specialized timestamp value which includes microsecond precision.
+
 This endpoint returns the exact timestamp, with microsecond precision, of the returned alerts; this allows a client UI to accurately display only the new alerts.
 
 * URL \\
