@@ -89,3 +89,39 @@ remote_capture_port=3501
 source=wlan1:name=SomeServerWlan1
 source=wlan2:name=SomeServerWlan2
 ```
+
+### Configuration override 'flavors'
+
+Sometimes you may want to maintain multiple configurations for Kismet, for example with different sources, server names, or logging options.
+
+This can be easily accomplished with override files and the `--override` option to Kismet.
+
+Passing `--override {name}` to Kismet will automatically load `kismet_{name}.conf` from the Kismet configuration directory, as an override after all other files (by default the configuration directory is `/usr/local/etc` when compiling from source, or `/etc/kismet` when installing from packages).
+
+For example, creating `/etc/kismet/kismet_rtl.conf`:
+
+```
+server_name=Kismet RTL
+
+source=rtl433-0
+
+log_title=KismetRtl433
+```
+
+and launching Kismet with:
+
+```bash
+$ kismet --override rtl
+```
+
+would capture only from the first RTL-SDR device as a RTL433 capture, and name the logs KismetRtl433-foo.
+
+Alternately, a complete path to an override file can be given:
+
+```bash
+$ kismet --override=/home/foo/some_config.conf
+```
+
+Files loaded with the `--override` option will take precedence over all other configuration options, including any changes in `kismet_site.conf`.
+
+
