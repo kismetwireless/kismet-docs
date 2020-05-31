@@ -12,16 +12,8 @@ These repositories contain the latest Kismet versions, which may not be availabl
 
 There are automatically-built repositories for Kismet on several Linux distributions.  More are being added over time, and your distribution may already have modern packages (Pentoo, for instance).
 
-## Remove any installed Kismet
-Before you switch to using packages, you will need to remove any installed Kismet code.
-
-If you installed *from a Kismet package in your distribution*, remove it.  For instance, for Debian-based distributions like Ubuntu, Kali, Mint, or Debian proper:
-
-```bash
-$ sudo apt remove kismet kismet-plugins
-```
-
-If you installed *Kismet from source* yourself, either the old Kismet or the new Kismet git or beta code, you will need to remove it.  Assuming you installed it in the default location:
+## Remove any Kismet installed from source
+Before you switch to using packages, you will need to remove any Kismet versions installed from source.
 
 ```bash
 $ sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
@@ -102,6 +94,8 @@ $ sudo apt install kismet
 
 ## Ubuntu 16.04 Xenial (Intel)
 Ubuntu 16.04 Xenial (i386, amd64)
+
+<b>Note</b>:  The Xenial version does not include packages for the Python-based capture sources (like rtl433, ADSB, AMR, or Freaklabs).  Xenial is missing some of the required Python3 tooling; you may be able to update and compile the required libraries yourself and then build Kismet from source.
 
 ### Release (beta and release versions)
 ```bash
