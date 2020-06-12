@@ -10,9 +10,9 @@ excerpt: "A simple API for non-packet-capture 802.11 devices to report scanning 
 
 Properly capturing packets in Wi-Fi requires monitor mode and either a local Wi-Fi device or a high bandwidth connection.  Scanning mode allows devices without special drivers to report networks to Kismet, but with some severe limitations:
 
-* Clients will not be visible.  It is not possible to derive the number of clients on a network from scanning mode.
+* Clients will not be visible.  
 * The scanning mode device may transmit probe requests while scanning.
-* Enhanced information from the beacon such as max speed, etc, will likely not be available.
+* Enhanced information from the beacon such as max speed, etc, will often not be available.
 * Actual packet data will not be available.
 
 Scanning mode is really only appropriate for specific configurations, such as:
@@ -22,19 +22,26 @@ Scanning mode is really only appropriate for specific configurations, such as:
 
 ## Scanning mode datasources
 
-A scanning report can include two different ways to identify the datasource:
+Scanning mode datasources are created dynamically by Kismet when reports are submitted; there is no need to define a specific scanning mode datasource prior to sending a report.
 
-1. A unique and consistent name.  If no other datasource with that name exists, a new virtual datasource will be created and all future reports with the same name will be attached to it.  This can be used for data from devices with a unique ID or serial number, but no code for generating a UUID.
-2. A datasource UUID.  A virtual datasource with a matching UUID will be created.  
+A scanning mode report must include:
 
-For each supplied name and/or UUID, Kismet will create a virtual datasource.  This datasource is used to track seen-by and reports.
+1. A datasource UUID.  This ID must be unique within Kismet, and consistent between all reports from this scanning source.  Scanning software should cache this UUID for consistency.
+
+2.  A human-readable name.  This will be assigned as the name of the datasource, and will be updated if it changes.  Scanning software should cache this name for consistency.
+
+## Cache/burst mode reporting
+
+Scanning mode assumes that the device doing scanning is not able to maintain a constant connection to the Kismet server.
+
+Reports can be cached and send in groups using the report endpoint; each report can contain a timestamp, GPS location, and signal information, and multiple reports over time can be sent for a single AP.
 
 ## Scanning mode report
 
 A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest/commands/) holding an array of reports.  Virtual datasources for each new report are automatically created.
 
 * API added \
-    `2019-08`
+    `2020-06`
 
 * URL \
     /phy/phy80211/scan/scan_report.cmd
@@ -48,8 +55,8 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | Key | Description |
     | --- | ----------- |
     | reports | Array containing multiple report objects |
-    | source_name | (Optional) A unique, consistent source name for the virtual datasource reporting this scan.  A `source_uuid` may also be specified.  A `source_name` or `source_uuid` MUST be specified. |
-    | source_uuid | (Optional) A unique, consistent source UUID for the virtual datasource reporting this scan.  A `source_name` may also be specified.  A `source_name` or `source_uuid` MUST be specified. |
+    | source_name | A unique, consistent source name for the virtual datasource reporting this scan. |
+    | source_uuid | A unique, consistent source UUID for the virtual datasource reporting this scan. |
 
     A report object should contain:
 
@@ -58,38 +65,14 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
     | timestamp | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
     | ssid | (Optional) SSID |
     | bssid | BSSID |
-    | encryption | (Optional) String array of encryption types |
+    | capabilities | (Optional) An Android or Wigle style string of encryption options, such as `[WPS]`, `[WPA-PSK-TKIP+CCMP]`, `[WEP]`, and so on. |
+    | channel | (Optional) Quoted string channel, such as `"6"`, `"42HT40P"` |
+    | freqkhz | (Optional) Frequency of AP, in KHz |
     | signal | Signal, in dBm |
     | lat | (Optional) GPS latitude |
     | lon | (Optional) GPS longitude |
     | alt | (Optional) GPS altitude |
     | speed | (Optional) GPS speed |
-
-    Valid encryption types:
-
-    | Value | Description |
-    | ----- | ----------- |
-    | OPEN | No encryption / Open |
-    | WEP | WEP |
-    | WPA | Basic WPA, or unknown type of WPA |
-    | WPA1 | Explicit WPA1 |
-    | WPA2 | Explicit WPA2 |
-    | WPA3 | Explicit WPA3 |
-    | OWE | WPA Opportunistic Wireless Encryption |
-
-    WPA types may also include authentication types, if available in the scanning system: 
-
-    | Value | Description |
-    | ----- | ----------- |
-    | PSK | Preshared key PSK |
-    | EAP | Enterprise EAP authentication |
-    | SAE | WPA3 SAE authentication |
-
-    Authentication types should be appended to the encryption type, for instance: `WPA2-PSK`.
-
-    Multiple encryption types should be provided as discrete elements in the encryption array:
-
-    `["WPA1-PSK", "WPA2-PSK"]`
 
 * Results \
     `HTTP 200` on success
