@@ -81,6 +81,36 @@ When using network sockets to connect external helpers, the Kismet listening soc
 | --------- | ------ | -------------- |
 | subsystem | string | Subsystem name |
 
+## KismetExternal Eventbus Proxy
+
+Kismet implements a serializable eventbus internally to pass messages among disparate parts of the codebase and to provide an event-based API.  Events include phy layer handler creation, datasource status, new device creation, and more.
+
+A kismetexternal tool may subscribe to the eventbus, and publish basic events.
+
+### `EVENTBUSREGISTER` (KismetEventbus.EventbusRegister) *Helper -> Kismet*
+
+To receive events, a tool must register with Kismet.
+
+Events may be specified as specific events, or `"*"` for all events.
+
+#### Content
+
+| Field | Type | Content |
+| ----- |----- | ------- |
+| event | string[] | Repeating list of events to subscribe to |
+
+### `EVENTBUSPUBLISH` (KismetEventbus.EventbusPublishEvent) *Helper -> Kismet*
+
+Tools may publish *basic* eventbus events.  These events should not overlap with existing Kismet events, and may only contain JSON content.  This content will not be turned into complex C++ objects inside Kismet, but will be available to C++ code as a JSON structure.
+
+Content published will be inserted into the event content under the key `'kismet.eventbus.event_json'`.
+
+| Field | Type | Content |
+| -- | -- | -- |
+| event_type | string | Event type / name |
+| event_content | string | Event JSON content which will be inserted into the `kismet.eventbus.event_json` key in the event. |
+
+
 ## KismetExternal HTTP Proxy
 
 The Kismet external protocol has hooks for extending the web server functionality to external tools, regardless of the language they are written in. 
