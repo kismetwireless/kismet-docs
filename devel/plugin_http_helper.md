@@ -24,17 +24,17 @@ The plugin manifest tells Kismet how to load the plugin.   Described more fully 
 name=externaldemo
 author=Foo Bar <foo@bar.foo>
 description=External API demo plugin
-version=2019-00-00
+version=2020-00-00
 ```
 
-To load an external API plugin, you also need the `httpexternal` option:
+To load an external API plugin, you also need the `kisexternal` option (new as of 2020-07):
 
 ```
 name=externaldemo
 author=Foo Bar <foo@bar.foo>
 description=External API demo plugin
-version=2019-00-00
-httpexternal=kismet_externaldemo
+version=2020-00-00
+kisexternal=kismet_externaldemo
 ```
 
 This tells Kismet to run `kismet_externaldemo` as an IPC command.
@@ -45,8 +45,8 @@ External API plugins can be combined with Javascript modules, as well; you can [
 name=externaldemo
 author=Foo Bar <foo@bar.foo>
 description=External API demo plugin
-version=2019-00-00
-httpexternal=kismet_externaldemo
+version=2020-00-00
+kisexternal=kismet_externaldemo
 js=demo_web_module,/plugin/externaldemo/js/demo_web_module.js
 ```
 
@@ -140,8 +140,10 @@ Then for the callback itself, we return some basic HTML:
         # Print some debug that will show up in the console Kismet is running in
         print("PYTHON - handle web req {} {} {}".format(request.req_id, request.method, request.uri))
         # Return some HTML
-        externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+        externalhandler.send_http_response(request.req_id, bytes("<html><body><b>This is from python!</b></body></html>", "UTF-8"))
 ```
+
+Notice the conversion to bytes!  Since a HTTP response could be anything (images, packets, etc) it's a raw byte object.  In Python3, we need to encode our string appropriately, so be sure to do so!
 
 ### Providing a POST endpoint
 To receive data on our endpoint, we support a POST method; this is done with the same callback methods, but we use the `variable_Data` field from the requests:
@@ -158,9 +160,11 @@ and the callback:
         for i in request.variable_data:
             print("PYTHON - POST {}:{}".format(i.field, i.content))
 
-        externalhandler.set_http_response(request.req_id, "<html><body><b>Python got a POST</b></body></html>")
+        externalhandler.set_http_response(request.req_id, bytes("<html><body><b>Python got a POST</b></body></html>", "UTF-8"))
 ```
-   
+
+Notice again the conversion to bytes!
+
 ### Sending status to the Kismet server
 We can send arbitrary messages to the Kismet server via `send_message`:
 
@@ -246,7 +250,7 @@ class KismetProxyTest(object):
     def handle_web_python(self, externalhandler, request):
         print("PYTHON - Handle web req {} {} {}".format(request.req_id, request.method, request.uri))
         # Print a static response
-        externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+        externalhandler.send_http_response(request.req_id, bytes("<html><body><b>This is from python!</b></body></html>", "UTF-8"))
 
     # Callback function for handling a req of our variabls.html endpoint
     def handle_web_python_get(self, externalhandler, request):
@@ -255,7 +259,7 @@ class KismetProxyTest(object):
         for i in request.variable_data:
             print("PYTHON - GET {}:{}".format(i.field, i.content))
 
-        externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+        externalhandler.send_http_response(request.req_id, bytes("<html><body><b>This is from python!</b></body></html>", "UTF-8"))
 
     # Callback function for handling a req of our variable.html endpoint
     def handle_web_python_post(self, externalhandler, request):
@@ -263,11 +267,11 @@ class KismetProxyTest(object):
         for i in request.variable_data:
             print("PYTHON - POST {}:{}".format(i.field, i.content))
 
-        externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+        externalhandler.send_http_response(request.req_id, bytes("<html><body><b>This is from python!</b></body></html>", "UTF-8"))
 
     # Callback function to demonstrate streaming
     def handle_web_stream(self, externalhandler, request):
-        externalhandler.send_http_response(request.req_id, "Stream starting\n", stream = True, finished = False)
+        externalhandler.send_http_response(request.req_id, bytes("Stream starting\n", "UTF-8"), stream = True, finished = False)
         # Make a thread that streams data out this request
         webthread = threading.Thread(target=self.stream_web_data, args=(externalhandler, request))
         webthread.start()
@@ -276,7 +280,7 @@ class KismetProxyTest(object):
     def stream_web_data(self, externalhandler, request):
         counter = 0
         while self.kei.is_running:
-            externalhandler.send_http_response(request.req_id, "Stream {}\n".format(counter), stream = True, finished = False)
+            externalhandler.send_http_response(request.req_id, bytes("Stream {}\n".format(counter), "UTF-8"), stream = True, finished = False)
             counter += 1
             time.sleep(0.5)
 
