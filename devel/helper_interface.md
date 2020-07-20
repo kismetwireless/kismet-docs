@@ -83,6 +83,8 @@ When using network sockets to connect external helpers, the Kismet listening soc
 
 ## KismetExternal Eventbus Proxy
 
+*Added 2020-07*
+
 Kismet implements a serializable eventbus internally to pass messages among disparate parts of the codebase and to provide an event-based API.  Events include phy layer handler creation, datasource status, new device creation, and more.
 
 A kismetexternal tool may subscribe to the eventbus, and publish basic events.
