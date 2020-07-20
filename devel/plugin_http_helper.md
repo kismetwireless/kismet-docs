@@ -57,20 +57,17 @@ The external helper tool is run by Kismet and communicates over the [helper RPC 
 KismetExternal has its own repository.  It will be migrated to a proper external module, installable via `pip`, but for now this guide will assume you're installing it via `setup.py`:
 
 ```bash
-$ git clone https://www.kismetwireless.net/git/python-kismet-db.git
-$ python-kismet-db
-$ python2 ./setup.py build
-$ sudo python2 ./setup.py install
+$ git clone https://www.kismetwireless.net/git/python-kismet-external.git
+$ cd python-kismet-external
+$ python3 ./setup.py build
+$ sudo python3 ./setup.py install
 ```
-
-### Python2 vs Python3
-Currently protobufs appear to depend on python2; once there is a clean mechanism for running under python3 the KismetExternal module will be upgraded accordingly.
 
 ### Importing the basics
 We need to import a few basic elements into our helper.  We also try to present a more meaningful message to the user if KismetExternal isn't available.
 
 ```python
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import argparse
 import os
@@ -177,65 +174,124 @@ There's a little more we need to do; we need to start the KismetExternal interfa
 Our extremely basic, but complete, example would look like:
 
 ```python
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import argparse
 import os
+import time
 import sys
 import threading
-import time
 
+# Pretty-print the failure
 try:
-    import KismetExternal
+    import kismetexternal
 except ImportError:
-    print("ERROR:  We require the KismetExternal module")
+    print("ERROR:  Kismet external Python tools require the kismetexternal python ")
+    print("        library; you can find it in the kismetexternal git or via pip")
     sys.exit(1)
 
-class ExternalDemo(object):
+class KismetProxyTest(object):
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description='Kismet external helper demo')
+        # Try to parse the arguments to find the descriptors we need to give to 
+        # the kismet external tool; Kismet calls external helpers with a pre-made
+        # set of pipes on --in-fd and --out-fd
+        self.parser = argparse.ArgumentParser(description='Kismet External Python Example')
+
         self.parser.add_argument('--in-fd', action="store", type=int, dest="infd")
         self.parser.add_argument('--out-fd', action="store", type=int, dest="outfd")
 
         self.results = self.parser.parse_args()
 
         if self.results.infd is None or self.results.outfd is None:
-            print("ERROR:  Kismet external helper tools are launched by Kismet itself; do not run them directly.")
+            print("ERROR:  Kismet external python tools are (typically) launched by ")
+            print("        Kismet itself; running it on its own won't do what you want")
             sys.exit(1)
 
-        self.kei.request_http_auth(self.handle_web_auth_token)
-        self.kei.add_uri_handler("GET", "/externaldemo/python.html", self.handle_web_python)
+        # Initialize our external interface
+        self.kei = kismetexternal.ExternalInterface(self.results.infd, self.results.outfd)
 
-        self.kei.send_message("Status update from python!")
+        # self.kei.debug = True
 
+        # Start the external handler BEFORE we register our handlers, since we need to be
+        # connected to send them!
         self.kei.start()
 
+        # External tools can request a HTTP authentication token; this can be used as the
+        # 'KISMET' session cookie to perform administrative actions against the Kismet
+        # server
+        self.kei.request_http_auth(self.handle_web_auth_token)
+
+        # Add a URI handler; it doesn't need a login, and it returns HTML
+        self.kei.add_uri_handler("GET", "/proxytest/python.html", self.handle_web_python)
+
+        # Add a GET var test
+        self.kei.add_uri_handler("GET", "/proxytest/python_get.html", self.handle_web_python_get)
+
+        # Add a POST var test
+        self.kei.add_uri_handler("POST", "/proxytest/python_post.html", self.handle_web_python_post)
+
+        # Add a streaming handler
+        self.kei.add_uri_handler("GET", "/proxytest/stream.raw", self.handle_web_stream)
+
+        self.kei.send_message("Hello from python!  This is sent over the IPC message bus.")
+
+        # Start the IO loops running
+        self.kei.run()
+
+    # Callback for when we've gotten back our auth token for the webserver
     def handle_web_auth_token(self):
-        self.auth_token = self.kei.auth_token
+        print("ProxyTest got HTTP auth token", self.kei.auth_token)
 
+    # Callback function for handling a req of our python.html endpoint
     def handle_web_python(self, externalhandler, request):
-        # Print some debug that will show up in the console Kismet is running in
-        print("PYTHON - handle web req {} {} {}".format(request.req_id, request.method, request.uri))
-        # Return some HTML
+        print("PYTHON - Handle web req {} {} {}".format(request.req_id, request.method, request.uri))
+        # Print a static response
         externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
 
-    def handle_web_python(self, externalhandler, request):
-        # Print some debug that will show up in the console Kismet is running in
-        print("PYTHON - handle web req {} {} {}".format(request.req_id, request.method, request.uri))
-        # Return some HTML
+    # Callback function for handling a req of our variabls.html endpoint
+    def handle_web_python_get(self, externalhandler, request):
+        print("PYTHON - Handle web req {} {} {}".format(request.req_id, request.method, request.uri))
+        print("PYTHON - GET variables ")
+        for i in request.variable_data:
+            print("PYTHON - GET {}:{}".format(i.field, i.content))
+
         externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+
+    # Callback function for handling a req of our variable.html endpoint
+    def handle_web_python_post(self, externalhandler, request):
+        print("PYTHON - Handle web req {} {} {}".format(request.req_id, request.method, request.uri))
+        for i in request.variable_data:
+            print("PYTHON - POST {}:{}".format(i.field, i.content))
+
+        externalhandler.send_http_response(request.req_id, "<html><body><b>This is from python!</b></body></html>")
+
+    # Callback function to demonstrate streaming
+    def handle_web_stream(self, externalhandler, request):
+        externalhandler.send_http_response(request.req_id, "Stream starting\n", stream = True, finished = False)
+        # Make a thread that streams data out this request
+        webthread = threading.Thread(target=self.stream_web_data, args=(externalhandler, request))
+        webthread.start()
+
+    # Thread that streams a counter
+    def stream_web_data(self, externalhandler, request):
+        counter = 0
+        while self.kei.is_running:
+            externalhandler.send_http_response(request.req_id, "Stream {}\n".format(counter), stream = True, finished = False)
+            counter += 1
+            time.sleep(0.5)
 
     # Loop forever
     def loop(self):
-        while self.kei.is_running:
+        while self.kei.is_running():
             self.kei.send_ping()
             time.sleep(1)
 
         self.kei.kill()
 
+
 if __name__ == "__main__":
     # Make a proxytest and loop forever
-    pt = ExternalDemo()
+    pt = KismetProxyTest()
 
     # Loop in a detached process
     pt.loop()
