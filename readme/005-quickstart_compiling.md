@@ -57,6 +57,15 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     % brew install pkg-config libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
     ```
 
+    *OSX libmicrohttpd warning* Currently, libmicrohttpd 0.9.71 distiributed by Brew on OSX appears to have a significant stalling issue, which can prevent Kismet from working properly.  This can be worked around, temporarily, by switching to the 0.9.63 version:
+
+    ```bash
+    % brew unlink libmicrohttpd
+    % brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f524892ab40b918a9ea81c97fbe258c2f7c9f7c2/Formula/libmicrohttpd.rb
+    ```
+
+    Hopefully this workaround will not be needed in the future.
+
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
    ```bash
    $ git clone https://www.kismetwireless.net/git/kismet.git
