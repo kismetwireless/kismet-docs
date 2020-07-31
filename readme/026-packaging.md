@@ -7,18 +7,19 @@ toc: true
 ---
 
 ## Major changes
-    * 2020-07 Moved packaging examples
-        Moved the distro-specific packaging scripts (docker, openwrt, fpm, centos, etc) into their [own repository](https://github.com/kismetwireless/kismet-packages)
 
-    * 2020-06 Gzipped data files
-        The manufacturer database is now compressed to reduce space in packages.
-    * 2020-06 Migration of ADSB ICAO file
-        The ADSB ICAO registration (lookup file for aircraft registration info) is now in the main Kismet distribution as conf/kismet_adsb_icao.txt.gz, and has been removed from the python3 adsb datasource
-    * 2020-06 Kismetdb_to_pcap tool
-        A new conversion tool, kismetdb_to_pcap, is built as part of Kismet in the log_tools/ directory
+* 2020-07 Moved packaging examples
+    Moved the distro-specific packaging scripts (docker, openwrt, fpm, centos, etc) into their [own repository](https://github.com/kismetwireless/kismet-packages)
 
-    * 2020-03 Kismetdb_clean tool
-        A new kismetdb maintaince tool, kismetdb_clean, is built as part of Kismet in the log_tools/ directory.
+* 2020-06 Gzipped data files
+    The manufacturer database is now compressed to reduce space in packages.
+* 2020-06 Migration of ADSB ICAO file
+    The ADSB ICAO registration (lookup file for aircraft registration info) is now in the main Kismet distribution as conf/kismet_adsb_icao.txt.gz, and has been removed from the python3 adsb datasource
+* 2020-06 Kismetdb_to_pcap tool
+    A new conversion tool, kismetdb_to_pcap, is built as part of Kismet in the log_tools/ directory
+
+* 2020-03 Kismetdb_clean tool
+    A new kismetdb maintaince tool, kismetdb_clean, is built as part of Kismet in the log_tools/ directory.
 
 ## Packaging Kismet
 
