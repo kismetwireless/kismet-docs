@@ -7,6 +7,8 @@ toc: true
 ---
 
 ## Major changes
+    * 2020-07 Moved packaging examples
+        Moved the distro-specific packaging scripts (docker, openwrt, fpm, centos, etc) into their [own repository](https://github.com/kismetwireless/kismet-packages)
 
     * 2020-06 Gzipped data files
         The manufacturer database is now compressed to reduce space in packages.
@@ -20,7 +22,9 @@ toc: true
 
 ## Packaging Kismet
 
-Every distribution is different, and has different idioms for configuration location and style, but we recommend the following:
+Every distribution is different, and has different idioms for configuration location and style, but we recommend the following where ever possible.
+
+Example packages for various distributions are in the [kismet-packages](https://github.com/kismetwireless/kismet-packages) repository.
 
 ### Provide a suid (or setcap) install option
 
