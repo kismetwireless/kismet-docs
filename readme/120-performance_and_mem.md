@@ -103,6 +103,17 @@ Kismet has several options which control how much memory and processing it uses.
 
     Kismet does advanced fingerprinting of 802.11 devices.  This can be turned off to save RAM.  Turning this off will disable some alerts and fingerprint based checks.
 
+* `dot11_keep_ietags=true|false`
+
+    Kismet can keep a copy of the last-advertised IE tags for a SSID and display them; this takes more CPU and RAM and may not be useful to most users, so it is off by default.  This only affects the processing and display of the raw IE tag data.
+
+* `dot11_keep_eapol=true|false`
+
+    By default, Kismet will cache the last 16 EAPOL (WPA handshake) packets for each BSSID.  This enables WIDS detection of EAPOL replay attacks and easy downloading of WPA handshakes as a pcap file per BSSID, but it consumes more RAM and processing power.
+
+    Turning this off will disable WPA handshake downloading and EAPOL replay detection, but EAPOL packets will still be logged and tagged in the kismetdb log.
+
+
 ## Runtime type checking
 
 Kismet uses a dynamic type system to store data (that is then turned into JSON, etc).  Normally this system uses type enforcement; this turns programming errors in Kismet into controlled aborts instead of crashes.
