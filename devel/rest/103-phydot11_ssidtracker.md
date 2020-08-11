@@ -24,6 +24,10 @@ The SSID summarization is best utilized when applying a view window via the `sta
 
     /phy/phy80211/ssids/views/ssids.json
 
+* API added
+ 
+    `2020-04`
+
 * Methods
 
     `POST`
@@ -61,6 +65,10 @@ Similar to the device details endpoint, a SSID details endpoint provides all the
 * URL
 
     /phy/phy80211/ssids/by-hash/*[HASH]*/ssid.json
+
+* API added
+ 
+    `2020-08`
 
 * Methods 
 
