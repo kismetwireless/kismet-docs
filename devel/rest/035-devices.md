@@ -102,6 +102,8 @@ Fetch devices which have been active since the supplied timestamp.  This endpoin
 
 * URL parameters \\
 
+   | Key    | Description                              |
+   | ------ | ---------------------------------------- |
    | *[TIMESTAMP]* | Relative or absolute [timestamp](/docs/devel/webui_rest/commands/#timestamp) |
 
 * POST parameters \\
