@@ -220,6 +220,38 @@ If a supplied key is not found, no device will be returned for that key.
 * Results \\
 Array of all devices matching any of the supplied device keys.
 
+## Multiple devices by key (dictionary)
+
+Fetch multiple devices matching any of the supplied keys.  Typically used to retrieve the bulk status of many devices for display in the UI.
+
+This API will always return a vector of devices, even when only one device is matched.
+
+If a supplied key is not found, no device will be returned for that key.
+
+* URL 
+
+    /devices/multikey/as-object/devices.json
+
+* API added 
+
+    `2020-08`
+
+* Methods
+
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key     | Desc                                                                                    |
+    | ------  | -----------------------------------                                                     |
+    | devices | Required, a vector of device keys to be returned                                        |
+    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Dictionary of all devices matching any of the supplied device keys, indexed by key.
 
 ## Devices by capture source
 The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by capturing data source:
