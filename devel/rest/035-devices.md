@@ -218,7 +218,7 @@ If a supplied key is not found, no device will be returned for that key.
    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
 
 * Results \\
-Array of all devices matching any of the supplied MAC addresses.
+Array of all devices matching any of the supplied device keys.
 
 
 ## Devices by capture source
