@@ -111,7 +111,7 @@ Kismet can do a few tricks with the web UI:
 
 * Runtime censorship of MAC addresses
 
-    MAC addresses of access points can disclose your location; if you are demoing, screenshotting, or otherwise sharing the Kismet UI, you might want to prevent them from being shown.  By going into the debug console of your browser and running `window["censor_macs"] = 1` on the console, all MAC-address-like strings will be censored to show only the OUI (first 3 bytes).
+    MAC addresses of access points can disclose your location; if you are demoing, screenshotting, or otherwise sharing the Kismet UI, you might want to prevent them from being shown.  By passing `?censor_macs=1` as part of the Kismet URI, (ie `http://localhost:2501/?censor_macs=1`), Kismet will attempt to filter any mac-like string to show only the first 3 bytes.
 
     This may break parts of the UI, and may not catch every MAC.
 
