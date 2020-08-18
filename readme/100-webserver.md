@@ -113,7 +113,10 @@ Kismet can do a few tricks with the web UI:
 
     MAC addresses of access points can disclose your location; if you are demoing, screenshotting, or otherwise sharing the Kismet UI, you might want to prevent them from being shown.  By passing `?censor_macs=1` as part of the Kismet URI, (ie `http://localhost:2501/?censor_macs=1`), Kismet will attempt to filter any mac-like string to show only the first 3 bytes.
 
-    This may break parts of the UI, and may not catch every MAC.
+    This may break parts of the UI, and may not catch every MAC.  In particular, this hack currently breaks:
+
+    * Client displays on Wi-Fi access points (much of it is accurate, but some fields will not display properly)
+    * ADSB live plane map
 
 ## Kismet and SSL
 
