@@ -154,3 +154,22 @@ You may also find it necessary to decrease the channel hopping speed to alleviat
 
 When running an extremely large number of sources, remember also that Kismet will likely require a significant amount of CPU and RAM for the additional data being gathered.
 
+## Disabling auto-probe and auto-list of source types
+
+Some systems (specifically embedded systems running OpenWRT, but also others) may have sufficient CPU and RAM to run remote capture (or even local capture) of complex datasources, like rtladsb, but take so long to bring up the environment that it causes disruption to Kismet autodetecting devices or listing available interfaces.
+
+If this is the case, those datasource types can be masked from discovery, using the `mask_datasource_type` configuration option:
+
+```
+mask_datasource_type=rtladsb
+mask_datasource_type=rtlamr
+mask_datasource_type=rtl433
+```
+
+and so on.
+
+Masked types will NOT be able to autodetect the interface, and MUST have a `type=...` in the source definition, such as:
+`source=rtladsb-0:type=rtladsb,name=foo,...`.
+
+Masked types will NOT show up in the data sources UI.
+
