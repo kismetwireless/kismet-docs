@@ -54,17 +54,22 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
     Install the required packages via Brew:
     ```bash
-    % brew install pkg-config libmicrohttpd python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth
+    % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb
     ```
 
-    *OSX libmicrohttpd warning* Currently, libmicrohttpd 0.9.71 distiributed by Brew on OSX appears to have a significant stalling issue, which can prevent Kismet from working properly.  This can be worked around, temporarily, by switching to the 0.9.63 version:
+    *OSX libmicrohttpd warning* Currently, the latest version of libmicrohttpd (0.9.71) which is included in Brew appears to have a significant stalling issue, which will prevent Kismet from working properly.  This can be worked around, temporarily, by switching to the 0.9.63 version.  Unfortunately to do this requires several steps due to limitations of the `brew` system which have been imposed in recent versions.  This will also need to install several additional libraries and tools needed to compile libmicrohttpd, as it will not be able to install from a precompiled bottle.
 
     ```bash
     % brew unlink libmicrohttpd
-    % brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f524892ab40b918a9ea81c97fbe258c2f7c9f7c2/Formula/libmicrohttpd.rb
+    % git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow
+    % brew tap-new kismet/libmicrohttpd
+    % brew extract --version 0.9.63 libmicrohttpd kismet/libmicrohttpd
+    % brew install kismet/libmicrohttpd/libmicrohttpd@0.9.63
     ```
 
     Hopefully this workaround will not be needed in the future.
+
+    If you have *already built* Kismet with the 0.9.71 version of libmicrohttpd on OSX, you will have to recompile Kismet.
 
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
    ```bash
