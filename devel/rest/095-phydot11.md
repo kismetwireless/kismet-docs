@@ -10,63 +10,83 @@ The 802.11 Wi-Fi phy defines extra endpoints for manipulating Wi-Fi devices seen
 ## WPA Handshakes
 The WPA handshake is vital for extracting the WPA key of an encrypted WPA or WPA2 session.  Kismet will retain the handshake packets from an access point, and can provide them as a PCAP file.
 
-* URL \\
-        /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-handshake.pcap
+* URL
 
-* Methods \\
-        `GET`
+    /phy/phy80211/by-key/*[DEVICEKEY]*/pcap/handshake.pcap
+
+* API modified:
+
+    `2020-10`
+
+* Methods
+
+    `GET`
 
 * GET parameters
 
-| Key | Description |
-| --- | ---------- |
-| *[DEVICEKEY]* | Kismet device key of target device |
+    | Key | Description |
+    | --- | ---------- |
+    | *[DEVICEKEY]* | Kismet device key of target device |
 
-* Result \\
-        On success: PCAP file of WPA handshake packets associated with the device, as well as a beacon packet.
-        On error: HTTP error
+* Result
+
+    On success: PCAP file of WPA handshake packets associated with the device, as well as a beacon packet.
+    On error: HTTP error
 
 ## WPA PMKID
 The WPA PMKID component of the handshake can be used to perform offline attacks against the WPA key using Aircrack or Hashcat.  Kismet will retain a packet with the RSN PMKID value, and can provide it as a PCAP file.
 
-* URL \\
-        /phy/phy80211/by-key/*[DEVICEKEY]*/*[DEVICEKEY]*-pmkid.pcap
+* URL
 
-* API added: \\
-        `2019-05`
+    /phy/phy80211/by-key/*[DEVICEKEY]*/pcap/handshake-pmkid.pcap
 
-* Methods \\
-        `GET`
+* API added:
+
+    `2019-05`
+
+* API modified:
+
+    `2020-10`
+
+* Methods
+
+    `GET`
 
 * GET parameters
 
-| Key | Description |
-| *[DEVICEKY]* | Kismet device key of target device |
+    | Key | Description |
+    | --- | ----------- |
+    | *[DEVICEKY]* | Kismet device key of target device |
 
-* Result \\
-        On success: PCAP file of RSN PMKID packet, and a beacon packet.
-        On error: HTTP error 
+* Result
+
+    On success: PCAP file of RSN PMKID packet, and a beacon packet.
+    On error: HTTP error 
 
 ## Wi-Fi per-device pcap stream
 Kismet can provide a streaming pcap-ng log of all packets, from all interfaces, associated with a given Wi-Fi BSSID.  Packets are streamed _starting when this endpoint is opened_, for past packtes, use the [KismetDB log API](/docs/devel/webui_rest/kismetdb/).
 
-* URL \\
-        /phy/phy80211/by-bssid/*[BSSID]*/*[BSSID]*.pcapng
+* URL
 
-* Methods \\
-        `GET`
+    /phy/phy80211/pcap/by-bssid/*[BSSID]*/packets.pcapng
+
+* Methods
+
+    `GET`
 
 * URL parameters
 
-| Key | Description |
-| - | - |
-| *[BSSID]* | BSSID retrieve packets from |
+    | Key | Description |
+    | --- | ---- |
+    | *[BSSID]* | BSSID retrieve packets from |
 
-* Results \\
-        A pcap-ng stream of packets which will stream indefinitely as packets are received.
+* Results
 
-* Notes \\
-        See the [packet capture API](/docs/devel/webui-rest/packet_capture/) for more information about pcap-ng streams
+    A pcap-ng stream of packets which will stream indefinitely as packets are received.
+
+* Notes
+
+    See the [packet capture API](/docs/devel/webui-rest/packet_capture/) for more information about pcap-ng streams
 
 ## Wi-Fi clients
 Kismet tracks client association with access points.  This information is available as a list of the device keys in the access point device record, but it is also available through the clients API which will return the complete device record of the associated client.

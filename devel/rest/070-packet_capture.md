@@ -16,49 +16,59 @@ Kismet can provide a live stream, in pcap-ng format, of all packets *since the t
 
 To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](/docs/devel/webui_rest/kismetdb/).
 
-* URL \\
-        /pcap/all_packets.pcapng
-        /datasource/pcap/all_sources.pcapng
+* URL
 
-* Methods \\
-        `GET`
+    /pcap/all_packets.pcapng
 
-* Results \\
-        A pcap-ng stream of packets which will stream indefinitely as packets are received.
+    /datasource/pcap/all_sources.pcapng
+
+* Methods
+
+    `GET`
+
+* Results
+
+    A pcap-ng stream of packets which will stream indefinitely as packets are received.
 
 ## Packets by datasource
 The packet stream may be limited to packets captured by a single datasource, indicated by the datasource UUID.
 
-* URL \\
-        /datasource/pcap/by-uuid/*[UUID]*/*[UUID]*.pcapng
+* URL
 
-* Methods \\
-        `GET`
+    /datasource/pcap/by-uuid/*[UUID]*/packets.pcapng
+
+* Methods
+
+    `GET`
 
 * URL parameters:
 
-| Key | Description |
-| --- | ----------- |
-| *[UUID]* | Datasource UUID |
+    | Key | Description |
+    | --- | ----------- |
+    | *[UUID]* | Datasource UUID |
 
-* Results \\
-        A pcap-ng stream of packets which will stream indefinitely as packets are received.
+* Results
+
+    A pcap-ng stream of packets which will stream indefinitely as packets are received.
 
 ## Packets by device
 The packet stream may be limited to packets captured and associated with a specific device by Kismet, indicated by the Kismet device key.
 
-* URL \\
-        /devices/by-key/*[KEY]*/pcap/*[KEY]*.pcapng
+* URL
 
-* Methods \\
-        `GET`
+    /devices/pcap/by-key/*[KEY]*/packets.pcapng
+
+* Methods
+
+    `GET`
 
 * URL parameters:
 
-| Key | Description |
-| --- | ----------- |
-| *[KEY]* | Device key |
+    | Key | Description |
+    | --- | ----------- |
+    | *[KEY]* | Device key |
 
-* Results \\
-        A pcap-ng stream of packets which will stream indefinitely as packets are received.
+* Results
+
+    A pcap-ng stream of packets which will stream indefinitely as packets are received.
 

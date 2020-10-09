@@ -7,6 +7,17 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
+* `2020-10` major internal changes, some API changes
+
+    2020-10 introduces a complete rewrite of the internal webserver system, changing the core webserver library and rewriting how endpoints are processed and parsed.
+
+    In the public-facing API:
+
+    * 802.11 handshake pcaps are now found on `/phy/phy80211/by-key/[key]/pcap/handshake.pcap` and `/phy/phy80211/by-key/[key]/pcap/handshake-pmkid.pcap`.  The original MAC-based filenames are passed with the `attachment; filename=...` header.
+    * Per-uuid pcapng streams are now found at `/datasource/pcap/by-uuid/[uuid]/packets.pcapng`
+    * Per-device pcapng streams are now found at `/devices/pcap/by-key/[key]/packets.pcapng`
+    * Phy80211 per-bssid pcap streams are nwo found at `/phy/phy80211/pcap/by-bssid/[mac]/packets.pcapng`
+
 * `2020-08` several maps made optional/dynamic
 
     To save RAM, several maps and vectors are now flagged as optional; if there is no content in those fields, they will not be present in the generated JSON.  Consumers should always check for presence of the map in the returned data before trying to use it.
