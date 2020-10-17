@@ -18,6 +18,8 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * Per-device pcapng streams are now found at `/devices/pcap/by-key/[key]/packets.pcapng`
     * Phy80211 per-bssid pcap streams are nwo found at `/phy/phy80211/pcap/by-bssid/[mac]/packets.pcapng`
 
+    Additionally, the API now uses `cmd` as the file extension for all commands, deprecating and removing the `jcmd` extension fully (which has not been a documented command extension for several releases already).
+
 * `2020-08` several maps made optional/dynamic
 
     To save RAM, several maps and vectors are now flagged as optional; if there is no content in those fields, they will not be present in the generated JSON.  Consumers should always check for presence of the map in the returned data before trying to use it.
@@ -41,7 +43,7 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 * `2019-10` advertised_ssid and probe_ssid as arrays
 
     To more cleanly support ELK the advertised ssid and probed ssid components of dot11 devices are now serialized as vectors instead of maps.  Previously these were serialized as maps with a key of the hash of the SSID and attributes (an essentialy meaningless number in the export).  Now these are sent as an array of advertised or probed SSID objects.
-    
+
 
 * `2019-10` ekjson and itjson
 

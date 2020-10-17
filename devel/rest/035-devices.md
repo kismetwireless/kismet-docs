@@ -17,208 +17,250 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 
 This API supercedes the `/devices/summary/` API.
 
-* URL \\
-        /devices/views/all/...
-        /devices/views/all/devices.json
-        /devices/views/all/last-time/*[TIMESTAMP]*/devices.json
+* URL
 
-* API added \\
-        `2019-06`
+    /devices/views/all/...
+    /devices/views/all/devices.json
+    /devices/views/all/last-time/*[TIMESTAMP]*/devices.json
 
-* Notes \\
-        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+* API added
+
+    `2019-06`
+
+* Notes
+
+    See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
 ## Old Summarization & display
+
 The device summarization endpoint is the primary interface for clients to access the device list.  It is used heavily by the Kismet UI for the main device list table.
 
 The device summarization is best utilized when applying a view window via the `start` and `length` variables.
 
-* URL \\
-        /devices/summary/devices.json
+* URL
 
-* DEPRECATED \\
-        `2019-06`
-        While still available, this API has been deprecated in favor of the `all` device view.
+    /devices/summary/devices.json
 
-* Methods \\
-        `POST`
+* DEPRECATED
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key     | Description                                           |
-   | ------- | ----------------------------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-   | regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
-   | colmap  | Optional column correlation info inserted by the Kismet Datatable UI for mapping jquery-datatables column information for proper ordering and sorting. |
-   | datatable | Optional, inserted by the Kismet Datatable UI to enable datatable mode which wraps the output in a container suitable for consumption by jquery-datatables. |
-   
-   Additionally, when in datatables mode, the following HTTP POST variables are used:
-   
-   | Key | Description |
-   | --- | ---- |
-   | start  | Data view window start position |
-   | length | Datatable window end |
-   | draw   | Datatable draw value |
-   | search[value] | Search term, applied to all fields in the summary vector |
-   | order\[0\]\[column\] | Display column number for sorting, indexed with colmap data |
-   | order\[0\]\[dir\] | Sort order direction from jquery-datatables |
+    `2019-06`
+    While still available, this API has been deprecated in favor of the `all` device view.
 
-* Results \\
-        Summarized vector of devices.  
+* Methods
+
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key       | Description                                                                                                                                                 |
+    | -------   | -----------------------------------------------------                                                                                                       |
+    | fields    | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications)                                                                     |
+    | regex     | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters)                                                                       |
+    | colmap    | Optional column correlation info inserted by the Kismet Datatable UI for mapping jquery-datatables column information for proper ordering and sorting.      |
+    | datatable | Optional, inserted by the Kismet Datatable UI to enable datatable mode which wraps the output in a container suitable for consumption by jquery-datatables. |
+
+    Additionally, when in datatables mode, the following HTTP POST variables are used:
+
+    | Key                  | Description                                                 |
+    | ---                  | ----                                                        |
+    | start                | Data view window start position                             |
+    | length               | Datatable window end                                        |
+    | draw                 | Datatable draw value                                        |
+    | search[value]        | Search term, applied to all fields in the summary vector    |
+    | order\[0\]\[column\] | Display column number for sorting, indexed with colmap data |
+    | order\[0\]\[dir\]    | Sort order direction from jquery-datatables                 |
+
+* Results
+
+    Summarized vector of devices.
 
 
 ## Bulk device list
+
 A special `ekjson`-only endpoint which provides a dump of all devices.  This endpoint *only* returns ekjson-formatted data.
 
 This endpoint is most useful for extracting bulk data and passing it to another tool like Elasticsearch.
 
-* URL \\
-        /devices/all_devices.ekjson
+* URL
 
-* Methods \\
-        `GET` `POST`
+    /devices/all_devices.ekjson
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key    | Description                              |
-   | ------ | ---------------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* Methods
 
-* Results \\
-        Each device is returned as a JSON object, one JSON record per line.
+    `GET` `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key    | Description                                                                             |
+    | ------ | ----------------------------------------                                                |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Each device is returned as a JSON object, one JSON record per line.
 
 
 ## Activity & timestamp
+
 Fetch devices which have been active since the supplied timestamp.  This endpoint is typically used by scripted clients to monitor currently active devices.
 
-* URL \\
-        /devices/last-time/*[TIMESTAMP]*/devices.json \\
-        /devices/last-time/*[TIMESTAMP]*/devices.ekjson
+* URL 
 
-* Methods \\
-        `GET` `POST`
+    /devices/last-time/*[TIMESTAMP]*/devices.json
+    /devices/last-time/*[TIMESTAMP]*/devices.ekjson
+    /devices/last-time/*[TIMESTAMP]*/devices.itjson
 
-* URL parameters \\
+* Methods
 
-   | Key    | Description                              |
-   | ------ | ---------------------------------------- |
-   | *[TIMESTAMP]* | Relative or absolute [timestamp](/docs/devel/webui_rest/commands/#timestamp) |
-
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key    | Description                              |
-   | ------ | ---------------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-   | regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
-
-* Results \\
-        Vector of (optionally summarized and filtered) devices active since *TS*
-
-
-## Device by key
-Fetch devices by the Kismet device key.
-
-* URL \\
-        /devices/by-key/*[DEVICEKEY]*/device.json
-
-* Methods \\
-        `GET` `POST`
+    `GET` `POST`
 
 * URL parameters 
 
-   | Key    | Description |
-   | ------ | ----------- |
-   | *[DEVICEKEY]* | Kismet unique device key to match |
+    | Key           | Description                                                                  |
+    | ------        | ----------------------------------------                                     |
+    | *[TIMESTAMP]* | Relative or absolute [timestamp](/docs/devel/webui_rest/commands/#timestamp) |
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key    | Description                         |
-   | ------ | ----------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* POST parameters
 
-* Results \\
-        Device record, with optional simplification of the fields, matching *DEVICEKEY*
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key    | Description                                                                             |
+    | ------ | ----------------------------------------                                                |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+    | regex  | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters)   |
+
+* Results
+
+    Vector of (optionally summarized and filtered) devices active since *TS*
+
+
+## Device by key
+
+Fetch devices by the Kismet device key.
+
+* URL 
+
+    /devices/by-key/*[DEVICEKEY]*/device.json
+
+* Methods
+
+    `GET` `POST`
+
+* URL parameters 
+
+    | Key           | Description                       |
+    | ------        | -----------                       |
+    | *[DEVICEKEY]* | Kismet unique device key to match |
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key    | Description                                                                             |
+    | ------ | -----------------------------------                                                     |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results 
+
+    Device record, with optional simplification of the fields, matching *DEVICEKEY*
 
 
 ## Device by MAC
+
 Fetch devices which match the supplied MAC address.  It is possible (though usually not likely) that there may be MAC address collisions between different PHY types.  This becomes more likely when using non-Wi-Fi capture types which synthesize false MAC addresses because no official address is available, such as RTL-433, Mousejack, and other SDR-based datasources.
 
 This API will always return a vector of devices, even when only one device matches the MAC address.
 
-* URL \\
-        /devices/by-mac/*[MACADDRESS]*/devices.json
+* URL 
 
-* Methods \\
-        `GET` `POST`
+    /devices/by-mac/*[MACADDRESS]*/devices.json
+
+* Methods
+
+    `GET` `POST`
 
 * URL Parameters
 
-   | Key    | Description |
-   | ------ | ----------- |
-   | *[MACADDRESS]* | Device MAC address to match |
+    | Key            | Description                 |
+    | ------         | -----------                 |
+    | *[MACADDRESS]* | Device MAC address to match |
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key    | Description                         |
-   | ------ | ----------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* POST parameters 
 
-* Results \\
-        Array of all devices with the supplied MAC address, optionally simplified by `fields` parameter.
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key    | Description                                                                             |
+    | ------ | -----------------------------------                                                     |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Array of all devices with the supplied MAC address, optionally simplified by `fields` parameter.
 
 
 ## Multiple devices by MAC
+
 Fetch devices matching any of multiple MAC addresses (or partial MAC addresses).  Typically used to monitor the presence of target devices.
 
 This API will always return a vector of devices, even when only one device is matched.
 
 The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or partial-match masked MACs; for instance to match only the OUI `00:aa:bb`, a masked MAC address of `00:aa:bb:00:00:00/ff:ff:ff:00:00:00` can be supplied, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/).
 
-* URL \\
-        /devices/multimac/devices.json
+* URL
 
-* Methods \\
-        `POST`
+    /devices/multimac/devices.json
+    /devices/multimac/devices.ekjson
+    /devices/multimac/devices.itjson
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key     | Desc                                                                                    |
-   | ------  | -----------------------------------                                                     |
-   | devices | Required, a vector of MAC addresses to be returned                                      |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* Methods
 
-* Results \\
-Array of all devices matching any of the supplied MAC addresses.
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key     | Desc                                                                                    |
+    | ------  | -----------------------------------                                                     |
+    | devices | Required, a vector of MAC addresses to be returned                                      |
+    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Array of all devices matching any of the supplied MAC addresses.
 
 ## Multiple devices by key
+
 Fetch multiple devices matching any of the supplied keys.  Typically used to retrieve the bulk status of many devices for display in the UI.
 
 This API will always return a vector of devices, even when only one device is matched.
 
 If a supplied key is not found, no device will be returned for that key.
 
-* URL \\
-        /devices/multikey/devices.json
+* URL
 
-* Methods \\
-        `POST`
+    /devices/multikey/devices.json
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
-   
-   | Key     | Desc                                                                                    |
-   | ------  | -----------------------------------                                                     |
-   | devices | Required, a vector of device keys to be returned                                        |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* Methods 
 
-* Results \\
-Array of all devices matching any of the supplied device keys.
+    `POST`
+
+* POST parameters 
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key     | Desc                                                                                    |
+    | ------  | -----------------------------------                                                     |
+    | devices | Required, a vector of device keys to be returned                                        |
+    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Array of all devices matching any of the supplied device keys.
 
 ## Multiple devices by key (dictionary)
 
@@ -254,117 +296,141 @@ If a supplied key is not found, no device will be returned for that key.
     Dictionary of all devices matching any of the supplied device keys, indexed by key.
 
 ## Devices by capture source
+
 The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by capturing data source:
 
-* URL \\
-        /devices/views/seenby-uuid/[*UUID*]/...
-        /devices/views/seenby-uuid/[*UUID*]/devices.json
-        /devices/views/seenby-uuid/[*UUID*]/last-time/*[TIMESTAMP]*/devices.json
+* URL 
 
-* API added \\
-        `2019-03`
+    /devices/views/seenby-uuid/[*UUID*]/...
+    /devices/views/seenby-uuid/[*UUID*]/devices.json
+    /devices/views/seenby-uuid/[*UUID*]/last-time/*[TIMESTAMP]*/devices.json
+
+* API added 
+
+    `2019-03`
 
 * URL Parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
+    | Key      | Description        |
+    | ------   | -----------        |
     | *[UUID]* | UUID of datasource |
 
-* Notes \\
-        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+* Notes
+
+    See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
 ## Phy handlers
+
 A PHY handler in Kismet processes packets of a given physical layer; for instance Wi-Fi, Bluetooth, etc.
 
-* URL \\
-        /phy/all_phys.json
+* URL
 
-* Methods \\
-        `GET` `POST`
+    /phy/all_phys.json
 
-* API added \\
-        `2019-03`
+* Methods
 
-* POST parameters \\
-   A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+    `GET` `POST`
 
-   | Key    | Description                         |
-   | ------ | ----------------------------------- |
-   | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+* API added
 
-* Results \\
-        Array of all phy types, including phy name, internal reference number, and packet and device counts.
+    `2019-03`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key    | Description                                                                             |
+    | ------ | -----------------------------------                                                     |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Results
+
+    Array of all phy types, including phy name, internal reference number, and packet and device counts.
 
 ## Devices by PHY type
+
 The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to provide a list of devices filtered by the PHY data type:
 
-* URL \\
-        /devices/views/phy/[*PHYNAME*]/...
-        /devices/views/phy/[*PHYNAME*]/devices.json
-        /devices/views/phy/[*PHYNAME*]/last-time/*[TIMESTAMP]*/devices.json
+* URL
 
-* API added \\
-        `2019-03`
+    /devices/views/phy/[*PHYNAME*]/...
+    /devices/views/phy/[*PHYNAME*]/devices.json
+    /devices/views/phy/[*PHYNAME*]/last-time/*[TIMESTAMP]*/devices.json
+
+* API added
+
+    `2019-03`
 
 * URL Parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
+    | Key         | Description        |
+    | ------      | -----------        |
     | *[PHYNAME]* | UUID of datasource |
 
-* Notes \\
-        See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
+* Notes
+
+    See the [views api](/docs/devel/webui_rest/device_views/) for detailed information on how to use the views endpoints.
 
 ## Editing - device names
+
 Devices can have an arbitrary user-supplied name.
 
-* URL \\
-        /devices/by-key/*[DEVICEKEY]*/set_name.cmd
+* URL
 
-* Methods \\
-        `POST`
+    /devices/by-key/*[DEVICEKEY]*/set_name.cmd
+
+* Methods
+
+    `POST`
 
 * URL Parameters
 
-| Key    | Description |
-| ------ | ----------- |
-| *[DEVICEKEY]* | Key of device to edit |
+    | Key           | Description           |
+    | ------        | -----------           |
+    | *[DEVICEKEY]* | Key of device to edit |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| username | New name for device |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Results \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key      | Description         |
+    | ---      | -----------         |
+    | username | New name for device |
+
+* Results
+
+    `HTTP 200` on success
+    HTTP error on failure
 
 ## Editing - device tags
+
 Devices contain a collection of arbitrary tags which are held in the `kismet.device.base.tags` tree of the device record.  These tags can be used to store persistent notes or other user-supplied or auto-generated data, and are keyed by the string tag name.
 
-* URL \\
-        /devices/by-key/*[DEVICEKEY]*/set_tag.cmd
+* URL 
 
-* Methods \\
-        `POST`
+    /devices/by-key/*[DEVICEKEY]*/set_tag.cmd
+
+* Methods
+
+    `POST`
 
 * URL Parameters
 
-| Key    | Description |
-| ------ | ----------- |
-| *[DEVICEKEY]* | Key of device to edit |
+    | Key           | Description           |
+    | ------        | -----------           |
+    | *[DEVICEKEY]* | Key of device to edit |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters 
 
-| Key | Description |
-| --- | ----------- |
-| tagname | Tag being altered |
-| tagvalue | Tag value being set |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Results \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key      | Description         |
+    | ---      | -----------         |
+    | tagname  | Tag being altered   |
+    | tagvalue | Tag value being set |
+
+* Results 
+
+    `HTTP 200` on success
+    HTTP error on failure
 
