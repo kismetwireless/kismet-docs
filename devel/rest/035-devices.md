@@ -20,7 +20,9 @@ This API supercedes the `/devices/summary/` API.
 * URL
 
     /devices/views/all/...
+
     /devices/views/all/devices.json
+
     /devices/views/all/last-time/*[TIMESTAMP]*/devices.json
 
 * API added
@@ -111,7 +113,9 @@ Fetch devices which have been active since the supplied timestamp.  This endpoin
 * URL 
 
     /devices/last-time/*[TIMESTAMP]*/devices.json
+
     /devices/last-time/*[TIMESTAMP]*/devices.ekjson
+
     /devices/last-time/*[TIMESTAMP]*/devices.itjson
 
 * Methods
@@ -213,7 +217,9 @@ The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or
 * URL
 
     /devices/multimac/devices.json
+
     /devices/multimac/devices.ekjson
+
     /devices/multimac/devices.itjson
 
 * Methods
@@ -302,7 +308,9 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 * URL 
 
     /devices/views/seenby-uuid/[*UUID*]/...
+
     /devices/views/seenby-uuid/[*UUID*]/devices.json
+
     /devices/views/seenby-uuid/[*UUID*]/last-time/*[TIMESTAMP]*/devices.json
 
 * API added 
@@ -354,7 +362,9 @@ The device tracker uses [device views](/docs/devel/webui_rest/device_views/) to 
 * URL
 
     /devices/views/phy/[*PHYNAME*]/...
+
     /devices/views/phy/[*PHYNAME*]/devices.json
+
     /devices/views/phy/[*PHYNAME*]/last-time/*[TIMESTAMP]*/devices.json
 
 * API added
