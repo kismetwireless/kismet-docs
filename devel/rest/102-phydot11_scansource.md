@@ -40,41 +40,47 @@ Reports can be cached and send in groups using the report endpoint; each report 
 
 A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest/commands/) holding an array of reports.  Virtual datasources for each new report are automatically created.
 
-* API added \
+* API added 
+
     `2020-06`
 
-* URL \
+* URL 
+
     /phy/phy80211/scan/scan_report.cmd
 
-* Methods \
+* Methods 
+
     `POST` 
 
-* POST parameters \
+* POST parameters
+
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-    | Key | Description |
-    | --- | ----------- |
-    | reports | Array containing multiple report objects |
+    | Key         | Description                                                                      |
+    | ---         | -----------                                                                      |
+    | reports     | Array containing multiple report objects                                         |
     | source_name | A unique, consistent source name for the virtual datasource reporting this scan. |
     | source_uuid | A unique, consistent source UUID for the virtual datasource reporting this scan. |
 
     A report object should contain:
 
-    | Key | Description |
-    | --- | ----------- |
-    | timestamp | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
-    | ssid | (Optional) SSID |
-    | bssid | BSSID |
-    | capabilities | (Optional) An Android or Wigle style string of encryption options, such as `[WPS]`, `[WPA-PSK-TKIP+CCMP]`, `[WEP]`, and so on. |
-    | channel | (Optional) Quoted string channel, such as `"6"`, `"42HT40P"` |
-    | freqkhz | (Optional) Frequency of AP, in KHz |
-    | signal | Signal, in dBm |
-    | lat | (Optional) GPS latitude |
-    | lon | (Optional) GPS longitude |
-    | alt | (Optional) GPS altitude |
-    | speed | (Optional) GPS speed |
+    | Key          | Description                                                                                                                                                                                  |
+    | ---          | -----------                                                                                                                                                                                  |
+    | timestamp    | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
+    | ssid         | (Optional) SSID                                                                                                                                                                              |
+    | bssid        | BSSID                                                                                                                                                                                        |
+    | capabilities | (Optional) An Android or Wigle style string of encryption options, such as `[WPS]`, `[WPA-PSK-TKIP+CCMP]`, `[WEP]`, and so on.                                                               |
+    | channel      | (Optional) Quoted string channel, such as `"6"`, `"42HT40P"`                                                                                                                                 |
+    | freqkhz      | (Optional) Frequency of AP, in KHz                                                                                                                                                           |
+    | signal       | Signal, in dBm                                                                                                                                                                               |
+    | lat          | (Optional) GPS latitude                                                                                                                                                                      |
+    | lon          | (Optional) GPS longitude                                                                                                                                                                     |
+    | alt          | (Optional) GPS altitude                                                                                                                                                                      |
+    | speed        | (Optional) GPS speed                                                                                                                                                                         |
 
-* Results \
+* Results 
+
     `HTTP 200` on success
+
     HTTP error on failure
 

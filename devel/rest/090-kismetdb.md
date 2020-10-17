@@ -110,6 +110,7 @@ Packets can be fetched from the `kismetdb`, for all packets stored in the curren
 * URL
 
     /logging/kismetdb/pcap/*[TITLE]*.pcapng
+
     /logging/kismetdb/pcap/*[TITLE]*.pcapng?option1=...&option2=...
 
 * API added
@@ -139,6 +140,7 @@ Packets can be fetched from the `kismetdb`, for all packets stored in the curren
 * Result
 
     `HTTP 500` error if the `kismet` log type is not enabled.
+
     A pcapng stream will be generated of packets, if any, matching the filter options.  This stream will be buffered at the rate that the client is able to download it, and the stream will be closed at the end of the query.
 
 * Notes
@@ -172,5 +174,6 @@ On very long-running Kismet processes, you may wish to purge old packets.  These
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 

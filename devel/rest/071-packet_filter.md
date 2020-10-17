@@ -79,6 +79,7 @@ The default method is applied to all packets which do not match any terms in the
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 
 ## MAC address packet filter blocks
@@ -86,6 +87,7 @@ The default method is applied to all packets which do not match any terms in the
 MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by MAC address.
 
 Address filters can be applied to:
+
 * *source* - Original source device.  In Wi-Fi networks, equivalent to the source MAC; in other phy types, typically the originating device.
 * *destination* - Target device.  In Wi-Fi networks, the destination MAC; in other phy types, if present, the equivalent destination address.
 * *network* - Associated network.  In Wi-Fi, this is the BSSID.
@@ -125,6 +127,7 @@ Filters can be added to any of the filter blocks; `source`, `destination`, `netw
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 
 * Notes
@@ -162,6 +165,7 @@ Filters can be removed from any of the filter blocks; `source`, `destination`, `
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 
 ## Class filters
@@ -237,6 +241,7 @@ The default method is applied to all packets which do not match any terms in the
 * Result 
 
     `HTTP 200` on success 
+
     HTTP error on failure
 
 ## MAC address class filter blocks
@@ -273,11 +278,13 @@ Address filters apply to a single record, depending on the use of the filter.
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 
 * Notes
 
     Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
+
     Phy names which do not exist at the time of the filter being defined will be matched if a compatible phy type is registered in the future.
 
 ### Removing filters
@@ -308,5 +315,6 @@ Address filters apply to a single record, depending on the use of the filter.
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 

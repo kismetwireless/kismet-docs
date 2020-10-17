@@ -14,7 +14,9 @@ Log drivers handle a specific type of logfile.
 * URL
 
     /logging/drivers.json
+
     /logging/drivers.ekjson
+
     /logging/drivers.itjson
 
 * Methods
@@ -32,7 +34,9 @@ Not all drivers are activated depending on the Kismet config optins.
 * URL 
 
     /logging/active.json
+
     /logging/active.ekjson
+
     /logging/active.itjson
 
 * Methods
@@ -72,6 +76,7 @@ Logs can be enabled run-time.
 * Results
 
     `HTTP 200` and log object for newly created log on success
+
     HTTP error on failure
 
 ## Stopping logs
@@ -95,5 +100,6 @@ Logs can be stopped run-time.  The log must be open and running to be stopped.
 * Results
 
     `HTTP 200` on success
+
     HTTP error on failure
 

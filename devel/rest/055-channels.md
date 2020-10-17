@@ -12,6 +12,10 @@ excerpt: "Observed channels and channel traffic API."
 
     /channels/channels.json
 
+    /channels/channels.ekjson
+
+    /channels/channels.itjson
+
 * Methods
 
     `GET` 

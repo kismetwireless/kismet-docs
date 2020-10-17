@@ -19,7 +19,9 @@ The view list shows all defined device views and a summary of the number of devi
 * URL 
 
     /devices/views/all_views.json
+
     /devices/views/all_views.ekjson
+
     /devices/views/all_views.itjson
 
 * Methods
@@ -83,7 +85,9 @@ Mirroring the [Activity & timestamp](/docs/devel/webui_rest/devices/#activity--t
 * URL
 
     /devices/views/*[VIEWID]*/last-time/*[TIMESTAMP]*/devices.json
+
     /devices/views/*[VIEWID]*/last-time/*[TIMESTAMP]*/devices.ekjson
+
     /devices/views/*[VIEWID]*/last-time/*[TIMESTAMP]*/devices.itjson
 
 * Methods

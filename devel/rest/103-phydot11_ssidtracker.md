@@ -36,23 +36,23 @@ The SSID summarization is best utilized when applying a view window via the `sta
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-    | Key     | Description                                           |
-    | ------- | ----------------------------------------------------- |
-    | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
-    | regex   | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters) |
-    | colmap  | Optional, inserted by the Kismet Datatable UI for mapping column information for proper ordering and sorting. |
+    | Key       | Description                                                                                                                                                 |
+    | -------   | -----------------------------------------------------                                                                                                       |
+    | fields    | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications)                                                                     |
+    | regex     | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters)                                                                       |
+    | colmap    | Optional, inserted by the Kismet Datatable UI for mapping column information for proper ordering and sorting.                                               |
     | datatable | Optional, inserted by the Kismet Datatable UI to enable datatable mode which wraps the output in a container suitable for consumption by jquery-datatables. |
 
     Additionally, when in datatables mode, the following HTTP POST variables are used:
 
-    | Key | Description |
-    | --- | ---- |
-    | start  | Data view window start position |
-    | length | Datatable window end |
-    | draw   | Datatable draw value |
-    | search[value] | Search term, applied to all fields in the summary vector |
+    | Key                  | Description                                                 |
+    | ---                  | ----                                                        |
+    | start                | Data view window start position                             |
+    | length               | Datatable window end                                        |
+    | draw                 | Datatable draw value                                        |
+    | search[value]        | Search term, applied to all fields in the summary vector    |
     | order\[0\]\[column\] | Display column number for sorting, indexed with colmap data |
-    | order\[0\]\[dir\] | Sort order direction from jquery-datatables |
+    | order\[0\]\[dir\]    | Sort order direction from jquery-datatables                 |
 
 * Results
 
@@ -76,18 +76,19 @@ Similar to the device details endpoint, a SSID details endpoint provides all the
 
 * URL parameters 
 
-   | Key    | Description                              |
-   | ------ | ---------------------------------------- |
-   | *[HASH]* | Hash ID of the target SSID record |
+   | Key      | Description                              |
+   | ------   | ---------------------------------------- |
+   | *[HASH]* | Hash ID of the target SSID record        |
 
 * POST parameters
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-    | Key     | Description                                           |
-    | ------- | ----------------------------------------------------- |
+    | Key     | Description                                                                             |
+    | ------- | -----------------------------------------------------                                   |
     | fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
 
 * Results 
 
     SSID record
+

@@ -9,20 +9,28 @@ The UAV/Drone phy defines extra endpoints for matching UAVs based on manufacture
 
 ## UAV manufacturers
 
-* URL \\
-        /phy/phyuav/manuf_matchers.json
+* URL
 
-* Methods \\
-        `GET` `POST`
+    /phy/phyuav/manuf_matchers.json
+
+    /phy/phyuav/manuf_matchers.ekjson
+
+    /phy/phyuav/manuf_matchers.itjson
+
+* Methods
+
+    `GET` `POST`
 
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        Array of manufacturer match records
+    | Key    | Description                                                                             |
+    | ---    | -----------                                                                             |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Result
+
+    Array of manufacturer match records
 

@@ -18,6 +18,10 @@ Datasource types are defined by the Kismet server code and any plugins loaded.  
 
     /datasource/types.json
 
+    /datasource/types.ekjson
+
+    /datasource/types.itjson
+
 * Methods
 
     `GET`
@@ -85,7 +89,9 @@ A *datasource* is a Kismet capture source which provides data.  An *interface* i
 * URL
 
     /datasource/list_interfaces.json
+
     /datasource/list_interfaces.ekjson
+
     /datasource/list_interfaces.itjson
 
 * Methods
@@ -119,6 +125,7 @@ Datasources may be dynamically added at runtime.  New data sources require a ful
 * Result
 
     `HTTP 200` is returned *when the source is successfully added*.  A source *may be added which cannot be activated* if the definition is incorrect or the interface is not available.
+
     HTTP error is returned if the source could not be added.
 
 * Notes
@@ -158,11 +165,13 @@ Datasource channel configurations be configured to automatically hop over a list
 * Results
 
     `HTTP 200` is returned if the channel set command succeeded.  Individual channels may not be tunable by the source.
+
     HTTP error is returned if the channel set command is not successful.
 
 * Notes 
 
     This API will block until the source channel configuration is complete.  This may be up to several seconds but typically is instant.
+
     The exact behavior of the source depends on the provided parameters:
         * If the `channel` option is present, `hoprate`, `channels`, and `shuffle` will be ignored if present.  The source will be locked to the single provided channel.
         * If the `channels` option is present, `hoprate`, `channels`, and `shuffle` are optional.  If they are not provided, the current values in the source are used.
@@ -171,8 +180,11 @@ Datasource channel configurations be configured to automatically hop over a list
 * Examples
 
     `{'channel': "6HT40"}` will lock to Wi-Fi channel 6, HT40+ mode
+
     `{'channels': ["1", "2", "6HT40+", "6HT40-"]}` will change the channel hopping list but retain the hopping rate and shuffle
+
     `{'channels': ["1", "2", "3", "4", "5"], 'hoprate': 1}` will change the channel hopping rate to once per second over the given list
+
     `{'hoprate': 5}` will set the hop rate to 5 channels per second, using the existing channels list in the datasource 
 
 ## Set channel hopping
@@ -200,6 +212,7 @@ Turn on channel hopping for the specified source, without altering the channel p
 * Results
 
     `HTTP 200` on success
+
     HTTP error if unable to set hopping
 
 ## Closing sources
@@ -209,6 +222,7 @@ Sources can be closed and will no longer be processed.  A source will remain clo
 * URL
 
     /datasource/by-uuid/*[UUID]*/close_source.cmd 
+
     /datasource/by-uuid/*[UUID]*/disable_source.cmd
 
 * Methods
@@ -224,6 +238,7 @@ Sources can be closed and will no longer be processed.  A source will remain clo
 * Results
 
     `HTTP 200` is returned if the source is successfully stopped
+
     HTTP error is returned if the source could not be stopped
 
 ## Opening closed sources
@@ -233,6 +248,7 @@ Closed sources can be re-opened.  Re-opening a source uses the existing source d
 * URL
 
     /datasource/by-uuid/*[UUID]*/open_source.cmd
+
     /datasource/by-uuid/*[UUID]*/enable_source.cmd
 
 * Methods
@@ -248,6 +264,7 @@ Closed sources can be re-opened.  Re-opening a source uses the existing source d
 * Results
 
     `HTTP 200` is returned if the open command succeeds.  The source may still encounter errors.
+
     HTTP error is returned if the source could not be opened.
 
 ## Pausing sources
@@ -271,6 +288,7 @@ Paused sources are not closed, but packets received from them will be discard.  
 * Results
 
     `HTTP 200` is returned if the pause command succeeds.
+
     HTTP error is returned if the source could not be paused.
 
 ## Resuming sources
@@ -294,5 +312,6 @@ A paused source can be resumed; upon resumption, new packets will be processed f
 * Results
 
     `HTTP 200` is returned if the resume command succeeds.
+
     HTTP error is returned if the source could not be resumed.
 

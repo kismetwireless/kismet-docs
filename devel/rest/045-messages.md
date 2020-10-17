@@ -13,7 +13,9 @@ Kismet uses an internal `messagebus` system for communicating text messages from
 * URL
 
     /messagebus/all_messages.json
+
     /messagebus/all_messages.ekjson
+
     /messagebus/all_messages.itjson
 
 * Method
@@ -29,7 +31,9 @@ Kismet uses an internal `messagebus` system for communicating text messages from
 * URL 
 
     /messagebus/last-time/*[TIMESTAMP]*/messages.json
+
     /messagebus/last-time/*[TIMESTAMP]*/messages.ekjson
+
     /messagebus/last-time/*[TIMESTAMP]*/messages.itjson
 
 * Method 

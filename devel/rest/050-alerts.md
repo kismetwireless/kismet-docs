@@ -14,7 +14,9 @@ Kismet exposes the full alert system configuration, including currently supporte
 * URL
 
     /alerts/definitions.json
+
     /alerts/definitions.ekjson
+
     /alerts/definitions.itjson
 
 * Methods
@@ -32,7 +34,9 @@ Kismet retains the past *N* alerts, as defined in `kismet_alert.conf`.  By defau
 * URL 
 
     /alerts/all_alerts.json
+
     /alerts/all_alerts.ekjson
+
     /alerts/all_alerts.itjson
 
 * Methods
@@ -50,7 +54,9 @@ Alerts can be fetched by timestamp, returning only new alerts.  This API takes a
 * URL
 
     /alerts/last-time/*[TIMESTAMP.UTIMESTAMP]*/alerts.json
+
     /alerts/last-time/*[TIMESTAMP.UTIMESTAMP]*/alerts.ekjson
+
     /alerts/last-time/*[TIMESTAMP.UTIMESTAMP]*/alerts.itjson
 
 * Methods
@@ -118,6 +124,7 @@ New alerts can be defined runtime, and triggered by external tools via the REST 
 * Results
 
     `HTTP 200` on success 
+
     HTTP error on failure
 
 ## Raising alerts
@@ -149,5 +156,6 @@ Alerts can be triggered by external tools; the alert must be defined, first.
 * Result
 
     `HTTP 200` on success
+
     HTTP error on failure
 

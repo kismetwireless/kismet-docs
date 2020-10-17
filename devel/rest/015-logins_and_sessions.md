@@ -33,6 +33,7 @@ External tools (and UI implementations) can check if the initial password has be
 * Result
 
     `HTTP 200` is returned if the initial setup has been completed.
+
     `HTTP 406` NOT ACCEPTABLE is returned if the credentials are hard-coded into the global configuration.  
 
     HTTP error is returned if the initial setup has not been completed and the user is required to set a password.
@@ -95,6 +96,7 @@ Login data may be provided; if the session is not valid, and valid login data is
 * Result
 
     `HTTP 200` is returned if the session is valid.
+
     HTTP error returned if session is *not* valid and supplied login data, if any, is not valid.
 
 ### Checking logins
@@ -114,5 +116,6 @@ Session cookies will be ignored while checking logins.
 * Result
 
     `HTTP 200` is returned if the login is valid.
+
     HTTP error returned if the login is not valid.
 

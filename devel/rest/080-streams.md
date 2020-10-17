@@ -14,7 +14,9 @@ Streams can be monitored and managed; a privileged user can close existing strea
 * URL
 
     /streams/all_streams.json
+
     /streams/all_streams.ekjson
+
     /streams/all_streams.itjson
 
 * Methods
@@ -66,5 +68,6 @@ Closing a stream cancels any data being transferred or stored.
 * Results
 
     `HTTP 200` on successful stream closure
+
     HTTP error on failure
 

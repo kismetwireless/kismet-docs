@@ -26,43 +26,49 @@ Reports can be cached and send in groups using the report endpoint; each report 
 
 A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest/commands/) holding an array of reports.  Virtual datasources for each new report are automatically created.
 
-* API added \
-    `2020-07`
+* URL 
 
-* URL \
     /phy/phybluetooth/scan/scan_report.cmd
 
-* Methods \
+* API added 
+
+    `2020-07`
+
+* Methods 
+
     `POST` 
 
-* POST parameters \
+* POST parameters 
+
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-    | Key | Description |
-    | --- | ----------- |
-    | reports | Array containing multiple report objects |
+    | Key         | Description                                                                      |
+    | ---         | -----------                                                                      |
+    | reports     | Array containing multiple report objects                                         |
     | source_name | A unique, consistent source name for the virtual datasource reporting this scan. |
     | source_uuid | A unique, consistent source UUID for the virtual datasource reporting this scan. |
 
     A report object should contain:
 
-    | Key | Description |
-    | --- | ----------- |
-    | timestamp | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
-    | btaddr | Bluetooth MAC address |
-    | name | (Optional) Advertised device name |
-    | devicetype | (Optional) Device type, if known |
-    | txpowerlevel | (Option) Device advertised powerlevel (Integer) |
-    | pathloss | (Optional) Path loss (Integer) |
-    | signal | (Optional) Signal, in dBm (Integer) |
-    | scan_data | (Optional) Binary scan data, as hex string |
-    | service_data | (Optional) Dictionary of service UUID to service scan data as hex strings |
-    | lat | (Optional) GPS latitude (Float) |
-    | lon | (Optional) GPS longitude (Float) |
-    | alt | (Optional) GPS altitude (Float) |
-    | speed | (Optional) GPS speed (Float) |
+    | Key          | Description                                                                                                                                                                                  |
+    | ---          | -----------                                                                                                                                                                                  |
+    | timestamp    | (Optional) Unix timestamp at second precision.  If no timestamp is provided, the time of this message is used.  Due to general lack of precision of scanning mode, timestamp is second only. |
+    | btaddr       | Bluetooth MAC address                                                                                                                                                                        |
+    | name         | (Optional) Advertised device name                                                                                                                                                            |
+    | devicetype   | (Optional) Device type, if known                                                                                                                                                             |
+    | txpowerlevel | (Option) Device advertised powerlevel (Integer)                                                                                                                                              |
+    | pathloss     | (Optional) Path loss (Integer)                                                                                                                                                               |
+    | signal       | (Optional) Signal, in dBm (Integer)                                                                                                                                                          |
+    | scan_data    | (Optional) Binary scan data, as hex string                                                                                                                                                   |
+    | service_data | (Optional) Dictionary of service UUID to service scan data as hex strings                                                                                                                    |
+    | lat          | (Optional) GPS latitude (Float)                                                                                                                                                              |
+    | lon          | (Optional) GPS longitude (Float)                                                                                                                                                             |
+    | alt          | (Optional) GPS altitude (Float)                                                                                                                                                              |
+    | speed        | (Optional) GPS speed (Float)                                                                                                                                                                 |
 
-* Results \
+* Results 
+
     `HTTP 200` on success
+
     HTTP error on failure
 

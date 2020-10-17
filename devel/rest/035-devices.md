@@ -45,8 +45,7 @@ The device summarization is best utilized when applying a view window via the `s
 
 * DEPRECATED
 
-    `2019-06`
-    While still available, this API has been deprecated in favor of the `all` device view.
+    `2019-06` While still available, this API has been deprecated in favor of the `all` device view.
 
 * Methods
 
@@ -410,6 +409,7 @@ Devices can have an arbitrary user-supplied name.
 * Results
 
     `HTTP 200` on success
+
     HTTP error on failure
 
 ## Editing - device tags
@@ -442,5 +442,6 @@ Devices contain a collection of arbitrary tags which are held in the `kismet.dev
 * Results 
 
     `HTTP 200` on success
+
     HTTP error on failure
 
