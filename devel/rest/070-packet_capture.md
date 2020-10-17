@@ -12,6 +12,7 @@ The pcap-ng format allows for multiple interfaces and linktypes to be stored in 
 The pcap-ng file can be post-processed with `tshark` or `wireshark` to strip it to a single interface if necessary.
 
 ## All packets
+
 Kismet can provide a live stream, in pcap-ng format, of all packets *since the time of this request* seen by Kismet from all datasources.
 
 To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](/docs/devel/webui_rest/kismetdb/).
@@ -19,7 +20,6 @@ To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](
 * URL
 
     /pcap/all_packets.pcapng
-
     /datasource/pcap/all_sources.pcapng
 
 * Methods
@@ -31,6 +31,7 @@ To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](
     A pcap-ng stream of packets which will stream indefinitely as packets are received.
 
 ## Packets by datasource
+
 The packet stream may be limited to packets captured by a single datasource, indicated by the datasource UUID.
 
 * URL
@@ -43,8 +44,8 @@ The packet stream may be limited to packets captured by a single datasource, ind
 
 * URL parameters:
 
-    | Key | Description |
-    | --- | ----------- |
+    | Key      | Description     |
+    | ---      | -----------     |
     | *[UUID]* | Datasource UUID |
 
 * Results
@@ -52,6 +53,7 @@ The packet stream may be limited to packets captured by a single datasource, ind
     A pcap-ng stream of packets which will stream indefinitely as packets are received.
 
 ## Packets by device
+
 The packet stream may be limited to packets captured and associated with a specific device by Kismet, indicated by the Kismet device key.
 
 * URL
@@ -64,9 +66,9 @@ The packet stream may be limited to packets captured and associated with a speci
 
 * URL parameters:
 
-    | Key | Description |
-    | --- | ----------- |
-    | *[KEY]* | Device key |
+    | Key     | Description |
+    | ---     | ----------- |
+    | *[KEY]* | Device key  |
 
 * Results
 

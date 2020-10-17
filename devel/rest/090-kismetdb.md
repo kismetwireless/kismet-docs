@@ -15,10 +15,11 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
 ### Filter options
 
 1. Time window
+
    Packets can be selected by a time window which may either be closed (both start and end times specified) or open (only start or end time specified).
 
-   | Key             | Type   | Description                                                  |
-   | --------------- | ------ | ------------------------------------------------------------ |
+   | Key             | Type   | Description                                                      |
+   | --------------- | ------ | ------------------------------------------------------------     |
    | timestamp_start | double | Posix timestamp as double-precision value (seconds.microseconds) |
    | timestamp_end   | double | Posix timestamp as double-precision value (seconds.microseconds) |
 
@@ -49,9 +50,9 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
 
    Match only packets on the given frequency, if frequency information is available from the data source.  Data sources which cannot report frequency will report as `0`.
 
-   | Key       | Type   | Description      |
-   | --------- | ------ | ---------------- |
-   | frequency | double | Frequency in KHz |
+   | Key           | Type   | Description              |
+   | ---------     | ------ | ----------------         |
+   | frequency     | double | Frequency in KHz         |
    | frequency_min | double | Minimum frequency in KHz |
    | frequency_max | double | Maximum frequency in KHz |
 
@@ -65,6 +66,7 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
    | signal_max | int  | Maximum signsl (in dBm) |
 
 8. Device addresses
+
    Limit matching by decoded device address, if available.  Not all capture phys report device addresses as MAC addresses, however the majority do.
 
    | Key            | Type     | Description                                    |
@@ -74,6 +76,7 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
    | address_trans  | text MAC | Transmitter MAC address (such as the AP BSSID) |
 
 9. Location window
+
    Limit matching by location.  Location windows should always be bounded rectangles of minimum and maximum coordinates.  Coordinates are in decimal floating-point format (LL.LLLLL) and will be converted to the normalized non-floating internal values automatically.
 
    | Key              | Type   | Description              |
@@ -101,60 +104,73 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
    | limit    | int  | Maximum results to return     |
 
 ## Fetching historic packets
+
 Packets can be fetched from the `kismetdb`, for all packets stored in the current session `kismetdb` log.
 
-* URL \\
-        /logging/kismetdb/pcap/*[TITLE]*.pcapng \\
-        /logging/kismetdb/pcap/*[TITLE]*.pcapng?option1=...&option2=...
+* URL
 
-* API added \\
-        `2018-12`
+    /logging/kismetdb/pcap/*[TITLE]*.pcapng
+    /logging/kismetdb/pcap/*[TITLE]*.pcapng?option1=...&option2=...
 
-* Methods \\
-        `GET` `POST` 
+* API added
+
+    `2018-12`
+
+* Methods
+
+    `GET` `POST` 
 
 * URL parameters
 
-| Key | Description |
-| --- | ----------- |
-| *[TITLE]*  | File download title, does not impact pcap file generation. |
+    | Key       | Description                                                |
+    | ---       | -----------                                                |
+    | *[TITLE]* | File download title, does not impact pcap file generation. |
 
-Additionally, when using the `GET` URI, the [filter options](#filter-options) defined above are accepted as `HTTP GET` URL-encoded variables.
+    Additionally, when using the `GET` URI, the [filter options](#filter-options) defined above are accepted as `HTTP GET` URL-encoded variables.
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| filter | A dictionary of the [filter options](#filter-options) defined above |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 500` error if the `kismet` log type is not enabled. \\
-        A pcapng stream will be generated of packets, if any, matching the filter options.  This stream will be buffered at the rate that the client is able to download it, and the stream will be closed at the end of the query.
+    | Key    | Description                                                         |
+    | ---    | -----------                                                         |
+    | filter | A dictionary of the [filter options](#filter-options) defined above |
 
-* Notes \\
-        If the `kismet` log is not enabled, this endpoint will return an error.
+* Result
+
+    `HTTP 500` error if the `kismet` log type is not enabled.
+    A pcapng stream will be generated of packets, if any, matching the filter options.  This stream will be buffered at the rate that the client is able to download it, and the stream will be closed at the end of the query.
+
+* Notes
+
+    If the `kismet` log is not enabled, this endpoint will return an error.
 
 ## Dropping packets
+
 On very long-running Kismet processes, you may wish to purge old packets.  These packets will be removed from the kismetdb log.
 
-* URL \\
-        /logging/kismetdb/pcap/drop.cmd
+* URL
 
-* API added \\
-        `2018-12`
+    /logging/kismetdb/pcap/drop.cmd
 
-* Methods \\
-        `POST`
+* API added
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+    `2018-12`
 
-| Key | Description |
-| --- | ----------- |
-| drop_before | A unix second timestamp value, packets older than `drop_before` will be deleted. |
+* Methods
 
-* Result \\
-    `HTTP 200` on success \\
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key         | Description                                                                      |
+    | ---         | -----------                                                                      |
+    | drop_before | A unix second timestamp value, packets older than `drop_before` will be deleted. |
+
+* Result
+
+    `HTTP 200` on success
     HTTP error on failure
 

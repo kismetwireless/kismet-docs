@@ -7,6 +7,7 @@ excerpt: "Dynamically control filtering options to include or exclude devices an
 ---
 
 ## Packet filters
+
 Packet filtering is used by Kismet to limit the packets in some fashion; typically to restrict the packets being logged, returned in packet streams, and similar functions.
 
 The packet filtering system, like [device views](/docs/devel/webui_rest/device_views), functions as a common layer which is mapped by different components.
@@ -21,57 +22,67 @@ Packets which do not match any filter terms are handled by the filter `default` 
 
 The filter engine recognizes several terms when setting filtering:  `true`, `reject`, `deny`, `filter`, and `block` are equivalent terms for telling the filter to exclude a match.  `false`, `allow`, `pass`, and `accept` are equivalent terms for allowing a packet to pass a filter and be allowed.
 
-
 ## Common packet filter status
-* URL \\
-        /filters/packet/*[FILTERID]*/filter.json
 
-* Methods \\
-`GET` `POST`
+* URL 
+
+    /filters/packet/*[FILTERID]*/filter.json
+
+* Methods
+
+    `GET` `POST`
 
 * URL parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
+    | Key          | Description         |
+    | ------       | -----------         |
     | *[FILTERID]* | Filter ID to modify |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
+    | Key    | Description                                                                             |
+    | ---    | -----------                                                                             |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Result
+
 Dictionary of filter status, including description, default behavior, and type, optionally simplified.  Additionally, the filter results may contain the filter terms, depending on the type of filter (for instance, `mac_addr` filters contain the mac address filtering tables).
 
 ## Common packet filter defaults
-The default method is applied to all packets which do not match any terms in the filter.  
 
-* URL \\
-        /filters/packet/*[FILTERID]*/set_default.cmd
+The default method is applied to all packets which do not match any terms in the filter.
 
-* Methods \\
-        `POST`
+* URL
 
-* URL parameters \\
+    /filters/packet/*[FILTERID]*/set_default.cmd
 
-    | Key    | Description |
-    | ------ | ----------- |
+* Methods
+
+    `POST`
+
+* URL parameters
+
+    | Key          | Description         |
+    | ------       | -----------         |
     | *[FILTERID]* | Filter ID to modify |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| default  | String value of the default behavior of the filter (`reject` or `allow` for instance) |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key     | Description                                                                           |
+    | ---     | -----------                                                                           |
+    | default | String value of the default behavior of the filter (`reject` or `allow` for instance) |
+
+* Result
+
+    `HTTP 200` on success
+    HTTP error on failure
 
 ## MAC address packet filter blocks
+
 MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by MAC address.
 
 Address filters can be applied to:
@@ -84,65 +95,77 @@ Address filters can be applied to:
 Address filters are applied in the above order:  `source`, `destination`, `network`, `other`, `any`, `default`.  If an address is accepted by the `source` stage and would be rejected by the `destination` stage, the filter will *accept* the packet, as this is the first operation.
 
 ### Defining filters
+
 Filters can be added to any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
 
-* URL \\
-        /filters/packet/*[FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/set_filter.cmd
+* URL
 
-* Methods \\
-        `POST`
+    /filters/packet/*[FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/set_filter.cmd
+
+* Methods
+
+    `POST`
 
 * URL parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
-    | *[FILTERID]* | Filter ID to modify |
-    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
-    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any) |
+    | Key           | Description                                                             |
+    | ------        | -----------                                                             |
+    | *[FILTERID]*  | Filter ID to modify                                                     |
+    | *[PHYNAME]*   | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any)      |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| filter | Dictionary object where the MAC address is the key and a boolean filter term is the value.  These filters will be added to the block identified by *[BLOCKNAME]*. A value of `true` indicates the matching MAC address *will be blocked*, while a value of `false` indicates the matching MAC address *will be passed*.  [Masked MAC addresses](/docs/devel/webui_rest/keys_and_macs/) can be supplied for bulk matching. |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key    | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | ---    | -----------                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | filter | Dictionary object where the MAC address is the key and a boolean filter term is the value.  These filters will be added to the block identified by *[BLOCKNAME]*. A value of `true` indicates the matching MAC address *will be blocked*, while a value of `false` indicates the matching MAC address *will be passed*.  [Masked MAC addresses](/docs/devel/webui_rest/keys_and_macs/) can be supplied for bulk matching. |
 
-* Notes \\
-Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
+* Result
+
+    `HTTP 200` on success
+    HTTP error on failure
+
+* Notes
+
+    Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
 
 ### Removing filters
+
 Filters can be removed from any of the filter blocks; `source`, `destination`, `network`, `other`, or `any`.
 
-* URL \\
-        /filters/packet/[*FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/remove_filter.cmd
+* URL
 
-* Methods \\
-        `POST`
+    /filters/packet/[*FILTERID]*/*[PHYNAME]*/*[BLOCKNAME]*/remove_filter.cmd
+
+* Methods
+
+    `POST`
 
 * URL parameters 
 
-    | Key    | Description |
-    | ------ | ----------- |
-    | *[FILTERID]* | Filter ID to modify |
-    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
-    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any) |
+    | Key           | Description                                                             |
+    | ------        | -----------                                                             |
+    | *[FILTERID]*  | Filter ID to modify                                                     |
+    | *[PHYNAME]*   | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | *[BLOCKNAME]* | Name of filter block (source, destination, network, other, or any)      |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*. |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key       | Description                                                                                                              |
+    | ---       | -----------                                                                                                              |
+    | addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*. |
+
+* Result
+
+    `HTTP 200` on success
+    HTTP error on failure
 
 ## Class filters
+
 Class-based filtering is used by Kismet to limit logging events, devices, or other non-packet options.
 
 The class filtering system, like [device views](/docs/devel/webui_rest/device_views), functions as a common layer which is mapped by different components.
@@ -158,113 +181,132 @@ Objects which do not match any filter terms are handled by the filter `default` 
 The filter engine recognizes several terms when setting filtering:  `true`, `reject`, `deny`, `filter`, and `block` are equivalent terms for telling the filter to exclude a match.  `false`, `allow`, `pass`, and `accept` are equivalent terms for allowing an object to pass a filter and be allowed.
 
 ## Common class filter status
-* URL \\
-        /filters/class/*[FILTERID]*/filter.json
 
-* Methods \\
-`GET` `POST`
+* URL 
+
+    /filters/class/*[FILTERID]*/filter.json
+
+* Methods
+
+    `GET` `POST`
 
 * URL parameters 
 
-    | Key    | Description |
-    | ------ | ----------- |
+    | Key          | Description         |
+    | ------       | -----------         |
     | *[FILTERID]* | Filter ID to modify |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| fields  | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-Dictionary of filter status, including description, default behavior, and type, optionally simplified.  Additionally, the filter results may contain the filter terms, depending on the type of filter (for instance, `mac_addr` filters contain the mac address filtering tables).
+    | Key    | Description                                                                             |
+    | ---    | -----------                                                                             |
+    | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Result
+
+    Dictionary of filter status, including description, default behavior, and type, optionally simplified.  Additionally, the filter results may contain the filter terms, depending on the type of filter (for instance, `mac_addr` filters contain the mac address filtering tables).
 
 ## Common class filter defaults
-The default method is applied to all packets which do not match any terms in the filter.  
 
-* URL \\
-        /filters/class/*[FILTERID]*/set_default.cmd
+The default method is applied to all packets which do not match any terms in the filter.
 
-* Methods \\
-        `POST`
+* URL
+
+    /filters/class/*[FILTERID]*/set_default.cmd
+
+* Methods
+
+    `POST`
 
 * URL parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
+    | Key          | Description         |
+    | ------       | -----------         |
     | *[FILTERID]* | Filter ID to modify |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| default  | String value of the default behavior of the filter (`reject` or `allow` for instance) |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key     | Description                                                                           |
+    | ---     | -----------                                                                           |
+    | default | String value of the default behavior of the filter (`reject` or `allow` for instance) |
+
+* Result 
+
+    `HTTP 200` on success 
+    HTTP error on failure
 
 ## MAC address class filter blocks
+
 MAC address filters use the type `mac_filter`, and filter (perhaps obviously) by MAC address.
 
 Address filters apply to a single record, depending on the use of the filter.
 
 ### Defining filters
 
-* URL \\
-        /classfilters/*[FILTERID]*/*[PHYNAME]*/set_filter.json
+* URL
 
-* Methods \\
-        `POST`
+    /classfilters/*[FILTERID]*/*[PHYNAME]*/set_filter.json
+
+* Methods
+
+    `POST`
 
 * URL parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
-    | *[FILTERID]* | Filter ID to modify |
-    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | Key          | Description                                                             |
+    | ------       | -----------                                                             |
+    | *[FILTERID]* | Filter ID to modify                                                     |
+    | *[PHYNAME]*  | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| filter | Dictionary object where the MAC address is the key and a boolean filter term is the value.  These filters will be added to the block identified by *[BLOCKNAME]*. A value of `true` indicates the matching MAC address *will be blocked*, while a value of `false` indicates the matching MAC address *will be passed*.  [Masked MAC addresses](/docs/devel/webui_rest/keys_and_macs/) can be supplied for bulk matching. |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key    | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | ---    | -----------                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | filter | Dictionary object where the MAC address is the key and a boolean filter term is the value.  These filters will be added to the block identified by *[BLOCKNAME]*. A value of `true` indicates the matching MAC address *will be blocked*, while a value of `false` indicates the matching MAC address *will be passed*.  [Masked MAC addresses](/docs/devel/webui_rest/keys_and_macs/) can be supplied for bulk matching. |
 
-* Notes \\
-        Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches. \\
-        Phy names which do not exist at the time of the filter being defined will be matched if a compatible phy type is registered in the future.
-        
+* Result
+
+    `HTTP 200` on success
+    HTTP error on failure
+
+* Notes
+
+    Packets which do not match a filter term will be passed to the default behavior of the filter.  Setting a filter to `false` does *not remove the match*.  Use the *filter removal API* to remove matches.
+    Phy names which do not exist at the time of the filter being defined will be matched if a compatible phy type is registered in the future.
 
 ### Removing filters
 
-* URL \\
-        /classfilters/[*FILTERID]*/*[PHYNAME]*/remove_filter.json
+* URL
 
-* Methods \\
-        `POST`
+    /classfilters/[*FILTERID]*/*[PHYNAME]*/remove_filter.json
+
+* Methods 
+
+    `POST`
 
 * URL parameters
 
-    | Key    | Description |
-    | ------ | ----------- |
-    | *[FILTERID]* | Filter ID to modify |
-    | *[PHYNAME]* | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
+    | Key          | Description                                                             |
+    | ------       | -----------                                                             |
+    | *[FILTERID]* | Filter ID to modify                                                     |
+    | *[PHYNAME]*  | Name of PHY to apply filters to.  MAC address filters are PHY specific. |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*. |
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Result \\
-        `HTTP 200` on success \\
-        HTTP error on failure
+    | Key       | Description                                                                                                              |
+    | ---       | -----------                                                                                                              |
+    | addresses | Array of MAC addresses (or masked MAC addresses) to be removed from the target filter block identified by *[BLOCKNAME]*. |
+
+* Result
+
+    `HTTP 200` on success
+    HTTP error on failure
 

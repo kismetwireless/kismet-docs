@@ -8,71 +8,92 @@ excerpt: "View and control logging attributes live."
 Kismet uses a centralized logging architecture which manages enabling and tracking the status of logs.  The logging system integrates with the [streaming sytem](/docs/devel/webui_rest/streams/) for long-running log files.
 
 ## Log drivers
+
 Log drivers handle a specific type of logfile.
 
-* URL \\
-        /logging/drivers.json
+* URL
 
-* Methods \\
-        `GET`
+    /logging/drivers.json
+    /logging/drivers.ekjson
+    /logging/drivers.itjson
 
-* Result \\
-        Array of supported log types
+* Methods
+
+    `GET`
+
+* Result
+
+    Array of supported log types
 
 ## Active logs
+
 Not all drivers are activated depending on the Kismet config optins.
 
-* URL \\
-        /logging/active.json
+* URL 
 
-* Methods \\
-        `GET`
+    /logging/active.json
+    /logging/active.ekjson
+    /logging/active.itjson
 
-* Result \\
-        Array of activated logs.
+* Methods
+
+    `GET`
+
+* Result
+
+    Array of activated logs.
 
 ## Enabling logs
+
 Logs can be enabled run-time.
 
-* URL \\
-        /logging/by-class/*[LOGCLASS]*/start.cmd
+* URL
 
-* Methods \\
-        `GET` `POST`
+    /logging/by-class/*[LOGCLASS]*/start.cmd
+
+* Methods
+
+    `GET` `POST`
 
 * URL parameters
 
-| Key | Description |
-| --- | ----------- |
-| *[LOGCLASS]* | Kismet log class to enable |
+    | Key          | Description                |
+    | ---          | -----------                |
+    | *[LOGCLASS]* | Kismet log class to enable |
 
-* POST parameters \\
-A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+* POST parameters
 
-| Key | Description |
-| --- | ----------- |
-| title | Alternate log title, overriding the `kismet.conf` config for `log_title=`
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
 
-* Results \\
-        `HTTP 200` and log object for newly created log on success
-        HTTP error on failure
+    | Key   | Description                                                               |
+    | ---   | -----------                                                               |
+    | title | Alternate log title, overriding the `kismet.conf` config for `log_title=` |
+
+* Results
+
+    `HTTP 200` and log object for newly created log on success
+    HTTP error on failure
 
 ## Stopping logs
+
 Logs can be stopped run-time.  The log must be open and running to be stopped.
 
-* URL \\
-        /logging/by-uuid/*[LOGUUID]*/stop.cmd
+* URL
 
-* Methods \\
-        `GET`
+    /logging/by-uuid/*[LOGUUID]*/stop.cmd
+
+* Methods 
+
+    `GET`
 
 * URL parameters
 
-| Key | Description |
-| --- | ----------- |
-| *[LOGUUID]* | Kismet log UUID to stop |
+    | Key         | Description             |
+    | ---         | -----------             |
+    | *[LOGUUID]* | Kismet log UUID to stop |
 
-* Results \\
-        `HTTP 200` on success
-        HTTP error on failure
+* Results
+
+    `HTTP 200` on success
+    HTTP error on failure
 

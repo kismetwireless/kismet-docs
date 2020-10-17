@@ -9,12 +9,17 @@ Kismet plugins may be active C++ code (loaded as a plugin.so shared object file)
 
 ## Plugin list
 
-* URL \\
-        /plugins/all_plugins.json
+* URL
 
-* Methods \\
-        `GET`
+    /plugins/all_plugins.json
+    /plugins/all_plugins.ekjson
+    /plugins/all_plugins.itjson
 
-* Results \\
-        Returns array of activated plugins
+* Methods
+
+    `GET`
+
+* Results
+
+    Returns array of activated plugins
 

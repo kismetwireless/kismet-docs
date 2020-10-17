@@ -6,13 +6,17 @@ docgroup: "devel-rest"
 excerpt: "Observed channels and channel traffic API."
 ---
 
-## System status
-* URL \\
-        /channels/channels.json
+## Channels
 
-* Methods \\
-        `GET` 
+* URL
 
-* Result \\
-        Dictionary containing channel usage, device counts, and coverage data.
+    /channels/channels.json
+
+* Methods
+
+    `GET` 
+
+* Result
+
+    Dictionary containing channel usage, device counts, and coverage data.
 
