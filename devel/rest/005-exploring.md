@@ -92,3 +92,7 @@ While the `prettyjson` format is well suited for learning about Kismet and devel
 
 `prettyjson` should work with nearly all REST endpoints which return JSON records, but will *NOT* work with `ekjson`-only endpoints (which are relatively rare, and documented accordingly below in the REST docs).
 
+## Websockets
+
+*Added 2020-10* Kismet now supports websockets for long-running push-enabled communication.  These can be explored with a Javascript environment, a tool like `wosocat`, or with support libraries in your preferred language.
+

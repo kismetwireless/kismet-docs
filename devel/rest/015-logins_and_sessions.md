@@ -13,7 +13,38 @@ A session will automatically be created during authentication to any endpoint wh
 
 Logins may be manually validated against the `/session/check_session` endpoint if validating user-supplied credentials.
 
+### Providing logins
+
+Kismet accepts logins via HTTP Basic authentication, session cookie, and GET URI parameters.
+
+If the administrator username and password is provided via Basic auth or via get URI parameters, a session cookie is created (if one does not already exist) or found, and returned in the `KISMET` cookie parameter.
+
+*Added 2020-10* API-token-only consumers of the API should provide *ONLY* the API token given, and supply it in the `KISMET` cookie or URI parameter.
+
+### URI parameters
+
+Some mechanisms, such as websockets, do not commonly support HTTP Basic Auth or cookie passing, and must use URI parameters:
+
+| Key      | Value                             |
+| ---      | -----                             |
+| user     | Administrator username            |
+| password | Administrator password            |
+| KISMET   | Kismet session cookie / API token |
+
+The same rules apply to the user and password and session token login process - if a valid username and password is provided, it will return a session token in the set-cookie parameter for future logins.
+
+### Login roles
+
+*Added 2020-10* Kismet has begun adding login roles to support an API key style access method for future expansion and tools.
+
+An API token has a specific login role which it is permitted to access.
+
+Roles are not inherited; a role limits the API token to those roles.
+
+If a valid login is supplied, the session is assigned the role "LOGON", which has unrestricted access to all APIs.  Providing both a logon and a restricted session token will ignore the session token and apply the administrative role.
+
 ### First login
+
 The first time Kismet is started, the user must set a password.  Until the password is set, endpoints which require a login will be disabled and will return an error.
 
 External tools (and UI implementations) can check if the initial password has been set.  Typically this API should not be used unless you are implementing a new Kismet UI that needs to provision the first-use scenario.  If you wish to pre-configure a Kismet server username and login, refer to [the webserver configuration documentation](/docs/readme/webserver).
