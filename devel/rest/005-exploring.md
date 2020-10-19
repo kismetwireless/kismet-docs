@@ -51,12 +51,6 @@ $ curl -d 'json={"name": "JSONALERT", "description": "Dynamic alert added at run
 
 which passes the parameters in the `json=` variable, and the login and password in the URI (username:password in this example).
 
-### Basic Auth and Wget
-
-Kismet will return a `HTTP 401` error for unauthorized access, and accepts logins data via HTTP Basic Auth or the auth session cookie.
-
-Because Kismet interacts with the browser, it cannot set the standard `Www-Authenticate` header in the 401 response, as this would break the webui interaction; however, some tools, like Wget, will not select HTTP basic auth.  Other tools, like Curl, python3-requests, etc, allow setting HTTP basic auth directly.  Examples here will use `curl` for this reason.
-
 ### What do all the fields mean?
 
 More information about each field can be found in the `/system/tracked_fields.html` URI by visiting `http://username:password@localhost:2501/system/tracked_fields.html` in your browser.  This will show the field names, descriptions, and data types, for every known entity.

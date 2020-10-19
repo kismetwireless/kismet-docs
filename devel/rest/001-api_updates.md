@@ -16,9 +16,13 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * 802.11 handshake pcaps are now found on `/phy/phy80211/by-key/[key]/pcap/handshake.pcap` and `/phy/phy80211/by-key/[key]/pcap/handshake-pmkid.pcap`.  The original MAC-based filenames are passed with the `attachment; filename=...` header.
     * Per-uuid pcapng streams are now found at `/datasource/pcap/by-uuid/[uuid]/packets.pcapng`
     * Per-device pcapng streams are now found at `/devices/pcap/by-key/[key]/packets.pcapng`
-    * Phy80211 per-bssid pcap streams are nwo found at `/phy/phy80211/pcap/by-bssid/[mac]/packets.pcapng`
+    * Phy80211 per-bssid pcap streams are now found at `/phy/phy80211/pcap/by-bssid/[mac]/packets.pcapng`
 
-    Additionally, the API now uses `cmd` as the file extension for all commands, deprecating and removing the `jcmd` extension fully (which has not been a documented command extension for several releases already).
+    All REST endpoints in the API now use `cmd` as the file extension for all commands, deprecating and removing the `jcmd` extension fully (which has not been a documented command extension for several releases already).
+
+    `wget` is now supported by detection of the user-agent field; a full HTTP 401 and WWW-Authenticate header is sent to accommodate `wget` not sending basic-auth until it fails an auth check.
+
+    Websockets are now implemented in the Kismet webserver, with the Eventbus websocket being the largest user.
 
 * `2020-08` several maps made optional/dynamic
 
