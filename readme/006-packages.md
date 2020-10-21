@@ -132,44 +132,6 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 18.10 Cosmic (Intel)
-Ubuntu 18.10 Cosmic  (i386, amd64)
-
-### Release (beta and release versions)
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/cosmic cosmic main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
-### Nightly git
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
-## Ubuntu 19.04 Disco (Intel)
-Ubuntu 19.04 Disco  (i386, amd64)
-
-### Release (beta and release versions)
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/disco disco main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
-### Nightly git
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
 ## Ubuntu 20.04 Focal (Intel)
 Ubuntu 20.04 Focal  (amd64)
 
