@@ -24,7 +24,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
     If you installed Kismet using a package from your distribution, uninstall it the same way; if you compiled it yourself, be sure to remove it
 
-2. Install dependencies.  
+2. Install dependencies.
     
     Kismet needs a number of libraries and  development headers to compile; these should be available in nearly all distributions.
 
@@ -35,8 +35,8 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        ```
 
        On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
-   
-       For rtlsdr rtl_433 support, you will also need the rtl_433 tool from https://github.com/merbanan/rtl_433 if it is not otherwise provided by your distribution.
+
+       For RTLSDR rtl_433 support, you will also need the (rtl_433 tool)[https://github.com/merbanan/rtl_433] if it is not already a package in your distribution.
 
    * *Linux Fedora (and related)*
 
@@ -92,9 +92,9 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     ```
 
 4. Run configure.  
-
-    This will find all the specifics about your system and prepare Kismet for compiling.  If you have any missing dependencies or incompatible library versions, they will show up here.
     
+    This will find all the specifics about your system and prepare Kismet for compiling.  If you have any missing dependencies or incompatible library versions, they will show up here.
+
     ```bash
     $ cd kismet
     $ ./configure
@@ -111,8 +111,8 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     ```
 
     You can accelerate the process by adding `-j #`, depending on how many CPUs you have.  To automatically compile on all the available cores:
-    ```bash
 
+    ```bash
     $ make -j$(nproc)
     ```
 
@@ -147,6 +147,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     ```bash
     $ groups
     ```
+
     If you are not in the `kismet` group, you should log out entirely, or reboot.
 
 10.  You're now ready to run Kismet!  
