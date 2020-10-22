@@ -95,7 +95,12 @@ $ sudo apt install kismet
 ## Ubuntu 16.04 Xenial (Intel)
 Ubuntu 16.04 Xenial (i386, amd64)
 
-<b>Note</b>:  The Xenial version does not include packages for the Python-based capture sources (like rtl433, ADSB, AMR, or Freaklabs).  Xenial is missing some of the required Python3 tooling; you may be able to update and compile the required libraries yourself and then build Kismet from source.
+***Note***: The Xenial packages do not include support for all features, due to limitations in the packages available for Xenial.  You may be able to manually install newer versions of the required libraries and compile from source.
+
+The following are not available in the Xenial packages:
+* Python based datasources (rtl433, ADSB, AMR, Freaklabs)
+* Ubertooth datasource
+* Remote capture via websockets (server support is present, but datasources will not be able to export over remote capture)
 
 ### Release (beta and release versions)
 ```bash

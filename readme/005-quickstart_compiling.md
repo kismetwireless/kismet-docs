@@ -151,7 +151,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     If you are not in the `kismet` group, you should log out entirely, or reboot.
 
 10.  You're now ready to run Kismet!  
-
+    
     Check out the [quick-start guide for running Kismet](/docs/readme/starting_kismet/) for more information!
 
 
