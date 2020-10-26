@@ -121,6 +121,11 @@ $ sudo apt install kismet
 ## Ubuntu 18.04 Bionic (Intel)
 Ubuntu 18.04 Bionic (i386, amd64):
 
+***Note***: The Bionic packages do not include support for all features, due to limitations in the packages available for Bionic.  You may be able to manually install newer versions of the required libraries and compile from source.
+
+The following are not available in the Bionic packages:
+* Remote capture via websockets (server support is present, but datasources will not be able to export over remote capture)
+
 ### Release (beta and release versions)
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
