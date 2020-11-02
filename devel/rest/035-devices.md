@@ -471,7 +471,7 @@ These lists can be viewed real-time with the following:
 
     | Key      | Description                                                                |
     | ------   | -----------                                                                |
-    | *[TYPE]* | Alert type type to set or clear, must be one of 'found', 'lost', or 'both' |
+    | *[TYPE]* | Alert type to view, must be one of 'found', 'lost', or 'both' |
 
 * Results 
 
@@ -504,7 +504,7 @@ Devices can be added or removed from this list run-time:
 
     | Key      | Description                                                                |
     | ------   | -----------                                                                |
-    | *[TYPE]* | Alert type type to set or clear, must be one of 'found', 'lost', or 'both' |
+    | *[TYPE]* | Alert type to set or clear, must be one of 'found', 'lost', or 'both' |
 
 * POST parameters 
 
