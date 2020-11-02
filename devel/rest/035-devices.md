@@ -445,3 +445,81 @@ Devices contain a collection of arbitrary tags which are held in the `kismet.dev
 
     HTTP error on failure
 
+## Alerts - device presence / absence - viewing
+
+Kismet can raise an alert when a device (MAC address) is seen, or has been seen and is no longer present; this is controlled in `kismet_alerts.conf` by the `devicefound` and `devicelost` options.
+
+These lists can be viewed real-time with the following:
+
+* URL 
+
+    /devices/alerts/mac/*[type]*/list.json
+
+    /devices/alerts/mac/*[type]*/list.ekjson
+
+    /devices/alerts/mac/*[type]*/list.itjson
+
+* API added
+
+    `2020-11`
+
+* Methods
+
+    `GET`
+
+* URL Parameters
+
+    | Key      | Description                                                                |
+    | ------   | -----------                                                                |
+    | *[TYPE]* | Alert type type to set or clear, must be one of 'found', 'lost', or 'both' |
+
+* Results 
+
+    `HTTP 200` on success and an array of MAC address being monitored under the given type
+
+    HTTP error on failure
+
+
+## Alerts - device presence / absence - changing
+
+Kismet can raise an alert when a device (MAC address) is seen, or has been seen and is no longer present; this is controlled in `kismet_alerts.conf` by the `devicefound` and `devicelost` options.
+
+Devices can be added or removed from this list run-time:
+
+* URL 
+
+    /devices/alerts/mac/*[type]*/add.cmd
+
+    /devices/alerts/mac/*[type]*/remove.cmd
+
+* API added
+
+    `2020-11`
+
+* Methods
+
+    `POST`
+
+* URL Parameters
+
+    | Key      | Description                                                                |
+    | ------   | -----------                                                                |
+    | *[TYPE]* | Alert type type to set or clear, must be one of 'found', 'lost', or 'both' |
+
+* POST parameters 
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key  | Description                      |
+    | ---  | -----------                      |
+    | mac  | Single MAC address to modify     |
+    | macs | Array of MAC addresses to modify |
+
+    A single MAC, or array of MACs, or both, may be specified.  A MAC address must be provided in one of the options.
+
+* Results 
+
+    `HTTP 200` on success
+
+    HTTP error on failure
+

@@ -27,6 +27,10 @@ To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](
 
     `GET`
 
+* Roles
+
+    `logon`, `readonly`
+
 * Results
 
     A pcap-ng stream of packets which will stream indefinitely as packets are received.
@@ -49,6 +53,10 @@ The packet stream may be limited to packets captured by a single datasource, ind
     | ---      | -----------     |
     | *[UUID]* | Datasource UUID |
 
+* Roles
+
+    `logon`, `readonly`
+
 * Results
 
     A pcap-ng stream of packets which will stream indefinitely as packets are received.
@@ -70,6 +78,10 @@ The packet stream may be limited to packets captured and associated with a speci
     | Key     | Description |
     | ---     | ----------- |
     | *[KEY]* | Device key  |
+
+* Roles
+
+    `logon`, `readonly`
 
 * Results
 

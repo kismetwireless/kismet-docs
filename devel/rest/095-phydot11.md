@@ -28,6 +28,10 @@ The WPA handshake is vital for extracting the WPA key of an encrypted WPA or WPA
     | ---           | ----------                         |
     | *[DEVICEKEY]* | Kismet device key of target device |
 
+* Roles
+
+    `logon`, `readonly`
+
 * Result
 
     On success: PCAP file of WPA handshake packets associated with the device, as well as a beacon packet.
@@ -60,6 +64,10 @@ The WPA PMKID component of the handshake can be used to perform offline attacks 
     | ---          | -----------                        |
     | *[DEVICEKY]* | Kismet device key of target device |
 
+* Roles
+
+    `logon`, `readonly`
+
 * Result
 
     On success: PCAP file of RSN PMKID packet, and a beacon packet.
@@ -83,6 +91,10 @@ Kismet can provide a streaming pcap-ng log of all packets, from all interfaces, 
     | Key       | Description                 |
     | ---       | ----                        |
     | *[BSSID]* | BSSID retrieve packets from |
+
+* Roles
+
+    `logon`, `readonly`
 
 * Results
 
@@ -117,6 +129,10 @@ Kismet tracks client association with access points.  This information is availa
     | Key    | Description                                                                             |
     | ---    | -----------                                                                             |
     | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Roles
+
+    `logon`, `readonly`
 
 * Results
 
@@ -167,6 +183,10 @@ Kismet can provide a list of related devices.  Devices are related in 802.11 whe
     | Key    | Description                                                                             |
     | ---    | -----------                                                                             |
     | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+
+* Roles
+
+    `logon`, `readonly`
 
 * Results
 
