@@ -13,7 +13,7 @@ A session will automatically be created during authentication to any endpoint wh
 
 Logins may be manually validated against the `/session/check_session` endpoint if validating user-supplied credentials.
 
-### Providing logins
+## Providing logins
 
 Kismet accepts logins via HTTP Basic authentication, session cookie, and GET URI parameters.
 
@@ -21,7 +21,7 @@ If the administrator username and password is provided via Basic auth or via get
 
 *Added 2020-10* API-token-only consumers of the API should provide *ONLY* the API token given, and supply it in the `KISMET` cookie or URI parameter.
 
-### URI parameters
+## URI parameters
 
 Some mechanisms, such as websockets, do not commonly support HTTP Basic Auth or cookie passing, and must use URI parameters:
 
@@ -33,7 +33,7 @@ Some mechanisms, such as websockets, do not commonly support HTTP Basic Auth or 
 
 The same rules apply to the user and password and session token login process - if a valid username and password is provided, it will return a session token in the set-cookie parameter for future logins.
 
-### Login roles
+## Login roles
 
 *Added 2020-10* Kismet has begun adding login roles to support an API key style access method for future expansion and tools.
 
@@ -43,7 +43,7 @@ Roles are not inherited; a role limits the API token to those roles.
 
 If a valid login is supplied, the session is assigned the role "LOGON", which has unrestricted access to all APIs.  Providing both a logon and a restricted session token will ignore the session token and apply the administrative role.
 
-### First login
+## First login
 
 The first time Kismet is started, the user must set a password.  Until the password is set, endpoints which require a login will be disabled and will return an error.
 
@@ -73,7 +73,7 @@ External tools (and UI implementations) can check if the initial password has be
 
     If the password is set in the global Kismet configuration files, such as `kismet_httpd.conf` or `kismet_site.conf`, this API will not be available and will return an error.
 
-### Setting the login
+## Setting the login
 
 The initial login must be set before the user can access any restricted endpoints.  This endpoint can also be used to set a new login.
 
@@ -110,7 +110,7 @@ The initial login must be set before the user can access any restricted endpoint
 
     If the password is set in the global Kismet configuration files, such as `kismet_httpd.conf` or `kismet_site.conf`, this API will not be available and will return an error.
 
-### Checking sessions
+## Checking sessions
 
 A script can check for a valid session and prompt the user to take action if a session is no longer valid.
 
@@ -130,7 +130,7 @@ Login data may be provided; if the session is not valid, and valid login data is
 
     HTTP error returned if session is *not* valid and supplied login data, if any, is not valid.
 
-### Checking logins
+## Checking logins
 
 A script may need to check for a valid login and prompt the user to take action if the login credentials are not valid.
 
@@ -149,4 +149,119 @@ Session cookies will be ignored while checking logins.
     `HTTP 200` is returned if the login is valid.
 
     HTTP error returned if the login is not valid.
+
+## API tokens and roles
+
+As of `2020-11`, Kismet supports the use of API tokens and roles to restrict the actions of sessions.  Predefined roles include:
+
+| Role       | Description                                                                                                      |
+| ----       | -----------                                                                                                      |
+| logon      | Main role with access to all endpoints.  Logins created via HTTP auth are automatically assigned the logon role. |
+| readonly   | Read-only role with access to endpoints which do not modify any devices, state, or configuration                 |
+| scanreport | Role able to submit device/network scan reports, via the Wi-Fi and Bluetooth scanning-mode API                   |
+| datasource | Role for remote capture websocket sources                                                                        |
+
+Roles are not inherited or cascading; for instance a `readonly` role does not have access to reporting scans or acting as remote datasources.  The only role with access to all endpoints is `logon`.
+
+## Listing API tokens
+
+* URL
+
+    /auth/apikey/list.json
+
+    /auth/apikey/list.ekjson
+
+    /auth/apikey/list.itjson
+
+* API Added
+
+    `2020-11`
+
+* Methods
+
+    `GET`
+
+* Notes
+
+    If `httpd_allow_auth_view` is not set to `true` in the Kismet configuration, the response will not include then HTTP auth token.
+
+* Results
+
+    `HTTP 200` on success and a JSON array of provisioned logins.
+
+    HTTP error on failure
+
+
+## Creating API tokens
+
+A new API token can be generated only if the `httpd_allow_auth_creation` option in the Kismet configuration is set to `true`.
+
+If `httpd_allow_auth_view` is not set to true, API tokens may only be viewed when they are created, or by inspecting the session JSON file on the filesystem.
+
+* URL
+
+    /auth/apikey/generate.cmd
+
+* API Added
+
+    `2020-11`
+
+* Methods
+
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key         | Description                                                                     |
+    | ----------- | ----------------------------------------                                        |
+    | name        | Name of API token, must be unique                                               |
+    | role        | Role for API token                                                              |
+    | duration    | Duration, in seconds, of API token validity.  May be `0` for a permanent token. |
+
+* Notes
+
+    `httpd_allow_auth_creation` must be set to true or this API will return an error condition.
+
+* Results
+
+    `HTTP 200` on success and a plain-text response of the new token
+
+    HTTP error on failure
+
+## Revoking API tokens
+
+An API token may be revoked only if the `httpd_allow_auth_creation` option in the Kismet configuration is set to `true`.
+
+* URL
+
+    /auth/apikey/revoke.cmd
+
+* API Added
+
+    `2020-11`
+
+* Methods
+
+    `POST`
+
+* POST parameters
+
+    A [command dictionary](/docs/devel/webui_rest/commands/) containing:
+
+    | Key         | Description                              |
+    | ----------- | ---------------------------------------- |
+    | name        | Name of API token to revoke              |
+
+* Notes
+
+    `httpd_allow_auth_creation` must be set to true or this API will return an error condition.
+
+* Results
+
+    `HTTP 200` on success
+
+    HTTP error on failure
+
 

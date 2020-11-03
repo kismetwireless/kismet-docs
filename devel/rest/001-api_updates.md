@@ -7,6 +7,15 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
+* `2020-11` more API work
+
+    2020-11 continues the development of the new internal APIs prior to a complete release of the 2020-10 based code. 
+
+    New endpoints:
+
+    * API auth token manipulation endpoints on `/auth/apikey/generate.cmd`, `/auth/apikey/revoke.cmd`, and `/auth/apikey/list.json`.
+    * Runtime changing of the devicefound/deviceleft alert list via `/devices/alerts/mac/[type]/add.cmd`, `/devices/alerts/mac/[type]/remove.cmd` and `/devices/alerts/mac/[type]/macs.json`
+
 * `2020-10` major internal changes, some API changes
 
     2020-10 introduces a complete rewrite of the internal webserver system, changing the core webserver library and rewriting how endpoints are processed and parsed.
