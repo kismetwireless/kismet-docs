@@ -13,6 +13,10 @@ The ADSB PHY defines a websocket endpoint for obtaining a live stream of ADSB da
 
     /phy/RTLADSB/beast.ws
 
+* API Added
+
+    `2020-11`
+
 * Methods
 
     `GET`
@@ -31,5 +35,35 @@ The ADSB PHY defines a websocket endpoint for obtaining a live stream of ADSB da
 
     ```bash
     $ websocat ws://user:password@kismet-server-ip/phy/RTLADSB/beast.ws | nc -l 12345
+    ```
+
+## ADSB raw hex websocket
+
+* URL
+
+    /phy/RTLADSB/raw.ws
+
+* API Added
+
+    `2020-11`
+
+* Methods
+
+    `GET`
+
+* Role
+
+    `readonly`
+
+* Result
+
+    Streaming websocket output of ADSB data in hex format which matches the output format of `dump1090 --raw`
+
+* Notes
+
+    This can be easily dumped to tools which process hex ADSB streams with the `websocat` tool, for example:
+
+    ```bash
+    $ websocat ws://user:password@kismet-server-ip/phy/RTLADSB/raw.ws | some_tool...
     ```
 
