@@ -52,6 +52,16 @@ source=wlan0
 source=wlan1:name=some_meaningful_name
 ```
 
+### Lockfiles
+
+Linux doesn't gracefully handle probing and creating multiple monitor mode VIFs at once.  To prevent this from happening, Kismet uses a lockfile in `/tmp/.kismet_cap_linux_wifi_interface_lock`;  The Linux capture tool uses this to ensure that only one Kismet process is creating a monitor mode interface at once.
+
+In some rare circumstances this file may be created with privileges that are not accessible from Kismet while running as suid-root; in these instances you will see an error opening an interface that it could not acquire the lock file.  Fixing these incidents should be as simple as a one-time removal of the file:
+
+```bash
+$ sudo rm /tmp/kismet_cap_linux_wifi_interface_lock
+```
+
 ### Supported Hardware
 
 Not all hardware and drivers support monitor mode, but the majority do.  Typically any driver shipped with the Linux kernel supports monitor mode, and does so in a standard way Kismet understands.  If a specific piece of hardware does not have a Linux driver yet, or does not have a standard driver with monitor mode support, Kismet will not be able to use it.
