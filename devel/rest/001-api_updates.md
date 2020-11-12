@@ -16,6 +16,12 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * API auth token manipulation endpoints on `/auth/apikey/generate.cmd`, `/auth/apikey/revoke.cmd`, and `/auth/apikey/list.json`.
     * Runtime changing of the devicefound/deviceleft alert list via `/devices/alerts/mac/[type]/add.cmd`, `/devices/alerts/mac/[type]/remove.cmd` and `/devices/alerts/mac/[type]/macs.json`
 
+    Changes to data:
+
+    * Locational data no longer includes the `avg_lat`, `avg_lon`, or `avg_alt` and related fields that the *raw* averages of location.  The average location *is still present* in average location object, this removal affects only the internal raw values which were exposed to serialization.
+
+    * Locational data no longer includes the `kismet.common.location.valid` field, as it was redundant - this data is contained in `kismet.common.location.fix` when the fix is >= 2.
+
 * `2020-10` major internal changes, some API changes
 
     2020-10 introduces a complete rewrite of the internal webserver system, changing the core webserver library and rewriting how endpoints are processed and parsed.
