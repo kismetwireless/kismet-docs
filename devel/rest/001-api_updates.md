@@ -22,6 +22,10 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 
     * Locational data no longer includes the `kismet.common.location.valid` field, as it was redundant - this data is contained in `kismet.common.location.fix` when the fix is >= 2.
 
+    * Location data no longer includes the 'history cloud', an attempt to provide a RRD-like history log; it used way too much RAM and was not used anywhere.
+
+    * Some locations (such as min/max/average) no longer track speed and heading, saving more ram
+
 * `2020-10` major internal changes, some API changes
 
     2020-10 introduces a complete rewrite of the internal webserver system, changing the core webserver library and rewriting how endpoints are processed and parsed.
