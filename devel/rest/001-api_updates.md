@@ -15,16 +15,20 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 
     * API auth token manipulation endpoints on `/auth/apikey/generate.cmd`, `/auth/apikey/revoke.cmd`, and `/auth/apikey/list.json`.
     * Runtime changing of the devicefound/deviceleft alert list via `/devices/alerts/mac/[type]/add.cmd`, `/devices/alerts/mac/[type]/remove.cmd` and `/devices/alerts/mac/[type]/macs.json`
+    * Live ADSB data in text/hex mode via `ws://.../phy/RTLADSB/raw.ws`, streams a text-based hex output of the ADSB data
+    * Live ADSB data in binary/beast mode via `ws://...phy/RTLADSB/beast.ws`, streams a binary beast-protocol ADSB dump
 
     Changes to data:
 
-    * Locational data no longer includes the `avg_lat`, `avg_lon`, or `avg_alt` and related fields that the *raw* averages of location.  The average location *is still present* in average location object, this removal affects only the internal raw values which were exposed to serialization.
+    * Locational data no longer includes the `avg_lat`, `avg_lon`, or `avg_alt` and related fields that held the *raw* averages of location.  The average location *is still present* in average location object, this removal affects only the internal raw values which were exposed to serialization.
 
     * Locational data no longer includes the `kismet.common.location.valid` field, as it was redundant - this data is contained in `kismet.common.location.fix` when the fix is >= 2.
 
     * Location data no longer includes the 'history cloud', an attempt to provide a RRD-like history log; it used way too much RAM and was not used anywhere.
 
     * Some locations (such as min/max/average) no longer track speed and heading, saving more ram
+
+    * Server UUID in device records is now a common shared field under the name `kismet.server.uuid`
 
 * `2020-10` major internal changes, some API changes
 
