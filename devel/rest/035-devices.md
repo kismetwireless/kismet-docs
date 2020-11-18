@@ -523,3 +523,77 @@ Devices can be added or removed from this list run-time:
 
     HTTP error on failure
 
+## Realtime device monitoring
+
+Devices can be monitored in realtime using the device monitor websocket connection.
+
+By subscribing to devices, or groups of devices, a client can receive a websocket push event of device data.  This data can be simplified by a standard field simplification system. 
+
+* URL 
+
+    /devices/monitor.ws
+
+* API added
+
+    `2020-11`
+
+* Methods
+
+    `WEBSOCKET` (HTTP Upgrade + Websocket handshake)
+
+* URI parameters
+
+    | Key      | Description                                                  |
+    | ---      | -----------                                                  |
+    | user     | Kismet administrative username, as HTTP URI-encoded variable |
+    | password | Kismet administrative password, as HTTP URI-encoded variable |
+    | KISMET   | Kismet auth cookie, as HTTP URI-encoded variable             |
+
+* Result
+
+    A websocket session with a subscription-model API
+
+    HTTP error on failure
+
+* Notes
+
+    Kismet websockets will accept authentication as HTTP basic auth headers, Kismet session token cookies, or HTTP URI-encoded GET parameters of the basic auth or session cookie.
+
+* Device monitoring API
+
+    The device monitoring subscription API accepts JSON data to monitor (or stop monitoring) a device, a rate at which to report the device, a unique ID for this monitoring subscription, and an optional [field simplification](/docs/devel/webui_rest/commands/#field-specifications).
+
+    Devices may be specified as a key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/)
+
+    The monitoring request ID should be a unique integer.  It has no meaning except to the subscriber, and is used to cancel a monitoring request without closing the websocket.
+
+* Subscription API
+
+    Multiple subscriptions can be made over time on a single websocket connection, so long as each request has a unique request ID.  Duplicate IDs will unsubscribe the previous monitoring command.
+
+    | Key | Description |
+    | --- | ----------- |
+    | monitor | Device identifier specified by key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/) |
+    | request | Unique integer request ID, supplied by the client |
+    | rate | Rate, in seconds, to push updates |
+    | fields | Optional Kismet [field simplification](/docs/devel/webui_rest/commands/#field-specifications). |
+
+* Removal API
+
+    To cease monitoring a device (or group of devices) without disconnecting the websocket, use the removal API.
+
+    | Key | Description |
+    | --- | ----------- |
+    | cancel | Unique identifier previously used to subscribe to requests |
+
+* Example request
+
+    ```bash
+    % websocat ws://user:pass@localhost:2501/devices/monitor.ws
+    {"monitor": "AA:BB:CC:00:00:00/FF:FF:FF:00:00:00", "request": 31337, "rate": 1, "fields": ["kismet.device.base.key", "kismet.device.base.last_time", "kismet.device.base.signal/kismet.common.signal.last_signal"]}
+
+    {"kismet.common.signal.last_signal": -77,"kismet.device.base.last_time": 1605736428,"kismet.device.base.key": "4202770D00000000_AABBCCDDEEFF"}
+    {"kismet.common.signal.last_signal": -81,"kismet.device.base.last_time": 1605736427,"kismet.device.base.key": "4202770D00000000_001122334455"}
+    {"kismet.common.signal.last_signal": -76,"kismet.device.base.last_time": 1605736428,"kismet.device.base.key": "4202770D00000000_FFAABBDDCCEE"}
+    ```
+

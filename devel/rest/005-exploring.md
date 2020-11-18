@@ -51,6 +51,19 @@ $ curl -d 'json={"name": "JSONALERT", "description": "Dynamic alert added at run
 
 which passes the parameters in the `json=` variable, and the login and password in the URI (username:password in this example).
 
+### Exploring websockets
+
+Websockets are still a relatively new option in general, and are extremely new in Kismet.
+
+The easiest tool to interact with websockets for exploration is [websocat](https://github.com/vi/websocat) which gives a netcat-style interface to websockets.
+
+```bash
+dragorn@lithium ~ % websocat 'ws://host:2501/eventbus/events.ws?user=username&password=password'
+{"SUBSCRIBE": "TIMESTAMP"}
+{"TIMESTAMP": {"kismet.system.timestamp.usec": 671986,"kismet.system.timestamp.sec": 1603120458}}
+{"TIMESTAMP": {"kismet.system.timestamp.usec": 672945,"kismet.system.timestamp.sec": 1603120459}}
+```
+
 ### What do all the fields mean?
 
 More information about each field can be found in the `/system/tracked_fields.html` URI by visiting `http://username:password@localhost:2501/system/tracked_fields.html` in your browser.  This will show the field names, descriptions, and data types, for every known entity.

@@ -16,7 +16,9 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * API auth token manipulation endpoints on `/auth/apikey/generate.cmd`, `/auth/apikey/revoke.cmd`, and `/auth/apikey/list.json`.
     * Runtime changing of the devicefound/deviceleft alert list via `/devices/alerts/mac/[type]/add.cmd`, `/devices/alerts/mac/[type]/remove.cmd` and `/devices/alerts/mac/[type]/macs.json`
     * Live ADSB data in text/hex mode via `ws://.../phy/RTLADSB/raw.ws`, streams a text-based hex output of the ADSB data
-    * Live ADSB data in binary/beast mode via `ws://...phy/RTLADSB/beast.ws`, streams a binary beast-protocol ADSB dump
+    * Live ADSB data in binary/beast mode via `ws://.../phy/RTLADSB/beast.ws`, streams a binary beast-protocol ADSB dump
+
+    * Subscription-style live device monitoring websocket endpoint at `ws://.../devices/monitor.s`
 
     Changes to data:
 
