@@ -64,6 +64,12 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Invalid channels in 802.11k neighbor report frames can be used to exploit certain Broadcom HardMAC implementations, typically used in mobile devices, as described in [project zero 1289](https://bugs.chromium.org/p/project-zero/issues/detail?id=1289)
 
+* `BLEEDINGTOOTH`
+
+    Fingerprint
+
+    The [Bleedingtooth](https://github.com/google/security-research/security/advisories/GHSA-7mh3-gq28-gfrq) attack exploits vulnerabilities in the Linux Bluetooth stack which could lead to code execution.  It can be detected when using a BTLE-capable capture data source, such as the CC2501, NRF, and other drviers.
+
 * `BSSTIMESTAMP` 
 
 	Trend/Stateful
