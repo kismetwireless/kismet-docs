@@ -68,7 +68,7 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Fingerprint
 
-    The [Bleedingtooth](https://github.com/google/security-research/security/advisories/GHSA-7mh3-gq28-gfrq) attack exploits vulnerabilities in the Linux Bluetooth stack which could lead to code execution.  It can be detected when using a BTLE-capable capture data source, such as the CC2501, NRF, and other drviers.
+    The [Bleedingtooth](https://github.com/google/security-research/security/advisories/GHSA-7mh3-gq28-gfrq) attack exploits vulnerabilities in the Linux Bluetooth stack which could lead to code execution.  It can be detected when using a BTLE-capable capture data source, such as the CC2540, NRF, and similar.  It can not be detected in HCI scan mode or with a Wi-Fi datasource.
 
 * `BSSTIMESTAMP` 
 
