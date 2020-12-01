@@ -9,6 +9,8 @@ Kismet uses HTTP basic-auth to submit login information, and session cookies to 
 
 As of `2019-04-git`, all interaction with the Kismet server requires a login.
 
+As of `2020-10-git`, all endpoints on the Kismet server support a role:  All login sessions made with the admin username and password are granted the `admin` role.  The `admin` role has access to all endpoints.  Additional sessions may be set by creating API keys with an assigned role which restricts the available endpoints of the session.
+
 A session will automatically be created during authentication to any endpoint which requires login information, and returned in the `KISMET` session cookie.
 
 Logins may be manually validated against the `/session/check_session` endpoint if validating user-supplied credentials.
