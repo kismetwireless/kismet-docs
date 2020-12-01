@@ -22,6 +22,10 @@ The WPA handshake is vital for extracting the WPA key of an encrypted WPA or WPA
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * GET parameters
 
     | Key           | Description                        |
@@ -58,6 +62,10 @@ The WPA PMKID component of the handshake can be used to perform offline attacks 
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * GET parameters
 
     | Key          | Description                        |
@@ -85,6 +93,10 @@ Kismet can provide a streaming pcap-ng log of all packets, from all interfaces, 
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 
@@ -115,6 +127,10 @@ Kismet tracks client association with access points.  This information is availa
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 
@@ -165,6 +181,10 @@ Kismet can provide a list of related devices.  Devices are related in 802.11 whe
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * API added
 

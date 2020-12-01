@@ -27,9 +27,9 @@ To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](
 
     `GET`
 
-* Roles
+* Role
 
-    `logon`, `readonly`
+    `readonly`
 
 * Results
 
@@ -47,15 +47,15 @@ The packet stream may be limited to packets captured by a single datasource, ind
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * URL parameters:
 
     | Key      | Description     |
     | ---      | -----------     |
     | *[UUID]* | Datasource UUID |
-
-* Roles
-
-    `logon`, `readonly`
 
 * Results
 
@@ -73,15 +73,15 @@ The packet stream may be limited to packets captured and associated with a speci
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * URL parameters:
 
     | Key     | Description |
     | ---     | ----------- |
     | *[KEY]* | Device key  |
-
-* Roles
-
-    `logon`, `readonly`
 
 * Results
 

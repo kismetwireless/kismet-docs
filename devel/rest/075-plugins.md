@@ -21,6 +21,10 @@ Kismet plugins may be active C++ code (loaded as a plugin.so shared object file)
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Results
 
     Returns array of activated plugins

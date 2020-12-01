@@ -28,6 +28,10 @@ Eventbus topics are case-sensitive, and for topics which contain Kismet objects,
 
     `WEBSOCKET` (HTTP Upgrade + Websocket handshake)
 
+* Role
+
+    `readonly`
+
 * URI parameters
 
     | Key      | Description                                                  |

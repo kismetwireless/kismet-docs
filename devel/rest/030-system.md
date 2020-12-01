@@ -16,6 +16,10 @@ excerpt: "Basic system status and health reporting."
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
+
 * POST parameters
 
     | Key    | Description                                                                             |
@@ -36,6 +40,10 @@ excerpt: "Basic system status and health reporting."
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Dictionary of system timestamp as second, microsecond; can be used to synchronize timestamps and as a keep-alive check.
@@ -49,6 +57,10 @@ excerpt: "Basic system status and health reporting."
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * Result
 

@@ -38,6 +38,10 @@ A scanning mode report consists of a [command dictionary](/docs/devel/webui_rest
 
     `POST` 
 
+* Role
+
+    `scanreport`
+
 * POST parameters 
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:

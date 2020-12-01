@@ -23,6 +23,10 @@ Streams can be monitored and managed; a privileged user can close existing strea
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of active streams
@@ -36,6 +40,10 @@ Streams can be monitored and managed; a privileged user can close existing strea
 * Methods 
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * URL parameters 
 
@@ -58,6 +66,10 @@ Closing a stream cancels any data being transferred or stored.
 * Methods
 
     `GET`
+
+* Role
+
+    `admin`
 
 * URL parameters
 

@@ -32,6 +32,10 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
+
 * URL parameters
 
     | Key          | Description         |
@@ -61,6 +65,10 @@ The default method is applied to all packets which do not match any terms in the
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters
 
@@ -108,6 +116,10 @@ Filters can be added to any of the filter blocks; `source`, `destination`, `netw
 
     `POST`
 
+* Role
+
+    `admin`
+
 * URL parameters
 
     | Key           | Description                                                             |
@@ -145,6 +157,10 @@ Filters can be removed from any of the filter blocks; `source`, `destination`, `
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters 
 
@@ -194,6 +210,10 @@ The filter engine recognizes several terms when setting filtering:  `true`, `rej
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
+
 * URL parameters 
 
     | Key          | Description         |
@@ -223,6 +243,10 @@ The default method is applied to all packets which do not match any terms in the
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters
 
@@ -260,6 +284,10 @@ Address filters apply to a single record, depending on the use of the filter.
 
     `POST`
 
+* Role
+
+    `admin`
+
 * URL parameters
 
     | Key          | Description                                                             |
@@ -296,6 +324,10 @@ Address filters apply to a single record, depending on the use of the filter.
 * Methods 
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters
 

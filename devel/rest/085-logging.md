@@ -23,6 +23,10 @@ Log drivers handle a specific type of logfile.
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of supported log types
@@ -43,6 +47,10 @@ Not all drivers are activated depending on the Kismet config optins.
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of activated logs.
@@ -58,6 +66,10 @@ Logs can be enabled run-time.
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters
 
@@ -90,6 +102,10 @@ Logs can be stopped run-time.  The log must be open and running to be stopped.
 * Methods 
 
     `GET`
+
+* Role
+
+    `admin`
 
 * URL parameters
 

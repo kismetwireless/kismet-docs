@@ -41,7 +41,7 @@ An API token has a specific login role which it is permitted to access.
 
 Roles are not inherited; a role limits the API token to those roles.
 
-If a valid login is supplied, the session is assigned the role "LOGON", which has unrestricted access to all APIs.  Providing both a logon and a restricted session token will ignore the session token and apply the administrative role.
+If a valid login is supplied, the session is assigned the role `admin`, which has unrestricted access to all APIs.  Providing both the Kismet admin username and password, and a session token with lesser permissions, will ignore the session token and apply the administrative role.
 
 ## First login
 
@@ -60,6 +60,10 @@ External tools (and UI implementations) can check if the initial password has be
 * Methods
 
     `GET`
+
+* Role
+
+    n/a
 
 * Result
 
@@ -88,6 +92,10 @@ The initial login must be set before the user can access any restricted endpoint
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 
@@ -124,6 +132,10 @@ Login data may be provided; if the session is not valid, and valid login data is
 
     `GET`
 
+* Role
+
+    n/a
+
 * Result
 
     `HTTP 200` is returned if the session is valid.
@@ -144,6 +156,10 @@ Session cookies will be ignored while checking logins.
     
     `GET`
 
+* Role
+
+    n/a
+
 * Result
 
     `HTTP 200` is returned if the login is valid.
@@ -156,12 +172,12 @@ As of `2020-11`, Kismet supports the use of API tokens and roles to restrict the
 
 | Role       | Description                                                                                                      |
 | ----       | -----------                                                                                                      |
-| logon      | Main role with access to all endpoints.  Logins created via HTTP auth are automatically assigned the logon role. |
+| admin      | Main role with access to all endpoints.  Logins created via HTTP auth are automatically assigned the admin role. |
 | readonly   | Read-only role with access to endpoints which do not modify any devices, state, or configuration                 |
 | scanreport | Role able to submit device/network scan reports, via the Wi-Fi and Bluetooth scanning-mode API                   |
 | datasource | Role for remote capture websocket sources                                                                        |
 
-Roles are not inherited or cascading; for instance a `readonly` role does not have access to reporting scans or acting as remote datasources.  The only role with access to all endpoints is `logon`.
+Roles are not inherited or cascading; for instance a `readonly` role does not have access to reporting scans or acting as remote datasources.  The only role with access to all endpoints is `admin`.
 
 ## Listing API tokens
 
@@ -180,6 +196,10 @@ Roles are not inherited or cascading; for instance a `readonly` role does not ha
 * Methods
 
     `GET`
+
+* Role
+
+    `admin`
 
 * Notes
 
@@ -209,6 +229,10 @@ If `httpd_allow_auth_view` is not set to true, API tokens may only be viewed whe
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 
@@ -245,6 +269,10 @@ An API token may be revoked only if the `httpd_allow_auth_creation` option in th
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 

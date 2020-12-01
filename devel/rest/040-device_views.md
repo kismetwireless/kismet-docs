@@ -28,6 +28,10 @@ The view list shows all defined device views and a summary of the number of devi
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Results
 
     Array of device views and device counts per view.
@@ -45,6 +49,10 @@ The device summarization is best utilized when applying a view window via the `s
 * Methods
 
     `POST`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 
@@ -93,6 +101,10 @@ Mirroring the [Activity & timestamp](/docs/devel/webui_rest/devices/#activity--t
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 

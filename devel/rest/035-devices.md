@@ -51,6 +51,10 @@ The device summarization is best utilized when applying a view window via the `s
 
     `POST`
 
+* Role
+
+    `readonly`
+
 * POST parameters
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -92,6 +96,10 @@ This endpoint is most useful for extracting bulk data and passing it to another 
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
+
 * POST parameters
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -120,6 +128,10 @@ Fetch devices which have been active since the supplied timestamp.  This endpoin
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * URL parameters 
 
@@ -153,6 +165,10 @@ Fetch devices by the Kismet device key.
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
+
 * URL parameters 
 
     | Key           | Description                       |
@@ -185,6 +201,10 @@ This API will always return a vector of devices, even when only one device match
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * URL Parameters
 
@@ -225,6 +245,10 @@ The supplied MAC addresses can either be complete MACs (`aa:bb:cc:dd:ee:ff`), or
 
     `POST`
 
+* Role
+
+    `readonly`
+
 * POST parameters
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -253,6 +277,10 @@ If a supplied key is not found, no device will be returned for that key.
 * Methods 
 
     `POST`
+
+* Role
+
+    `readonly`
 
 * POST parameters 
 
@@ -286,6 +314,10 @@ If a supplied key is not found, no device will be returned for that key.
 * Methods
 
     `POST`
+
+* Role
+
+    `readonly`
 
 * POST parameters
 
@@ -337,6 +369,10 @@ A PHY handler in Kismet processes packets of a given physical layer; for instanc
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `readonly`
 
 * API added
 
@@ -392,6 +428,10 @@ Devices can have an arbitrary user-supplied name.
 
     `POST`
 
+* Role
+
+    `admin`
+
 * URL Parameters
 
     | Key           | Description           |
@@ -423,6 +463,10 @@ Devices contain a collection of arbitrary tags which are held in the `kismet.dev
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL Parameters
 
@@ -467,6 +511,10 @@ These lists can be viewed real-time with the following:
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * URL Parameters
 
     | Key      | Description                                                                |
@@ -499,6 +547,10 @@ Devices can be added or removed from this list run-time:
 * Methods
 
     `POST`
+
+* Role
+
+    `readonly`
 
 * URL Parameters
 
@@ -540,6 +592,10 @@ By subscribing to devices, or groups of devices, a client can receive a websocke
 * Methods
 
     `WEBSOCKET` (HTTP Upgrade + Websocket handshake)
+
+* Role
+
+    `readonly`
 
 * URI parameters
 

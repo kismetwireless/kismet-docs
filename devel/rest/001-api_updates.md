@@ -18,7 +18,7 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * Live ADSB data in text/hex mode via `ws://.../phy/RTLADSB/raw.ws`, streams a text-based hex output of the ADSB data
     * Live ADSB data in binary/beast mode via `ws://.../phy/RTLADSB/beast.ws`, streams a binary beast-protocol ADSB dump
 
-    * Subscription-style live device monitoring websocket endpoint at `ws://.../devices/monitor.s`
+    * Subscription-style live device monitoring websocket endpoint at `ws://.../devices/monitor.ws`
 
     Changes to data:
 
@@ -31,6 +31,8 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * Some locations (such as min/max/average) no longer track speed and heading, saving more ram
 
     * Server UUID in device records is now a common shared field under the name `kismet.server.uuid`
+
+    * Non-json command endpoints (mostly) now return text/plain
 
 * `2020-10` major internal changes, some API changes
 

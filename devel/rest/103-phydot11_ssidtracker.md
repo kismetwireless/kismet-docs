@@ -32,6 +32,10 @@ The SSID summarization is best utilized when applying a view window via the `sta
 
     `POST`
 
+* Role
+
+    `readonly`
+
 * POST parameters
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -73,6 +77,10 @@ Similar to the device details endpoint, a SSID details endpoint provides all the
 * Methods 
 
     `GET`, `POST`
+
+* Role
+
+    `readonly`
 
 * URL parameters 
 

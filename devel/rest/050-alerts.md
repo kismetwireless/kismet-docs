@@ -7,6 +7,8 @@ excerpt: "The alerts API allows for fetching raised alerts, defining new custom 
 ---
 Kismet alerts notify the user of critical Kismet events and wireless intrusion events.  Alerts are generated as messages (sent via [the messagebus](/docs/devel/webui_rest/messages/)) and as alert records.
 
+For real-time monitoring of alerts, see the [eventbus](/docs/devel/webui_rest/eventbus/).
+
 ## Alert configuration
 
 Kismet exposes the full alert system configuration, including currently supported alert types, full descriptions of alert content, and time and burst-rate delivery limiting.
@@ -22,6 +24,10 @@ Kismet exposes the full alert system configuration, including currently supporte
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * Result 
 
@@ -43,6 +49,10 @@ Kismet retains the past *N* alerts, as defined in `kismet_alert.conf`.  By defau
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of all currently stored alerts
@@ -62,6 +72,10 @@ Alerts can be fetched by timestamp, returning only new alerts.  This API takes a
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 
@@ -87,6 +101,10 @@ This endpoint returns the exact timestamp, with microsecond precision, of the re
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * URL parameters
 
     | Key                      | Description                                                                                                           |
@@ -108,6 +126,10 @@ New alerts can be defined runtime, and triggered by external tools via the REST 
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 
@@ -138,6 +160,10 @@ Alerts can be triggered by external tools; the alert must be defined, first.
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 

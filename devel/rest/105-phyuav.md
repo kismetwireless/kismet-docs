@@ -21,6 +21,9 @@ The UAV/Drone phy defines extra endpoints for matching UAVs based on manufacture
 
     `GET` `POST`
 
+* Role
+
+    `readonly`
 
 * POST parameters
 

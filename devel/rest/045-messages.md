@@ -8,6 +8,8 @@ excerpt: "Kismet exposes the console messages via the messagebus API."
 
 Kismet uses an internal `messagebus` system for communicating text messages from system components to the user.  The messagebus is used to pass error, state, and debug messages, as well as notifications to the user about detected devices, alerts, etc.
 
+For real-time message data, see the [eventbus](/docs/devel/webui_rest/eventbus/).
+
 ## All messages
 
 * URL
@@ -18,9 +20,13 @@ Kismet uses an internal `messagebus` system for communicating text messages from
 
     /messagebus/all_messages.itjson
 
-* Method
+* Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * Result
 
@@ -36,9 +42,13 @@ Kismet uses an internal `messagebus` system for communicating text messages from
 
     /messagebus/last-time/*[TIMESTAMP]*/messages.itjson
 
-* Method 
+* Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * URL parameters
 

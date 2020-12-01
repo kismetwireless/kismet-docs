@@ -26,6 +26,10 @@ Current configuration and status of the ssidscan module, including the target SS
 
     `POST` `GET`
 
+* Role
+
+    `readonly`
+
 * POST parameters 
 
     A [command dictionary](/docs/devel/webui_rest/commands/) containing:
@@ -55,6 +59,10 @@ Push new configuration options to the ssidscan module, overriding any configurat
 * Methods 
 
     `POST` 
+
+* Role
+
+    `admin`
 
 * POST parameters 
 

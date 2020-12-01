@@ -26,6 +26,10 @@ Datasource types are defined by the Kismet server code and any plugins loaded.  
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of all defined datasource types
@@ -41,6 +45,10 @@ Datasource defaults are defined in `kismet.conf` and include default hopping beh
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * Result
 
@@ -58,6 +66,10 @@ Datasource listings include the definition of the source, current operational st
 
     `GET`
 
+* Role
+
+    `readonly`
+
 * Result
 
     Array of active data sources and all current information.
@@ -71,6 +83,10 @@ Datasource listings include the definition of the source, current operational st
 * Methods
 
     `GET`
+
+* Role
+
+    `readonly`
 
 * URL parameters 
 
@@ -98,6 +114,10 @@ A *datasource* is a Kismet capture source which provides data.  An *interface* i
 
     `GET`
 
+* Role
+
+    `admin`
+
 * Result
 
     Array of auto-detected interfaces, currently attached datasources if any, and parameters.
@@ -113,6 +133,10 @@ Datasources may be dynamically added at runtime.  New data sources require a ful
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * POST parameters
 
@@ -144,6 +168,10 @@ Datasource channel configurations be configured to automatically hop over a list
 * Methods
 
     `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters 
 
@@ -199,6 +227,10 @@ Turn on channel hopping for the specified source, without altering the channel p
 
     `POST`
 
+* Role
+
+    `admin`
+
 * URL parameters 
 
     | Key      | Description |
@@ -229,6 +261,10 @@ Sources can be closed and will no longer be processed.  A source will remain clo
 
     `GET` `POST`
 
+* Role
+
+    `admin`
+
 * URL parameters 
 
     | Key      | Description |
@@ -255,6 +291,10 @@ Closed sources can be re-opened.  Re-opening a source uses the existing source d
 
     `GET` `POST`
 
+* Role
+
+    `admin`
+
 * URL parameters 
 
     | Key      | Description |
@@ -278,6 +318,10 @@ Paused sources are not closed, but packets received from them will be discard.  
 * Methods
 
     `GET` `POST`
+
+* Role
+
+    `admin`
 
 * URL parameters 
 
@@ -303,6 +347,10 @@ A paused source can be resumed; upon resumption, new packets will be processed f
 
     `GET`
 
+* Role
+
+    `admin`
+
 * URL parameters 
 
     | Key      | Description |
@@ -314,4 +362,32 @@ A paused source can be resumed; upon resumption, new packets will be processed f
     `HTTP 200` is returned if the resume command succeeds.
 
     HTTP error is returned if the source could not be resumed.
+
+## Remote capture websocket
+
+Kismet remote capture tools can connect to Kismet via a websocket.  Contained within the websocket is the standard [Kismet remote capture](/docs/devel/datasources/) protocol, including the remote capture handshake.
+
+* URL
+
+    /datasource/remote/remotesource.ws
+
+* API Added
+
+    `2020-10`
+
+* Methods
+
+    `WEBSOCKET`
+
+* Role
+
+    `datasource`
+
+* Result
+
+    Interactive websocket speaking the remote capture protocol.
+
+* Notes
+
+    This websocket is designed for use with Kismet remote capture tools, implemented by the [capframework](/docs/devel/datasources_capframework/) library or the KismetExternal python3 library.
 

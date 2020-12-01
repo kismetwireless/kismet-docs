@@ -20,6 +20,10 @@ excerpt: "Observed channels and channel traffic API."
 
     `GET` 
 
+* Role
+
+    `readonly`
+
 * Result
 
     Dictionary containing channel usage, device counts, and coverage data.
