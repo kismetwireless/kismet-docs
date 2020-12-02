@@ -105,7 +105,7 @@ The initial login must be set before the user can access any restricted endpoint
 
     | Key      | Description                                                                   |
     | ---      | -----------                                                                   |
-    | username | Optional, username for new login.  If not provided, will default to `kismet`. |
+    | username | Required, username for login.                                                 |
     | password | Required, new password.                                                       |
 
 * Results
