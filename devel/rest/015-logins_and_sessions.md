@@ -1,6 +1,7 @@
 ---
 title: "Logins and sessions"
 permalink: /docs/devel/webui_rest/logins/
+toc: true
 docgroup: "devel-rest"
 excerpt: "Kismet uses a standard login and session cookie system which is easily supported by most HTTP libraries."
 ---
