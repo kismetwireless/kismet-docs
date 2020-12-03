@@ -12,7 +12,6 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     This version introduces a complete rewrite of the internal webserver implementation, changing the core webserver library to Boost::Beast and rewriting how endpoints are processed and parsed.
 
     Changes to the REST API:
-
     * 802.11 handshake pcaps are now found on `/phy/phy80211/by-key/[key]/pcap/handshake.pcap` and `/phy/phy80211/by-key/[key]/pcap/handshake-pmkid.pcap`.  The original MAC-based filenames are passed with the `attachment; filename=...` header.
     * Per-uuid pcapng streams are now found at `/datasource/pcap/by-uuid/[uuid]/packets.pcapng`
     * Per-device pcapng streams are now found at `/devices/pcap/by-key/[key]/packets.pcapng`
@@ -26,7 +25,6 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * Authentication may be passed as `user`, `password`, or `KISMET` GET URL variables
 
     New endpoints:
-
     * Realtime message, alert, GPS, system status, and more via the [eventbus](/docs/devel/webui_rest/eventbus/) websocket at `/eventbus/events.ws`
     * [API auth token manipulation](/docs/devel/webui_rest/logins/#api-tokens-and-roles) endpoints on `/auth/apikey/generate.cmd`, `/auth/apikey/revoke.cmd`, and `/auth/apikey/list.json`.
     * Runtime [changing of the devicefound/deviceleft alert list](/docs/devel/webui_rest/devices/#alerts---device-presence--absence---changing) via `/devices/alerts/mac/[type]/add.cmd`, `/devices/alerts/mac/[type]/remove.cmd` and `/devices/alerts/mac/[type]/macs.json`
@@ -34,8 +32,8 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     * Live [ADSB data](/docs/devel/webui_rest/phyadsb/) in binary/beast mode via `ws://.../phy/RTLADSB/beast.ws`, streams a binary beast-protocol ADSB dump
     * Subscription-style [live device monitoring](/docs/devel/webui_rest/devices/#realtime-device-monitoring) websocket endpoint at `ws://.../devices/monitor.ws`
 
-    Changes to data:
 
+    Changes to data:
     * Locational data no longer includes the `avg_lat`, `avg_lon`, or `avg_alt` and related fields that held the *raw* averages of location.  The average location *is still present* in average location object, this removal affects only the internal raw values which were exposed to serialization.
     * Locational data no longer includes the `kismet.common.location.valid` field, as it was redundant - this data is contained in `kismet.common.location.fix` when the fix is >= 2.
     * Location data no longer includes the 'history cloud', an attempt to provide a RRD-like history log; it used way too much RAM and was not used anywhere.
@@ -49,7 +47,6 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
     To save RAM, several maps and vectors are now flagged as optional; if there is no content in those fields, they will not be present in the generated JSON.  Consumers should always check for presence of the map in the returned data before trying to use it.
 
     Fields made dynamic:
-
     * `kismet.device.base.tags`
     * `dot11.device/dot11.device.client_map`
     * `dot11.device/dot11.device.advertised_ssid_map`
