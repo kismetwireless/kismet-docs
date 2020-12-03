@@ -13,7 +13,7 @@ This may be subject to change as the HTTP interface evolves.
 Commands should always be sent using the `x-www-form-encoded` content type; if your API does not do this by default, you may need to specify:
 
 ```javascript
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Type: application/x-www-form-urlencoded
 ```
 
 as part of the requests you send.
