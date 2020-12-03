@@ -205,7 +205,7 @@ Roles are not inherited or cascading; for instance a `readonly` role does not ha
 
 * Notes
 
-    If `httpd_allow_auth_view` is not set to `true` in the Kismet configuration, the response will not include then HTTP auth token.
+    If `httpd_allow_auth_view` is not set to `true` in the Kismet configuration, the response will not include the HTTP auth token.
 
 * Results
 
