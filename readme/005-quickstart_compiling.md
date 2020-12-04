@@ -50,36 +50,22 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
        Most distributions will have equivalent packages.  If your distribution splits binary and development packages, make sure to install both if you're compiling.
 
-   * *OSX*
+   * *MacOS*
 
-       OSX requires the XCode toolchain from the Apple store.  Once installed, you will need to launch the XCode IDE at least once to accept the license; do so before using the command line tools.
+       MacOS requires the XCode toolchain from the Apple store.  Once installed, you will need to launch the XCode IDE at least once to accept the license; do so before using the command line tools.
 
-       You will need to install the `brew` tool from [brew.sh](https://brew.sh).  There are other package managers for OSX; feel free to use any of them which have the required packages, but Brew is known to work.
+       You will need to install the `brew` tool from [brew.sh](https://brew.sh).  There are of course other package managers for MacOS; feel free to use any of them which have the required packages, but Brew is known to work.
 
        Install the required packages via Brew:
 
        ```bash
-       % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb libwebsockets
+       % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb libwebsockets openssl
        ```
 
-       *2020-10* If you are using a Kismet *git version* from October 2020 or newer, you *do not need* libmicrohttpd.  However if you are attempting to compile *any Kismet release older than October 2020* you will need the following workaround for libmicrohttpd!
-
-       *OSX libmicrohttpd warning* Currently, the latest version of libmicrohttpd (0.9.71) which is included in Brew appears to have a significant stalling issue, which will prevent Kismet from working properly.  This can be worked around, temporarily, by switching to the 0.9.63 version.  Unfortunately to do this requires several steps due to limitations of the `brew` system which have been imposed in recent versions.  This will also need to install several additional libraries and tools needed to compile libmicrohttpd, as it will not be able to install from a precompiled bottle.
-
-       ```bash
-       % brew unlink libmicrohttpd
-       % git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow
-       % brew tap-new kismet/libmicrohttpd
-       % brew extract --version 0.9.63 libmicrohttpd kismet/libmicrohttpd
-       % brew install kismet/libmicrohttpd/libmicrohttpd@0.9.63
-       ```
-
-       Hopefully this workaround will not be needed in the future.
-
-       If you have *already built* Kismet with the 0.9.71 version of libmicrohttpd on OSX, you will have to recompile Kismet.
+       MacOS requires some additional flags during the `./configure` stage as well - be sure to read on in the configure section!
 
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
-    
+
     ```bash
     $ git clone https://www.kismetwireless.net/git/kismet.git
     ```
@@ -104,8 +90,22 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
    If you're compiling for a remote capture platform *only*, check the [remote capture docs](/docs/readme/datasources_remote_capture/) for more information.
 
+   On some platforms - such as MacOS - you may need to pass additional flags to `./configure`.
+
+   * MacOS and Brew
+
+       Brew does not copy the OpenSSL compilation headers during install, to prevent interfering with the version of OpenSSL provided with MacOS.  This will cause an error while building Kismet saying that `openssl/ssl.h` can not be found.
+
+       Fixing this is simple - you need to tell `./configure` where to find the OpenSSL libraries from Brew when running `./configure`:
+
+       ```bash
+       $ LDFLAGS="-L/usr/local/opt/opessl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure
+       ```
+
+       This may not be necessary with other package managers under MacOS.
+
 5. Compile Kismet.
-    
+
     ```bash
     $ make
     ```
@@ -117,6 +117,14 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     ```
 
     C++ uses quite a bit of RAM to compile, so depending on the RAM available on your system you may need to limit the number of processes you run simultaneously.
+
+    Sometimes, when updating the git repository, files have changed significantly enough that the Makefile system does not automatically recover fully.  If you encounter errors about missing header files (`foo.h not found` for example), try removing all `.d` files and running `make` again:
+
+    ```bash
+    $ rm *.d
+    ```
+
+    These files are used to identify which parts of the code need to be recompiled; rarely, when code is moved around, they get confused.
 
 6.  Install Kismet.  
 
@@ -136,7 +144,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
     This will add your current logged in user to the `kismet` group.
 
-    On OSX, Kismet is installed under the `staff` group, which the default user is part of.
+    On MacOS, Kismet is installed under the `staff` group, which the default user is part of.
 
 8.  Log out and back in.  
 
