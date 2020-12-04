@@ -7,7 +7,7 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
-* `git` - Major rewrites of HTTP and networking, memory optimizations
+* `2020-12-R1` - Major rewrites of HTTP and networking, memory optimizations
 
     This version introduces a complete rewrite of the internal webserver implementation, changing the core webserver library to Boost::Beast and rewriting how endpoints are processed and parsed.
 
