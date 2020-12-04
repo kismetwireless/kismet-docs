@@ -20,6 +20,8 @@ excerpt: "Basic system status and health reporting."
 
     `readonly`
 
+    Errata:  Incorrectly marked as `logon` in 2020-R1
+
 * POST parameters
 
     | Key    | Description                                                                             |
@@ -43,6 +45,8 @@ excerpt: "Basic system status and health reporting."
 * Role
 
     `readonly`
+
+    Errata:  Incorrectly marked as `logon` in 2020-R1
 
 * Result
 
