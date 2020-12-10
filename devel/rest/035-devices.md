@@ -497,11 +497,11 @@ These lists can be viewed real-time with the following:
 
 * URL 
 
-    /devices/alerts/mac/*[type]*/list.json
+    /devices/alerts/mac/*[type]*/macs.json
 
-    /devices/alerts/mac/*[type]*/list.ekjson
+    /devices/alerts/mac/*[type]*/macs.ekjson
 
-    /devices/alerts/mac/*[type]*/list.itjson
+    /devices/alerts/mac/*[type]*/macs.itjson
 
 * API added
 
