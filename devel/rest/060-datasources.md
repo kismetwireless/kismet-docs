@@ -186,7 +186,7 @@ Datasource channel configurations be configured to automatically hop over a list
     | Key      | Desc                                                                                                                                                                                        |
     | -------- | ----------------------------------------                                                                                                                                                    |
     | channel  | Single channel; This disables channel hopping and sets a specific channel.  Channel format depends on the source.                                                                           |
-    | hoprate  | Channel hopping speed, as channels per second.  For timing greater than a second, rate can be calculated with the formula `hoprate = 1 / (6 / N)` where N is the number of hops per minute. |
+    | rate  | Channel hopping speed, as channels per second.  For timing greater than a second, rate can be calculated with the formula `hoprate = 1 / (6 / N)` where N is the number of hops per minute. |
     | channels | The list of channel strings to use in hopping                                                                                                                                               |
     | shuffle  | Integer 0 or 1, treated as boolean, tells the source to shuffle the channel list                                                                                                            |
 
