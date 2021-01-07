@@ -619,9 +619,11 @@ By subscribing to devices, or groups of devices, a client can receive a websocke
 
     The device monitoring subscription API accepts JSON data to monitor (or stop monitoring) a device, a rate at which to report the device, a unique ID for this monitoring subscription, and an optional [field simplification](/docs/devel/webui_rest/commands/#field-specifications).
 
-    Devices may be specified as a key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/)
+    Devices may be specified as a key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/).  If the special value of `*` is passed for the `monitor` key, all devices will be returned, making this endpoint suitable for use as a logging subscription service.
 
     The monitoring request ID should be a unique integer.  It has no meaning except to the subscriber, and is used to cancel a monitoring request without closing the websocket.
+
+    Device records will be sent to the subscriber if they have been modified within the specified rate.  New subscribers will receive all matching device records.
 
 * Subscription API
 
@@ -629,10 +631,11 @@ By subscribing to devices, or groups of devices, a client can receive a websocke
 
     | Key | Description |
     | --- | ----------- |
-    | monitor | Device identifier specified by key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/) |
+    | monitor | Device identifier specified by key, MAC address, or group of MAC addresses with a masking value, as defined in [Keys and MAC addresses](/docs/devel/webui_rest/keys_and_macs/).  A value of `*` will return all devices. |
     | request | Unique integer request ID, supplied by the client |
     | rate | Rate, in seconds, to push updates |
     | fields | Optional Kismet [field simplification](/docs/devel/webui_rest/commands/#field-specifications). |
+    | format | Optional export format.  By default, `json` is used.  For connecting to ELK-style services, `ekjson` will apply the [ELK field name translations](/docs/devel/webui_rest/serialization/#ekjson) |
 
 * Removal API
 
