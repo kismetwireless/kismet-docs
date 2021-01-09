@@ -38,6 +38,8 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
        For RTLSDR rtl_433 support, you will also need the (rtl_433 tool)[https://github.com/merbanan/rtl_433] if it is not already a package in your distribution.
 
+       On some older distributions, `libwebsockets` may not be available as a modern version.  Kismet uses the libwebsockets async API which was introduced a year ago, but some distributions still may not provide it.  You can try to compile libwebsockets yourself, or you can disable libwebsockets in the Kismet build with `--disable-libwebsockets` in the configure stage below; this will remove the ability to send remote capture over websockets.
+
    * *Linux Fedora (and related)*
 
        ```bash
