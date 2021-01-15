@@ -32,7 +32,15 @@ or
 source=rtladsb-124334,name=SomeOtherRadio
 ```
 
-#### Rtl ADSB Source Parameters
+### Using multiple rtlsdr devices
+
+Every datasource in Kismet must have a unique identifier, the source UUID.  Kismet calculates this using the serial number of the rtlsdr device.
+
+Not all rtlsdr hardware supplies a valid serial number; often devices will report a serial number of "00000000".  This will not cause any problems for Kismet if it is the only rtlsdr device, however when using multiple rtlsdr radios either locally or via remote capture, each one must have a unique ID.
+
+A unique ID can be set using the `rtl_eeprom` tool to assign a proper serial number, or by using the `uuid=...` parameter on the Kismet source definition.  A unique UUID can be generated with the `genuuid` tool on most systems.
+
+### Rtl ADSB Source Parameters
 RTLADSB sources accept several additional options, in addition to the standard name, informational, and UUID options:
 
 * `biastee=true | false`

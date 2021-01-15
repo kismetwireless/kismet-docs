@@ -6,12 +6,8 @@ docgroup: "readme"
 toc: true
 ---
 
-## SDR
-SDR, or software-defined radio, uses special generic hardware to capture radio signals, and performs signal processing in software.
+## Datasource - SDR RTL433
 
-SDR is extremely powerful, but also often extremely brittle - configuring SDR hardware and software to work reliably can be quite difficult.  Kismet is able to use external SDR tools to interface with hardware and utilize some of the power of SDR.
-
-### Datasource - SDR RTL433
 The rtl-sdr radio is an extremely cheap USB SDR (software defined radio).  While very limited, it is still capable of performing some useful monitoring.
 
 Kismet is able to process data from the rtl_433 tool, which can read the broadcasts of a multitude of wireless thermometer, weather, electrical, tire pressure, and other sensors.
@@ -24,7 +20,7 @@ The rtl_433 tool can be downloaded from: https://github.com/merbanan/rtl_433 or 
 
 The Kismet rtl_433 interface uses librtlsdr, rtl_433, and Python; rtl433 sources will show up as normal Kismet sources using the rtl433-X naming.
 
-#### rtl433 devices
+### rtl433 devices
 
 Kismet identifies rtl433 hardware by either the serial number (if any) or by the radio position; for example:
 
@@ -49,7 +45,16 @@ Found 4 device(s):
   3:  NooElec, NESDR Nano 3, SN: 0572734167
 ```
 
-#### rtl433 parameters
+### Using multiple rtlsdr devices
+
+Every datasource in Kismet must have a unique identifier, the source UUID.  Kismet calculates this using the serial number of the rtlsdr device.
+
+Not all rtlsdr hardware supplies a valid serial number; often devices will report a serial number of "00000000".  This will not cause any problems for Kismet if it is the only rtlsdr device, however when using multiple rtlsdr radios either locally or via remote capture, each one must have a unique ID.
+
+A unique ID can be set using the `rtl_eeprom` tool to assign a proper serial number, or by using the `uuid=...` parameter on the Kismet source definition.  A unique UUID can be generated with the `genuuid` tool on most systems.
+
+### rtl433 parameters
+
 RTL433 sources accept several options in the source definition, in addition to the common name, informational, and UUID elements:
 
 * `channel=xyz`

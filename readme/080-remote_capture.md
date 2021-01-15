@@ -126,6 +126,16 @@ For security reasons, by default Kismet only accepts remote sensor connections f
 
    Remote capture *should only be enabled on interfaces on a protected LAN*.
 
+### Remote capture devices must be unique
+
+Every datasource in Kismet must have a unique identifier, the source UUID.  Kismet calculates this using the MAC address (when available) of the capture device, or on some source types, the serial number or other identifying information.
+
+Not all devices provide sufficient unique identifiable information; for instance the rtlsdr hardware often reports a serial number of "00000000".  This is not a problem when using a single device or capturing from a single remote capture, however if multiple remote capture devices advertise the same identity, problems occur.
+
+This can be solved with some devices by using a device-specific tool; for rtlsdr, the device serial number can be set using the `rtlsdr_eeprom` tool.  Remember - the serial number should be unique across *all* devices connecting to a Kismet server, not just on a single capture platform!
+
+Another option is to use the `uuid=` parameter in the source definition to set a unique, static UUID for each remote capture source.  A UUID can be generated via the `genuuid` tool on most platforms, and the only requirement is that it fits the standard UUID format and is unique.
+
 ### Additional remote capture options
 
 Kismet capture tools also support the following options:
