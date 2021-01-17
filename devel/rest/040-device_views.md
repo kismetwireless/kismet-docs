@@ -125,3 +125,47 @@ Mirroring the [Activity & timestamp](/docs/devel/webui_rest/devices/#activity--t
 
     Array of devices in view *VIEWID* with activity more recent than *TIMESTAMP* with optional field simplification.
 
+
+### Realtime device monitoring by view
+
+Mirroring the [Realtime device monitoring](/docs/devel/webui_rest/devices/#realtime-device-monitoring) API, provides a subscription-based realtime push API for monitoring devices within a view.
+
+By subscribing to devices, or groups of devices, a client can receive a websocket push event of device data.  This data can be simplified by a standard field simplification system. 
+
+* URL 
+
+    /devices/views/*[VIEWID]*/monitor.ws
+
+* API added
+
+    `2021-01`
+
+* Methods
+
+    `WEBSOCKET` (HTTP Upgrade + Websocket handshake)
+
+* Role
+
+    `readonly`
+
+* URI parameters
+
+    | Key           | Description                                                                  |
+    | ---           | -----------                                                                  |
+    | *[VIEWID]*    | Kismet view ID                                                               |
+    | user     | Kismet administrative username, as HTTP URI-encoded variable |
+    | password | Kismet administrative password, as HTTP URI-encoded variable |
+    | KISMET   | Kismet auth cookie, as HTTP URI-encoded variable             |
+
+* Result
+
+    A websocket session with a subscription-model API
+
+    HTTP error on failure
+
+* Notes
+
+    Kismet websockets will accept authentication as HTTP basic auth headers, Kismet session token cookies, or HTTP URI-encoded GET parameters of the basic auth or session cookie.
+
+    The subscription and result API is [identical to the device monitoring API](/docs/devel/webui_rest/devices/#realtime-device-monitoring) API
+
