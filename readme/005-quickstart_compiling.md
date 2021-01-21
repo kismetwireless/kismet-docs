@@ -148,9 +148,17 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
     On MacOS, Kismet is installed under the `staff` group, which the default user is part of.
 
-8.  Log out and back in.  
+8.  Reload your groups
 
-    Linux does not update groups until you log in; if you have just added yourself to the Kismet group you will have to re-log in.
+    Groups are not updated automatically; you will need to reload the groups for your user.
+
+    Either log back out and log in (or in extreme cases, reboot), or use the `newgrp` command if available:
+
+    ```bash
+    $ newgrp -
+    ```
+
+    Note that `newgrp` is *not* run via `sudo`.
 
 9.  Check that you are in the Kismet group with:
 
@@ -158,7 +166,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     $ groups
     ```
 
-    If you are not in the `kismet` group, you should log out entirely, or reboot.
+    If you are not in the `kismet` group, you should log out and log back in, or reboot - some session and desktop managers don't reload the groups on logout, either.
 
 10.  You're now ready to run Kismet!  
     
