@@ -16,6 +16,8 @@ Kismet has previously provided a remote packet capture API over TCP sockets on p
 
 As of 2020-10, Kismet now supports websockets and using a websocket endpoint in the standard Kismet webserver on port 2501.  
 
+To use websockets for remote capture, you need to be sure the capture tools are compiled with libwebsockets support.  Some older distributions have not updated libwebsockets and are too old for Kismet to use; remote capture is still possible with these distributions using the TCP mode (TCP mode does not support authentication or proxy, but can be protected via SSH tunnels or similar, more info below).
+
 Websockets add:
 
 * Single port

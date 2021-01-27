@@ -36,9 +36,11 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
        On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
 
-       For RTLSDR rtl_433 support, you will also need the (rtl_433 tool)[https://github.com/merbanan/rtl_433] if it is not already a package in your distribution.
+       For RTLSDR rtl_433 support, you will also need the [rtl_433 tool](https://github.com/merbanan/rtl_433) if it is not already a package in your distribution.
 
-       On some older distributions, `libwebsockets` may not be available as a modern version.  Kismet uses the libwebsockets async API which was introduced a year ago, but some distributions still may not provide it.  You can try to compile libwebsockets yourself, or you can disable libwebsockets in the Kismet build with `--disable-libwebsockets` in the configure stage below; this will remove the ability to send remote capture over websockets.
+       On some older distributions, `libwebsockets` may not be available as a modern version.  Kismet uses the libwebsockets async API which was introduced a year ago, but some distributions still may not provide it.  You can try to compile libwebsockets yourself, or you can disable libwebsockets in the Kismet build with `--disable-libwebsockets` in the configure stage below. 
+
+       Libwebsockets is used by the remote capture code; compiling without it will not remove websockets from the Kismet server, or prevent using websockets, but any remote capture code compiled without libwebsockets will only be able to use the legacy TCP connection mode.  If you're not planning to use remote capture nodes, none of this matters to you, and you can [get more info about remote capture here](/docs/readme/datasources_remote_capture).
 
    * *Linux Fedora (and related)*
 
