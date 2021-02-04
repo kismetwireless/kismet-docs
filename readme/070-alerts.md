@@ -234,6 +234,15 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Invalid RSN (802.11i) tags in beacon frames can be used to cause loops in some Atheros drivers, as described in CVE-2017-9714 and [pleasestopnamingvulnerabilities.com](https://pleasestopnamingvulnerabilities.com/)
 
+* `RTL8195VD1406`
+
+    Fingerprint
+
+    Added `2021-02-git`
+
+    A series of vulnerabilities in the RTL8195A Wi-Fi drivers can allow code execution without authentication, as described in CVA-2020-9395 and the [VDOO paper here](https://www.vdoo.com/blog/realtek-rtl8195a-vulnerabilities-discovered).  Over-sized EAPOL Key packets can be used to trigger overflows in the driver.
+
+
 * `RTLWIFIP2P`
 
     Fingerprint
