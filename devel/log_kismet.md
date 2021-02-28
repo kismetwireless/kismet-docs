@@ -182,7 +182,7 @@ Packets are stored in the raw, original capture format; in the case of Wi-Fi thi
 | destmac    |        *text* | MAC address of packet destination (if available)             |
 | transmac   |        *text* | MAC address of packet transmitter (if available)             |
 | frequency  |        *real* | Decimal frequency of packet, in KHz (if available)           |
-| devkey     |        *text* | Unique Kismet device key associated with this packet (if available) |
+| devkey     |        *text* | DEPRECATED.  This field is no longer used because packets are not a 1:1 relationship with devices, but the field is retained for schema compatibility. |
 | lat        | *real/double* | GPS latitude                           |
 | lon        | *real/double* | GPS longitude                          |
 | packet_len |     *integer* | Total packet length, in bytes                                |
