@@ -21,8 +21,6 @@ To access packets *previously seen* by Kismet, look at the [kismetdb endpoints](
 
     /pcap/all_packets.pcapng
 
-    /datasource/pcap/all_sources.pcapng
-
 * Methods
 
     `GET`
