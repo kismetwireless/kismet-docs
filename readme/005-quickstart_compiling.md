@@ -103,7 +103,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Fixing this is simple - you need to tell `./configure` where to find the OpenSSL libraries from Brew when running `./configure`:
 
        ```bash
-       $ LDFLAGS="-L/usr/local/opt/opessl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure
+       $ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure
        ```
 
        This may not be necessary with other package managers under MacOS.
