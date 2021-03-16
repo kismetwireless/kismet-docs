@@ -275,3 +275,9 @@ A custom pcap-ng Kismet GPS block would look like:
       +---------------------------------------------------------------+
 ```
 
+## Current implementation
+
+Currently, no tools exist to read the custom fields from the pcapng; any extraction of the data must be done with custom tools.
+
+Any tool capable of parsing pcap-ng files should be able to process a GPS tagged file without incident, but will not read the data.
+
