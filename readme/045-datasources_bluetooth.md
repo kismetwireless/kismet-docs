@@ -116,7 +116,7 @@ In this instance the first device is on `bus 001` and `device 008` and the secon
 $ kismet -c ticc2540-1-8
 ```
 
-Kismet will list available Ubertooth devices automatically in the datasources list.
+Kismet will list available TI CC2540 devices automatically in the datasources list.
 
 #### Supported Hardware
 
