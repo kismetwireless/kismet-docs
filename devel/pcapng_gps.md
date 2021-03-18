@@ -41,7 +41,7 @@ The Kismet GPS block consists of the following:
      |                  GPS Fields Presence Bitmask                  |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      /                            GPS Data                           /  
-     /              variable length, padded to 32 bits               /
+     /                         variable length                       /
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
 
@@ -53,9 +53,11 @@ The length field should be the length of the GPS data, as dictated by the option
 
 Available fields and sizes are noted below.
 
-The GPS data record must be padded to 32 bits to comply with the pcap-ng framing standards.
+The GPS data of the fields must conform to the length of the fields as specified in the field bitmask.
 
 Multi-byte values are encoded as the endian format of the pcap-ng file; parsers should detect this via the pcap-ng endian magic field and process accordingly.
+
+The total content of the GPS record will be padded to 32 bytes to comply with the pcap-ng options format requirements.
 
 ### GPS fields
 
