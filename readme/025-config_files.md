@@ -42,7 +42,11 @@ Kismet is primarily configured through a set of configuration text files.  By de
 
 ### Configuration Format
 
-Configuration files are plain text.  Lines beginning with a `#` are comments, and are ignored.
+Configuration files are plain text.  
+
+Any lines beginning with a `#` are comments, and are ignored.
+
+Typically, example or default values are provided in comments; to enable or change that option, uncomment the line and set it accordingly - or better yet, put it in your `kismet_site.conf` file, details below.
 
 Configuration options all take the form of:
    `option=value`
