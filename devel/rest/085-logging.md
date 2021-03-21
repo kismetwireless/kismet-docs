@@ -83,7 +83,7 @@ Logs can be enabled run-time.
 
     | Key   | Description                                                               |
     | ---   | -----------                                                               |
-    | title | Alternate log title, overriding the `kismet.conf` config for `log_title=` |
+    | title | Alternate log title, overriding the `kismet_logging.conf` config for `log_title=` |
 
 * Results
 
