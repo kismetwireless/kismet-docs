@@ -35,7 +35,7 @@ Kismet exposes the full alert system configuration, including currently supporte
 
 ## All alerts
 
-Kismet retains the past *N* alerts, as defined in `kismet_alert.conf`.  By default, Kismet retains 50 alert records.
+Kismet retains the past *N* alerts, as defined by `alertbacklog` in `kismet_memory.conf`.  By default, Kismet retains 50 alert records.
 
 * URL 
 
