@@ -91,6 +91,10 @@ And from the second example, it would contain:
 
 When requesting multiple fields from different paths with the same name - for instance, multiple signal paths provide the `kismet.common.signal.last_signal` - it is important to provide an alias.  Fields which resolve to the same name will only be present in the results once, and the order is undefined.
 
+#### Unknown fields
+
+Requesting a field which does not exist, or a path which cannot be resolved, will return a field of the requested name containing an integer `0`; for safety, consumers of the API should handle this gracefully.
+
 ### Regex filters
 
 Some endpoints in Kismet take a regex object.  These endpoints use a common format, which allows for multiple regular expressions to be mapped to multiple fields.  A device is considered to match if *any* of the regular expression terms are true.
