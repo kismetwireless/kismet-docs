@@ -71,6 +71,24 @@ The total content of the GPS record will be padded to 32 bytes to comply with th
 | GPS fractional time | 0x40  | 4            | Nanoseconds | Unsigned counter, nanosecond resolution.  Should not exceed one second (currently unused by Kismet) |
 | EPH                 | 0x80  | 4            | Meters      | Estimated horizontal error as a fixed 6_4 value (currently unused by Kismet)                        |
 | EPV                 | 0x100 | 4            | Meters      | Estimated vertical error as a fixed 6_4 value (currently unused by Kismet)                          |
+| Timestamp (high)    | 0x400 | 4            | pcap-ng TS  | Timestamp (high portion) as defined by the pcap-ng standard, section 4.3 (see below)                |
+| Timestamp (low)     | 0x800 | 4            | pcap-ng TS  | Timestamp (low portion) as defined by the pcap-ng standard, section 4.3 (see below)                 |
+
+#### Timestamp encoding
+
+The timestamp fields are used to provide a timestamp value for a kismet-gps custom block.
+
+For simplicity, the timestamp values match those of the pcap-ng standard for other timestamp fields, such as in the EPB block.  Specifically:
+
+> Timestamp (High) and Timestamp (Low): upper 32 bits and lower 32 bits of a 64-bit timestamp. The timestamp is a single 64-bit unsigned integer that represents the number of units of time that have elapsed since 1970-01-01 00:00:00 UTC. The length of a unit of time is specified by the 'if_tsresol' option (see Figure 10) of the Interface Description Block referenced by this packet. Note that, unlike timestamps in the libpcap file format, timestamps in Enhanced Packet Blocks are not saved as two 32-bit values that represent the seconds and microseconds that have elapsed since 1970-01-01 00:00:00 UTC. Timestamps in Enhanced Packet Blocks are saved as two 32-bit words that represent the upper and lower 32 bits of a single 64-bit quantity.
+
+A simple example of converting from a second and microsecond timestamp in C or C++:
+
+```C
+uint64_t conv_ts = ((uint64_t) ts_sec * 1000000L) + ts_usec;
+uint32_t ts_high = (conv_ts >> 32);                                                           
+uint32_t ts_low = conv_ts;
+```
 
 ## Number encoding
 
