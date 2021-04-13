@@ -22,6 +22,10 @@ This means that basic queries (time, signal levels, location, device identifiers
 ## Log Versions
 The log file version is stored in the `db_version` field of the `KISMET` table.  When changes to the base database structure are made, this version will be incremented.
 
+### Version 7
+As of April 2021, Kismet has started using db_version 7.  This version contains one change:
+1. The `packets` table now contains the field `datarate`, a real number.  This is the data rate as seen by Kismet, in mbit/sec.
+
 ### Version 6
 As of May 2019, Kismet has started using db_version 6.  This version contains one change:
 1. the `packets` table now has an additional field, `tags`.  This is a space-separated list of arbitrary packet tags.  These can be used to identify packets tagged by parts of the Kismet code, for instance, WPA handshake packets.
@@ -173,25 +177,26 @@ The `packets` section is directly analogous to a pcap (or pcap-ng) file and can 
 
 Packets are stored in the raw, original capture format; in the case of Wi-Fi this may be a format such as Radiotap which, itself, also encodes the frequency, signal levels, and detailed antenna data.  Kismet exposes a normalized subset of per-packet data to facilitate slicing the Kismet log into manageable pieces easily.
 
-| Field      |          Type | Description                                                  |
-| ---------- | ------------: | ------------------------------------------------------------ |
-| ts_sec     |   *timestamp* | Packet time, as second-precision integer                     |
-| ts_usec    |   *timestamp* | Packet time, as usec-precision integer                       |
-| phyname    |        *text* | Name of capturing phy                                        |
-| sourcemac  |        *text* | MAC address of packet source (if available)                  |
-| destmac    |        *text* | MAC address of packet destination (if available)             |
-| transmac   |        *text* | MAC address of packet transmitter (if available)             |
-| frequency  |        *real* | Decimal frequency of packet, in KHz (if available)           |
-| devkey     |        *text* | DEPRECATED.  This field is no longer used because packets are not a 1:1 relationship with devices, but the field is retained for schema compatibility. |
-| lat        | *real/double* | GPS latitude                           |
-| lon        | *real/double* | GPS longitude                          |
-| packet_len |     *integer* | Total packet length, in bytes                                |
-| signal     |     *integer* | Received signal level of packet (typically in DBm but may be phy-specific) |
-| datasource |        *uuid* | UUID of capturing Kismet data source, as string              |
-| dlt        |         *int* | DLT (Data Link Type) of packet content; this correlates to the original packet format as understood by pcap (such as raw 802.11, radiotap, raw btle, and so on) |
-| packet     |        *blob* | Raw binary packet content                                    |
-| error      |         *int* | Boolean, packet was flagged by Kismet as an error in rx or otherwise invalid due to parsing errors |
-| tags       |       *text* | Arbitrary space-separated list of tags added by packet dissectors in Kismet |
+| Field      | Type          | Description                                                                                                                                                     |
+| ---------- | ------------: | ------------------------------------------------------------                                                                                                    |
+| ts_sec     | *timestamp*   | Packet time, as second-precision integer                                                                                                                        |
+| ts_usec    | *timestamp*   | Packet time, as usec-precision integer                                                                                                                          |
+| phyname    | *text*        | Name of capturing phy                                                                                                                                           |
+| sourcemac  | *text*        | MAC address of packet source (if available)                                                                                                                     |
+| destmac    | *text*        | MAC address of packet destination (if available)                                                                                                                |
+| transmac   | *text*        | MAC address of packet transmitter (if available)                                                                                                                |
+| frequency  | *real*        | Decimal frequency of packet, in KHz (if available)                                                                                                              |
+| devkey     | *text*        | DEPRECATED.  This field is no longer used because packets are not a 1:1 relationship with devices, but the field is retained for schema compatibility.          |
+| lat        | *real/double* | GPS latitude                                                                                                                                                    |
+| lon        | *real/double* | GPS longitude                                                                                                                                                   |
+| packet_len | *integer*     | Total packet length, in bytes                                                                                                                                   |
+| signal     | *integer*     | Received signal level of packet (typically in DBm but may be phy-specific)                                                                                      |
+| datasource | *uuid*        | UUID of capturing Kismet data source, as string                                                                                                                 |
+| dlt        | *int*         | DLT (Data Link Type) of packet content; this correlates to the original packet format as understood by pcap (such as raw 802.11, radiotap, raw btle, and so on) |
+| packet     | *blob*        | Raw binary packet content                                                                                                                                       |
+| error      | *int*         | Boolean, packet was flagged by Kismet as an error in rx or otherwise invalid due to parsing errors                                                              |
+| tags       | *text*        | Arbitrary space-separated list of tags added by packet dissectors in Kismet                                                                                     |
+| datarate   | *real*        | Datarate, in mbit/sec                                                                                                                                           |
 
 ### Snapshots
 
