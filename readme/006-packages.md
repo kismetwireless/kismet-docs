@@ -92,20 +92,13 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 16.04 Xenial (Intel)
-Ubuntu 16.04 Xenial (i386, amd64)
-
-***Note***: The Xenial packages do not include support for all features, due to limitations in the packages available for Xenial.  You may be able to manually install newer versions of the required libraries and compile from source.
-
-The following are not available in the Xenial packages:
-* Python based datasources (rtl433, ADSB, AMR, Freaklabs)
-* Ubertooth datasource
-* Remote capture via websockets (server support is present, but datasources will not be able to export over remote capture)
+## Debian Bullseye (Intel)
+Debian Bullseye (amd64)
 
 ### Release (beta and release versions)
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/xenial xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
@@ -113,7 +106,7 @@ $ sudo apt install kismet
 ### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/xenial xenial main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/bullseye bullseye main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
@@ -157,6 +150,25 @@ $ sudo apt install kismet
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
+## Ubuntu 21.04 Hirsute (Intel)
+Ubuntu 20.04 Hirsute  (amd64)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/hirsute hirsute main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
+### Nightly git
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/hirsute hirsute main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
