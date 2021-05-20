@@ -7,7 +7,7 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
-* `git` 
+* `2021-05-R1` 
 
     Changes to the REST API:
     * Added a [view-specific device subscription API](/docs/devel/webui_rest/device_views/#realtime-device-monitoring-by-view) under `/device/views/[VIEWID]/monitor.ws` 
