@@ -52,6 +52,14 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
 	When providing multiple MAC addresses, they must be enclosed in quotes.
 
+    MAC addresses can be *masked*, where they match multiple addresses.  MAC address masking works along the same logic as netmasks, where the common component is compared using the mask.
+
+    To match, for instance, all MAC addresses of the OUI `00:11:22:xx:xx:xx`:
+
+    ```
+    apspoof=Foo3:ssid="Foobar",validmacs="00:11:22:00:00:00/FF:FF:FF:00:00:00"
+    ```
+
 * `BEACONRATE` 
 
 	Trend/Stateful
