@@ -248,7 +248,7 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
     Added `2021-02-git`
 
-    A series of vulnerabilities in the RTL8195A Wi-Fi drivers can allow code execution without authentication, as described in CVA-2020-9395 and the [VDOO paper here](https://www.vdoo.com/blog/realtek-rtl8195a-vulnerabilities-discovered).  Over-sized EAPOL Key packets can be used to trigger overflows in the driver.
+    A series of vulnerabilities in the RTL8195A Wi-Fi drivers can allow code execution without authentication, as described in CVE-2020-9395 and the [VDOO paper here](https://www.vdoo.com/blog/realtek-rtl8195a-vulnerabilities-discovered).  Over-sized EAPOL Key packets can be used to trigger overflows in the driver.
 
 
 * `RTLWIFIP2P`
@@ -258,6 +258,22 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
     Added `2019-10-git`
 
     A vulnerability in the Linux RTLWIFI driver could lead to code execution or a denial of service, as described in CVE-2019-17666 and [the LKML mailing list](https://lkml.org/lkml/2019/10/16/1226).  This attack involves malformed Wi-Fi Direct P2P Notification of Absence frames.
+
+* `VDOO202027301`
+
+    Fingerprint
+
+    Added `2021-06-git`
+
+    A vulnerability discovered by VDOO in the RTL8170C chipset could be used to execute code on the device with over-long key responses in the WPA handshake.  This attack has not been seen in the wild yet, and requires knowledge of the victim devices WPA PSK.  A WPA RSN key response with a total length over 0x101 bytes can be used to overflow a static buffer.  The attack is described in CVE-2020-27301 and the [VDOO report here](https://www.vdoo.com/blog/realtek-wifi-vulnerabilities-zero-day).
+
+* `VDOO202027302`
+
+    Fingerprint
+
+    Added `2021-06-git`
+
+    A vulnerability discovered by VDOO in the RTL8170C chipset could be used to execute code on the device with over-long key responses in the WPA handshake.  This attack has not been seen in the wild yet, and requires knowledge of the victim devices WPA PSK.  A WPA RSN key response with AES encryption and a length over 0x80 can be used to overflow a static buffer.  The attack is described in CVE-2020-27302 and the [VDOO report here](https://www.vdoo.com/blog/realtek-wifi-vulnerabilities-zero-day).
 
 * `WMMOVERFLOW` 
 
