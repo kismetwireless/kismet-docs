@@ -5,9 +5,9 @@ toc: true
 docgroup: "devel-cpp"
 excerpt: "Extending the Kismet C++ data classifier system."
 ---
-Once data has been captured (see the [datasource docs](/docs/dev/datasource.html) for more details about creating a data source) and handled by the DLT handler, additional processing can be done to create device records and data.
+Once data has been captured (see the [datasource docs](/docs/devel/datasource.html) for more details about creating a data source) and handled by the DLT handler, additional processing can be done to create device records and data.
 
-Kismet stores information about a device in a `tracker_component` record held by the `DeviceTracker` class.  For more information about the internals and how to make your own `tracker_component` check out the [tracked component docs](/docs/dev/tracked_component.html).
+Kismet stores information about a device in a `tracker_component` record held by the `DeviceTracker` class.  For more information about the internals and how to make your own `tracker_component` check out the [tracked component docs](/docs/devel/tracked_component.html).
 
 Information stored in the common base element is used to show summaries about the devices seen, create statistics, and to show information about a device when no custom presentation is defined for the extra data.
 
