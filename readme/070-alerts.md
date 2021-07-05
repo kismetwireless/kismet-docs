@@ -142,6 +142,14 @@ Will allow at most one alert per second, and at most 5 alerts per minute.
 
 	While deprecated, 802.11d country codes are still accepted by many clients.  Conflicting 802.11d advertisements can indicate an AP spoofing attack or an attempted to cause a client denial of service.
 
+* `FORMATSTRING`
+
+    Fingerprint
+
+    Added `2021-07-git`
+
+    The percent sign is used as a format indicator for printing strings; while a valid SSID, this has caused crashes on some devices such as iPhones.
+
 * `KARMAOUI` 
 
 	Fingerprint
