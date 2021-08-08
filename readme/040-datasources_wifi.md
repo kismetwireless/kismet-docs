@@ -70,19 +70,19 @@ The Linux Wi-Fi source is known to support, among others:
 * All Atheros-based cards (ath5k, ath9k, ath10k with some restrictions,  USB-based atheros cards like the AR9271) (* Some issues)
 * Modern Intel-based cards (all supported by the iwlwifi driver including the 3945, 4965, 7265, 8265 and similar) (* Some issues)
 * Realtek USB devices (rtl8180 and rtl8187, such as the Alfa AWUS036H)
-* Realtek USB 802.11AC (rtl8812au, rtl8814), with *the proper drivers*.  There are no in-kernel drivers for these cards.  There are multiple forks of the out-of-kernel tree, with varying levels of support for monitor mode and injection; the most likely to work is the variant maintained by the Aircrack-NG team, which can be found at https://github.com/aircrack-ng/rtl8812au.git
 * RALink rt2x00 based devices
 * ZyDAS cards
 * Broadcom cards such as those found in the Raspberry Pi 3 and Raspberry Pi 0W, *if you are using the nexmon drivers*.  It is not posisble to use Kismet with the *default drivers* from Raspbian or similar distributions.
    The Kali distribution for the Raspberry Pi *includes the nexmon patches already* and will work.
    To patch your own distribution with nexmon, consult the nexmon site at: https://github.com/seemoo-lab/nexmon
+* Mediatek mt7612u 802.11AC devices; these are some of the most supported devices.
 * Almost all drivers shipped with the Linux kernel
 
 Devices known to have issues:
 * ath9k Atheros 802.11abgn cards are typically the most reliable, however they appear to return false packets with valid checksums on very small packets such as phy/control and powersave control packets.  This may lead Kismet to detect spurious devices not actually present.
 * ath10k Atheros 802.11AC cards have many problems, including floods of spurious packets in monitor mode.  These packets carry 'valid' checksum flags, making it impossible to programmatically filter them.  Expect large numbers of false devices.  It appears this will require a fix to the closed-source Atheros firmware to resolve.
 * iwlwifi Intel cards, with older kernel drivers and firmware, have significant crashing issues when tuning to HT40 and HT80 channels.  Modern kernels appear to have resolved this issue; if you cannot upgrade your kernel, you can disable HT and VHT channels by passing the source options `ht_channels=false` and `vht_channels=false`; such as `source=wlp4s0:name=someintel,ht_channels=false,vht_channels=false`
-* rtl8812 and 8814 USB 802.11AC cards are known to have many strange problems.  While extremely common hardware, these cards use out-of-kernel drivers which do not support standard monitor mode vif configuration.  There are many flavors of these drivers, many of which cannot enter monitor mode, or silently fail to enable monitor mode.  Currently (2019-08) the 8812au drivers have had significant trouble with modern (5.2 and newer) kernels, and channel controls.  The last commit of the 8812au drivers known to work is `d8d9399a5bfa3657d94505602a863d7f49d40393`, however this will not build on modern drivers.  If possible, I suggest avoiding the rtl8812au chipset for now, despite its cheap cost and prevalence.
+* rtl8812 and 8814 USB 802.11AC cards are known to have many strange problems.  While extremely common hardware, these cards use out-of-kernel drivers which do not support standard monitor mode vif configuration.  There are many flavors of these drivers, many of which cannot enter monitor mode, or silently fail to enable monitor mode.  Despite being a common and cheap chipset, these cards are best avoided because they will take a lot of work to get running.
 * rtl88x2bu based cards have an out-of-kernel driver which doesn't support mac80211 VIFs or modern channel control.  Kismet will fall back to the old WEXT ioctl control method, but these drivers will not support setting HT channels.
 
 Kismet generally *will not work* with most other out-of-kernel (drivers not shipped with Linux itself), specifically drivers such as the SerialMonkey RTL drivers used for many of the cheap, tiny cards shipped with devices like the Raspberry Pi and included in distributions like Raspbian.  Some times it's possible to find other, supported drivers for the same hardware, however some cards have no working solution.
