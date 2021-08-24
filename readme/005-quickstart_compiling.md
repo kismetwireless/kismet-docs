@@ -172,6 +172,6 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
 10.  You're now ready to run Kismet!  
     
-    Check out the [quick-start guide for running Kismet](/docs/readme/starting_kismet/) for more information!
+   Check out the [quick-start guide for running Kismet](/docs/readme/starting_kismet/) for more information!
 
 
