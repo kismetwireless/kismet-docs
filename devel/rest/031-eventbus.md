@@ -170,11 +170,41 @@ Event topics include:
 
     Published when a datasource is closed
 
+### DOT11_ADVERTISED_SSID
+
+* Content
+
+    Contains 2 keys, DOT11_NEW_SSID_BASEDEV and DOT11_ADVERTISED_SSID, which contain, respectively, the base Kismet device complete record, and the new SSID sub-record.
+
+* Generation
+
+    Published when a new advertised (via beacons) SSID is discovered
+
+### DOT11_RESPONSE_SSID
+
+* Content
+
+    Contains 2 keys, DOT11_NEW_SSID_BASEDEV and DOT11_RESPONSE_SSID, which contain, respectively, the base Kismet device complete record, and the new SSID sub-record.
+
+* Generation
+
+    Published when an access point responds to a SSID for the first time (vie probe responses), per BSSID.
+
+### DOT11_PROBED_SSID
+
+* Content
+
+    Contains 2 keys, DOT11_NEW_SSID_BASEDEV and DOT11_PROBED_SSID, which contain, respectively, the base Kismet device complete record, and the new SSID sub-record.
+
+* Generation
+
+    Published when a device probes for a SSID the first time, per device MAC
+
 ### DOT11_WPA_HANDSHAKE
 
 * Content
 
-    Contains two keys, DOT11_WPA_HANDSHAKE_BASE and DOT11_WPA_HANDSHAKE_DOT11, which contain, respectively, the base Kismet device and the 802.11-specific device sub-record.
+    Contains two keys, DOT11_WPA_HANDSHAKE_BASEDEV and DOT11_WPA_HANDSHAKE_DOT11, which contain, respectively, the base Kismet device and the 802.11-specific device sub-record.
 
 * Generation
 
