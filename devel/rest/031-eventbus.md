@@ -56,7 +56,7 @@ Eventbus topics are case-sensitive, and for topics which contain Kismet objects,
 
 The eventbus subscription API accepts JSON data requesting a subscription topic and optional [field simplification](/docs/devel/webui_rest/commands/#field-specifications).
 
-Currently consumers are limited to *one* subscription *per topic*; it is not possible for a single connection to subscribe to the same topic twice with different field selections.
+Currently consumers are limited to *one* subscription *per topic*; it is not possible for a single connection to subscribe to the same topic twice with different field selections.  Multiple websocket connections from the same client may subscribe to the same topic with different field selections without restriction, however.
 
 An eventbus JSON command contains:
 
