@@ -402,24 +402,62 @@ virtual bool probe_type(string in_type) {
 }
 ```
 
-*build_data_source()* is the factory method used for returning an instance of the KisDatasource.  A datasource should simply return a new instance of its custom type.
-```C++
-virtual KisDataSource *build_data_source() {
-    return new CustomKisDataSource(globalreg);
-}
+*build_data_source(...)* is the factory method used for returning an instance of the KisDatasource.  A datasource should simply return a new shared ptr instance of its custom type.
+```c++
+virtual std::shared_ptr<kis_datasource> 
+    build_datasource(std::shared_ptr<kis_datasource_builder> in_shared_builder) { 
+        return std::make_shared<custom_kis_datasource>();
+
+    };
 ```
 
 A datasource which operates by passing packets should be able to function with no further customization:  Packet data passed via the `PACKET` record will be decapsulated and inserted into the packetchain with the proper DLT.
 
+## Handling incoming packets
+
+Generally, nothing needs to be done to handle incoming packets, the parent datasource definition will take care of it.  If, however, you receive packets which need modification before they are injected into the packetchain, you can override `handle_rx_datalayer(...)`:
+
+```c++
+void kis_datasource::handle_rx_datalayer(std::shared_ptr<kis_packet> packet,
+        const KismetDatasource::SubPacket& report) {
+
+    auto datachunk = packetchain->new_packet_component<kis_datachunk>();
+
+    if (clobber_timestamp && get_source_remote()) {
+        gettimeofday(&(packet->ts), NULL);
+    } else {
+        packet->ts.tv_sec = report.time_sec();
+        packet->ts.tv_usec = report.time_usec();
+    }
+
+    if (get_source_override_linktype()) {
+        datachunk->dlt = get_source_override_linktype();
+    } else {
+        datachunk->dlt = report.dlt();
+    }
+
+    packet->set_data(report.data());
+    datachunk->set_data(packet->data);
+
+    get_source_packet_size_rrd()->add_sample(report.data().length(), time(0));
+
+    packet->insert(pack_comp_linkframe, datachunk);
+}
+```
+
+Any implementation of `handle_rx_datalayer(...)` *MUST* implement the above framework, but may manipulate the DLT, timestamp, and contents of the `kis_datachunk` record in any way needed.
+
+Similarly, `handle_rx_jsonlayer(...)` can be overridden to rewrite JSON non-packet records.
+
 ## Handling the PHY
 
-Kismet defines `PhyHandler` objects to handle different physical layer types - for example there are phyhandlers for IEEE802.11, Bluetooth, and so on.
+Kismet defines `phy_handler` objects to handle different physical layer types - for example there are phyhandlers for IEEE802.11, Bluetooth, and so on.
 
 A phy handler is responsible for defining any custom data structures specific to that phy, converting phy-specific data to the common interface so that Kismet can make generic devices for it, providing any additional javascript and web resources, and similar tasks.
 
 ## Defining the PHY
 
-Phy handlers are derived from the base `Kis_Phy_Handler` class.
+Phy handlers are derived from the base `kis_phy_handler` class.
 
 At a minumum a new phy must provide (and override):
 
@@ -434,6 +472,8 @@ A new phy will almost certainly define a custom tracked data type - `dot11_track
 
 In addition, there are some specific pitfalls when loading custom objects - be sure to check the  "Restoring vector and map objects" section of of the `tracked_component` docs!
 
+Currently storage code is not used, but may be leveraged in the future.
+
 ## Handling the DLT
 
 A datasource which is packet-based but does not conform to an existing DLT defined in Kismet will often need to provide its own DLT handler.
@@ -446,18 +486,18 @@ Capture sources implementing alternate capture methods for known DLTs (for insta
 
 ### Deriving the DLT
 
-Kismet DLT handlers are derived from `Kis_DLT_Handler` from `kis_dlt.h`.  A DLT handler needs to override the constructor and the `HandlePacket(...)` functions:
+Kismet DLT handlers are derived from `kis_dlt_handler` from `kis_dlt.h`.  A DLT handler needs to override the constructor and the `handle_packet(...)` functions:
 
-```C++
-class DLT_Example : public Kis_DLT_Handler {
+```c++
+class dlt_example : public kis_dlt_handler {
 public:
-    DLT_Example(GlobalRegistry *in_globalreg);
+    dlt_example();
 
-    virtual int HandlePacket(kis_packet *in_pack);
+    virtual int handle_packet(std::shared_ptr<kis_packet> in_pack) override;
 };
 
-DLT_Example::DLT_Example(GlobalRegistry *in_globalreg) :
-    Kis_DLT_Handler(in_globalreg) {
+dlt_example::dlt_example() :
+    kis_dlt_handler() {
 
     /* Packet components and insertion into the packetchain is handled
        automatically by the Kis_DLT_Handler constructor.  All that needs
@@ -468,10 +508,10 @@ DLT_Example::DLT_Example(GlobalRegistry *in_globalreg) :
     dlt = DLT_SOME_EXAMPLE;
 
     /* Optionally, announce that we're loaded */
-    _MSG("Registering support for DLT_SOME_EXAMPLE", MSGFLAG_INFO);
+    _MSG_INFO("Registering support for DLT_SOME_EXAMPLE");
 }
 
-/* HandlePacket(...) is called by the packet chain with the packet data
+/* handle_packet(...) is called by the packet chain with the packet data
    as reported by the datasource.  This may already include GPS and signal
    information, as well as the actual link data frame.
 
@@ -480,22 +520,21 @@ DLT_Example::DLT_Example(GlobalRegistry *in_globalreg) :
    stage.
 */
 
-int DLT_Example::HandlePacket(kis_packet *in_pack) {
+int dlt_example::handle_packet(std::shared_ptr<kis_packet> in_pack) {
     /* Example sanity check - do we already have packet data
        decapsulated?  For a type like radiotap or PPI that encodes another
        DLT, this encapsulated chunk might be handled differently */
-    kis_datachunk *decapchunk =
-        (kis_datachunk *) in_pack->fetch(pack_comp_decap);
-    if (decapchunk != NULL) {
+    auto decapchunk = in_pack->fetch_as<kis_datachunk>(pack_comp_decap);
+
+    if (decapchunk != nullptr) {
         return 1;
     }
 
     /* Get the linklayer data record */
-    kis_datachunk *linkdata =
-        (kis_datachunk *) in_pack->fetch(pack_comp_linkframe);
+    auto linkdata = in_pack->fetch_as<kis_datachunk>(pack_comp_linkframe);
 
     /* Sanity check - do we even have a link chunk? */
-    if (linkdata == NULL) {
+    if (linkdata == nullptr) {
         return 1;
     }
 
@@ -506,15 +545,43 @@ int DLT_Example::HandlePacket(kis_packet *in_pack) {
 
     /* Other code goes here */
 }
-
 ```
+
+## Manipulating packet data
+
+It is important to minimize copying of packet data whenever possible.  While sometimes unavoidable, many manipulations of packet data are simply removing headers and trailing data from the record.
+
+Kismet uses a multi-C++ version of `stringview` via the `nonstd::stringview` library.  This should be used to manipulate the windowed views of packet data, and in general, data records in a packet are all views of the same initial packet data from the IPC protocol.  For example, the following code is used in the Radiotap DLT:
+
+```c++
+    auto decapchunk = packetchain->new_packet_component<kis_datachunk>();
+    ...
+	decapchunk->dlt = KDLT_IEEE802_11;
+    ...
+    decapchunk->set_data(linkchunk->substr(offset, linkchunk->length() - offset - fcs_cut));
+    ...
+	in_pack->insert(pack_comp_decap, decapchunk);
+```
+
+Using the `stringview` `substr` function keeps us from copying data unnecessarily.
+
+## Minimizing memory allocations
+
+The packet handling loop is an extremely commonly used loop, where small changes can have large impacts.  To minimize thrashing the memory allocation system, Kismet uses object pools for the packet components.  Notice the following code:
+
+
+```c++
+    auto decapchunk = packetchain->new_packet_component<kis_datachunk>();
+```
+
+This uses the packetchain object pool for packet components.  If there is a returned object in the pool, it will be reset and returned; if the pool is exhausted, a new object will be created and returned.  Objects created this way are automatically returned to the pool at the end of their lifetime.
 
 ## Handling Non-Packet Data
 
 Non-packet data can be decapsulated by extending the `KisDataSource::handle_packet` method.  By default this method handles defined packet types; an extended version should first call the parent instance.
 
 ```C++
-void SomeDataSource::handle_packet(string in_type, KVmap in_kvmap) {
+void some_data_source::handle_packet(string in_type, KVmap in_kvmap) {
     KisDataSource::handle_packet(in_type, in_kvmap);
 
     string ltype = StrLower(in_type);
@@ -532,7 +599,7 @@ If the incoming data is directly injected into the data tracking system for the 
 When processing a custom frame, existing KV pair handlers can be used.  For example:
 
 ```C++
-void SomeDataSource::handle_packet_custom(KVmap in_kvpairs) {
+void some_data_source::handle_packet_custom(KVmap in_kvpairs) {
     KVmap::iterator i;
 
     // We inject into the packetchain so we need to make a packet
@@ -581,7 +648,7 @@ void SomeDataSource::handle_packet_custom(KVmap in_kvpairs) {
 
     // Inject the packet into the packet chain, this will clean up
     // the packet when it's done with it automatically.
-    packetchain->ProcessPacket(packet);
+    packetchain->processPacket(packet);
 }
 
 ```
