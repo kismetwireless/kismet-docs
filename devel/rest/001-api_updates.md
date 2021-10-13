@@ -7,6 +7,14 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
+* `git`
+
+    Changes to the REST API:
+    * Added the option to [filter pcap-ng streams](/docs/devel/webui_rest/kismetdb/#filter-options) by packet tag
+
+    Changes to the kismetdb database:
+    * Updated to version 8 of kismetdb, which [adds additional packet metadata](/docs/devel/kismetdb/#version-8)
+
 * `2021-05-R1` 
 
     Changes to the REST API:

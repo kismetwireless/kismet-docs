@@ -22,6 +22,11 @@ This means that basic queries (time, signal levels, location, device identifiers
 ## Log Versions
 The log file version is stored in the `db_version` field of the `KISMET` table.  When changes to the base database structure are made, this version will be incremented.
 
+### Version 8
+As of October 2021, Kismet has started using db_version 8.  This version adds:
+1. `hash` to the `packets` table.  This contains the CRC32 hash of the payload of the packet, not including the capture-specific radio headers.  This is equivalent to the pcapng packet hash.
+2. `packetid` to the `packets` table.  This contains the packet id of the packet, which is unique to all packets of the same hash.  This is equivalent to the pcapng packet id option.
+
 ### Version 7
 As of April 2021, Kismet has started using db_version 7.  This version contains one change:
 1. The `packets` table now contains the field `datarate`, a real number.  This is the data rate as seen by Kismet, in mbit/sec.

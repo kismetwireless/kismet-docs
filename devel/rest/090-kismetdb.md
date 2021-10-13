@@ -95,7 +95,16 @@ Filter options should be sent as GET parameters URL-encoded, when using the GET 
    | size_min | int  | Minimum packet size, in bytes |
    | size_max | int  | Maximum packet size, in bytes |
 
-11. Result limiting
+11. Tags
+
+    Packets can be tagged with various state information.
+
+   | Key      | Type   | Description                   |
+   | -------- | ----   | ----------------------------- |
+   | tag      | string | Tag to limit by               |
+
+
+12. Result limiting
 
    Limit total packets returned.
 
