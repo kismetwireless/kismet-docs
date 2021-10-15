@@ -11,9 +11,13 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 
     Changes to the REST API:
     * Added the option to [filter pcap-ng streams](/docs/devel/webui_rest/kismetdb/#filter-options) by packet tag
+    * Added [additional events](/docs/devel/webui_rest/eventbus/#dot11_advertised_ssid) to the eventbus, including the first packet for advertised SSIDs, responding SSIDs, and probed SSIDs.
 
     Changes to the kismetdb database:
     * Updated to version 8 of kismetdb, which [adds additional packet metadata](/docs/devel/kismetdb/#version-8)
+
+    Changes to pcapng logging:
+    * Added pcapng style CRC32 hashes and packet identifier numbers for multi-interface captures
 
 * `2021-05-R1` 
 
