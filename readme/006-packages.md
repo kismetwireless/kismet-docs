@@ -135,8 +135,8 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 20.04 Focal (Intel)
-Ubuntu 20.04 Focal  (amd64)
+## Ubuntu 20.04 Focal (Intel, Raspberry Pi)
+Ubuntu 20.04 Focal  (amd64, arm)
 
 ### Release (beta and release versions)
 ```bash
@@ -154,8 +154,8 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 21.04 Hirsute (Intel)
-Ubuntu 20.04 Hirsute  (amd64)
+## Ubuntu 21.04 Hirsute (Intel, Raspberry Pi)
+Ubuntu 21.04 Hirsute  (amd64, arm)
 
 ### Release (beta and release versions)
 ```bash
@@ -169,6 +169,25 @@ $ sudo apt install kismet
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 $ echo 'deb https://www.kismetwireless.net/repos/apt/git/hirsute hirsute main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
+## Ubuntu 21.10 Impish (Intel, Raspberry Pi)
+Ubuntu 21.10 Impish  (amd64, arm)
+
+### Release (beta and release versions)
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/impish impish main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ sudo apt update
+$ sudo apt install kismet
+```
+
+### Nightly git
+```bash
+$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/impish impish main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
