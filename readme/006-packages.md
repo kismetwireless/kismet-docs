@@ -92,8 +92,8 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Debian Bullseye (Intel)
-Debian Bullseye (amd64)
+## Debian Bullseye (Intel, Raspberry Pi)
+Debian Bullseye (i386, amd64, armhf, arm64)
 
 ### Release (beta and release versions)
 ```bash
