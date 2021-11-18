@@ -1,15 +1,17 @@
 ---
 title: "Starting Kismet"
 permalink: /docs/readme/starting_kismet/
-excerpt: "When starting Kismet you can define multiple options on the command line, config files, or perform many operations via the web interface."
+excerpt: "Configuring and starting Kismet for the first time"
 docgroup: "readme"
 ---
 
-## Starting Kismet
+## The Basics
 
-Kismet can be started normally from the command line, and will run in a small ncurses-based wrapper which will show the most recent server output, and a redirect to the web-based interface.
+Kismet can be started normally from the command line, and shows a small text-based display of the recent output from the server.  For the modern UI experience, you'll need to connect to the Kismet webserver.
 
-Alternately, for appliance-style installs, Kismet can also be started as a service; typically in this usage you should also pass `--no-ncurses` to prevent the ncurses wrapper from loading.
+If you're on the same hardware as Kismet (such as a laptop), you will connect to `http://localhost:2501` to reach the Kismet server.
+
+If you're running Kismet on dedicated hardware (such as a Raspberry Pi, Hak5 Wi-Fi Pineapple, or other dedicated device), you'll need to connect to *the address of the device*.  For a Raspberry Pi this is often `http://raspberyrpi.local:2501` by default, but you will need to check the configuration of your device.  It will be the same address you connect to over `ssh` to launch Kismet.
 
 ## Launching Kismet
 
@@ -42,16 +44,6 @@ Kismet handles much more than just Wi-Fi, assuming you have the proper capture h
 This login will be saved in the config file: `~/.kismet/kismet_httpd.conf` which is in the *home directory of the user* starting Kismet when installed in suidroot mode.  This is the preferred way to run Kismet.
 
 If you start Kismet as or via sudo (or via a system startup script where it runs as root), this will be in *roots* home directory: `/root/.kismet/kismet_httpd.conf`
-
-## Navigate to the Web UI
-
-Point your browser at http://localhost:2501 (or the address of the server Kismet is running on)
-
-If you are running Kismet on your laptop (or other system with a browser), you can see the Kismet UI at `http://localhost:2501`.
-
-If you are running Kismet on a Raspberry Pi, Wi-Fi Pineapple, or other device, you will need to point your computer at the address *of the device running Kismet*.  You will need to have the system running Kismet plugged into wired Ethernet, or it will need a second Wi-Fi card configured to connect to your network:  You cannot run Kismet and connect to a network on the same Wi-Fi card at the same time.
-
-You will be prompted to do basic configuration - Kismet has many options in the web UI which can be tweaked.  Explore and have fun!
 
 ## Automatically launching Kismet
 

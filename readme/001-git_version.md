@@ -1,9 +1,13 @@
 ---
 title: "Git and Beta"
 permalink: /docs/readme/git_and_beta/
-excerpt: "Welcome to the new, MAJOR rewrite of Kismet!  If you're using the Git and Beta versions, you'll want to do some housekeeping..."
+excerpt: "Welcome to the new, MAJOR rewrite of Kismet!  If you're using the old versions, you'll want to do some housekeeping..."
 docgroup: "readme"
 ---
+
+## OLDER KISMET
+
+Kismet has undergone several major evolutions over time.  Some distributions still package the old Kismet versions:  If you're still using the text-based UI, you'll definitely want to upgrade; not only for the new features, but for significantly reduced RAM and significantly increased performance on modern systems and modern Wi-Fi deployments, which have orders of magnitude more devices on Wi-Fi to track!
 
 ## MAJOR KISMET UPDATE
 
