@@ -91,6 +91,10 @@ To use the TI CC2540 capture, you must have a TI CC2540 dongle flashed with the 
 
 *Note*: It seems that while many CC2540 devices are *advertised* as pre-flashed with the sniffer firmware, they appear not to be!
 
+#### TI CC2540 shortcomings
+
+The sniffer firmware in the TI CC2540 sometimes goes into a permanent error state until the device is physically re-initialized - by disconnecting it from USB and reconnecting it.  Unfortunately, there does not seem to be any way to automate this process, as once the device enters an error state, it will remain in that state and cannot be reinitialized over USB.
+
 #### TI CC2540 interfaces
 
 TI CC2540 datasources in Kismet can be referred to as simply `ticc2540`:
