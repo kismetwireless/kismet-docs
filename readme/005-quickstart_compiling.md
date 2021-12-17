@@ -63,7 +63,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Install the required packages via Brew:
 
        ```bash
-       % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb libwebsockets openssl
+       % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb openssl
        ```
 
        MacOS requires some additional flags during the `./configure` stage as well - be sure to read on in the configure section!
@@ -103,10 +103,12 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Fixing this is simple - you need to tell `./configure` where to find the OpenSSL libraries from Brew when running `./configure`:
 
        ```bash
-       $ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure
+       $ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure --disable-libwebsockets
        ```
 
        This may not be necessary with other package managers under MacOS.
+
+       The brew-supplied libwebsockets does not include the client-mode code, which is the only part Kismet actually needs.  It is necessary to disable client-mode websockets, this will only impact using remote capture over websockets *from* a MacOS system - websockets server support and receiving remote packets *as* a websockets server will work fine.
 
 5. Compile Kismet.
 
