@@ -98,15 +98,15 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 
    * MacOS and Brew
 
-       Brew does not copy the OpenSSL compilation headers during install, to prevent interfering with the version of OpenSSL provided with MacOS.  This will cause an error while building Kismet saying that `openssl/ssl.h` can not be found.
-
-       Fixing this is simple - you need to tell `./configure` where to find the OpenSSL libraries from Brew when running `./configure`:
+       Brew does not place things where the compiler can find them by default, and does not install all development headers, to prevent conflict with MacOS system headers.  To work around this, extra options must be passed to the `./configure` stage:
 
        ```bash
-       $ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" ./configure --disable-libwebsockets
-       ```
+       $ LDFLAGS="-L/opt/homebrew/Cellar/openssl\@1.1/1.1.1m/lib -L/opt/homebrew/Cellar/libusb/1.0.24/lib" CPPFLAGS="-I/opt/homebrew/Cellar/openssl\@1.1/1.1.1m/include -I/opt/homebrew/Cellar/libusb/1.0.24/include" ./configure --disable-libwebsockets
+        ```
 
        This may not be necessary with other package managers under MacOS.
+
+       If the libraries still can not be found with the above `./configure` command, you will need to examine your brew configuration to see if it is installing packages in a different location, or if a different version of the library has been installed.  In these cases, you will need to adjust the `LDFLAGS` and `CPPFLAGS` in the `./configure` command so that they point to the installed location and version of the libraries.
 
        The brew-supplied libwebsockets does not include the client-mode code, which is the only part Kismet actually needs.  It is necessary to disable client-mode websockets, this will only impact using remote capture over websockets *from* a MacOS system - websockets server support and receiving remote packets *as* a websockets server will work fine.
 
