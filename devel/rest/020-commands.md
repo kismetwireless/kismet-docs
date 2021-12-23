@@ -138,7 +138,7 @@ For extracting over curl, a similar example:
 
 ```bash
 $ curl -d \
-"{'regex': 'dot11.device/dot11.device.advertised_ssid_map/dot11.advertisedssid.ssid', '^Linksys$']}" \
+"json={'regex': 'dot11.device/dot11.device.advertised_ssid_map/dot11.advertisedssid.ssid', '^Linksys$']}" \
 http://user:password@server:2501/devices/views/phydot11_accesspoints/devices.json
 ```
 
