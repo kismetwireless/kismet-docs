@@ -147,11 +147,14 @@ Kismet supports being proxied through a HTTP/HTTPS proxy such as nginx.  This al
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Scheme $scheme;
-        proxy_set_header X-Proxy-Dir /kismet;
+        proxy_set_header X-Proxy-Dir kismet/;
+        add_header X-Proxy-Dir kismet/;
         proxy_http_version 1.1;
         client_max_body_size 0;
     }
     ```
+
+    *Note the trailing slash* on the `proxy_set_header` and `add_header` lines!
 
 3. Tunnel the Kismet server over SSH
 
