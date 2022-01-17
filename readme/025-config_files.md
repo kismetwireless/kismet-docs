@@ -128,4 +128,14 @@ $ kismet --override=/home/foo/some_config.conf
 
 Files loaded with the `--override` option will take precedence over all other configuration options, including any changes in `kismet_site.conf`.
 
+#### Appending in an override
+
+In certain, relatively rare, instances, it might be required to *append* a value in an override instead of completely replacing it - such as adding the `wiglecsv` log type in the wardrive overlay.  Using the `+=` assignment, this is easy!
+
+```
+log_types+=wiglecsv
+```
+
+This will add to the `log_types` configuration instead of replacing it.
+
 
