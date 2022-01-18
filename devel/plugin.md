@@ -41,15 +41,15 @@ The manifest file allows Kismet to automatically derive information about a plug
 
 The manifest file should be placed in `[prefix]/plugins/[name]/manifest.conf`, and takes the form of a Kismet config file (name=value pairs):
 
-| Key | Content |
-| ---- | ------- |
-| name | Plugin name |
-| description | Plugin description |
-| author | Plugin author |
-| version | Plugin version |
-| object | plugin shared object file name |
-| httpexternal | external API tool binary name |
-| js | JS module and path as `module_name,/web/path/to/js`.|
+| Key          | Content                                              |
+| ----         | -------                                              |
+| name         | Plugin name                                          |
+| description  | Plugin description                                   |
+| author       | Plugin author                                        |
+| version      | Plugin version                                       |
+| object       | plugin shared object file name                       |
+| httpexternal | external API tool binary name                        |
+| js           | JS module and path as `module_name,/web/path/to/js`. |
 
 Example manifest:
 ```
