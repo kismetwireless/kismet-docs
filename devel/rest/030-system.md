@@ -94,3 +94,31 @@ excerpt: "Basic system status and health reporting."
 
     Dictionary of packet rate RRDs for various packet queues
 
+## Dynamic javascript include
+
+Kismet provides a dynamically generated javascript file which is loaded by the UI, which in turn loads the core system and plugin JS modules.
+
+* URL
+
+    /dynamic.js
+
+* API Added
+
+    `2022-01`
+
+* Methods
+
+    `GET`
+
+* Role
+
+    `readonly` 
+
+* Result
+
+    This returns a full javascript file which in turn loads the JS modules registered with Kismet and inserts them into the global namespace.  It should be included as a script file in the UI, such as:
+
+    ```html
+    <script src="dynamic.js"></script>
+    ```
+
