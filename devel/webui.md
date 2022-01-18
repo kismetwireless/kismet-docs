@@ -13,44 +13,54 @@ A Kismet plugin can add onto the web UI by defining additional files which are l
 
 ## Making a Module
 
-Kismet JS modules should follow some simple conventions to enable proper loading:
+Kismet plugins (and JS core components) are defined as basic Javascript modules.  They should follow standard JS module convention, and are generally loaded via the `/dynamic.js` dynamic script endpoint.
 
-* **All functions should be in a custom namespace**.  This prevents overlap between common names in plugins and simplifies loading.
-* **A `load_complete` variable must be provided**.  Because of how asynchronous loading of javascript is handled, the only way to know that a module has fully loaded and executed any setup functions is to scan a variable in the namespace of the module.
+Modules need to follow a few basic conventions:
+
+* Detect any global URI prefix
+
+    Some Kismet plugins may implement a complete rework of the UI; in this case they may be serving from a non-standard directory, and may set the `KISMET_URI_PREFIX` global JS variable first.
+
+* Use relative paths
+
+    Kismet can be loaded via proxied directories; when requesting an endpoint from Kismet, always use a relative path.
 
 ### A Basic Module
 
 ```javascript
 // Module boilerplate.  This will define a module kismet-plugin-foo-js which
 // will instantiate under the global object kismet_plugin_foo.
-(
-    typeof define === "function" ? function (m) { define("kismet-plugin-foo-js", m); } :
-     typeof exports === "object" ? function (m) { module.exports = m(); } :
-     function(m){ this.kismet_plugin_foo = m(); }
-)(function () {
-
 "use strict";
 
-// All functions and variables accessible outside this module are defined
-// in exports
-var exports = {};
+var local_uri_prefix = "";
+if (typeof(KISMET_URI_PREFIX) !== 'undefined')
+    local_uri_prefix = KISMET_URI_PREFIX;
 
-// The first thing we MUST do is define load_complete and set it to 0
-exports.load_complete = 0;
+/* Export a constant value */
+export const opt1 = 1;
 
-// Define a function in our module which simply logs "hello" to the console
-exports.test_func = function() {
-    console.log("Hello!");
+/* Export a function */
+export const SomeFunction = (a, b) => {
+    console.log(a, b);
 }
 
-// We can perform any other on-load type actions here
-
-// Finally, set load_complete to 1, we've done everything we need to do
-exports.load_complete = 1;
-
-// Return our exports object
-return exports;
-
+/* Highlight WPA RSN PMKID using the Kismet row highlight API */
+kismet_ui.AddDeviceRowHighlight({
+    name: "RSN PMKID",
+    description: "Network contains a RSN PMKID packet",
+    priority: 10,
+    defaultcolor: "#F55",
+    defaultenable: true,
+    fields: [
+        'dot11.device/dot11.device.pmkid_packet'
+    ],
+    selector: function(data) {
+        try {
+            return 'dot11.device.pmkid_packet' in data && data['dot11.device.pmkid_packet'] != 0;
+        } catch (e) {
+            return false;
+        }
+    }
 });
 ```
 
@@ -138,7 +148,7 @@ A more interesting example is to use the `renderfunc` option to render a custom 
 First, we define a function which handles the render callback.  This matches the DataTable render function for a column, and takes the same options:  the data for the cell, the type of query, the full data for the row, and the row/column index information.
 
 ```javascript
-exports.renderLastTime = function(data, type, row, meta) {
+export const renderLastTime = (data, type, row, meta) => {
     // Take the data, make a date from it, and slice the string
     return (new Date(data * 1000).toString()).substring(4, 25);
 }
@@ -161,7 +171,7 @@ Finally, we'll show an example of doing custom drawing in a column.  Because the
 Let's use the packet graph / sparkline RRD as an example.  First we put placeholder text into the cell because we defer rendering until later:
 
 ```javascript
-exports.renderPackets = function(data, type, row, meta) {
+export renderPackets = (data, type, row, meta) => {
     return "<i>Preparing graph</i>";
 }
 ```
@@ -304,7 +314,7 @@ Our sidebar option will open an extremely simple jsPanel HTML5 window.
 // Module boilerplate and other functionality
 
 // Define a function to launch our 
-exports.PluginWindowDemo = function() {
+export const PluginWindowDemo = () => {
     var demopanel = $.jsPanel({
         id: 'sidedemo',
         headerTitle: 'Demo sidebar',
