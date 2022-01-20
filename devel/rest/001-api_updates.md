@@ -7,7 +7,13 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
-* `git`
+* `2022-01-R2`
+
+    Changes to the REST API:
+
+    * Added regex to [device view by time](/docs/devel/webui_rest/device_views/#devices-by-view--time)
+
+* `2022-01-R1`
 
     Changes to the REST API:
     * Added the option to [filter pcap-ng streams](/docs/devel/webui_rest/kismetdb/#filter-options) by packet tag
@@ -18,6 +24,9 @@ Over time, the Kismet endpoint API will change - while efforts are made to retai
 
     Changes to pcapng logging:
     * Added pcapng style CRC32 hashes and packet identifier numbers for multi-interface captures
+
+    Changes to ipc/remote:
+    * Added v2 ipc protocol to optimize for fast construction / zero memcpy
 
 * `2021-05-R1` 
 

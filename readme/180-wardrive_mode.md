@@ -16,6 +16,12 @@ Many people however want to run Kismet on what would typically be considered lig
 
 Kismet provides a configuration overlay file which preconfigures Kismet to optimize it for basic wardriving - this turns off most logging and data retention, disables processing most packets as much as possible, and configures the radios for optimized AP detection.  All this comes at the cost of normal functionality - in wardrive mode, Kismet won't track non-access-point Wi-Fi devices, perform most IDS functionality, log data packets, or retain handshakes.  What it *will* do is function much better for the specific goal of mapping access points and Bluetooth devices.
 
+## Wigle logs
+
+Kismet can now export directly to [Wigle](https://wigle.net) compatible CSV logs.  These contain access points and bluetooth devices.
+
+Because Wigle is designed to collect locational information, Kismet will only write to the log when a GPS location is present.
+
 ## It's just a config overlay
 
 Remember - wardriving mode is *optional*, and it's *just a configuration overlay*.  If the example overlay doesn't suit your needs, just copy it and change the config!
