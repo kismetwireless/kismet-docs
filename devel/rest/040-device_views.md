@@ -120,6 +120,7 @@ Mirroring the [Activity & timestamp](/docs/devel/webui_rest/devices/#activity--t
     | Key    | Description                                                                             |
     | ---    | -----------                                                                             |
     | fields | Optional, [field simplification](/docs/devel/webui_rest/commands/#field-specifications) |
+    | regex  | Optional, [regular expression filter](/docs/devel/webui_rest/commands/#regex-filters)   |
 
 * Results
 
