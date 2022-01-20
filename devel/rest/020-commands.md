@@ -99,7 +99,7 @@ Requesting a field which does not exist, or a path which cannot be resolved, wil
 
 Some endpoints in Kismet take a regex object.  These endpoints use a common format, which allows for multiple regular expressions to be mapped to multiple fields.  A device is considered to match if *any* of the regular expression terms are true.
 
-If the Kismet server was compiled without libpcre support, passing a regular expression to an endpoint will cause the endpoint to return an error.
+If the Kismet server was compiled *without* libpcre support, passing a regular expression to an endpoint will cause the endpoint to return an error.
 
 ```python
 [
@@ -138,7 +138,22 @@ For extracting over curl, a similar example:
 
 ```bash
 $ curl -d \
-"json={'regex': 'dot11.device/dot11.device.advertised_ssid_map/dot11.advertisedssid.ssid', '^Linksys$']}" \
+'json={"regex": [["dot11.device/dot11.device.advertised_ssid_map/dot11.advertisedssid.ssid", "^Linksys$"]]}' \
 http://user:password@server:2501/devices/views/phydot11_accesspoints/devices.json
 ```
+
+#### Array of regex pairs
+
+Notice that the regex field takes an *array* of field/regex pairs!  For a single regex match, the nested array is still required:
+
+```
+json={"regex": [ ["field", "match"] ]}
+```
+
+*not*
+
+```
+json={"regex": ["broken", "example"]}
+```
+
 
