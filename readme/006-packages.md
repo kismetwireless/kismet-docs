@@ -50,27 +50,6 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Debian / Raspbian Stretch (Intel, Raspberry Pi)
-Debian Stretch (i386, amd64, armhf - Raspberry Pi 3, Raspberry Pi 0w)
-
-*WARNING* - You will *not* be able to capture from the built-in Wi-Fi on the Raspberry Pi 3 or Pi 0w unless you also install the [nexmon driver patch](https://github.com/seemoo-lab/nexmon/).  This patch adds reverse-engineered monitor mode to the Broadcom driver.  You can still use USB devices, though!
-
-### Release (beta and release versions)
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/stretch stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
-### Nightly git
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/stretch stretch main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
 ## Debian / Raspbian Buster (Intel, Raspberry Pi)
 Debian Buster (amd64, armhf - Raspberry Pi 3, Raspberry Pi 4)
 
