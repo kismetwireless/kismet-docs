@@ -190,6 +190,25 @@ Kismet capture tools also support the following options:
 
     Rename the virtual GPS reported on this source; otherwise the capture name "fixed-remote" is used.
 
+### Remote capture and GPS
+
+Remote capture is typically incompatible with a *moving* sensor, because of the bandwidth required to move a full packet stream to the Kismet server, however in some situations it may be possible or desired.  There are two options for GPS with remote capture:
+
+1. Fixed GPS
+
+    For a remote capture in a fixed location, using the `--fixed-gps` argument when setting up the remote capture will tag all packets with that location information.  This lets Kismet use them location averaging, device seen-by locations, etc.
+
+2. Meta GPS
+
+    *Added in Kismet 2022-01-R3*
+
+    For a more dynamic remote gps, use the `metagps` option on the datasource definition:
+
+    ```bash
+    $ kismet_cap_linux_wifi --connect *foo* --source wlan0:name=remote1,metagps=remote1
+    ```
+
+    This creates a virtual GPS which can be updated [via the REST API](/docs/devel/webui_rest/gps/#meta-gps) to provide locational data for the remote source.
 
 ### Filtering remote-capture Wi-Fi
 

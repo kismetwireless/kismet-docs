@@ -188,6 +188,28 @@ If you are assigning custom UUIDs, you **must ensure** that every UUID is **uniq
 
 Most datasource types do not need a custom UUID set, the most notable exception being some SDR-based **remote** sources, where multiple SDR devices can have the same serial number and same position on the USB bus on different capture devices.
 
+#### Attaching a "meta" GPS
+
+*Added in Kismet-2022-01-R3*
+
+Sometimes, you might want to connect a specific source to a different GPS, for instance when using [remote capture](/docs/readme/datasources_remote_capture/).  A "meta-gps" device reports location to Kismet and is attached to a specific datasource, but obtains location data from the REST API.
+
+To set a meta GPS, use the `metagps` parameter:
+
+```
+source=wlan0:name=foo,metagps=foobar
+```
+
+More likely, you will use this as part of [remote capture](/docs/readme/datasources_remote_capture/):
+
+```bash
+$ kismet_cap_linux_wifi --connect *host* --source wlan0:name=remote1,metagps=remote1
+```
+
+You will then need to use an additional tool to populate the GPS, using the [metagps api](/docs/devel/webui_rest/gps/#web-gps).
+
+Multiple datasources can use the same meta GPS, or have independent meta GPS devices (or use the system-wide GPS if no metagps is specified).
+
 ### Multiple Kismet Datasources
 
 Kismet will attempt to open all the sources defined on the command line (with the `-c` option), or if no sources are defined on the command line, all the sources defined in the Kismet config files.
