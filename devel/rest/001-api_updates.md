@@ -7,6 +7,13 @@ excerpt: "Significant changes to the API endpoints"
 
 Over time, the Kismet endpoint API will change - while efforts are made to retain compatibility whenever possible, some changes will require breaking older implementations.  These significant changes will be documented here.
 
+* `2022-01-R3`
+
+    Changes to the REST API:
+
+    * Added `WEBGPS` role to the [webgps POST API](/docs/devel/webui_rest/gps/#web-gps)
+    * Soft-launched the [metagps API](/docs/devel/webui_rest/gps/#meta-gps) for remote capture GPS
+
 * `2022-01-R2`
 
     Changes to the REST API:
