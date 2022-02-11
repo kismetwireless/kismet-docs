@@ -97,13 +97,15 @@ The sniffer firmware in the TI CC2540 sometimes goes into a permanent error stat
 
 #### TI CC2540 interfaces
 
-TI CC2540 datasources in Kismet can be referred to as simply `ticc2540`:
+TI CC2540 datasources in Kismet can be referred to as simply `ticc2540-...`:
 
 ```bash
-$ kismet -c ticc2540
+$ kismet -c ticc2540-0
 ```
 
-When using multiple TI CC2540 dongles, they can be specified by their location in the USB bus; this can be detected automatically by Kismet as a supported interface in the web UI, or specified manually.  To find the location on the USB bus, look at the output of the command `lsusb`:
+When using multiple TICC devices, they can be specified either in order discovered by the system (`ticc2540-0`, `ticc2540-1`, etc), or by USB path.  If you need to know which specific device is being configured, use the USB path - however, this path may be subject to change if USB devices are moved, new USB devices added, etc.
+
+To find the location on the USB bus, look at the output of the command `lsusb`:
 
 ```bash
 $ lsusb
@@ -120,7 +122,9 @@ In this instance the first device is on `bus 001` and `device 008` and the secon
 $ kismet -c ticc2540-1-8
 ```
 
-Kismet will list available TI CC2540 devices automatically in the datasources list.
+Be sure that you are looking at the proper devices - many USB devices have similar vendor IDs!
+
+Kismet will also list available TI CC2540 devices automatically in the datasources list.
 
 #### Supported Hardware
 

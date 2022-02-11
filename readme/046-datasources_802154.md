@@ -42,13 +42,15 @@ The sniffer firmware in the TI CC2531 sometimes goes into a permanent error stat
 
 #### TI CC2531 interfaces
 
-TI CC2531 datasources in Kismet can be referred to as simply `ticc2531`:
+TI CC2531 datasources in Kismet can be referred to as simply `ticc2531-...`:
 
 ```bash
-$ kismet -c ticc2531
+$ kismet -c ticc2531-0
 ```
 
-When using multiple TI CC2531 dongles, they can be specified by their location in the USB bus; this can be detected automatically by Kismet as a supported interface in the web UI, or specified manually.  To find the location on the USB bus, look at the output of the command `lsusb`:
+When using multiple TICC devices, they can be specified either in order discovered by the system (`ticc2531-0`, `ticc2531-1`, etc), or by USB path.  If you need to know which specific device is being configured, use the USB path - however, this path may be subject to change if USB devices are moved, new USB devices added, etc.
+
+To find the location on the USB bus, look at the output of the command `lsusb`:
 
 ```bash
 $ lsusb
@@ -65,11 +67,14 @@ In this instance the first device is on `bus 001` and `device 008` and the secon
 $ kismet -c ticc2531-1-8
 ```
 
-Kismet will list available TI CC2531 devices automatically in the datasources list.
+Be sure that you are looking at the proper devices - many USB devices have similar vendor IDs!
+
+Kismet will also list available TI CC2531 devices automatically in the datasources list.
+
 
 #### Supported Hardware
 
-Any USB device based on the CC2531 chip, and flashed with the TI sniffer firmware, should work.  Beware!  Many online vendors sell identical-looking devices based on the CC2540 chip, which is *not* the same thing!
+Any USB device based on the CC2531 chip, and flashed with the TI sniffer firmware, should work.  Beware!  Many online vendors sell identical-looking devices based on the CC2531 chip, which is *not* the same thing!
 
 This datasource should work on any platform, so long as the appropriate libraries are available.
 
