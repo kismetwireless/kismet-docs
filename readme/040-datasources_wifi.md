@@ -59,7 +59,7 @@ Linux doesn't gracefully handle probing and creating multiple monitor mode VIFs 
 In some rare circumstances this file may be created with privileges that are not accessible from Kismet while running as suid-root; in these instances you will see an error opening an interface that it could not acquire the lock file.  Fixing these incidents should be as simple as a one-time removal of the file:
 
 ```bash
-$ sudo rm /tmp/kismet_cap_linux_wifi_interface_lock
+$ sudo rm /tmp/.kismet_cap_linux_wifi_interface_lock
 ```
 
 ### Supported Hardware
