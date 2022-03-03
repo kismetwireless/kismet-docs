@@ -31,7 +31,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    * *Linux Ubuntu/Debian/Kali/Mint*
 
        ```bash
-       $ sudo apt install build-essential git libwebsockets-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev
+       sudo apt install build-essential git libwebsockets-dev pkg-config zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev
        ```
 
        On some older distributions, `libprotobuf-c-dev` may be called `libprotobuf-c0-dev`.
@@ -45,7 +45,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
    * *Linux Fedora (and related)*
 
        ```bash
-       $ sudo dnf install make automake gcc gcc-c++ kernel-devel git libwebsockets-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
+       sudo dnf install make automake gcc gcc-c++ kernel-devel git libwebsockets-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel
        ```
 
        You will also need the related python3, rtlsdr, and ubertooth packages.
@@ -63,7 +63,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Install the required packages via Brew:
 
        ```bash
-       % brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb openssl
+       brew install pkg-config python3 libpcap protobuf protobuf-c pcre librtlsdr libbtbb ubertooth libusb openssl libwebsockets
        ```
 
        MacOS requires some additional flags during the `./configure` stage as well - be sure to read on in the configure section!
@@ -71,14 +71,14 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 3. Clone Kismet from git.  If you haven't cloned Kismet before:
 
     ```bash
-    $ git clone https://www.kismetwireless.net/git/kismet.git
+    git clone https://www.kismetwireless.net/git/kismet.git
     ```
 
     If you have a Kismet repo already:
 
     ```bash
-    $ cd kismet
-    $ git pull
+    cd kismet
+    git pull
     ```
 
 4. Run configure.  
@@ -86,8 +86,8 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     This will find all the specifics about your system and prepare Kismet for compiling.  If you have any missing dependencies or incompatible library versions, they will show up here.
 
     ```bash
-    $ cd kismet
-    $ ./configure
+    cd kismet
+    ./configure
     ```
 
     Pay attention to the summary at the end and look out for any warnings! The summary will show key features and raise warnings for missing dependencies which will drastically affect the compiled Kismet.
@@ -101,25 +101,23 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Brew does not place things where the compiler can find them by default, and does not install all development headers, to prevent conflict with MacOS system headers.  To work around this, extra options must be passed to the `./configure` stage:
 
        ```bash
-       $ LDFLAGS="-L/opt/homebrew/Cellar/openssl\@1.1/1.1.1m/lib -L/opt/homebrew/Cellar/libusb/1.0.24/lib" CPPFLAGS="-I/opt/homebrew/Cellar/openssl\@1.1/1.1.1m/include -I/opt/homebrew/Cellar/libusb/1.0.24/include" ./configure --disable-libwebsockets
+       LDFLAGS=-L$(brew --prefix)/lib CPPFLAGS="-I$(brew --prefix)/include -I$(brew --prefix openssl)/include" ./configure
         ```
 
        This may not be necessary with other package managers under MacOS.
 
        If the libraries still can not be found with the above `./configure` command, you will need to examine your brew configuration to see if it is installing packages in a different location, or if a different version of the library has been installed.  In these cases, you will need to adjust the `LDFLAGS` and `CPPFLAGS` in the `./configure` command so that they point to the installed location and version of the libraries.
 
-       The brew-supplied libwebsockets does not include the client-mode code, which is the only part Kismet actually needs.  It is necessary to disable client-mode websockets, this will only impact using remote capture over websockets *from* a MacOS system - websockets server support and receiving remote packets *as* a websockets server will work fine.
-
 5. Compile Kismet.
 
     ```bash
-    $ make
+    make
     ```
 
     You can accelerate the process by adding `-j #`, depending on how many CPUs you have.  To automatically compile on all the available cores:
 
     ```bash
-    $ make -j$(nproc)
+    make -j$(nproc)
     ```
 
     C++ uses quite a bit of RAM to compile, so depending on the RAM available on your system you may need to limit the number of processes you run simultaneously.
@@ -127,7 +125,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     Sometimes, when updating the git repository, files have changed significantly enough that the Makefile system does not automatically recover fully.  If you encounter errors about missing header files (`foo.h not found` for example), try removing all `.d` files and running `make` again:
 
     ```bash
-    $ rm *.d
+    rm *.d
     ```
 
     These files are used to identify which parts of the code need to be recompiled; rarely, when code is moved around, they get confused.
@@ -139,13 +137,13 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     When installed suid-root, Kismet will launch the binaries which control the channels and interfaces with the needed privileges, but will keep the packet decoding and web interface running without root privileges.
 
     ```bash
-    $ sudo make suidinstall
+    sudo make suidinstall
     ```
 
 7.  Add your user to the `kismet` group (Linux)
 
     ```bash
-    $ sudo usermod -aG kismet $USER
+    sudo usermod -aG kismet $USER
     ```
 
     This will add your current logged in user to the `kismet` group.
@@ -159,7 +157,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
     Either log back out and log in (or in extreme cases, reboot), or use the `newgrp` command if available:
 
     ```bash
-    $ newgrp -
+    newgrp -
     ```
 
     Note that `newgrp` is *not* run via `sudo`.
@@ -167,7 +165,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
 9.  Check that you are in the Kismet group with:
 
     ```bash
-    $ groups
+    groups
     ```
 
     If you are not in the `kismet` group, you should log out and log back in, or reboot - some session and desktop managers don't reload the groups on logout, either.
