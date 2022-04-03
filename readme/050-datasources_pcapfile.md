@@ -20,7 +20,9 @@ $ kismet -c /tmp/foo.pcap
 
 It can be manually specified with `type=pcapfile`, as in:
 
-```source=/tmp/foo.pcap:type=pcapfile```
+```
+source=/tmp/foo.pcap:type=pcapfile
+```
 
 The pcapfile capture uses the 'kismet_cap_pcapfile' tool which does not need special privileges.
 
@@ -38,7 +40,9 @@ In addition to the normal options supported by all sources (name, information el
    
  These options can be used in the kismet.conf and kismet_site.conf, as in:
  
- ```source=/tmp/foo.pcap:type=pcapfile,name=a_meaningful_name,realtime=true```
+ ```
+ source=/tmp/foo.pcap:type=pcapfile,name=a_meaningful_name,realtime=true
+ ```
  
  Or from the command line:
  
