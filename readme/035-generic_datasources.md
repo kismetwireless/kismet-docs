@@ -206,7 +206,7 @@ More likely, you will use this as part of [remote capture](/docs/readme/datasour
 $ kismet_cap_linux_wifi --connect *host* --source wlan0:name=remote1,metagps=remote1
 ```
 
-You will then need to use an additional tool to populate the GPS, using the [metagps api](/docs/devel/webui_rest/gps/#web-gps).
+You will then need to use an additional tool to populate the GPS, using the [metagps api](/docs/devel/webui_rest/gps/#meta-gps).
 
 Multiple datasources can use the same meta GPS, or have independent meta GPS devices (or use the system-wide GPS if no metagps is specified).
 
