@@ -156,6 +156,14 @@ Linux Wi-Fi sources accept several options in the source definition, in addition
 
     Automatically detect all local interfaces and build a BPF filter to exclude them from the capture.  This is most useful for remote capture instances which are connected over wireless.  The filter can only exclude the first 8 devices found, because of limits in the kernel memory buffer for BPF filtering.
 
+* `filter_mgmt=true | false`
+
+    Use a kernel-level BPF filter to filter out all *except* 802.11 management and EAPOL (WPA handshake) packets.
+
+    Enabling this filter will *drastically* reduce the amount of processing power required for Kismet, however it will exclude *all other data packets*.  Wireless APs and clients will be visible, however wired/bridged clients will not, and data-based statistics like bandwidth will not be available, however beacon-based statistics like QBSS reports will be retained.
+
+    This feature is used by the wardrive-mode overlay.
+
 * `ht_channels=true | false`
 
    Kismet will detect and tune to HT40 channels when available; to disable this, set `ht_channels=false` on your source definition.

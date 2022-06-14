@@ -71,6 +71,16 @@ What does wardriving mode change?  You can see all the options in the `kismet_wa
     dot11_datasource_opt=expand_ht20,false
     ```
 
+* Turn on advanced filtering
+
+    *Added in 2022-06*
+
+    Enable a kernel BPF (packet filter language) filter that only passes 802.11 management and EAPOL (WPA handshake) frames.  This greatly reduces the number of packets Kismet must process.
+
+    ```
+    dot11_datasource_opt=filter_mgmt
+    ```
+
 * Tune 802.11 tracking
 
     Kismet normally tracks all device it sees, keeps fingerprints, optionally keeps IE tags for display, and keeps handshakes.  All of this takes memory, so we turn it off.
