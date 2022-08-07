@@ -152,13 +152,13 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 21.10 Impish (Intel, Raspberry Pi)
-Ubuntu 21.10 Impish  (amd64, arm)
+## Ubuntu 22.04 Jammy (Intel, Raspberry Pi)
+Ubuntu 22.04 Jammy  (amd64, arm)
 
 ### Release (beta and release versions)
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/impish impish main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/release/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
@@ -166,7 +166,7 @@ $ sudo apt install kismet
 ### Nightly git
 ```bash
 $ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/impish impish main' | sudo tee /etc/apt/sources.list.d/kismet.list
+$ echo 'deb https://www.kismetwireless.net/repos/apt/git/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list
 $ sudo apt update
 $ sudo apt install kismet
 ```
