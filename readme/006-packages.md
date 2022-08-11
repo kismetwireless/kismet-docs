@@ -133,25 +133,6 @@ $ sudo apt update
 $ sudo apt install kismet
 ```
 
-## Ubuntu 21.04 Hirsute (Intel, Raspberry Pi)
-Ubuntu 21.04 Hirsute  (amd64, arm)
-
-### Release (beta and release versions)
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/release/hirsute hirsute main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
-### Nightly git
-```bash
-$ wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-$ echo 'deb https://www.kismetwireless.net/repos/apt/git/hirsute hirsute main' | sudo tee /etc/apt/sources.list.d/kismet.list
-$ sudo apt update
-$ sudo apt install kismet
-```
-
 ## Ubuntu 22.04 Jammy (Intel, Raspberry Pi)
 Ubuntu 22.04 Jammy  (amd64, arm)
 
