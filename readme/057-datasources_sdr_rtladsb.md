@@ -12,7 +12,7 @@ toc: true
 
 To capture ADSB with Kismet, you'll need a rtl-sdr USB software defined radio.  You can't capture these signals with a Wi-Fi card; they're very different!
 
-Using a rtl-sdr, Kismet is able to process the transponder data transmitted from commercial aircraft; for more information about the ADSB signal; for more information about the ADSB signal and how to decode it, check out the [mode-s introduction](https://mode-s.org/decode/adsb/introduction.html).
+Using a rtl-sdr, Kismet is able to process the transponder data transmitted from commercial aircraft; for more information about the ADSB signal and how to decode it, check out the [mode-s introduction](https://mode-s.org/decode/content/introduction.html).
 
 ### Datasource - SDR RTLADSB
 
