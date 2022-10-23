@@ -101,7 +101,7 @@ Kismet has many configuration knobs and options; but for the quickest way to get
        Brew does not place things where the compiler can find them by default, and does not install all development headers, to prevent conflict with MacOS system headers.  To work around this, extra options must be passed to the `./configure` stage:
 
        ```bash
-       LDFLAGS=-L$(brew --prefix)/lib CPPFLAGS="-I$(brew --prefix)/include -I$(brew --prefix openssl)/include" ./configure
+       LDFLAGS=-L$(brew --prefix)/lib CPPFLAGS="-I$(brew --prefix)/include -I$(brew --prefix openssl)/include" ./configure --with-openssl=$(brew --prefix openssl)
         ```
 
        This may not be necessary with other package managers under MacOS.
