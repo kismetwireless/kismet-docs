@@ -33,7 +33,7 @@ $ sqlite3 Kismet-foo-whatever.kismet 'VACUUM;'
 or via the included Kismet log cleanup tool:
 
 ```bash
-$ kismetdb_clean foo.kismet
+$ kismetdb_clean --in foo.kismet
 ```
 
 ### Kismetdb ephemeral and timed logs
